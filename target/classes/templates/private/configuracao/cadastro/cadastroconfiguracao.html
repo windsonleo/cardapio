@@ -1,0 +1,659 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Cadastro de Configuração</title>
+
+<body  class="hold-transition skin-red sidebar-mini">
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+					  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+       Configuração
+        <small>Cadastro</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Configuração</a></li>
+        <li class="active"><a href="#">Cadastro</a></li>
+<!--         <li class="active">Blank page</li> -->
+      </ol>
+    </section>
+    
+    
+		 <div class="content">
+		 
+		 
+		 <!-- 				mensagens do sistema  -->
+				
+		<div class="row-fluid" th:if="${sucesso}">
+					
+			<div class="alert alert-success">
+				<div class="container-fluid">
+					<div class="alert-icon">
+						<i class="material-icons">check</i>
+					</div>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+					</button>
+					<b>Mensagem:</b> <span th:utext="${sucesso}">
+					
+					
+					
+					</span>
+					
+				
+						<span class="btn btn-sm btn-warning"><a th:href="@{/configuracao/cadastro}"><i></i>Novo</a></span>
+					    <span class="btn btn-sm btn-warning"><a th:href="@{/configuracao/editar(id=${configuracao.id})}"><i></i>Editar</a></span>
+				
+				</div>
+				
+				
+			</div>
+					
+					
+					
+			</div>
+					
+			<div class="row-fluid" th:if="${erro}">
+					
+			<div class="alert alert-danger">
+				<div class="container-fluid">
+					<div class="alert-icon">
+						<i class="material-icons">error</i>
+					</div>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+					</button>
+					<b>Mensagem:</b> <span th:utext="${erro}"></span>
+				
+						<span class="btn btn-sm btn-warning"><a th:href="@{/configuracao/cadastro}"><i></i>Novo</a></span>
+					    <span class="btn btn-sm btn-warning"><a th:href="@{/configuracao/editar(id=${configuracao.id})}"><i></i>Editar</a></span>
+			
+				</div>
+				
+				
+			</div>
+					
+					
+					
+			</div>
+				
+<!-- fim das mensagens -->
+
+
+<!-- inicio do conteudo  -->
+
+	<div class="col-md-3">
+			
+			<form th:action="@{/configuracao/salvarfotoempresa}" ModelAttribute="configuracao"  enctype="multipart/form-data"  method="post">
+			
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username" th:text="${configuracao.nomeempresa}">Thanh Nguyen</h3>
+              <h5 class="widget-user-desc" >Logomarca Empresa</h5>
+            </div>
+            
+<!--             <div class="widget-user-image" th:if="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar file if"/> -->
+<!--             </div> -->
+            
+<!--                         <div class="widget-user-image" th:unless="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/avatar2.png}" alt="User Avatar file unless"/> -->
+<!--             </div> -->
+            
+            
+            
+                       <div class="widget-user-image" th:if="${configuracao.logo}">
+              <img class="img-circle" th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracao.logo})}" alt="User Avatar usu if"/>
+            </div>
+            
+                                   <div class="widget-user-image" th:unless="${configuracao.logo}">
+              <img class="img-circle" th:src="@{/img/configuracao/{fotoc}(fotoc=${filename})}" alt="User Avatar usu unless" />
+            </div>
+            
+            
+            <div class="box-footer">
+              <div class="row">
+<!--                 <div class="col-sm-4 border-right"> -->
+<!--                   <div class="description-block"> -->
+<!--                     <h5 class="description-header">3,200</h5> -->
+<!--                     <span class="description-text">SALES</span> -->
+<!--                   </div> -->
+<!--                   /.description-block -->
+<!--                 </div> -->
+                <!-- /.col -->
+<!--                 <div class="col-sm-4 border-right"> -->
+<!--                   <div class="description-block"> -->
+<!--                     <h5 class="description-header">13,000</h5> -->
+<!--                     <span class="description-text">FOLLOWERS</span> -->
+<!--                   </div> -->
+<!--                   /.description-block -->
+<!--                 </div> -->
+                <!-- /.col -->
+                <div class="col-sm-12">
+                  <div class="description-block">
+                  
+                 <div class="form-group">
+                  <label for="file">File input</label>
+                  <input type="text" readonly="" class="form-control" th:value="${filename}" th:placeholder="${filename}" />
+                  <input type="file" id="file" multiple="multiple" name="file" />
+
+                  <p class="help-block">Example block-level help text here.</p>
+                </div>
+                   
+                    <h5 class="description-header">
+                    <button type="submit" class="btn btn-block btn-primary btn-sm">Add foto
+                    	<div class="ripple-container"></div>
+                    </button>
+                    
+                    </h5>
+                    
+                    <span class="description-text"><i class="fa fa-photo"></i></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+          
+          </form>
+        </div>
+        
+        
+        	<div class="col-md-3">
+			
+			<form th:action="@{/configuracao/salvarfotobanner1}" ModelAttribute="configuracao"  enctype="multipart/form-data"  method="post">
+			
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username" th:text="${configuracao.nomeempresa}">Thanh Nguyen</h3>
+              <h5 class="widget-user-desc" >Logomarca Banner Carrosel 1</h5>
+            </div>
+            
+<!--             <div class="widget-user-image" th:if="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar file if"/> -->
+<!--             </div> -->
+            
+<!--                         <div class="widget-user-image" th:unless="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/avatar2.png}" alt="User Avatar file unless"/> -->
+<!--             </div> -->
+            
+            
+            
+            
+                       <div class="widget-user-image" th:if="${configuracao.banner1}">
+              <img class="img-circle" th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracao.banner1})}" alt="User Avatar usu if"/>
+            </div>
+            
+                                   <div class="widget-user-image" th:unless="${configuracao.banner1}">
+              <img class="img-circle" th:src="@{/img/configuracao/{fotoc}(fotoc=${filenamebanner1})}" alt="User Avatar usu unless" />
+            </div>
+            
+            
+            <div class="box-footer">
+              <div class="row">
+<!--                 <div class="col-sm-4 border-right"> -->
+<!--                   <div class="description-block"> -->
+<!--                     <h5 class="description-header">3,200</h5> -->
+<!--                     <span class="description-text">SALES</span> -->
+<!--                   </div> -->
+<!--                   /.description-block -->
+<!--                 </div> -->
+                <!-- /.col -->
+<!--                 <div class="col-sm-4 border-right"> -->
+<!--                   <div class="description-block"> -->
+<!--                     <h5 class="description-header">13,000</h5> -->
+<!--                     <span class="description-text">FOLLOWERS</span> -->
+<!--                   </div> -->
+<!--                   /.description-block -->
+<!--                 </div> -->
+                <!-- /.col -->
+                <div class="col-sm-12">
+                  <div class="description-block">
+                  
+                 <div class="form-group">
+                  <label for="file">File input</label>
+                  <input type="text" readonly="" class="form-control" th:value="${filenamebanner1}" th:placeholder="${filenamebanner1}" />
+                  <input type="file" id="file" multiple="multiple" name="file" />
+
+                  <p class="help-block">Example block-level help text here.</p>
+                </div>
+                   
+                    <h5 class="description-header">
+                    <button type="submit" class="btn btn-block btn-primary btn-sm">Add foto
+                    	<div class="ripple-container"></div>
+                    </button>
+                    
+                    </h5>
+                    
+                    <span class="description-text"><i class="fa fa-photo"></i></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+          
+          </form>
+        </div>
+        
+        
+        	<div class="col-md-3">
+			
+			<form th:action="@{/configuracao/salvarfotobanner2}" ModelAttribute="configuracao"  enctype="multipart/form-data"  method="post">
+			
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username" th:text="${configuracao.nomeempresa}">Thanh Nguyen</h3>
+              <h5 class="widget-user-desc" >Logomarca Banner Carrosel 2</h5>
+            </div>
+            
+<!--             <div class="widget-user-image" th:if="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar file if"/> -->
+<!--             </div> -->
+            
+<!--                         <div class="widget-user-image" th:unless="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/avatar2.png}" alt="User Avatar file unless"/> -->
+<!--             </div> -->
+            
+            
+            
+                       <div class="widget-user-image" th:if="${configuracao.banner2}">
+              <img class="img-circle" th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracao.banner2})}" alt="User Avatar usu if"/>
+            </div>
+            
+                                   <div class="widget-user-image" th:unless="${configuracao.banner2}">
+              <img class="img-circle" th:src="@{/img/configuracao/{fotoc}(fotoc=${filenamebanner2})}" alt="User Avatar usu unless" />
+            </div>
+            
+            
+            <div class="box-footer">
+              <div class="row">
+<!--                 <div class="col-sm-4 border-right"> -->
+<!--                   <div class="description-block"> -->
+<!--                     <h5 class="description-header">3,200</h5> -->
+<!--                     <span class="description-text">SALES</span> -->
+<!--                   </div> -->
+<!--                   /.description-block -->
+<!--                 </div> -->
+                <!-- /.col -->
+<!--                 <div class="col-sm-4 border-right"> -->
+<!--                   <div class="description-block"> -->
+<!--                     <h5 class="description-header">13,000</h5> -->
+<!--                     <span class="description-text">FOLLOWERS</span> -->
+<!--                   </div> -->
+<!--                   /.description-block -->
+<!--                 </div> -->
+                <!-- /.col -->
+                <div class="col-sm-12">
+                  <div class="description-block">
+                  
+                 <div class="form-group">
+                  <label for="file">File input</label>
+                  <input type="text" readonly="" class="form-control" th:value="${filenamebanner2}" th:placeholder="${filenamebanner2}" />
+                  <input type="file" id="file" multiple="multiple" name="file" />
+
+                  <p class="help-block">Example block-level help text here.</p>
+                </div>
+                   
+                    <h5 class="description-header">
+                    <button type="submit" class="btn btn-block btn-primary btn-sm">Add foto
+                    	<div class="ripple-container"></div>
+                    </button>
+                    
+                    </h5>
+                    
+                    <span class="description-text"><i class="fa fa-photo"></i></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+          
+          </form>
+        </div>
+        
+        
+        
+                	<div class="col-md-3">
+			
+			<form th:action="@{/configuracao/salvarfotobanner3}" ModelAttribute="configuracao"  enctype="multipart/form-data"  method="post">
+			
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username" th:text="${configuracao.nomeempresa}">Thanh Nguyen</h3>
+              <h5 class="widget-user-desc" >Logomarca Banner Carrosel 3</h5>
+            </div>
+            
+<!--             <div class="widget-user-image" th:if="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar file if"/> -->
+<!--             </div> -->
+            
+<!--                         <div class="widget-user-image" th:unless="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/avatar2.png}" alt="User Avatar file unless"/> -->
+<!--             </div> -->
+            
+            
+            
+                       <div class="widget-user-image" th:if="${configuracao.banner3}">
+              <img class="img-circle" th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracao.banner3})}" alt="User Avatar usu if"/>
+            </div>
+            
+                                   <div class="widget-user-image" th:unless="${configuracao.banner3}">
+              <img class="img-circle" th:src="@{/img/configuracao/{fotoc}(fotoc=${filenamebanner3})}" alt="User Avatar usu unless" />
+            </div>
+            
+            
+            <div class="box-footer">
+              <div class="row">
+<!--                 <div class="col-sm-4 border-right"> -->
+<!--                   <div class="description-block"> -->
+<!--                     <h5 class="description-header">3,200</h5> -->
+<!--                     <span class="description-text">SALES</span> -->
+<!--                   </div> -->
+<!--                   /.description-block -->
+<!--                 </div> -->
+                <!-- /.col -->
+<!--                 <div class="col-sm-4 border-right"> -->
+<!--                   <div class="description-block"> -->
+<!--                     <h5 class="description-header">13,000</h5> -->
+<!--                     <span class="description-text">FOLLOWERS</span> -->
+<!--                   </div> -->
+<!--                   /.description-block -->
+<!--                 </div> -->
+                <!-- /.col -->
+                <div class="col-sm-12">
+                  <div class="description-block">
+                  
+                 <div class="form-group">
+                  <label for="file">File input</label>
+                  <input type="text" readonly="" class="form-control" th:value="${filenamebanner3}" th:placeholder="${filenamebanner3}" />
+                  <input type="file" id="file" multiple="multiple" name="file" />
+
+                  <p class="help-block">Example block-level help text here.</p>
+                </div>
+                   
+                    <h5 class="description-header">
+                    <button type="submit" class="btn btn-block btn-primary btn-sm">Add foto
+                    	<div class="ripple-container"></div>
+                    </button>
+                    
+                    </h5>
+                    
+                    <span class="description-text"><i class="fa fa-photo"></i></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+          
+          </form>
+        </div>
+
+
+
+ <div class="col-md-7 panel">
+		 <div class="col-md-7">
+<!--                       <div class="panel form-element-padding"> -->
+                        <div class="panel-heading">
+                         <h4>Cadastro de Configuração</h4>
+                        </div>
+                         <div class="panel-body" style="padding-bottom:30px;">
+
+                      
+                        <form class="form-horizontal" method="post" th:object="${configuracao}" 
+                             th:action="@{/configuracao/add}">
+                 
+                  <div class="form-group">
+                    <label for="id" class="col-sm-2 control-label">Id</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="id" placeholder="Id" name="id" readonly="readonly" th:value="${configuracao.id}" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="nomeempresa" class="col-sm-2 control-label">Nome</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="nomeempresa" name="nomeempresa" placeholder="Nome" th:value="${configuracao.nomeempresa}" />
+                    </div>
+                  </div>
+                  
+                                    <div class="form-group">
+                    <label for="logo" class="col-sm-2 control-label">Logo</label>
+
+                    <div class="col-sm-10">
+                     
+                   <input th:unless="${configuracao.logo}" autocomplete="off" id="logo" class="form-control" name="logo" type="text" th:value="${filename}"
+                     placeholder="Foto"> </input>
+                     
+                  <input   th:if="${configuracao.logo}" autocomplete="off" id="logo" class="form-control" name="logo" type="text" th:value="${configuracao.logo}"
+                     placeholder="Foto"> </input>
+                     
+                     
+                     
+<!--                       <input type="text" class="form-control" id="logo" placeholder="logo"  name="logo"  th:value="${configuracao.logo}"/> -->
+                    
+                    
+                    
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="banner1" class="col-sm-2 control-label">Banner1</label>
+
+                    <div class="col-sm-10">
+                    
+                    
+                <input th:unless="${configuracao.banner1}" autocomplete="off" id="banner1" class="form-control" name="banner1" type="text" th:value="${filenamebanner1}"
+                     placeholder="Foto"> </input>
+                     
+                  <input   th:if="${configuracao.banner1}" autocomplete="off" id="banner1" class="form-control" name="banner1" type="text" th:value="${configuracao.banner1}"
+                     placeholder="Foto"> </input>
+                    
+                    
+<!--                       <input type="text" class="form-control" id="banner1" placeholder="Banner"  name="banner1"  th:value="${configuracao.banner1}"/> -->
+                    </div>
+                  </div>
+                  
+                  
+                                    <div class="form-group">
+                    <label for="banner2" class="col-sm-2 control-label">Banner2</label>
+
+                    <div class="col-sm-10">
+                    
+                    
+                                    <input th:unless="${configuracao.banner2}" autocomplete="off" id="banner2" class="form-control" name="banner2" type="text" th:value="${filenamebanner2}"
+                     placeholder="Foto"> </input>
+                     
+                  <input   th:if="${configuracao.banner2}" autocomplete="off" id="banner2" class="form-control" name="banner2" type="text" th:value="${configuracao.banner2}"
+                     placeholder="Foto"> </input>
+                     
+                     
+                     
+<!--                       <input type="text" class="form-control" id="banner2" placeholder="Banner" name="banner2" th:value="${configuracao.banner2}"/> -->
+                    </div>
+                  </div>
+                  
+                  
+                  
+                                    <div class="form-group">
+                                    
+                                    
+                    <label for="banner3" class="col-sm-2 control-label">Banner3</label>
+
+                    <div class="col-sm-10">
+                    
+                    
+                                    <input th:unless="${configuracao.banner3}" autocomplete="off" id="banner3" class="form-control" name="banner3" type="text" th:value="${filenamebanner3}"
+                     placeholder="Foto"> </input>
+                     
+                  <input   th:if="${configuracao.banner3}" autocomplete="off" id="banner3" class="form-control" name="banner3" type="text" th:value="${configuracao.banner3}"
+                     placeholder="Foto"> </input>
+                    
+                    
+<!--                       <input type="text" class="form-control" id="banner3" placeholder="Banner"  name="banner3"  th:value="${configuracao.banner3}"/> -->
+                  
+                  
+                  
+                    </div>
+                  </div>
+                  
+                  
+                  
+                  
+                                    <div class="form-group">
+                    <label for="urlface" class="col-sm-2 control-label">urlface</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="urlface" placeholder="Banner"  name="urlface"  th:value="${configuracao.urlface}"/>
+                    </div>
+                  </div>
+                  
+                  
+                                    <div class="form-group">
+                    <label for="urlinsta" class="col-sm-2 control-label">urlinsta</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="urlinsta" placeholder="Banner" name="urlinsta" th:value="${configuracao.urlinsta}"/>
+                    </div>
+                  </div>
+                  
+                  
+                  
+                                    <div class="form-group">
+                    <label for="urlgmail" class="col-sm-2 control-label">urlgmail</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="urlgmail" placeholder="Banner"  name="urlgmail"  th:value="${configuracao.urlgmail}"/>
+                    </div>
+                  </div>
+                  
+                  
+                  
+                                                      <div class="form-group">
+                    <label for="cortopo" class="col-sm-2 control-label">cortopo</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="cortopo" placeholder="Banner"  name="cortopo"  th:value="${configuracao.cortopo}"/>
+                    </div>
+                  </div>
+                  
+                  
+                                    <div class="form-group">
+                    <label for="cormenu" class="col-sm-2 control-label">cormenu</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="cormenu" placeholder="Banner" name="cormenu" th:value="${configuracao.cormenu}"/>
+                    </div>
+                  </div>
+                  
+                  
+                  
+                                    <div class="form-group">
+                    <label for="corcard" class="col-sm-2 control-label">corcard</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="corcard" placeholder="Banner"  name="corcard"  th:value="${configuracao.corcard}"/>
+                    </div>
+                  </div>
+
+                  
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Hora Abre</label>
+
+                    <div class="col-sm-10">
+                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">Hora Fecha</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+                    </div>
+                      <div class="clearfix"></div>
+                </div>
+                
+                  <div class="clearfix"></div>
+                
+            </div>
+            
+            <div class="clearfix"></div>
+        </div>
+        
+        <div class="clearfix"></div>
+    </div>
+		
+
+		
+
+			<div class="clearfix"></div>
+
+
+<!--              <div th:replace="fragmentos/footer :: footer"> -->
+            
+<!--             </div> -->
+            
+            
+
+</div>
+
+	<div class="clearfix"></div>
+
+<!-- </div> -->
+
+<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+			
+</body>
+			
+			
+</html>
+

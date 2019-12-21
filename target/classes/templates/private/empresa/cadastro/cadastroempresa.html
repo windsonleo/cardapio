@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Cadastro de Empresa</title>
+
+<body>
+			
+<div class="page-container">
+   <!--/content-inner-->
+	<div class="left-content">
+	
+	<div class="inner-content">
+
+	   			  <div th:replace="fragmentos/top-nav :: top-nav">
+				
+				</div>
+				
+				
+				<div class="content">
+				
+				
+<!-- 				mensagens do sistema  -->
+				
+		<div class="row-fluid" th:if="${sucesso}">
+					
+			<div class="alert alert-success">
+				<div class="container-fluid">
+					<div class="alert-icon">
+						<i class="material-icons">check</i>
+					</div>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+					</button>
+					<b>Mensagem:</b> <span th:utext="${sucesso}">
+					
+					
+					
+					</span>
+					
+					<span class="btn btn-sm btn-warning"><a th:href="@{/empresa/cadastro}"><i></i>Novo</a></span>
+					<span class="btn btn-sm btn-warning"><a th:href="@{/empresa/editar(id=${empresa.id})}"><i></i>Editar</a></span>
+					
+				
+				</div>
+				
+				
+			</div>
+					
+					
+					
+			</div>
+					
+			<div class="row-fluid" th:if="${erro}">
+					
+			<div class="alert alert-danger">
+				<div class="container-fluid">
+					<div class="alert-icon">
+						<i class="material-icons">error</i>
+					</div>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+					</button>
+					<b>Mensagem:</b> <span th:utext="${erro}"></span>
+				
+					<span class="btn btn-sm btn-warning"><a th:href="@{/empresa/cadastro}"><i></i>Novo</a></span>
+					<span class="btn btn-sm btn-warning"><a th:href="@{/empresa/editar(id=${empresa.id})}"><i></i>Editar</a></span>
+			
+				</div>
+				
+				
+			</div>
+					
+					
+					
+			</div>
+				
+<!-- fim das mensagens -->
+
+
+<!-- inicio do conteudo  -->
+
+<div class="row-fluid">
+			        
+			       
+			  
+			        
+			        
+            <div class="span12">
+                        <div class="card">
+                    <div class="card-content">
+                       
+                                <div class="card-header" data-background-color="blue">
+                                
+                                    <h4 class="title">Cadastro Empresa
+                                    
+                                    
+                                    </h4>
+                                    <p class="category">Insira os Dados</p>
+
+                                </div>
+                                
+<!--                                 </br> -->
+          <div class="widget-content">
+                
+       <div class="col-md-2">      
+          <form method="post" action="salvarfotoempresa" enctype="multipart/form-data" class="form-horizonta">       
+      
+                  
+                            <div class="card card-profile">
+                               
+                                <div class="card-avatar" th:if="${filename}">
+                                    <a href="#pablo">
+<!--                                         <img class="img" src="/img/vazio.jpg"  th:src="${filename}"/> -->
+                                    <img class="img" th:src="@{/img/empresa/{fotoc}(fotoc=${filename})}"/>
+                                    
+                                    </a>
+                                    
+                                    
+                                </div>
+                           
+                           <div class="card-avatar" th:unless="${filename}">
+                                    <a href="#pablo">
+<!--                                         <img class="img" src="/img/vazio.jpg"  th:src="${filename}"/> -->
+<!--                                     <img class="img" th:src="@{/img/empresa/vazio.jpg}"/> -->
+                                    
+                                    </a>
+                                    
+                                    
+                                </div>
+                                
+                               
+                                
+                                  <div class="card-avatar" th:if="${empresa.imagem}">
+                                     
+                                     <a href="#pablo">
+                                    <img class="img" th:src="@{/img/empresa/{fotoc}(fotoc=${empresa.imagem})}"/>
+                                   </a>
+                            
+								</div>
+								
+							<div class="card-avatar" th:unless="${empresa.imagem}">
+                                     
+                                     <a href="#pablo">
+                                    <img class="img" th:src="@{/img/empresa/vazio.jpg}"/>
+                                   </a>
+                            
+								</div>
+								
+								
+								
+                            	<div class="form-group  is-fileinput">
+									    <input type="file" id="file" multiple="multiple" name="file"/>
+									    <div class="input-group">
+									      <input type="text" readonly="readonly" class="form-control" placeholder="Selecione a Foto..." /> 
+									        <span class="input-group-btn input-group-sm">
+									          <button type="button" class="btn btn-fab btn-fab-mini">
+									            <i class="material-icons">attach_file</i>
+									          </button>
+									        </span>
+									   
+									   	<button type="submit"  class="btn btn-info btn-round btn-md">Salvar Foto</button>
+									   
+									    </div>
+								
+									</div>
+                            
+                            
+                            </div>
+<!--                         </div> -->
+                             
+									
+                                       
+              <span class="material-input"></span>
+                         		
+                                    
+              </form>
+              
+              </div> 
+                             
+          <form class="form-horizonta" method="post"
+                             th:action="@{/empresa/add}">
+                             
+                             
+			<div class="checkbox">
+                <label>
+				<input id="ativo" name="optionsCheckboxes"  type="checkbox" th:checked="${empresa.ativo}" class="checkbox"/>Ativo?
+				</label>
+              </div>
+
+						<div class="form-group label-floating ">
+                            <div class="control-group">
+                                <label class="control-label">Id</label>
+                                <div class="controls">
+                                    <input id="id" class="form-control" name="id" type="text" th:value="${empresa.id}"
+                                           placeholder="" readonly="readonly"/> 
+                                </div>
+                            </div>
+                            </div>
+                            
+                            <div class="form-group label-floating ">
+                            <div class="control-group">
+                                <label class="control-label">Nome</label>
+                                <div class="controls">
+                                    <input id="nomefantasia" class="form-control" name="nomefantasia" type="text" th:value="${empresa.nomefantasia}"
+                                           placeholder=""> </input>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            
+                            
+                             <div class="form-group label-floating ">
+                            <div class="control-group">
+                                <label class="control-label">Email</label>
+                                <div class="controls">
+                                    <input id="email" class="form-control" name="email" type="text" th:value="${empresa.email}"
+                                           placeholder=""> </input>
+                                </div>
+                            </div>
+                            </div>
+                            
+                           <div class="form-group label-floating ">
+                            <div class="control-group">
+                                <label class="control-label">Telefone</label>
+                                <div class="controls">
+                                    <input id="telefone" class="form-control" name="telefone" type="text" th:value="${empresa.telefone}"
+                                           placeholder=""> </input>
+                                </div>
+                            </div>
+                            </div>
+                            
+                        <div class="form-group label-floating ">
+                            <div class="control-group">
+                                <label class="control-label">CNPJ</label>
+                                <div class="controls">
+                                    <input id="cnpj" class="form-control" name="cnpj" type="text" th:value="${empresa.cnpj}"
+                                           placeholder=""> </input>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            <div class="form-group label-floating ">
+                            <div class="control-group">
+                                <label class="control-label">IE</label>
+                                <div class="controls">
+                                    <input id="inscricaoestadual" class="form-control" name="inscricaoestadual" type="text" th:value="${empresa.inscricaoestadual}"
+                                           placeholder=""> </input>
+                                </div>
+                            </div>
+                            </div>
+                            
+                                                        
+                            <div class="form-group label-floating ">
+                            <div class="control-group">
+                                <label class="control-label">Data Abertura</label>
+                                <div class="controls">
+                                    <input id="dataabertura" class="form-control" name="dataabertura" type="text" th:value="${empresa.dataabertura}"
+                                           placeholder=""> </input>
+                                </div>
+                            </div>
+                            </div>
+                            
+                           
+                            
+                           <div class="form-group label-floating ">
+                            <div class="control-group">
+                                <label class="control-label">Imagem</label>
+                                <div class="controls">
+                                    <input id="imagem" class="form-control" name="imagem" type="text" th:value="${empresa.imagem}"
+                                           placeholder=""> </input>
+                                </div>
+                            </div>
+                            </div>
+                            
+                          <div class="form-group label-floating ">
+                            <div class="control-group">
+                                <label class="control-label">Banner</label>
+                                <div class="controls">
+                                    <input id="banner" class="form-control" name="banner" type="text" th:value="${empresa.banner}"
+                                           placeholder=""> </input>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            
+                            <div class="form-actions">
+                                <input type="submit" th:value="${acao}" class="btn btn-success"> </input>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+		
+		
+
+			<div class="clearfix"></div>
+
+
+             <div th:replace="fragmentos/footer :: footer">
+            
+            </div>
+            
+            
+
+</div>
+
+</div>
+
+</div>
+<!-- </div> -->
+			
+<!-- </div> -->
+
+				<div th:replace="fragmentos/side-menu :: side-menu">
+		    	</div>
+
+
+</div>	
+
+<!-- </div> -->
+
+<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+			
+</body>
+			
+			
+</html>
+
