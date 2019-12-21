@@ -1,7 +1,5 @@
 package com.tecsoluction.cardapio.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -9,7 +7,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -21,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Promocao;
-import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.framework.AbstractEditor;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
