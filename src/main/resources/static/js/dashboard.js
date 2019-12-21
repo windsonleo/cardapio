@@ -117,7 +117,13 @@ $(function () {
   //The Calender
   $("#calendar").datepicker();
   
-  $("#datepicker").datepicker();
+//  $("#datepicker").datepicker();
+  
+  $('#datepicker').datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy',
+	    	language: 'pt-BR'
+    });
   
   
   $(".select2").select2();

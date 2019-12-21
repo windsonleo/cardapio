@@ -121,11 +121,11 @@
             
             
                        <div class="widget-user-image" th:if="${produto.foto}">
-              <img class="img-circle" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="User Avatar usu if" width="64" height="64"/>
+              <img class="img-circle" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="User Avatar usu if"/>
             </div>
             
                                    <div class="widget-user-image" th:unless="${produto.foto}">
-              <img class="img-circle" th:src="@{/img/produto/{fotoc}(fotoc=${filename})}" alt="User Avatar usu unless" width="64" height="64" />
+              <img class="img-circle" th:src="@{/img/produto/{fotoc}(fotoc=${filename})}" alt="User Avatar usu unless" />
             </div>
             
             
@@ -167,29 +167,7 @@
 <!-- 			</div> -->
 <!-- 			</div> -->
             
-           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-			 <div class="card">
-			  <div class="header">
-                            <h2>
-                                DADOS 
-                    PRODUTO
-
-                            </h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-<!--                                         <li><a th:href="@{/usuario/cadastro}">Add</a></li> -->
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-		 
+           <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 panel">		 
 			 
 				 <form th:action="@{/produto/add}" ModelAttribute="produto" method="POST" th:object="${produto}">      
       
@@ -307,7 +285,7 @@
                                             </option>
 
                                                 
-                                             	<option th:each="tipoterapia: ${categoriaList}" th:value="${tipoterapia.id}" th:utext="${tipoterapia.nome}"> tipo </option>
+                                             	<option th:each="tipoterapia: ${categoriaListall}" th:value="${tipoterapia.id}" th:utext="${tipoterapia.nome}"> tipo </option>
 					           				      	
 				           				   		
 
@@ -349,7 +327,6 @@
                         </form>
                         
                         	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
-                    </div>
                 </div>
             </div>
 
@@ -366,11 +343,7 @@
 </div>
 
 </div>
-</div>
-<!-- </div> -->
 
-
-<!-- </div> -->
 
 			
 </body>

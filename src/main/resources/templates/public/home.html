@@ -97,7 +97,7 @@
                     </div>
                   </div>
                   <div class="item">
-                      <img th:src="@{/img/banner2.jpg}" alt="Second slide" />
+                      <img th:src="@{/img/banner22.jpg}" alt="Second slide" />
 
                     <div class="carousel-caption">
                       Second Slide
@@ -123,16 +123,16 @@
           </div>
           <!-- /.box -->
           
-<!--           <div class="clearfix"></div> -->
+          <div class="clearfix"></div>
           
         </div>
         
        
         
     
-         <div class="row mb-30" >
+         <div class="row mb-22" >
 <!--          <h4 class="page_header">Oferta Diária</h4> -->
-        <div class="col-md-4" th:each="promocao: ${promocoesList}">
+        <div class="col-md-3" th:each="promocao: ${promocoesList}">
             <div class="ribbon-content">
                 <div class="ribbon red"><span th:text="|${promocao.desconto} %|" >Desconto 10%</span></div>
                 
@@ -277,7 +277,7 @@
         <div class="col-md-8">
           <div class="box box-solid">
             <div class="box-header bg-black with-border">
-              <h3 class="box-title">CATEGORIAS</h3>
+              <h3 class="box-title">Categorias</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -416,6 +416,8 @@
     </div>
     
                  <div class="col-md-4">
+                 
+                 
               <div class="box">
             <div class="box-header bg-black with-border">
               <h4 class="box-title">RANKING PRODUTOS</h4>
@@ -429,7 +431,7 @@
             <div class="box-body">
             
             <div class="row">
-               <div class="col-md-12">
+               <div class="col-md-8">
                   <div class="chart-responsive">
                <canvas id="pieChart" style="height: 179px; width: 359px;" height="179" width="359"></canvas>
             	</div>
@@ -451,6 +453,16 @@
 
           </div>
             
+            <div class="box-footer no-padding">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="#">United States of America
+                  <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
+                <li><a href="#">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
+                </li>
+                <li><a href="#">China
+                  <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
+              </ul>
+            </div>
             
             </div>
             
@@ -1369,7 +1381,7 @@
 
 </div>
 
-<!--     <div class="clearfix"></div> -->
+    <div class="clearfix"></div>
     
     
 
@@ -1377,7 +1389,7 @@
     
     
     
-<!--         <div class="clearfix"></div> -->
+        <div class="clearfix"></div>
            
   </div>
   

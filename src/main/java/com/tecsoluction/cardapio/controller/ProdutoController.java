@@ -98,7 +98,7 @@ public class ProdutoController extends AbstractController<Produto> {
 //        model.addAttribute("usuarioAtt", usuario);
         model.addAttribute("produtosList", produtoList);
         model.addAttribute("fornecedorList", fornecedorList);
-   //     model.addAttribute("categoriaList", categoriaList);
+        model.addAttribute("categoriaListall", categoriaList);
         model.addAttribute("produto", produto);
         model.addAttribute("umList", umList);
         model.addAttribute("filename", filename);
