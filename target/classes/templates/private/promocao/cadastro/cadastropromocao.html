@@ -110,7 +110,7 @@
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-aqua-active">
               <h3 class="widget-user-username" th:text="${promocao.nome}">Thanh Nguyen</h3>
-<!--               <h5 class="widget-user-desc"  th:text="${usuario.roles}">Founder &amp; CEO</h5> -->
+              <h5 class="widget-user-desc" >Imagem da Promoção</h5>
             </div>
             
 <!--             <div class="widget-user-image" th:if="${filename}"> -->
@@ -283,6 +283,18 @@
 					<input id="nome" name="nome" class="form-control android" type="text"  th:value="${promocao.nome}" placeholder="Digite a nome"/>				
 			              </div>
 			              
+			              </div>
+			              
+			              
+			              					<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-photo"></i>
+                  </div>
+							
+						<input id="corfaixa" name="corfaixa" class="form-control android" type="text"  th:value="${promocao.corfaixa}" placeholder="Digite a Cor Base, Base-Alt,dark,yellow,red,light,orange" />
+							
+			                </div>
 			              </div>
 			
 			

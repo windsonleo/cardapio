@@ -11,7 +11,7 @@
 
 
 
-	<body  class="hold-transition skin-black sidebar-mini">
+	<body  class="hold-transition skin-black sidebar-mini"   th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
 	
 	<!-- top navigation	    -->
 <!-- 		<nav th:fragment="nav" class="navbar navbar-default header navbar-fixed-top"> -->
@@ -70,7 +70,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">S<b>S</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Sushi <b> Sempai</b></span>
+      <span class="logo-lg" th:text="${configuracaoAtual.nomeempresa}">Sushi <b> Sempai</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -170,19 +170,19 @@
 
 
 <li>
- <a href="#"  data-toggle="dropdown"> <i class="fa fa-facebook fa-1.5x"> </i> </a>
+ <a href="#" th:href="@{configuracaoAtual.urlface}" data-toggle="dropdown"> <i class="fa fa-facebook fa-1.5x"> </i> </a>
 
 
 </li>
 
 <li>
-<a href="#"  data-toggle="dropdown"> <i class="fa fa-instagram fa-1x"> </i> </a>
+<a href="#" th:href="@{configuracaoAtual.urlinsta}" data-toggle="dropdown"> <i class="fa fa-instagram fa-1x"> </i> </a>
 
 
 </li>
 
 <li>
- <a href="#"  data-toggle="dropdown"> <i class="fa fa-google"> </i></a>
+ <a href="#" th:href="@{configuracaoAtual.urlgmail}"  data-toggle="dropdown"> <i class="fa fa-google"> </i></a>
 
 
 </li>
@@ -215,7 +215,7 @@
                 <p>
                   <span  th:utext="${usuarioAtt.nome}" >Akihiko Avaron</span><small><span th:utext="${usuarioAtt.email}">Akihiko Avaron</span></small>
 <!-- 				 <span >Akihiko Avaron</span><small><span>Akihiko Avaron</span></small>  -->
-                  <small>Membro desde Ago. 2018</small>
+                  <small th:text="'Membro Desde: ' + ${#dates.format(usuarioAtt.datacadastro,'dd-MM-yyyy')}">Membro desde Ago. 2018</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -225,7 +225,7 @@
 <!--                     <a href="#">Atendimentos</a> -->
                   </div>
                   <div class="col-xs-4 text-center">
-<!--                     <a href="#">Atividades</a> -->
+                    <a th:href="@{/usuario/lock}">LOCK</a>
                   </div>
                   <div class="col-xs-4 text-center">
 <!--                     <a href="#">Friends</a> -->
@@ -245,7 +245,7 @@
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears fa-2x"></i></a>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
           </li>
         </ul>
       </div>

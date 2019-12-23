@@ -217,6 +217,8 @@ public class ConfiguracaoController extends AbstractController<Configuracao>    
 	        }
 
 //	       Usuario usuario =  new Usuario();
+	        
+	        this.configuracao = usuarior;
 	     
 	        this.configuracao.setLogo(filename);
 	        
@@ -287,6 +289,8 @@ public class ConfiguracaoController extends AbstractController<Configuracao>    
 	        }
 
 //	       Usuario usuario =  new Usuario();
+	        
+	        this.configuracao = usuarior;
 	     
 	        this.configuracao.setBanner1(filenamebanner1);
 	        

@@ -22,7 +22,7 @@
 		
 		<title>Cardápio</title>
 
-			<body  class="hold-transition skin-red sidebar-mini">
+			<body  class="hold-transition skin-red sidebar-mini"   th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
 			
 			<div class="wrapper">
 
@@ -75,7 +75,9 @@
 <!--         /.col -->
 <!--       </div> -->
     
-              <div class="col-md-12">
+       <div class="col-md-12">
+       
+      	 <div class="col-md-12">
           <div class="box box-solid">
 <!--             <div class="box-header with-border"> -->
 <!--               <h3 class="box-title"></h3> -->
@@ -90,24 +92,24 @@
                 </ol>
                 <div class="carousel-inner">
                   <div class="item active">
-                    <img th:src="@{/img/banner1.jpg}" alt="First slide" />
+                    <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner1})}" alt="First slide" />
 
                     <div class="carousel-caption">
-                      First Slide
+                      Compromisso
                     </div>
                   </div>
                   <div class="item">
-                      <img th:src="@{/img/banner22.jpg}" alt="Second slide" />
+                      <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner2})}" alt="Second slide" />
 
                     <div class="carousel-caption">
-                      Second Slide
+                      Dedicação
                     </div>
                   </div>
                   <div class="item">
-                        <img th:src="@{/img/banner3.jpg}" alt="Third slide" />
+                        <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner3})}" alt="Third slide" />
 
                     <div class="carousel-caption">
-                      Third Slide
+                      Comprometimento
                     </div>
                   </div>
                 </div>
@@ -134,12 +136,12 @@
 <!--          <h4 class="page_header">Oferta Diária</h4> -->
         <div class="col-md-3" th:each="promocao: ${promocoesList}">
             <div class="ribbon-content">
-                <div class="ribbon red"><span th:text="|${promocao.desconto} %|" >Desconto 10%</span></div>
+                <div class="ribbon red"  th:class=" 'ribbon '+ ${promocao.corfaixa}"><span th:text="|${promocao.desconto} %|" >Desconto 10%</span></div>
                 
                        <img th:if="${promocao.foto}" th:src="@{/img/promocao/{fotoc}(fotoc=${promocao.foto})}" class="img-circle img-md" alt="User Image" /> 
                      <h4 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h4>
                      
-           <span class="pull-left badge bg-blue" th:utext="${#dates.format(promocao.datavalidade,'dd-MM-yyyy')}" >31</span>    
+           <span class="pull-left badge bg-blue" th:utext="${#dates.format(promocao.datavalidade,'dd-MM-yyyy')}" ><i class="fa fa-clock"></i>31</span>    
            
            <br></br>
            <div class="box-footer text-center">
@@ -175,7 +177,7 @@
                 </button>
               </div>
             
-            <div class="widget-user-header bg-black" style="background: url('img/promocao/promo.jpg') center center;">
+            <div class="widget-user-header bg-black"  th:class=" 'widget-user-header bg-'+ ${promocao.corfaixa}" style="background: url('img/promocao/promo.jpg') center center;">
              
                            <h3 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h3>
               <h5 class="widget-user-desc"  th:utext="${#dates.format(promocao.datavalidade,'dd-MM-yyyy')}" >Lead Developer</h5>
@@ -276,7 +278,7 @@
          <div class="row">
         <div class="col-md-8">
           <div class="box box-solid">
-            <div class="box-header bg-black with-border">
+            <div class="box-header bg-black with-border"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border'">
               <h3 class="box-title">Categorias</h3>
             </div>
             <!-- /.box-header -->
@@ -332,7 +334,7 @@
 			
 		<div class="col-md-12">
           <div class="box box-widget widget-user">
-            <div class="widget-user-header bg-aqua-active">
+            <div class="widget-user-header bg-aqua-active"   th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard} + '-active' ">
               <h3 class="widget-user-username" th:text="${produto.nome}">Thanh Nguyen</h3>
               <h5 class="widget-user-desc" th:text="${produto.descricao}">Founder &amp; CEO</h5>
             </div>
@@ -419,7 +421,7 @@
                  
                  
               <div class="box">
-            <div class="box-header bg-black with-border">
+            <div class="box-header bg-black with-border"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border'">
               <h4 class="box-title">RANKING PRODUTOS</h4>
 
               <div class="box-tools pull-right">
@@ -440,12 +442,12 @@
             
                 <div class="col-md-4">
                   <ul class="chart-legend clearfix">
-                    <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                    <li><i class="fa fa-circle-o text-green"></i> IE</li>
-                    <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                    <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                    <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                    <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+                    <li><i class="fa fa-circle-o text-red"></i> Temaki</li>
+                    <li><i class="fa fa-circle-o text-green"></i> Sushi</li>
+                    <li><i class="fa fa-circle-o text-yellow"></i> SAshimi</li>
+                    <li><i class="fa fa-circle-o text-aqua"></i> Nogari</li>
+                    <li><i class="fa fa-circle-o text-light-blue"></i> Dostovsk</li>
+                    <li><i class="fa fa-circle-o text-gray"></i> MaruNaru</li>
                   </ul>
                 </div>
            
@@ -455,11 +457,11 @@
             
             <div class="box-footer no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="#">United States of America
+                <li><a href="#">Sushi Senpai
                   <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
-                <li><a href="#">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
+                <li><a href="#">Temaki <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
                 </li>
-                <li><a href="#">China
+                <li><a href="#">Sushi
                   <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
               </ul>
             </div>
@@ -468,7 +470,7 @@
             
             
 <!--               <div class="col-md-12"> -->
-              <div class="box box-solid bg-teal-gradient">
+              <div class="box box-solid bg-teal-gradient"  th:class=" 'box box-solid bg-'+ ${configuracaoAtual.corcard} +'-gradient'">
             <div class="box-header">
               <i class="fa fa-th"></i>
 
@@ -525,7 +527,7 @@
 <!--       <div class="col-md-6"> -->
               <!-- USERS LIST -->
               <div class="box">
-                <div class="box-header bg-black with-border">
+                <div class="box-header bg-black with-border"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border'">
                   <h4 class="box-title">USUARIOS</h4>
 
                   <div class="box-tools pull-right">
@@ -623,9 +625,9 @@
                 </button>
               </div>
             
-            <div class="widget-user-header bg-black">
+            <div class="widget-user-header bg-black"  th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard}">
               <div class="widget-user-image">
-                <img class="img-circle" th:src="@{/img/logo.png}"  alt="User Avatar" />
+          <img th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.logo})}" class="img-circle" alt="User Image" />
               </div>
           
               <h3 class="widget-user-username" th:text="${categoria.nome}" >Nadia Carmichael</h3>
@@ -1383,7 +1385,7 @@
 
     <div class="clearfix"></div>
     
-    
+    	</div>   
 
     </section>
     
@@ -1404,7 +1406,7 @@
 		</div>	
 		
 	
-	    
+ 
 	    
 </body>
 			

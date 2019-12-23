@@ -8,7 +8,7 @@
 		
 			<title>Nav</title>
 
-				<body  class="hold-transition skin-black sidebar-mini">
+				<body  class="hold-transition skin-black sidebar-mini"   th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
 			
 
 			
@@ -25,8 +25,8 @@
 <!--         <div class="hidden-xs"> -->
         
                 <div class="pull-left image">
-<!--           <img th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioAtt.foto})}" class="img-circle" alt="User Image" /> -->
-				<img th:src="@{/img/logo.png}" class="img-circle img-md" alt="User Image"/>
+          <img th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.logo})}" class="img-circle" alt="User Image" />
+<!-- 				<img th:src="@{/img/logo.png}" class="img-circle img-md" alt="User Image"/> -->
 				
 
         
@@ -74,7 +74,7 @@
         
         <li class="treeview">
           <a th:href="@{/categoria/movimentacao}">
-            <i class="fa fa-stethoscope"></i> <span>CATEGORIA</span>
+            <i class="fa fa-map"></i> <span>CATEGORIA</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -84,7 +84,7 @@
 
         <li class="treeview">
           <a th:href="@{/configuracao/movimentacao}">
-            <i class="fa fa-calendar-check-o"></i>
+            <i class="fa fa-gears"></i>
             <span>CONFIGURAÇÃO</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -100,7 +100,7 @@
         
       <li class="treeview">
           <a th:href="@{/produto/movimentacao}">
-            <i class="fa fa-money"></i> <span>PRODUTO</span>
+            <i class="fa fa-suitcase"></i> <span>PRODUTO</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -111,7 +111,7 @@
         
               <li class="treeview">
           <a th:href="@{/produtocomposto/movimentacao}">
-            <i class="fa fa-money"></i> <span>PRODUTO COMPOSTO</span>
+            <i class="fa fa-suitcase"></i> <span>PRODUTO COMPOSTO</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -122,7 +122,7 @@
         
               <li class="treeview">
           <a th:href="@{/promocao/movimentacao}">
-            <i class="fa fa-money"></i> <span>PROMOÇÃO</span>
+            <i class="fa fa-flag"></i> <span>PROMOÇÃO</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -202,7 +202,7 @@
         
                 <li class="treeview">
           <a th:href="@{/home}">
-            <i class="fa fa-dashboard"></i> <span>INÍCIO</span>
+            <i class="fa fa-home"></i> <span>INÍCIO</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -217,7 +217,7 @@
          <li th:each="categoria: ${categoriaLista}" class="treeview" >
          
           <a th:href="@{/categoria/exibir(id=${categoria.id})}">
-            <i class="fa fa-user"></i> <span th:text="${categoria.nome}">Usuarios</span>
+            <i class="fa fa-cutlery"></i> <span th:text="${categoria.nome}">Usuarios</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

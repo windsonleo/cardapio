@@ -18,13 +18,18 @@ public interface IConfiguracaoDAO extends JpaRepository<Configuracao, UUID> {
 //    @Query("SELECT p FROM Categoria p where p.catpai=(SELECT id FROM Categoria m  where m.nome='PAI')")
 //    public List<Categoria> getCategoriaPai();
 //    
-//    @Query("SELECT p FROM Categoria p where p.catpai=(:catpai)")
-//    public List<Categoria> getCategoriasFilho(@Param("catpai")UUID idPai);
+    @Query("SELECT p FROM Configuracao p where p.ativo=true")
+    public List<Configuracao> PegarConfiguracaoAtualLista();
 //    
-//    @Query("SELECT p FROM Categoria p where p.nome='PAI'")
-//    public Categoria getOnlyCategoriaPai();
+    @Query("SELECT p FROM Configuracao p where p.ativo=true")
+    public Configuracao PegarConfiguracaoAtual();
 //    
 //    @Query("SELECT p FROM Categoria p where p.nome='INSUMOS'")
 //    public Categoria getOnlyCategoriaExcludeCardapio();
+	
+	
+	
+	
+	
 
 }

@@ -10,7 +10,9 @@
 
 
 <link rel="icon" href="resources/static/img/logo.png"
-	th:href="@{/img/logo.png}" />
+	th:href="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.logo})}" />
+	
+<!-- //	@{/img/{logoc}(logoc=${configuracaoAtual.logo})} -->
 
 <link rel="stylesheet" media="screen"
 	href="resources/static/css/bootstrap.min.css"

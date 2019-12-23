@@ -12,7 +12,7 @@
 		
 		<title>Cardápio</title>
 
-			<body  class="hold-transition skin-red sidebar-mini">
+			<body  class="hold-transition skin-red sidebar-mini" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
 			
 			
 			
@@ -35,7 +35,7 @@
     <section class="content-header">
       <h1>
 <!--         Início -->
-        <small>Exibir</small>
+        <small th:text="${categoria.nome}" >Exibir</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"  ></i> Cardapio</a> Categoria</li>
@@ -51,7 +51,7 @@
             <div class="row mb-30" >
         <div class="col-md-3" th:each="promocao: ${promocoesList}">
             <div class="ribbon-content">
-                <div class="ribbon red"><span th:text="|${promocao.desconto} %|" >Desconto 10%</span></div>
+                <div class="ribbon red"   th:class=" 'ribbon '+ ${promocao.corfaixa}"><span th:text="|${promocao.desconto} %|" >Desconto 10%</span></div>
                 
                        <img th:if="${promocao.foto}" th:src="@{/img/promocao/{fotoc}(fotoc=${promocao.foto})}" class="img-circle img-md" alt="User Image" /> 
                      <h4 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h4>
@@ -93,7 +93,7 @@
                 </button>
               </div>
             
-            <div class="widget-user-header bg-black" style="background: url('../img/promocao/promo.jpg') center center;">
+            <div class="widget-user-header bg-black" th:class=" 'widget-user-header bg-'+ ${promocao.corfaixa}"  style="background: url('../img/promocao/promo.jpg') center center;">
              
                            <h3 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h3>
               <h5 class="widget-user-desc"  th:utext="${#dates.format(promocao.datavalidade,'dd-MM-yyyy')}" >Lead Developer</h5>
@@ -211,7 +211,7 @@
               </div>
             
             
-            <div class="widget-user-header bg-black">
+            <div class="widget-user-header bg-black" th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard}">
               <div class="widget-user-image">
              <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" class="img-circle" alt="User Image" />
               </div>
@@ -283,7 +283,7 @@
 			
 		<div class="col-md-12">
           <div class="box box-widget widget-user">
-            <div class="widget-user-header bg-aqua-active">
+            <div class="widget-user-header bg-aqua-active"  th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard} + '-active'"> 
               <h4 class="widget-user-username" th:text="${produto.nome}">Thanh Nguyen</h4>
               <h5 class="widget-user-desc" th:text="${produto.descricao}">Founder &amp; CEO</h5>
             </div>

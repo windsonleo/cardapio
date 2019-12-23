@@ -295,6 +295,30 @@ public class HomeController {
     }
     
     
+    
+//    @RequestMapping(value = "/autenticar", method = RequestMethod.POST)
+//    public ModelAndView Autenticar(Locale locale, Model model) {
+//      
+//    	logger.info("Welcome Autenticar! The client locale is {}.", locale);
+//
+//    	this.usuariologado = get
+//    	
+//    	
+//       
+//    	
+//    	
+//    	
+//    	ModelAndView login = new ModelAndView("/public/login");
+//        
+//        
+//        
+//        login.addObject("usuario", usuariologado);
+//
+//
+//        return login;
+//    }
+    
+    
 //    @RequestMapping(value = "/login", method = RequestMethod.POST)
 //    public ModelAndView LoginAuth(Locale locale, Model model) {
 //      

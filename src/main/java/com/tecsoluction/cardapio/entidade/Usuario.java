@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
@@ -40,12 +41,16 @@ public class Usuario  extends BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	 @Column(name = "nome", nullable = false)
 	private String nome;
 	
+	 @Column(name = "senha", nullable = false)
 	private String senha;
 	
+	 @Column(name = "email", nullable = false)
 	private String email;
 	
+	 @Column(name = "foto", nullable = true)
     private String foto;
     
     @Temporal(TemporalType.DATE)
@@ -89,6 +94,7 @@ public class Usuario  extends BaseEntity implements Serializable {
 	public Usuario() {
 		
 		indicacoes = new HashSet<Produto>();
+		datacadastro = new Date();
 		
 		
 	}

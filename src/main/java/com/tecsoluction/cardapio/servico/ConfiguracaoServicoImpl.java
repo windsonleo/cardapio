@@ -94,5 +94,22 @@ public class ConfiguracaoServicoImpl extends AbstractEntityService<Configuracao>
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+    public Configuracao PegarConfiguracaoAtual(){
+    	    	
+    	return dao.PegarConfiguracaoAtual();
+    }
+    
+    
+    public List<Configuracao> PegarConfiguracaoAtualLista(){
+    	   	
+    	return dao.PegarConfiguracaoAtualLista();
+    };
+
+
+	
+
+	
 
 }

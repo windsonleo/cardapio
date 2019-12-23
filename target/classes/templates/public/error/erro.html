@@ -6,7 +6,7 @@
     <title>Erro</title>
 </head>
 
-<body  class="hold-transition skin-red sidebar-mini">
+<body  class="hold-transition skin-red sidebar-mini"  th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
 			
 			<div class="wrapper">
 
@@ -35,7 +35,7 @@
         <h2 class="headline text-yellow" th:text="${errCode}" > 404</h2>
 
         <div class="error-content">
-          <h3><i class="fa fa-warning text-yellow" th:text="${errMsg}" ></i> Oops! Page not found.</h3>
+          <h3><i class="fa fa-warning text-yellow" th:text="${errCode}" ></i> Oops! Page not found.</h3>
 
           <p th:text="${errCode}">
             We could not find the page you were looking for.
@@ -44,11 +44,13 @@
           
           <p th:text="${errMsg}"></p>
           
-               <p th:text="${erro}"></p>
+               <p th:text="${errCode}"></p>
                
                <p th:text="${mensagem}"></p>
                
+               <a th:href="@{/login}"> Voltar Login</a>
                
+                 <a th:href="@{/home}"> Voltar Cardapio</a>
 
 
         </div>

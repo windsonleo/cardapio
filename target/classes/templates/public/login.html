@@ -4,7 +4,7 @@
 
 <head th:replace="fragmentos/head :: head-css">
 </head>
-    <title>Autenticação</title>
+    <title>Login</title>
 
 <!-- 	<body id="mimin" class="dashboard form-signin-wrapper"> -->
 	<body  class="hold-transition login-page">
@@ -90,7 +90,6 @@
   <div class="login-logo">
     <a href="#">Sushi <b>Sempai</b></a>
   </div>
-  <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Acesse para Iniciar sua Sessao</p>
 
@@ -111,11 +110,10 @@
             </label>
           </div>
         </div>
-        <!-- /.col -->
         <div class="col-xs-5">
           <input type="submit" class="btn btn-primary btn-raised btn-block btn-flat"></input>
         </div>
-        <!-- /.col -->
+        
       </div>
     </form>
     
@@ -135,13 +133,11 @@
 </fb:login-button>  
 
     </div>
-    <!-- /.social-auth-links -->
 
     <p> <a th:href="@{/esquecisenha}">Esqueci a Senha </a></p>
     <a  th:href="@{/usuario/cadastro/}" class="text-center">Registrar novo Usuario </a>
 
   </div>
-  <!-- /.login-box-body -->
 </div>
 
 			
@@ -204,6 +200,18 @@
         
         
 <!--       </div> -->
+
+
+              
+<!--                <img th:unless="${usuarioAtt.foto}" th:src="@{/img/logo.png}" class="user-image" alt="User Image" /> -->
+               
+<!--                  <img th:if="${usuario.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}" class="user-image" alt="User Image" /> -->
+               
+               
+ 
+ 
+
+
 
 
                       <div th:replace="fragmentos/footer :: script">

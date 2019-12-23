@@ -65,6 +65,8 @@ public class Configuracao  extends BaseEntity implements Serializable {
     private String cormenu;
     
     private String corcard;
+    
+    
   
     
     

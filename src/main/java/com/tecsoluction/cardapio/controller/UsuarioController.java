@@ -276,6 +276,71 @@ public class UsuarioController extends AbstractController<Usuario> {
     } 
     
     
+    
+    @RequestMapping(value = "/lock", method = RequestMethod.GET)
+    public ModelAndView lock(Locale locale, Model model, HttpServletRequest request) {
+      
+    	logger.info("Welcome LOCK! The client locale is {}.", locale);
+    	
+//    	String email = request.getParameter("email");
+//
+//    	this.usuario = getservice().findByEmail(email);
+    	
+  	
+    	ModelAndView login = new ModelAndView("/public/lock");
+        
+        
+        
+//        login.addObject("usuario", usuario);
+
+
+        return login;
+    }
+    
+    
+    @RequestMapping(value = "/unlock", method = RequestMethod.POST)
+    public ModelAndView Unlock(Locale locale, Model model, HttpServletRequest request) {
+      
+    	logger.info("Welcome UNLOCK! The client locale is {}.", locale);
+    	
+    	ModelAndView login = new ModelAndView("/public/lock");
+    	
+    	String senha = request.getParameter("senha");
+    	
+        Usuario usuarioaux = new Usuario();
+        usuarioaux.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        usuarioaux = getservice().findByEmail(usuarioaux.getEmail());
+        
+        usuario.setSenha(senha);
+        
+        
+        if(usuarioaux.getSenha().equals(usuario.getSenha())){
+        	
+        	 login = new ModelAndView("redirect:/home");
+            
+            
+            
+            login.addObject("usuario", usuario);
+        	
+        }else {
+        	
+        	
+        	 login = new ModelAndView("redirect:/usuario/lock");
+            
+            login.addObject("usuario", usuario);
+        	
+        	
+        }
+
+   
+    	
+  	
+    	
+
+
+        return login;
+    }
+    
 
 	@Override
 	protected UsuarioServicoImpl getservice() {

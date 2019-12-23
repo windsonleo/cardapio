@@ -2,6 +2,7 @@ package com.tecsoluction.cardapio;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.cardapio.entidade.Categoria;
+import com.tecsoluction.cardapio.entidade.Configuracao;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.exception.CustomGenericException;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
+import com.tecsoluction.cardapio.servico.ConfiguracaoServicoImpl;
 import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 
 
@@ -37,6 +40,18 @@ public class ContextoAplicacao {
 	    private CategoriaServicoImpl categoriaService;
 	 
 	 private List<Categoria> categoriaLista ;
+	 
+	 private Configuracao configuracaoAtual; 
+	 
+	 
+	 private List<Configuracao> configuracaoLista ;
+	 
+	 
+	 @Autowired
+	  private ConfiguracaoServicoImpl ConfiguracaoService;
+	 	
+	 
+	 	
 
 	// @Autowired
 	// public ContextoAplicacao(UsuarioServicoImpl sevice) {
@@ -64,6 +79,45 @@ public class ContextoAplicacao {
 		categorias = categoriaService.findAll();
 		
 		categoriaLista = CategoriasComProduto(categorias);
+		Long qtdRegistroConfiuracao = ConfiguracaoService.count();
+		
+		if(qtdRegistroConfiuracao != null && qtdRegistroConfiuracao > 0 ){
+			
+			
+			configuracaoLista = ConfiguracaoService.PegarConfiguracaoAtualLista();
+			
+			configuracaoAtual = configuracaoLista.get(0);
+			
+		}else {
+			
+			
+			configuracaoAtual = ConfiguracaoService.PegarConfiguracaoAtual();
+			
+		}
+		
+		if(configuracaoAtual == null){
+			
+			configuracaoAtual = new Configuracao();
+			
+			configuracaoAtual.setAtivo(true);
+			configuracaoAtual.setBanner1("b1.png");
+			configuracaoAtual.setBanner2("b2.png");
+			configuracaoAtual.setBanner3("b3.png");
+			configuracaoAtual.setCorcard("blue");
+			configuracaoAtual.setCormenu("blue");
+			configuracaoAtual.setCortopo("blue");
+			configuracaoAtual.setLogo("logo.png");
+			configuracaoAtual.setNomeempresa("Teste");
+			configuracaoAtual.setUrlface("www.facebook.com");
+			configuracaoAtual.setUrlgmail("www.gmail.com");
+			configuracaoAtual.setUrlinsta("www.instagram.com");
+			
+			
+			
+		}
+		
+		
+		
         
         Usuario usuario = new Usuario();
         usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -85,10 +139,17 @@ public class ContextoAplicacao {
 
         
         }
+        
+        Date hoje = new Date();
+        
 
         
         model.addAttribute("usuarioAtt", usuario);
         model.addAttribute("categoriaLista", categoriaLista);
+        model.addAttribute("configuracaoAtual", configuracaoAtual);
+        model.addAttribute("hoje", hoje);
+        
+        
 	}
 
 	@ExceptionHandler(CustomGenericException.class)

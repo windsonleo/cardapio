@@ -52,6 +52,8 @@ public class Promocao extends BaseEntity implements Serializable {
     @JsonIgnore
     @OneToMany( cascade = {CascadeType.REFRESH},fetch=FetchType.EAGER)
     private List<Produto> produtos;
+    
+    private String corfaixa;
 
     
     @Temporal(TemporalType.DATE)

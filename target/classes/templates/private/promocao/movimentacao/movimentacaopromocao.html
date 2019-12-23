@@ -56,6 +56,7 @@
                                             <th >Nome</th>
                                             <th >Validade</th>
                                              <th>Produtos</th>
+                                                 <th>Cor faixa</th>
                                             <th>Desconto</th>
                                             <th >Ativo</th>
 <!--                                             <th >Resultado</th> -->
@@ -79,6 +80,7 @@
                                                    <td th:text="${promocao.nome}">email</td>
                                                      <td th:utext="${#dates.format(promocao.datavalidade,'dd-MM-yyyy')}">senha</td>
                                                     <td th:text="${promocao.produtos}">roles</td>
+                                                     <td th:text="${promocao.corfaixa}">roles</td>
                                                   <td th:text="${promocao.desconto}">roles</td>
 		                                            <td th:text="${promocao.ativo}">ativo</td>		                                          
 		                                       
