@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tecsoluction.cardapio.framework.BaseEntity;
@@ -35,6 +38,8 @@ public class Categoria extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "nome", nullable = false)
+	 @NotNull(message="o nome do categoria não pode ser nulo")
+	 @NotBlank(message="o nome do categoria não pode ser branco")
     private String nome;
 
     //    (cascade = { CascadeType.ALL })
@@ -52,7 +57,7 @@ public class Categoria extends BaseEntity implements Serializable {
 
     public Categoria() {
         // TODO Auto-generated constructor stub
-        produtos = new ArrayList<>();
+        produtos = new ArrayList<Produto>();
     }
 
 

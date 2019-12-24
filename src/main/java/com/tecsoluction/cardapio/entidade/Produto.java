@@ -2,6 +2,7 @@ package com.tecsoluction.cardapio.entidade;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -54,13 +56,9 @@ public class Produto extends BaseEntity implements Serializable {
 
     @Column(name = "preco_venda")
     private BigDecimal precovenda;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "fornecedor_id")
-    private Fornecedor fornecedor;
-
-
+    
+    @ManyToMany(mappedBy = "produtos")
+    private Set<Promocao> promocoes;
 
     @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "categoria_id", nullable = false)
@@ -76,7 +74,7 @@ public class Produto extends BaseEntity implements Serializable {
 
 
     public Produto(UUID id, String foto, String nome, String codebar, String descricao,
-                   UnidadeMedida un, BigDecimal precocusto, BigDecimal precovenda, Fornecedor fornecedor,
+                   UnidadeMedida un, BigDecimal precocusto, BigDecimal precovenda,
                    Categoria cat, boolean ativo, boolean esugestao,boolean novo) {
         super();
         this.id = id;
@@ -87,7 +85,6 @@ public class Produto extends BaseEntity implements Serializable {
         this.un_medida = un;
         this.precocusto = precocusto;
         this.precovenda = precovenda;
-        this.fornecedor = fornecedor;
         this.categoria = cat;
         this.ativo = ativo;
         this.esugestao = esugestao;

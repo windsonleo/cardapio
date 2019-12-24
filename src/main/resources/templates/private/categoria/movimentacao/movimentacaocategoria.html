@@ -81,24 +81,28 @@
 		                                          
 		                                       
 							              <div sec:authorize="hasRole('ROLE_ADM')" >
-	                                              <td class="td-actions">
+	                                            
 	                                              <div >
-                                                        <a  rel="tooltip" title="Informacoes" class="btn btn-muted btn-simple btn-xs" th:href="@{/categoria/informacao(id=${categoria.id})}">
+	                                              
+	                                                <td>
+                                                        <a  rel="tooltip" title="Informacoes" class="btn btn-muted btn-simple btn-md" th:href="@{/categoria/informacao(id=${categoria.id})}">
                                     						<i class="material-icons">info</i>
 			                       						</a>
 	                       						 
-                                                        <a  rel="tooltip" title="Editar" class="btn btn-muted btn-simple btn-xs" th:href="@{/categoria/editar(id=${categoria.id})}">
+                                                        <a  rel="tooltip" title="Editar" class="btn btn-muted btn-simple btn-md" th:href="@{/categoria/editar(id=${categoria.id})}">
                                     						<i class="material-icons">mode edit</i>
 			                       						</a>
 	                       								                                            
 		                                            																									
-                                                        <a  rel="tooltip" title="Excluir" class="btn btn-danger btn-simple btn-xs" th:href="@{/categoria/delete(id=${categoria.id})}">
+                                                        <a  rel="tooltip" title="Excluir" class="btn btn-danger btn-simple btn-md" th:href="@{/categoria/delete(id=${categoria.id})}">
                                     						<i class="material-icons">close</i>
 			                       						</a>
 			                       						
+			                       						</td>
+			                       						
 			                       							</div>
 			                       						
-			                       						</td>
+			                       						
 	                       						</div>
 <!-- 	                       						 	</td>	 -->
 	                       						 

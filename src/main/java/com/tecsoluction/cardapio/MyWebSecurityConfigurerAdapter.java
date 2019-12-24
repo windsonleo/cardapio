@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-@ComponentScan("com.tecsoluction.cardapio")
+@ComponentScan(basePackages="com.tecsoluction.cardapio")
 @Import({DataSourceConf.class})
 public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 	

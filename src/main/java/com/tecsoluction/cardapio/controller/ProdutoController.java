@@ -20,16 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.cardapio.entidade.Categoria;
-import com.tecsoluction.cardapio.entidade.Fornecedor;
 import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.framework.AbstractEditor;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
-import com.tecsoluction.cardapio.servico.FornecedorServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
 import com.tecsoluction.cardapio.util.UnidadeMedida;
 
@@ -40,14 +37,13 @@ public class ProdutoController extends AbstractController<Produto> {
 //    private final UsuarioServicoImpl userservice;
 	 @Autowired
     private final ProdutoServicoImpl produtoService;
-	 @Autowired
-    private final FornecedorServicoImpl fornecedorService;
+
 	 @Autowired
     private final CategoriaServicoImpl categoriaService;
 
     private List<Produto> produtoList;
 
-    private List<Fornecedor> fornecedorList;
+
 
     private List<Categoria> categoriaList;
     
@@ -57,12 +53,10 @@ public class ProdutoController extends AbstractController<Produto> {
 
 
     @Autowired
-    public ProdutoController(ProdutoServicoImpl dao, CategoriaServicoImpl categoriaDao,
-                             FornecedorServicoImpl fornecedorDao) {
+    public ProdutoController(ProdutoServicoImpl dao, CategoriaServicoImpl categoriaDao) {
         super("produto");
         this.produtoService = dao;
         this.categoriaService = categoriaDao;
-        this.fornecedorService = fornecedorDao;
 //        this.userservice = usudao;
     }
 
@@ -73,8 +67,7 @@ public class ProdutoController extends AbstractController<Produto> {
         binder.registerCustomEditor(Categoria.class, new AbstractEditor<Categoria>(this.categoriaService) {
         });
 
-        binder.registerCustomEditor(Fornecedor.class, new AbstractEditor<Fornecedor>(this.fornecedorService) {
-        });
+
 
     }
 
@@ -91,13 +84,11 @@ public class ProdutoController extends AbstractController<Produto> {
 
         categoriaList = categoriaService.findAll();
 
-        fornecedorList = fornecedorService.findAll();
 
         produtoList = getservice().findAll();
 
 //        model.addAttribute("usuarioAtt", usuario);
         model.addAttribute("produtosList", produtoList);
-        model.addAttribute("fornecedorList", fornecedorList);
         model.addAttribute("categoriaListall", categoriaList);
         model.addAttribute("produto", produto);
         model.addAttribute("umList", umList);

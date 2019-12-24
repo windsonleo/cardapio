@@ -50,6 +50,8 @@ public  class Item implements Serializable, Comparable<Item>{
 
     @Enumerated(EnumType.STRING)
     private SituacaoItem situacao;
+    
+    private String foto;
 
 
 
@@ -73,6 +75,7 @@ public  class Item implements Serializable, Comparable<Item>{
         this.precoUnitario = produto.getPrecovenda();
         this.precoCusto = produto.getPrecocusto();
         this.un_medida = produto.getUn_medida();
+        this.foto = produto.getFoto();
 //        this.situacao = SituacaoItem.AGUARDANDO;
 
         

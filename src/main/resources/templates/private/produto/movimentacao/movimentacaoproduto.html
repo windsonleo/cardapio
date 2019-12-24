@@ -95,11 +95,12 @@
 		                                            
 <!-- 		                                            <td th:text="${jogobicho}" >Resultado</td> -->
 		                                          
-		                                         <td>
+		                                        
 							              <div sec:authorize="hasRole('ROLE_ADM')" >
 	                                            
 	                                             
 	                                              <div class="btn-group-horizontal" >
+	                                               <td>
                                                         <a  rel="tooltip" title="Perfil" class="" th:href="@{/produto/perfil(id=${produto.id})}">
                                     						<i class="material-icons">info</i>
 			                       						</a>
@@ -112,11 +113,12 @@
                                                         <a  rel="tooltip" title="Excluir" class="" th:href="@{/produto/delete(id=${produto.id})}">
                                     						<i class="material-icons">close</i>
 			                       						</a>
+			                       					</td>
 	                       						</div>
 	                       						 		
 	                       						 
 					                            </div>
-		                                            </td>
+<!-- 		                                            </td> -->
 		                                         
 		                                            
 		                                            

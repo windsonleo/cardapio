@@ -18,7 +18,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -42,12 +46,20 @@ public class Usuario  extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	 @Column(name = "nome", nullable = false)
+	 @NotNull(message="o nome do Usuario não pode ser nulo")
+	 @NotBlank(message="o nome do Usuario não pode ser branco")
 	private String nome;
 	
 	 @Column(name = "senha", nullable = false)
-	private String senha;
+	 @Size(min=6,message="a senha deve possuir no minimo 6 caracteres")
+	 @NotNull(message="o senha do Usuario não pode ser nulo")
+	 @NotBlank(message="o nosenhame do Usuario não pode ser branco")
+	 private String senha;
 	
 	 @Column(name = "email", nullable = false)
+	 @Email(message="digite um email valido")
+	 @NotNull(message="o email do Usuario não pode ser nulo")
+	 @NotBlank(message="o email do Usuario não pode ser branco")
 	private String email;
 	
 	 @Column(name = "foto", nullable = true)

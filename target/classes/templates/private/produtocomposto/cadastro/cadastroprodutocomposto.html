@@ -106,7 +106,7 @@
 		 
 <!--                       <div class="panel form-element-padding"> -->
 
-          
+      <div class="col-md-12">
 			<div class="col-md-3">
 			<form th:action="@{/produtocomposto/salvarfotocomposto}" th:object="${produtocomposto}" ModelAttribute="produtocomposto"  enctype="multipart/form-data"  method="post">
 			
@@ -143,7 +143,7 @@
                 </div>
                    
 <!--                     <h5 class="description-header"> -->
-                    <button type="submit" class="btn btn-block btn-primary btn-sm">Add foto
+                    <button type="submit" class="btn btn-primary btn-raised btn-block">Add foto
                     	<div class="ripple-container"></div>
                     </button>
                     
@@ -336,14 +336,14 @@
                            
                            
          <div class="col-md-4">
-			<form th:action="@{/produtocomposto/additem}" th:object="${produtocomposto}" ModelAttribute="produtocomposto"  enctype="multipart/form-data"  method="get">
+			<form th:action="@{/produtocomposto/additem}" th:object="${produtocomposto}" ModelAttribute="produtocomposto"    method="get">
 			
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-aqua-active">
-              <h3 class="widget-user-username" th:text="${produtocomposto.nome}">Thanh Nguyen</h3>
-              <h5 class="widget-user-desc"  >Itens do Produto Composto</h5>
+              <h3 class="widget-user-username text-center" th:text="${produtocomposto.nome}">Thanh Nguyen</h3>
+              <h5 class="widget-user-desc text-center"  >Itens do Produto Composto</h5>
             </div>
             
             
@@ -362,26 +362,24 @@
                 <div class="col-sm-12">
                   <div class="description-block">
                   
-<!--                  <div class="form-group"> -->
-<!--                   <label for="file">File input</label> -->
-<!--                   <input type="text" readonly="" class="form-control" th:value="${filename}" th:placeholder="${filename}" /> -->
-<!--                   <input type="file" id="file" multiple="multiple" name="file" /> -->
 
-<!--                 </div> -->
-                
-<!--                 <div class="form-group"> -->
-<!--                   <label for="produtos">Produtos</label> -->
                   
              <div class="col-md-12">
-              <div class="form-group">
-                <label>Produtos</label>
+              <div class="form-group label-floating">
+              
                 <select class="form-control select2" id="itens_prodcomp"  name="itens_prodcomp" multiple="multiple" data-placeholder="Select a Produto" style="width: 100%;">
                  
-          <option th:text="${produtocomposto.itens_prodcomp}" th:selected="${produtocomposto.itens_prodcomp != null}" class="selected">Usuario Não Tem Nenhuma Regra</option>
+          <option th:each="item: ${produtocomposto.itens_prodcomp}" th:text="${item.key.nome}" th:selected="${item.key}" class="selected" th:value="${item.key}"></option>
                  
                  
                  
-                  <option th:each="produto: ${prodList}"  th:text="${produto.nome}" th:value="${produto.id}" > </option>
+                  <option th:each="produto: ${prodList}" th:value="${produto.id}" >
+                  
+                                    	<span th:text="${produto.nome}">Nenhuma Regra
+														Cadastrada </span>
+                  
+                   </option>
+                   
 <!--                   <option  th:text="${produto.nome}">Alaska</option> -->
 
                 </select>
@@ -391,7 +389,7 @@
                 
                 </div>
                    
-                    <button type="submit" class="btn btn-block btn-primary btn-sm">Add Item
+                    <button type="submit" class="btn btn-primary btn-raised btn-block">Add Item
                     	<div class="ripple-container"></div>
                     </button>
                     
@@ -401,21 +399,22 @@
                 <!-- /.col -->
               </div>
               <!-- /.row -->
-            </div>
+<!--             </div> -->
             
-            </form>
-            
-          </div>
 
 
-			 <div class="box-body">
-              <table id="example15" class="table table-bordered table-striped">
+
+              <table id="example15" class="table table-bordered table-striped table-responsive">
                 <thead>
                 <tr>
-                                            <th>ITEM</th>
-<!--                                              <th >Foto</th> -->
-                                            <th >QTD</th>
-<!--                                             <th >QTD</th> -->
+                
+                 							<th></th>
+                                            <th>Desc</th>
+                                             <th >Um</th>
+                                            <th >Qt</th>
+                                            <th >$</th>
+                                                                 
+                                            <th >x</th>
 <!--                                              <th >UM</th> -->
 <!--                                              <th >Preço</th> -->
 <!--                                             <th >Ativo</th> -->
@@ -423,106 +422,49 @@
                                             
                                    
                                             
-                                  <div sec:authorize="hasRole('ROLE_ADM')">
-                                   
-                                   <th >OPERACOES</th>
-                                   
-                                  
-                                  
-                                  </div>
+     
                                     </tr>
-                                            
-<!--                                             <th >2º Premio</th> -->
-<!--                                             <th >3º Premio</th> -->
-<!--                                             <th >4º Premio</th> -->
-<!--                                             <th >5º Premio</th> -->
-
-		
-
+     
                                         </thead>
                                         
                                         <tbody>
                                             <tr th:each="item: ${items}">
-                                                <td th:text="${item.key}">ITEM</td>
-<!--                                            <td><img th:src="@{/img/produtocomposto/{fotoc}(fotoc=${produtocomposto.foto})}" class="img-circle img-sm" alt="fotoPaciente"/></td> -->
-<!--                                                  <td><img th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" class="img-circle img-sm" alt="fotouser"/></td> -->
-                                                
-                                                  <td th:text="${item.value}">QTD</td>
-<!--                                                    <td th:text="${produtocomposto.categoria}">telefone</td> -->
-<!--                                                     <td th:text="${produtocomposto.codebar}">cpf</td> -->
-<!--                                                     <td th:text="${produtocomposto.precovenda}" >Resultado</td>  -->
-<!--                                                   <td th:text="${#dates.format(produtocomposto.datanascimento,'dd-MM-yyyy')}">Data</td> -->
-                                                  
-<!-- 		                                            <td th:text="${produtocomposto.ativo}">ativo</td> -->
-<!-- 		                                             <td th:text="${jogobicho.banca}">Banca</td> -->
-		                                            
-<!-- 		                                            <td th:text="${jogobicho}" >Resultado</td> -->
-		                                          
-		                                         <td>
-							              <div sec:authorize="hasRole('ROLE_ADM')" >
-	                                            
-	                                             
-	                                              <div class="btn-group-horizontal" >
-                                                        <a  rel="tooltip" title="Perfil" class="" th:href="@{/produtocomposto/perfil(id=${produtocomposto.id})}">
-                                    						<i class="material-icons">info</i>
-			                       						</a>
-	                       						 
-                                                        <a  rel="tooltip" title="Editar" class="" th:href="@{/produtocomposto/editar(id=${produtocomposto.id})}">
-                                    						<i class="material-icons">mode edit</i>
-			                       						</a>
-	                       								                                            
-		                                            																									
-                                                        <a  rel="tooltip" title="Excluir" class="" th:href="@{/produtocomposto/delete(id=${produtocomposto.id})}">
-                                    						<i class="material-icons">close</i>
-			                       						</a>
-	                       						</div>
-	                       						 		
-	                       						 
-					                            </div>
-		                                            </td>
-		                                         
-		                                            
-		                                            
-<!-- 		                                            <td th:text="${jogobicho.segundopremio}" >2º Premio</td> -->
-<!-- 		                                            <td th:text="${jogobicho.terceiropremio}" > 3º Premio</td> -->
-<!-- 		                                            <td th:text="${jogobicho.quartopremio}" >4º Premio </td> -->
-<!-- 		                                            <td th:text="${jogobicho.quintopremio}" >5º Premio</td> -->
-		                      
+                                            <td><img th:src="@{/img/produto/{fotoc}(fotoc=${item.key.foto})}" class="img-circle img-sm" alt="fotoPaciente"/></td>
+                                                <td th:text="${item.key.nome}">ITEM</td>
+                                                <td th:text="${item.key.un_medida}">ITEM</td>
 
-                                        
+                                                  <td th:text="${item.value}">QTD</td>
+                                                   <td th:text="${item.key.precoCusto}">VALOR</td>
+                                                  
+                                                   <td>   <a  rel="tooltip" title="Excluir" class="" th:href="@{/produtocomposto/deleteitem(id=${item.key})}">
+                                    						<i class="material-icons">close</i>
+			                       						</a>   </td>
+                                     
                                             </tr>
                                            
                        
                                         </tbody>
                                     </table>
+						</div>
+						
 
-
-
+            </form>
+            
+          </div>
           
-<!--           </form> -->
-        </div>
-           <div class="clearfix"></div>    
+
                 </div>
                 
-<!--                    <div class="clearfix"></div>     -->
+                <div class="clearfix"></div> 
+                </div>
+                
             </div>
 
         
         <div class="clearfix"></div>
         
         
-<!--     </div> -->
-		
-		
-          
-            
-
-<!-- </div> -->
-
-<!-- </div> -->
-
-
-<!-- </div> -->
+	
 
      <div th:replace="fragmentos/footer :: script" style="display:none;"></div>
      
@@ -542,10 +484,37 @@
 			    $(".timepicker").timepicker({
 			        showInputs: false
 			      });
-		    
-		     
-		     });
+			    
+			    
+			    
 			
+		
+			     $('#example15').DataTable({
+			       "paging": true,
+			       "lengthChange": true,
+			       "searching": true,
+			       "ordering": true,
+			       "info": true,
+			       "autoWidth": true,
+			       "language": {
+			           "lengthMenu": "Exibir _MENU_ registro por pagina",
+			           "zeroRecords": "Nenhum Registro - Desculpe",
+			           "info": "Exibindo pagina _PAGE_ of _PAGES_",
+			           "infoEmpty": "Nenhum Registro Disponivel",
+			           "infoFiltered": "(filtrado de _MAX_ registro)",
+			           "search":"Pesquisar:",
+			           "paginate": {
+			               "first":      "Primeiro",
+			               "last":       "Ultimo",
+			               "next":       "Proximo",
+			               "previous":   "Anterior"
+			           }
+			           
+			       }
+			     });
+			    });
+
+
 			
 			</script>
 			

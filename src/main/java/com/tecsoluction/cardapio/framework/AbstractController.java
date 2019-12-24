@@ -1,6 +1,7 @@
 package com.tecsoluction.cardapio.framework;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -44,19 +45,55 @@ public abstract class AbstractController<Entity> {
         return cadastro;
 
     }
+    
+    
+    
+//    @GetMapping(value = "cadastro")
+//    public ModelAndView cadastrarEntity2(Model model) {
+//
+//        ModelAndView cadastro = new ModelAndView("/private/"+entityAlias+"/cadastro/cadastro" + entityAlias);
+//
+//        List<Entity> entityList = getservice().findAll();
+//
+////        cadastro.addObject("acao", "add");
+//        model.addAttribute(entityAlias + "List", entityList);
+////        cadastro.addObject(entityAlias, entity);
+//
+//        
+//
+//
+//        return cadastro;
+//
+//    }
+    
+    
 
     @Transactional
     @PostMapping(value = "add")
-    public ModelAndView AdicionarEntity(@ModelAttribute Entity entity) {
+    public ModelAndView AdicionarEntity(@Valid Entity entity, BindingResult result,Model model) {
 
-        ModelAndView cadastroEntity = new ModelAndView("/private/"+entityAlias+"/cadastro/cadastro" + entityAlias);
-        getservice().save(entity);
-        cadastroEntity.addObject("entity", entity);
-        cadastroEntity.addObject("acao", "salvo");
-        cadastroEntity.addObject("sucesso", sucesso);
-//        cadastroEntity.addObject("erro", erro);
-        
-        return cadastroEntity;
+  // ModelAndView cadastroEntity = new ModelAndView("/private/"+entityAlias+"/cadastro/cadastro" + entityAlias);
+   
+   		if(result.hasErrors()){
+   			
+   			model.addAttribute("erro", result.getFieldError().getDefaultMessage());
+   			model.addAttribute(entityAlias, entity);
+   			model.addAttribute("acao", "add");
+   			
+   			
+   		}else {
+   			
+   		 getservice().save(entity);
+   		model.addAttribute("sucesso", sucesso);
+   		model.addAttribute(entityAlias, entity);
+		model.addAttribute("acao", "add");
+		
+   			
+   		}
+   		
+   		
+        return new ModelAndView("private/" + entityAlias + "/cadastro/cadastro" + entityAlias);
+
     }
 
 
@@ -102,6 +139,7 @@ public abstract class AbstractController<Entity> {
         getservice().edit(entity);
 
         cadastroEntity.addObject("acao", "add");
+        cadastroEntity.addObject(entityAlias, entity);
 
        return cadastroEntity;
     }
@@ -113,7 +151,7 @@ public abstract class AbstractController<Entity> {
         UUID idf = UUID.fromString(request.getParameter("id"));
         getservice().delete(idf);
 
-        return new ModelAndView("forward:/" + entityAlias + "/movimentacao");
+        return new ModelAndView("redirect:/" + entityAlias + "/movimentacao");
     }
     
     

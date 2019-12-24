@@ -100,17 +100,17 @@ public class ContextoAplicacao {
 			configuracaoAtual = new Configuracao();
 			
 			configuracaoAtual.setAtivo(true);
-			configuracaoAtual.setBanner1("b1.png");
-			configuracaoAtual.setBanner2("b2.png");
-			configuracaoAtual.setBanner3("b3.png");
+			configuracaoAtual.setBanner1("banner.png");
+			configuracaoAtual.setBanner2("banner.png");
+			configuracaoAtual.setBanner3("banner.png");
 			configuracaoAtual.setCorcard("blue");
 			configuracaoAtual.setCormenu("blue");
 			configuracaoAtual.setCortopo("blue");
 			configuracaoAtual.setLogo("logo.png");
 			configuracaoAtual.setNomeempresa("Teste");
-			configuracaoAtual.setUrlface("www.facebook.com");
-			configuracaoAtual.setUrlgmail("www.gmail.com");
-			configuracaoAtual.setUrlinsta("www.instagram.com");
+			configuracaoAtual.setUrlface("https://www.facebook.com");
+			configuracaoAtual.setUrlgmail("https://www.gmail.com");
+			configuracaoAtual.setUrlinsta("https://www.instagram.com");
 			
 			
 			

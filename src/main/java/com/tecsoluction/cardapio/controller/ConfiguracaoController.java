@@ -2,8 +2,6 @@ package com.tecsoluction.cardapio.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
-import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,18 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Configuracao;
-import com.tecsoluction.cardapio.entidade.Produto;
-import com.tecsoluction.cardapio.entidade.ProdutoComposto;
-import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.framework.AbstractController;
-import com.tecsoluction.cardapio.framework.AbstractEditor;
-import com.tecsoluction.cardapio.framework.AbstractEntityService;
-import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
 import com.tecsoluction.cardapio.servico.ConfiguracaoServicoImpl;
-import com.tecsoluction.cardapio.servico.ProdutoCompostoServicoImpl;
-import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
 
 
 @Controller

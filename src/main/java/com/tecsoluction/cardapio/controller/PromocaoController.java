@@ -2,6 +2,11 @@ package com.tecsoluction.cardapio.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,22 +17,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.entidade.Promocao;
-import com.tecsoluction.cardapio.entidade.Role;
-import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.framework.AbstractEditor;
+import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
 import com.tecsoluction.cardapio.servico.PromocaoServicoImpl;
-import com.tecsoluction.cardapio.servico.RoleServicoImpl;
-import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 
 
 /**
@@ -38,32 +43,43 @@ import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 public class PromocaoController extends AbstractController<Promocao> {
 
 	private static final Logger logger = LoggerFactory.getLogger(PromocaoController.class);
-	 @Autowired
-	private final UsuarioServicoImpl userService;
+
 	 @Autowired
 	private final PromocaoServicoImpl promocaoService;
 	 
 	 
+	 @Autowired
+	private final ProdutoServicoImpl produtoService;
+	 
+	 
 	 private Promocao promocao;
+	 
+//	 private Promocao promocaoProd = new Promocao();
 	 
 	 
 	    private String filename="promo.jpg";
+	    
+	    private List<Produto> produtos ;
+	    
+	    private Set<Produto> prodpromo = new HashSet<Produto>();
 	    
 	    
 	    
 
 	@Autowired
-	public PromocaoController(UsuarioServicoImpl userService, PromocaoServicoImpl roleService) {
+	public PromocaoController( PromocaoServicoImpl roleService,ProdutoServicoImpl prd) {
 		super("promocao");
-		this.userService = userService;
 		this.promocaoService = roleService;
+		this.produtoService = prd;
 	}
 
 	@InitBinder
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
 
-		binder.registerCustomEditor(Usuario.class, new AbstractEditor<Usuario>(this.userService) {
-		});
+
+    	binder.registerCustomEditor(Produto.class, new AbstractEditor<Produto>(this.produtoService) {
+            
+    });
 
 	}
 
@@ -83,10 +99,16 @@ public class PromocaoController extends AbstractController<Promocao> {
 		
 		promocao = new Promocao();
 		
+		produtos = produtoService.findAll();
+		
 		
 		
 		 model.addAttribute("promocao", promocao);
 		 model.addAttribute("filename", filename);
+		 model.addAttribute("produtos", produtos);
+		 model.addAttribute("prodpromo", prodpromo);
+		 
+		 
 
 	}
 	
@@ -153,7 +175,85 @@ public class PromocaoController extends AbstractController<Promocao> {
 	        return new ModelAndView("redirect:/promocao/cadastro").addObject("promocao", promocao);
 
 	    }
+	  
+	  
+	  @RequestMapping(value = "addproduto",method=RequestMethod.GET)
+	    public ModelAndView AddProduto( HttpSession session,
+	                                    HttpServletRequest request, Model model) {
 
+//		  prodpromo.clear();
+		  this.promocao.getProdutos().clear();
+		  
+		  
+		  String[] ids = null;
+		  
+		  int qtdparam = request.getParameterValues("produtos").length;
+		  
+		  System.out.println("qtd produtos : " + qtdparam);
+		  
+		  ids = new String[qtdparam];
+			
+			ids = request.getParameterValues("produtos");
+			
+			 System.out.println(" produtos : " + ids.toString());
+			
+			 Produto p = null;
+			
+			for(int i=0;i<ids.length;i++){
+				
+				UUID idf = UUID.fromString(ids[i]);
+		  
+				//Produto p = new Produto();
+				
+				p=  produtoService.findOne(idf);
+				
+				prodpromo.add(p);
+		  
+				//this.promocao.addProduto(p);
+				
+			}
+			
+			System.out.println("prodpromo : " + prodpromo);
+			
+			this.promocao.setProdutos(prodpromo);
+			
+		//	getservice().save(promocao);
+	  		
+//	  		UUID idf = UUID.fromString(request.getParameter("produtos"));
+//	       
+//	  		Produto produto = produtoService.findOne(idf);
+//	  		
+//	  		this.promocao.addProduto(produto);
+	  		
+	  		
+	  		return new ModelAndView("forward:/promocao/cadastro").addObject("promocao", promocao).addObject("prodpromo", prodpromo);
+
+	    }
+	  	
+	  	
+	  	@RequestMapping(value = "excluirproduto",method = RequestMethod.GET )
+	    public ModelAndView ExcluirProduto( HttpSession session,
+	                                    HttpServletRequest request, Model model) {
+
+	  		
+	  		UUID idf = UUID.fromString(request.getParameter("id"));
+	       
+	  		Produto produto = produtoService.findOne(idf);
+	  		
+	  		prodpromo.remove(produto);
+	  		
+	  		this.promocao.getProdutos().clear();
+	  		
+	  		this.promocao.setProdutos(prodpromo);
+	  		
+	  		
+	        return new ModelAndView("forward:/promocao/cadastro").addObject("promocao", promocao).addObject("prodpromo", prodpromo);
+
+	    }
+	  
+	  
+	  
+	 
 
 	@Override
 	protected PromocaoServicoImpl getservice() {
