@@ -8,6 +8,15 @@
 
 <!-- 	<body id="mimin" class="dashboard form-signin-wrapper"> -->
 	<body  class="hold-transition login-page">
+	
+	<div id="fb-root"> </div>
+<script th:async="async" th:defer="defer"  crossorigin="anonymous"
+ th:src="@{https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513}"
+ src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513">
+ 
+ </script>
+	
+	
 	<script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -79,7 +88,13 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!'
-        + 'email : ' +  response.email + "!" ;
+        + 'email : ' +  response.email + "!" +
+        
+        'username : ' + response.username + "!";
+      
+      
+      document.getElementById('foto').innerHTML =
+      '<img src="https://graph.facebook.com/' + response.username + '/picture" alt="' + reponse.name + '" />';
     });
   }
 </script>
@@ -89,6 +104,7 @@
 	<div class="login-box">
   <div class="login-logo">
     <a href="#">Sushi <b>Sempai</b></a>
+    <div id="foto"></div>
   </div>
   <div class="login-box-body">
     <p class="login-box-msg">Acesse para Iniciar sua Sessao</p>
@@ -122,17 +138,24 @@
 
     <div class="social-auth-links text-center">
       <p>- OU -</p>
-      <a href="#" onclick="checkLoginState();" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Acesse Usando o
-        Facebook </a>
+      
+                <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with"
+     data-auto-logout-link="false" data-use-continue-as="true"></div>
+      
+<!--       <a href="#" onclick="checkLoginState();" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Acesse Usando o -->
+<!--         Facebook </a> -->
       <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Acesse Usando o Google+ </a>
       
+
       
-              <fb:login-button 
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button>  
+<!--               <fb:login-button  -->
+<!--   scope="public_profile,email" -->
+<!--   onlogin="checkLoginState();"> -->
+<!-- </fb:login-button>   -->
 
     </div>
+    
+
 
     <p> <a th:href="@{/esquecisenha}">Esqueci a Senha </a></p>
     <a  th:href="@{/usuario/cadastro/}" class="text-center">Registrar novo Usuario </a>
