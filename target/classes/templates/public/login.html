@@ -84,7 +84,7 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function UsuarioConectado() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me',{fields: 'name, email, picture, id'}, function(response) {
+    FB.api('/me',{fields:'name, email, picture, id'}, function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!'
@@ -95,16 +95,55 @@
       document.getElementById('fotho').innerHTML =
       '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
       
-      var senha = '232425'
+      var senhaa = '232425';
+      
+      var nomee = response.name ;
+      
+      var mmail = response.email;
+      
+      var fotoo = 'https://graph.facebook.com/' + response.id + '/picture';
+
       
       document.getElementById('email').value = response.email;
     	  
-      document.getElementById('senha').value = senha;
+      document.getElementById('senha').value = senhaa;
       
-      document.getElementById('loggin').submit();
+//       document.getElementById('loggin').submit();
+
+var text = '{"nome":'+ nomee  + ',"email":' + mmail+',"foto":'+fotoo+',"senha":'+ senhaa + '}';
+var objeto = JSON.parse(texto);
+
+		$.ajax({
+			type: "POST",
+			contentType: "application/json",
+			url: "/usuario/salvar/",
+//				url: "/evento/salvar/",
+			data: objeto, // convert array to JSON
+			dataType: 'json',
+			cache: false,
+			timeout: 100000,
+			success: function (data) {
+
+				console.log("SUCCESS : ", data);
+//					alert("Eventos Atualizados : " + data);
+				window.location.reload();
+
+			},
+			error: function (e) {
+
+				console.log("ERROR : ", e);
+
+			}
+		});
+		
+		
+		
+		document.getElementById('loggin').submit();
+	
       
     });
   }
+  
 </script>
 
 
@@ -149,7 +188,7 @@
     <div class="social-auth-links text-center">
       <p>- OU -</p>
       
-                <div class="fb-login-button" data-width="320px" data-size="large" data-button-type="login_with"
+                <div class="fb-login-button" data-width="100%" data-size="large" data-button-type="login_with"
      data-auto-logout-link="true" data-use-continue-as="true"></div>
       
 <!--       <a href="#" onclick="checkLoginState();" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Acesse Usando o -->
@@ -264,15 +303,11 @@ $(document).ready(function() {
 
 	checkLoginState();
 	
-	PreencherForm();
+
 
 	})
 	
 	
-	function PreencherForm(){
-	
-	
-};
 
 
 </script>
