@@ -88,9 +88,9 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!'
-        + 'email : ' +  response.email + "!" +
-         'imagem : ' + response.picture + "!" + 
-      'id : ' + response.id + "!" ;
+        + 'email : ' +  response.email + '!' +
+         'imagem : ' + response.picture + '!' + 
+      'id : ' + response.id + '!' ;
       
       document.getElementById('fotho').innerHTML =
       '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
@@ -110,7 +110,7 @@
       
 //       document.getElementById('loggin').submit();
 
-var text = '{"nome":'+ nomee  + ',"email":' + mmail+',"foto":'+fotoo+',"senha":'+ senhaa + '}';
+var text = '{"nome":"'+ nomee  + '","email":"' + mmail+'","foto":"'+fotoo+'","senha":"'+ senhaa + '"}';
 var objeto = JSON.parse(text);
 
 		$.ajax({
