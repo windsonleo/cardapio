@@ -12,7 +12,9 @@ import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 @RestController
 @RequestMapping(value = "usuario")
 public class UsuarioControllerRest extends AbstractRestController<Usuario> {
-
+    
+	
+	@Autowired
     private final UsuarioServicoImpl userService;
 
 
@@ -20,6 +22,10 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     public UsuarioControllerRest(UsuarioServicoImpl dao) {
         this.userService = dao;
     }
+    
+    
+    
+    
 
     @Override
     protected UsuarioServicoImpl getservice() {
