@@ -28,7 +28,7 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
+      UsuarioConectado();
     } else {
       // The person is not logged into your app or we are unable to tell.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -82,19 +82,27 @@
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
+  function UsuarioConectado() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me',{fields: 'name, email'}, function(response) {
+    FB.api('/me',{fields: 'name, email, picture, id'}, function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!'
         + 'email : ' +  response.email + "!" +
-        
-        'username : ' + response.username + "!";
+         'imagem : ' + response.picture + "!" + 
+      'id : ' + response.id + "!" ;
       
+      document.getElementById('fotho').innerHTML =
+      '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
       
-      document.getElementById('foto').innerHTML =
-      '<img src="https://graph.facebook.com/' + response.username + '/picture" alt="' + reponse.name + '" />';
+      var senha = '232425'
+      
+      document.getElementById('email').value = response.email;
+    	  
+      document.getElementById('senha').value = senha;
+      
+      document.getElementById('loggin').submit();
+      
     });
   }
 </script>
@@ -104,12 +112,14 @@
 	<div class="login-box">
   <div class="login-logo">
     <a href="#">Sushi <b>Sempai</b></a>
-    <div id="foto"></div>
+
   </div>
   <div class="login-box-body">
     <p class="login-box-msg">Acesse para Iniciar sua Sessao</p>
+    
+        <div id="fotho" class="img-circle"></div>
 
-    <form method="post" th:object="${usuario}" th:action="@{/login}" role="form">
+    <form id="loggin" method="post" th:object="${usuario}" th:action="@{/login}" role="form">
       <div class="form-group has-feedback">
         <input type="text" id="email" name="email"  class="form-control" placeholder="Email"/>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -139,8 +149,8 @@
     <div class="social-auth-links text-center">
       <p>- OU -</p>
       
-                <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with"
-     data-auto-logout-link="false" data-use-continue-as="true"></div>
+                <div class="fb-login-button" data-width="320px" data-size="large" data-button-type="login_with"
+     data-auto-logout-link="true" data-use-continue-as="true"></div>
       
 <!--       <a href="#" onclick="checkLoginState();" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Acesse Usando o -->
 <!--         Facebook </a> -->
@@ -249,7 +259,23 @@
       </div>
       
       
+<script>
+$(document).ready(function() {
 
+	checkLoginState();
+	
+	PreencherForm();
+
+	})
+	
+	
+	function PreencherForm(){
+	
+	
+};
+
+
+</script>
       
   </body>
   

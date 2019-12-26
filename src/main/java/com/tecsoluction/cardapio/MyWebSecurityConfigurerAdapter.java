@@ -70,7 +70,8 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/usuario/perfil**").permitAll()
 				.antMatchers("/usuario/autenticar**").permitAll()
 				.antMatchers("/usuario/lock**").permitAll()
-//				.antMatchers("*/https://connect.facebook**").permitAll()
+				.antMatchers("*/usuario/all**").permitAll()
+				.antMatchers("/usuario/usuarioSave").permitAll()
 			
 //				.antMatchers("/evento/listar/").permitAll()
 //				.antMatchers("/paciente/listar/").permitAll()

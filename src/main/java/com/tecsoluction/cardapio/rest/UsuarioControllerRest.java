@@ -1,8 +1,14 @@
 package com.tecsoluction.cardapio.rest;
 
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tecsoluction.cardapio.entidade.Usuario;
@@ -24,7 +30,20 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     }
     
     
+    @RequestMapping(value = "/usuarioSave", method =  RequestMethod.POST)
+    public Usuario Post(@Valid @RequestBody Usuario pessoa)
+    {
+        return getservice().save(pessoa);
+    }
     
+    
+    
+    @RequestMapping(value = "/usuario/all", method = RequestMethod.GET)
+    public List<Usuario> ListAllUsuario() {
+
+        return getservice().findAll();
+
+    }
     
 
     @Override
