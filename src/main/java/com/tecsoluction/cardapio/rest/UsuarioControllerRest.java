@@ -1,6 +1,8 @@
 package com.tecsoluction.cardapio.rest;
 
 
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
+
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
@@ -13,6 +15,8 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -24,8 +28,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.tecsoluction.cardapio.entidade.Role;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.framework.AbstractRestController;
+import com.tecsoluction.cardapio.servico.RoleServicoImpl;
 import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 
 @RestController
@@ -35,6 +42,9 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
 	
 	@Autowired
     private final UsuarioServicoImpl userService;
+	
+	@Autowired
+    private final RoleServicoImpl roleService;
 	
 	private Image image;
 
@@ -50,8 +60,9 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
 	private String nome;
 	
     @Autowired
-    public UsuarioControllerRest(UsuarioServicoImpl dao) {
+    public UsuarioControllerRest(UsuarioServicoImpl dao,RoleServicoImpl rol) {
         this.userService = dao;
+        this.roleService = rol;
     }
     
     
@@ -98,6 +109,10 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
 //    	for (Evento evento : eventos) {
     	Usuario usuario = null;
     	
+    	UUID idf = UUID.fromString("9e5438c6-6749-43c0-8ecb-59e46e74c155");
+    	
+    	Role role = roleService.findOne(idf);
+    	
     	path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario/");
     	
     	pathf = path + usu.getNome() + ".jpg";
@@ -117,6 +132,7 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     		
     		usu.setFoto(nome);
     		usu.setDatacadastro(new Date());
+    		usu.getRoles().add(role);
     		
     		getservice().save(usu);
 			
