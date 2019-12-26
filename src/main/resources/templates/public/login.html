@@ -90,10 +90,10 @@
         'Thanks for logging in, ' + response.name + '!'
         + 'email : ' +  response.email + "!" +
          'imagem : ' + response.picture + "!" + 
-      'id : ' + response.id + "!";
+      'id : ' + response.id + "!" ;
       
-      document.getElementById('foto').innerHTML =
-      '<img th:src="@{https://graph.facebook.com/' + response.id + '/picture}" alt="' + response.id + '" />';
+      document.getElementById('fotho').innerHTML =
+      '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
     });
   }
 </script>
@@ -108,7 +108,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Acesse para Iniciar sua Sessao</p>
     
-        <div id="foto"></div>
+        <div id="fotho"></div>
 
     <form method="post" th:object="${usuario}" th:action="@{/login}" role="form">
       <div class="form-group has-feedback">
