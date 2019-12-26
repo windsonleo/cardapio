@@ -93,7 +93,7 @@
       'id : ' + response.id + "!";
       
       document.getElementById('foto').innerHTML =
-      '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + reponse.id + '" />';
+      '<img th:src="@{https://graph.facebook.com/' + response.id + '/picture}" alt="' + reponse.id + '" />';
     });
   }
 </script>
@@ -103,10 +103,12 @@
 	<div class="login-box">
   <div class="login-logo">
     <a href="#">Sushi <b>Sempai</b></a>
-    <div id="foto"></div>
+
   </div>
   <div class="login-box-body">
     <p class="login-box-msg">Acesse para Iniciar sua Sessao</p>
+    
+        <div id="foto"></div>
 
     <form method="post" th:object="${usuario}" th:action="@{/login}" role="form">
       <div class="form-group has-feedback">
