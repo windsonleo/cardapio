@@ -1,8 +1,6 @@
 package com.tecsoluction.cardapio.rest;
 
 
-import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
-
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
