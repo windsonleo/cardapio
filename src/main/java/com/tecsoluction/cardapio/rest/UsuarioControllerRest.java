@@ -130,6 +130,7 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     		usu.setDatacadastro(new Date());
     		usu.getRoles().add(role);
     		role.getUsers().add(usu);
+    		usu.setAtivo(true);
     		
     		
     		getservice().save(usu);
