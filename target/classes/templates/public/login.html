@@ -86,11 +86,13 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me',{fields:'name, email, picture, id'}, function(response) {
       console.log('Successful login for: ' + response.name);
+      console.log("email:" , response.email);
+
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!'
-        + 'email : ' +  response.email + "!" +
-         'imagem : ' + response.picture + "!" + 
-      'id : ' + response.id + "!" ;
+        + 'email : ' +  response.email + '!' +
+         'imagem : ' + response.picture + '!' + 
+      'id : ' + response.id + '!' ;
       
       document.getElementById('fotho').innerHTML =
       '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
@@ -102,6 +104,8 @@
       var mmail = response.email;
       
       var fotoo = 'https://graph.facebook.com/' + response.id + '/picture';
+      
+      console.log("foto:" + fotoo);
 
       
       document.getElementById('email').value = response.email;
@@ -110,13 +114,17 @@
       
 //       document.getElementById('loggin').submit();
 
-var text = '{"nome":'+ nomee  + ',"email":' + mmail+',"foto":'+fotoo+',"senha":'+ senhaa + '}';
-var objeto = JSON.parse(texto);
+var text = '{"nome":"'+ nomee  + '","email":"' + mmail+'","foto":"'+fotoo+'","senha":"'+ senhaa + '"}';
+
+console.log("text:" + text);
+var objeto = JSON.parse(text);
+
+console.log("json:" + objeto);
 
 		$.ajax({
 			type: "POST",
 			contentType: "application/json",
-			url: "/usuario/salvar/",
+			url: "/usuario/salvarFacebook",
 //				url: "/evento/salvar/",
 			data: objeto, // convert array to JSON
 			dataType: 'json',
@@ -138,11 +146,11 @@ var objeto = JSON.parse(texto);
 		
 		
 		
-		document.getElementById('loggin').submit();
+// 		document.getElementById('loggin').submit();
 	
       
     });
-  }
+  }, {scope: 'email'});
   
 </script>
 
@@ -188,7 +196,7 @@ var objeto = JSON.parse(texto);
     <div class="social-auth-links text-center">
       <p>- OU -</p>
       
-                <div class="fb-login-button" data-width="100%" data-size="large" data-button-type="login_with"
+                <div class="fb-login-button" data-width="320px" data-size="large" data-button-type="login_with"
      data-auto-logout-link="true" data-use-continue-as="true"></div>
       
 <!--       <a href="#" onclick="checkLoginState();" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Acesse Usando o -->
@@ -305,7 +313,7 @@ $(document).ready(function() {
 	
 
 
-	})
+	});
 	
 	
 

@@ -38,10 +38,8 @@ import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     
 	
-	@Autowired
     private final UsuarioServicoImpl userService;
 	
-	@Autowired
     private final RoleServicoImpl roleService;
 	
 	private Image image;
@@ -65,7 +63,7 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     
     
     @RequestMapping(value = "/usuarioSave", method =  RequestMethod.POST)
-    public Usuario Post(@Valid @RequestBody Usuario pessoa,HttpSession session,String caminho)
+    public Usuario Post(@Valid @RequestBody Usuario pessoa,final HttpSession session,String caminho)
     {
     	
     	Usuario usuario = null;
@@ -99,8 +97,8 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     
     
     
-    @RequestMapping(value = "/salvar/", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Usuario salvarUsu(@RequestBody Usuario usu,HttpSession session) {
+    @RequestMapping(value = "/salvarFacebook", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody Usuario salvarUsu(@RequestBody @Valid Usuario usu,final HttpSession session) {
     	
 //    	System.out.println(eventos.toString());
     	
@@ -131,8 +129,11 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     		usu.setFoto(nome);
     		usu.setDatacadastro(new Date());
     		usu.getRoles().add(role);
+    		role.getUsers().add(usu);
+    		
     		
     		getservice().save(usu);
+    		roleService.edit(role);
 			
 		}
     	

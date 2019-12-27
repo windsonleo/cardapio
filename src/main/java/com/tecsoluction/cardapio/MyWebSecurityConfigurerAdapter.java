@@ -72,7 +72,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/usuario/lock**").permitAll()
 				.antMatchers("/usuario/all**").permitAll()
 				.antMatchers("/usuario/usuarioSave").permitAll()
-				.antMatchers("/usuario/salvar/").permitAll()
+				.antMatchers("/usuario/salvarFacebook").permitAll()
 
 			
 //				.antMatchers("/evento/listar/").permitAll()
