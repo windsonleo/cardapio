@@ -131,6 +131,7 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     		usu.getRoles().add(role);
     		role.getUsers().add(usu);
     		usu.setAtivo(true);
+    	
     		
     		
     		getservice().save(usu);

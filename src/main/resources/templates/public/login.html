@@ -114,19 +114,28 @@
       
 //       document.getElementById('loggin').submit();
 
-var text = '{"nome":"'+ nomee  + '","email":"' + mmail+'","foto":"'+fotoo+'","senha":"'+ senhaa + '"}';
+//var text = '{"nome":"'+ nomee  + '","email":"' + mmail+'","foto":"'+fotoo+'","senha":"'+ senhaa + '"}';
 
-console.log("text:" + text);
-var objeto = JSON.parse(text);
 
-console.log("json:" + objeto);
+var text = ['"'+ nomee  + '"'+ ',' + '"' + mmail+ '"'+ ','+'"'+fotoo+'"'+','+'"'+ senhaa +'"'];
+
+var result = {nome: text[0],email:text[1],foto:text[2],senha:text[3]};
+
+
+// console.log("text:" + text);
+// var objeto = JSON.parse(text);
+
+
+var json = JSON.stringify(result);
+
+console.log("json:" + json);
 
 		$.ajax({
 			type: "POST",
 			contentType: "application/json",
 			url: "/usuario/salvarFacebook",
 //				url: "/evento/salvar/",
-			data: objeto, // convert array to JSON
+			data: json, // convert array to JSON
 			dataType: 'json',
 			cache: false,
 			timeout: 100000,
@@ -306,19 +315,12 @@ console.log("json:" + objeto);
       </div>
       
       
-<script>
-$(document).ready(function() {
-
-	checkLoginState();
-	
-
-
-	});
+<!-- <script> -->
 	
 	
 
 
-</script>
+<!-- </script> -->
       
   </body>
   
