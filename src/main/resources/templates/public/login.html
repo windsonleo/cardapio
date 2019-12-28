@@ -100,7 +100,7 @@
 // 		  UsuarioConectado2();
 		  
 	    console.log('Welcome!  Fetching your information.... ');
-	    FB.api('/me',{fields:'name,email'}, function(response) {
+	    FB.api('/me',{fields:'email'}, function(response) {
 		
 //	 	FB.api('/me',function(response) {
 	      console.log('Successful login for: ' + response.name);
@@ -113,7 +113,7 @@
 	      'id : ' + response.id + '!' ;
 	      
 	      document.getElementById('fotho').innerHTML =
-	      '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
+	      '<img src="http://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
 	      
 	      var senhaa = '232425';
 	      
@@ -121,7 +121,7 @@
 	      
 	      var mmail =  response.email;
 	      
-	      var fotoo = 'https://graph.facebook.com/' + response.id + '/picture';
+	      var fotoo = 'http://graph.facebook.com/' + response.id + '/picture';
 	      
 	      console.log("foto:" + fotoo);
 
@@ -176,7 +176,7 @@
 //	 		document.getElementById('loggin').submit();
 		
 	      
-	    }, {'scope': 'email,name' });
+	    }, {'scope': 'email' });
 	    
 	    }
 	    
