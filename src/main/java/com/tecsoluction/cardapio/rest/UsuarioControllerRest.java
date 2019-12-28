@@ -5,9 +5,14 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -184,8 +189,8 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     	
     	boolean sucesso = false;
     	
-        URL urll=null;
-        BufferedImage img =null;
+//        URL urll=null;
+//        BufferedImage img =null;
 //        URL urlll=null;
         
         
@@ -206,28 +211,89 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
 
         
         
-		try {
-			 urll = new URL(url);
-			 try {
-				 img = ImageIO.read(urll);
-				 leu=true;
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			 file = new File(pathf);
-			 try {
-				ImageIO.write(img, "jpg", file);
-				capturou = true;
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			 urll = new URL(url);
+//			 try {
+//				 img = ImageIO.read(urll);
+//				 leu=true;
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			 file = new File(pathf);
+//			 try {
+//				ImageIO.write(img, "jpg", file);
+//				capturou = true;
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//		} catch (MalformedURLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+    	
+    	
+    	file = new File(pathf);
+    	
+    	
+    			URL urlObj = null;
+				try {
+					urlObj = new URL(url);
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}                                    
+    			HttpURLConnection httpConnection = null;
+				try {
+					httpConnection = (HttpURLConnection)urlObj.openConnection();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+    			try {
+					httpConnection.setRequestMethod("GET");
+				} catch (ProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    			InputStream inputStream = null;
+				try {
+					inputStream = httpConnection.getInputStream();
+					
+					leu=true;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    			OutputStream outputStream = null;
+    			try {
+    			    int read = 0;
+    			    byte[] bytes = new byte[1024];
+    			    outputStream = new FileOutputStream(file);
+    			    while ((read = inputStream.read(bytes)) != -1) {
+    			        outputStream.write(bytes, 0, read);
+    			    }
+    			    
+    			  capturou=true;
+    			} catch (FileNotFoundException ex) {
+    			    ex.getMessage();
+    			} catch (IOException ex) {
+    			    ex.getMessage();
+    			} finally {
+    			    try {
+    			        if (outputStream != null) {
+    			            outputStream.close();
+    			        }
+    			    } catch (IOException ex) {
+    			        ex.getMessage();
+    			    }
+    			}
+    	
+    	
+    	
+    	
       
         
         if(leu && capturou){
