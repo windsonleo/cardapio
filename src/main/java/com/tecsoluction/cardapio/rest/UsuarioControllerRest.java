@@ -186,23 +186,23 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     	
         URL urll=null;
         BufferedImage img =null;
-        URL urlll=null;
+//        URL urlll=null;
         
         
         
-        try {
-			urlll=new URL(url);
-		} catch (MalformedURLException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-        
-		try {
-			file2 = Paths.get(urlll.toURI()).toFile();
-		} catch (URISyntaxException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+//        try {
+//			urlll=new URL(url);
+//		} catch (MalformedURLException e2) {
+//			// TODO Auto-generated catch block
+//			e2.printStackTrace();
+//		}
+//        
+//		try {
+//			file2 = Paths.get(urlll.toURI()).toFile();
+//		} catch (URISyntaxException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 
         
         
