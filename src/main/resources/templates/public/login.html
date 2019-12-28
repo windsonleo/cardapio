@@ -20,7 +20,7 @@
 	<script>
 	
 	
-	
+	 var accessToken = null;
 	
 	// This is called with the results from from FB.getLoginStatus().
 	  function statusChangeCallback(response) {
@@ -33,7 +33,9 @@
 	    if (response.status === 'connected') {
 	      // Logged into your app and Facebook.
 // 	         UsuarioConectado2();
-	      var accessToken = response.authResponse.accessToken;
+	      accessToken = response.authResponse.accessToken;
+		    console.log(accessToken);
+
 	      UsuarioConectado(accessToken);
 	      
 	    } else {
@@ -79,6 +81,9 @@
 	    // These three cases are handled in the callback function.
 
 	    FB.getLoginStatus(function(response) {
+	    	
+	        accessToken = response.authResponse.accessToken;
+		    console.log('2' + accessToken);
 	      statusChangeCallback(response);
 	    },true);
 
@@ -366,7 +371,9 @@
       $(document).ready(function() {
     	  
     	  
-    	  $(location).attr('href', 'https://sleepy-atoll-65818.herokuapp.com/login');
+//     	  $(location).attr('href', 'https://sleepy-atoll-65818.herokuapp.com/login');
+
+	window.location.replace("https://sleepy-atoll-65818.herokuapp.com/login");
     	  
 //     	  window.location.protocol == "https:";
 //     	  checkLoginState();
