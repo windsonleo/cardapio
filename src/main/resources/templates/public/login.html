@@ -20,146 +20,149 @@
 	<script>
 	
 	
-	var fbConnected ='connected';
-	
-	var fbNotAuthorized ='not_authorized';
-	
-	window.fbAsyncInit = function() {
+	// This is called with the results from from FB.getLoginStatus().
+	  function statusChangeCallback(response) {
+	    console.log('statusChangeCallback');
+	    console.log(response);
+	    // The response object is returned with a status field that lets the
+	    // app know the current login status of the person.
+	    // Full docs on the response object can be found in the documentation
+	    // for FB.getLoginStatus().
+	    if (response.status === 'connected') {
+	      // Logged into your app and Facebook.
+	      UsuarioConectado();
+	    } else {
+	      // The person is not logged into your app or we are unable to tell.
+	      document.getElementById('status').innerHTML = 'Por Favor Entre ' +
+	        'no Cardapio.';
+	    }
+	  }
+
+	  // This function is called when someone finishes with the Login
+	  // Button.  See the onlogin handler attached to it in the sample
+	  // code below.
+	  function checkLoginState() {
+	    FB.getLoginStatus(function(response) {
+	      statusChangeCallback(response);
+	    });
+	  }
+
+	  window.fbAsyncInit = function() {
 	    FB.init({
 	        appId      : '1047331868960513',
 	        cookie     : true,
 	        xfbml      : true,
 	        version    : 'v5.0'
 	    });
-	    
-	    
-	 // Load the SDK asynchronously
-	    (function(d, s, id) {
-	      var js, fjs = d.getElementsByTagName(s)[0];
-	      if (d.getElementById(id)) return;
-	      js = d.createElement(s); js.id = id;
-	      js.src = "https://connect.facebook.net/pt_BR/sdk.js";
-	      fjs.parentNode.insertBefore(js, fjs);
-	    }(document, 'script', 'facebook-jssdk'));
 
-	/*Esta função verifica se o usuário está logado no facebook. 
-	Se não estiver ele abre a janelinha de login*/
-	    function initFacebook() {
-	      FB.getLoginStatus(function(response) {
-	        if (response.status !== fbConnected) {
-      	      console.log("face not conected: ");
+	    // Now that we've initialized the JavaScript SDK, we call 
+	    // FB.getLoginStatus().  This function gets the state of the
+	    // person visiting this page and can return one of three states to
+	    // the callback you provide.  They can be:
+	    //
+	    // 1. Logged into your app ('connected')
+	    // 2. Logged into Facebook, but not your app ('not_authorized')
+	    // 3. Not logged into Facebook and can't tell if they are logged into
+	    //    your app or not.
+	    //
+	    // These three cases are handled in the callback function.
 
-	        	
-	          loginFacebook(); 
-	        }else {
-	        	
-	        	carregarInformacoes();
-	        	
-	        }
-	      });  
-	    }
+	    FB.getLoginStatus(function(response) {
+	      statusChangeCallback(response);
+	    });
 
-	/*Esta função vai recuperar tudo que você solicitou do usuário.*/
-	function carregarInformacoes() {
-	  FB.getLoginStatus(function(response) {
-	    if (response.status === fbConnected) {
-	      FB.api('/me', {}, function(response) {
-	        /*Response tem tudo que você solicitou, inclusive o access_token.*/
-	        
-	        	      console.log("entrou no me : ");
+	  };
 
-	        
-	    	  console.log('Successful login for: ' + response.name);
-	          console.log("email:" , response.email);
+	  // Load the SDK asynchronously
+	  (function(d, s, id) {
+	    var js, fjs = d.getElementsByTagName(s)[0];
+	    if (d.getElementById(id)) return;
+	    js = d.createElement(s); js.id = id;
+	    js.src = "https://connect.facebook.net/pt_BR/sdk.js";
+	    fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));
 
-	          document.getElementById('status').innerHTML =
-	            'Thanks for logging in, ' + response.name + '!'
-	            + 'email : ' +  response.email + '!' +
-//	              'imagem : ' + response.picture + '!' + 
-	          'id : ' + response.id + '!' ;
-	          
-	          document.getElementById('fotho').innerHTML =
-	          '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
-	          
-	          var senhaa = '232425';
-	          
-	          var nomee = response.name ;
-	          
-	          var mmail = response.email;
-	          
-	          var fotoo = 'https://graph.facebook.com/' + response.id + '/picture';
-	          
-	          console.log("foto:" + fotoo);
+	  // Here we run a very simple test of the Graph API after login is
+	  // successful.  See statusChangeCallback() for when this call is made.
+	  function UsuarioConectado() {
+	    console.log('Welcome!  Fetching your information.... ');
+	    FB.api('/me',{fields:'id,name,email'}, function(response) {
+		
+//	 	FB.api('/me',function(response) {
+	      console.log('Successful login for: ' + response.name);
+	      console.log("email:" , response.email);
 
-	          
-	          document.getElementById('email').value = response.email;
-	        	  
-	          document.getElementById('senha').value = senhaa;
-	          
-//	           document.getElementById('loggin').submit();
-
-	    //var text = '{"nome":"'+ nomee  + '","email":"' + mmail+'","foto":"'+fotoo+'","senha":"'+ senhaa + '"}';
-
-
-	    var text = [nomee, mmail,fotoo,senhaa];
-
-	    var result = {nome:text[0],email:text[1],foto:text[2],senha:text[3]};
-
-
-	    // console.log("text:" + text);
-	    // var objeto = JSON.parse(text);
-
-
-	    var json = JSON.stringify(result);
-
-	    console.log("json:" + json);
-
-	    		$.ajax({
-	    			type: "POST",
-	    			contentType: "application/json",
-	    			url: "/usuario/salvarFacebook",
-//	    				url: "/evento/salvar/",
-	    			data: json, // convert array to JSON
-	    			dataType: 'json',
-	    			cache: false,
-	    			timeout: 100000,
-	    			success: function (data) {
-
-	    				console.log("SUCCESS : ", data);
-//	    					alert("Eventos Atualizados : " + data);
-	    				window.location.reload();
-
-	    			},
-	    			error: function (e) {
-
-	    				console.log("ERROR : ", e);
-
-	    			}
-	    		});
-	        
-	        
-	        
-	      });
-	    } else if (response.status === fbNotAuthorized) {
-	      loginFacebook(); 
-	    } else {
-	      loginFacebook();          
-	    }
-	  });  
-	}
-
-	/*Esta função pede permissão de acesso aos dados. Ela que no fim das contas vai gerar o access_token*/
-	function loginFacebook() {
-	  FB.login(function(response) {
-	    if (response.authResponse) {
-	      initFacebook();
-	      console.log("login facebook ok : ");
+	      document.getElementById('status').innerHTML =
+	        'Thanks for logging in, ' + response.name + '!'
+	        + 'email : ' +  response.email + '!' +
+//	          'imagem : ' + response.picture + '!' + 
+	      'id : ' + response.id + '!' ;
 	      
-	    }       
-	  }, {scope: 'email,name,id' });
-	}
-	
-	};
+	      document.getElementById('fotho').innerHTML =
+	      '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
+	      
+	      var senhaa = '232425';
+	      
+	      var nomee = response.name ;
+	      
+	      var mmail = response.email;
+	      
+	      var fotoo = 'https://graph.facebook.com/' + response.id + '/picture';
+	      
+	      console.log("foto:" + fotoo);
+
+	      
+	      document.getElementById('email').value = response.email;
+	    	  
+	      document.getElementById('senha').value = senhaa;
+	      
+//	       document.getElementById('loggin').submit();
+
+	//var text = '{"nome":"'+ nomee  + '","email":"' + mmail+'","foto":"'+fotoo+'","senha":"'+ senhaa + '"}';
+
+
+	var text = [nomee, mmail,fotoo,senhaa];
+
+	var result = {nome:text[0],email:text[1],foto:text[2],senha:text[3]};
+
+
+	// console.log("text:" + text);
+	// var objeto = JSON.parse(text);
+
+
+	var json = JSON.stringify(result);
+
+	console.log("json:" + json);
+
+			$.ajax({
+				type: "POST",
+				contentType: "application/json",
+				url: "/usuario/salvarFacebook",
+//					url: "/evento/salvar/",
+				data: json, // convert array to JSON
+				dataType: 'json',
+				cache: false,
+				timeout: 100000,
+				success: function (data) {
+
+					console.log("SUCCESS : ", data);
+//						alert("Eventos Atualizados : " + data);
+					window.location.reload();
+
+				},
+				error: function (e) {
+
+					console.log("ERROR : ", e);
+
+				}
+			});
+			
+			
+			
+//	 		document.getElementById('loggin').submit();
+		
+	      
+	    });
   
 </script>
 
