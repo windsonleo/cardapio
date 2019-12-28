@@ -20,8 +20,6 @@
 	<script>
 	
 	
-	var mails;
-	
 	// This is called with the results from from FB.getLoginStatus().
 	  function statusChangeCallback(response) {
 	    console.log('statusChangeCallback');
@@ -96,7 +94,7 @@
 // 		  UsuarioConectado2();
 		  
 	    console.log('Welcome!  Fetching your information.... ');
-	    FB.api('/me',{fields:"email"}, function(response) {
+	    FB.api('/me',{fields:'name,email'}, function(response) {
 		
 //	 	FB.api('/me',function(response) {
 	      console.log('Successful login for: ' + response.name);
@@ -352,18 +350,7 @@
 
                       <div th:replace="fragmentos/footer :: script">
       </div>
-      
-      
-<script>
-	
-// $(function () {
-	
-// 	carregarInformacoes();
-	
-// });
-
-
-</script> 
+     
       
   </body>
   
