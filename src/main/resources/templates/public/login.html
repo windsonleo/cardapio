@@ -100,7 +100,7 @@
 // 		  UsuarioConectado2();
 		  
 	    console.log('Welcome!  Fetching your information.... ');
-	    FB.api('/me?fields=name,email,id', function(response) {
+	    FB.api('/me',{fields='name,email,id'}, function(response) {
 		
 //	 	FB.api('/me',function(response) {
 	      console.log('Successful login for: ' + response.name);
@@ -176,7 +176,7 @@
 //	 		document.getElementById('loggin').submit();
 		
 	      
-	    }, {scope: 'email,name,id' });
+	    }, {'scope': 'email,name,id' });
 	    
 	    }
 	    
@@ -356,6 +356,20 @@
 
                       <div th:replace="fragmentos/footer :: script">
       </div>
+      
+      
+      <script>
+      
+      $(document).ready(function() {
+    	  
+    	  window.location.protocol == "https:";
+    	  checkLoginState();
+    	  
+      }):
+      
+      
+      
+      </script>
      
       
   </body>
