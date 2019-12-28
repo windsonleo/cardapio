@@ -185,7 +185,7 @@
 	    
 	    function UsuarioConectado2() {
 	    	
-	    	   FB.api('/me',{'email'},function(response2) {
+	    	   FB.api('/me',{fields:'name,email'},function(response2) {
 	    		   
 	    		   
 	    		   mails = response2.email;
