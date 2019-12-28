@@ -88,12 +88,23 @@
 	  // Here we run a very simple test of the Graph API after login is
 	  // successful.  See statusChangeCallback() for when this call is made.
 	  function UsuarioConectado() {
+		  
+		  
+	  var maill = "";
+		  
+		  FB.api('/me',{'email'}, function(response) {
+			  
+			  maill = response.email;
+			  console.log("email1:" , response.email);
+		  });
+		  
+	  
 	    console.log('Welcome!  Fetching your information.... ');
 	    FB.api('/me',{}, function(response) {
 		
 //	 	FB.api('/me',function(response) {
 	      console.log('Successful login for: ' + response.name);
-	      console.log("email:" , response.email);
+	      console.log("email2:" , response.email);
 
 	      document.getElementById('status').innerHTML =
 	        'Thanks for logging in, ' + response.name + '!'
