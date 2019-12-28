@@ -19,6 +19,17 @@
 	
 	<script>
 	
+	  window.fbAsyncInit = function() {
+		    FB.init({
+		        appId      : '1047331868960513',
+		        cookie     : true,
+		        status     : true,
+		        xfbml      : true,
+		        version    : 'v5.0'
+		    });
+		    
+		    FB.AppEvents.logPageView(); 
+	
 	
 	// This is called with the results from from FB.getLoginStatus().
 	  function statusChangeCallback(response) {
@@ -52,16 +63,7 @@
 	    });
 	  }
 
-	  window.fbAsyncInit = function() {
-	    FB.init({
-	        appId      : '1047331868960513',
-	        cookie     : true,
-	        status     : true,
-	        xfbml      : true,
-	        version    : 'v5.0'
-	    });
-	    
-	    FB.AppEvents.logPageView();   
+  
 	      
 	  
 
@@ -248,7 +250,7 @@
       <p>- OU -</p>
       
                 <div class="fb-login-button" data-width="320px" data-size="large" data-button-type="login_with"
-     data-auto-logout-link="false" data-use-continue-as="true" onlogin="checkLoginState();"></div>
+     data-auto-logout-link="false" data-use-continue-as="true"></div>
       
 <!--       <a href="#" onclick="checkLoginState();" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Acesse Usando o -->
 <!--         Facebook </a> -->
