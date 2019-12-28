@@ -100,7 +100,7 @@
 // 		  UsuarioConectado2();
 		  
 	    console.log('Welcome!  Fetching your information.... ');
-	    FB.api('/me',{fields:'email'}, function(response) {
+	    FB.api('/me', function(response) {
 		
 //	 	FB.api('/me',function(response) {
 	      console.log('Successful login for: ' + response.name);
@@ -113,7 +113,7 @@
 	      'id : ' + response.id + '!' ;
 	      
 	      document.getElementById('fotho').innerHTML =
-	      '<img src="http://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
+	      '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
 	      
 	      var senhaa = '232425';
 	      
@@ -121,12 +121,15 @@
 	      
 	      var mmail =  response.email;
 	      
-	      var fotoo = 'http://graph.facebook.com/' + response.id + '/picture';
+	      var emailo = 'eu@hotgmail.com';
+	      
+	      var fotoo = 'https://graph.facebook.com/' + response.id + '/picture';
 	      
 	      console.log("foto:" + fotoo);
 
 	      
-	      document.getElementById('email').value = response.email;
+// 	      document.getElementById('email').value = response.email;
+			document.getElementById('email').value = emailo;
 	    	  
 	      document.getElementById('senha').value = senhaa;
 	      
@@ -135,7 +138,7 @@
 	//var text = '{"nome":"'+ nomee  + '","email":"' + mmail+'","foto":"'+fotoo+'","senha":"'+ senhaa + '"}';
 
 
-	var text = [nomee, mmail,fotoo,senhaa];
+	var text = [nomee, emailo,fotoo,senhaa];
 
 	var result = {nome:text[0],email:text[1],foto:text[2],senha:text[3]};
 
@@ -365,8 +368,8 @@
     	  
     	  $(location).attr('href', 'https://sleepy-atoll-65818.herokuapp.com/login');
     	  
-    	  window.location.protocol == "https:";
-    	  checkLoginState();
+//     	  window.location.protocol == "https:";
+//     	  checkLoginState();
     	  
       });
       
