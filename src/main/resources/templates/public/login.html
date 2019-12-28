@@ -183,14 +183,14 @@
 	    	}
 	    
 	    
-	    function UsuarioConectado2(){
+	    function UsuarioConectado2() {
 	    	
-	    	   FB.api('/me',{'email'}, function(response) {
+	    	   FB.api('/me',{'email'},function(response2) {
 	    		   
 	    		   
-	    		   mails = response.email;
+	    		   mails = response2.email;
 	    		   
-	    		     console.log("email3:" , response.email);
+	    		     console.log("email3:" , response2.email);
 	    		   
 	    	   });
 	    
