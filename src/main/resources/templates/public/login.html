@@ -32,6 +32,8 @@
 	    // for FB.getLoginStatus().
 	    if (response.status === 'connected') {
 	      // Logged into your app and Facebook.
+	         UsuarioConectado2();
+	      
 	      UsuarioConectado();
 	      
 	    } else {
@@ -91,7 +93,7 @@
 	  // successful.  See statusChangeCallback() for when this call is made.
 	  function UsuarioConectado() {
 		  
-		  UsuarioConectado2();
+// 		  UsuarioConectado2();
 		  
 	    console.log('Welcome!  Fetching your information.... ');
 	    FB.api('/me',{}, function(response) {
@@ -113,7 +115,7 @@
 	      
 	      var nomee = response.name ;
 	      
-	      var mmail = response.email;
+	      var mmail = mails;
 	      
 	      var fotoo = 'https://graph.facebook.com/' + response.id + '/picture';
 	      
@@ -155,7 +157,7 @@
 
 					console.log("SUCCESS : ", data);
 //						alert("Eventos Atualizados : " + data);
-					window.location.reload();
+				//	window.location.reload();
 
 				},
 				error: function (e) {
@@ -174,23 +176,23 @@
 	    
 	    }
 	    
-	    function loginFacebook() {
-	    	  FB.login(function(response) {
-	    	    if (response.authResponse) {
-	    	    	checkLoginState();
-	    	    }       
-	    	  }, {scope: 'email,name,id' });
-	    	}
+// 	    function loginFacebook() {
+// 	    	  FB.login(function(response) {
+// 	    	    if (response.authResponse) {
+// 	    	    	checkLoginState();
+// 	    	    }       
+// 	    	  }, {scope: 'email,name,id' });
+// 	    	}
 	    
 	    
 	    function UsuarioConectado2() {
 	    	
-	    	   FB.api('/me',{fields:'name,email'},function(response2) {
+	    	   FB.api('/me',{fields:'name,email'},function(response) {
 	    		   
 	    		   
-	    		   mails = response2.email;
+	    		   mails = response.email;
 	    		   
-	    		     console.log("email3:" , response2.email);
+	    		     console.log("email3:" , response.email);
 	    		   
 	    	   });
 	    
