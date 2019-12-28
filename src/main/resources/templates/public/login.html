@@ -47,6 +47,9 @@
 	    function initFacebook() {
 	      FB.getLoginStatus(function(response) {
 	        if (response.status !== fbConnected) {
+      	      console.log("face not conected: ");
+
+	        	
 	          loginFacebook(); 
 	        }
 	      });  
@@ -58,6 +61,9 @@
 	    if (response.status === fbConnected) {
 	      FB.api('/me', {}, function(response) {
 	        /*Response tem tudo que você solicitou, inclusive o access_token.*/
+	        
+	        	      console.log("entrou no me : ");
+
 	        
 	    	  console.log('Successful login for: ' + response.name);
 	          console.log("email:" , response.email);
@@ -143,6 +149,8 @@
 	  FB.login(function(response) {
 	    if (response.authResponse) {
 	      initFacebook();
+	      console.log("login facebook ok : ");
+	      
 	    }       
 	  }, {scope: 'email,name,id' });
 	}
