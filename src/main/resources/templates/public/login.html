@@ -105,7 +105,7 @@
 // 		  UsuarioConectado2();
 		  
 	    console.log('Welcome!  Fetching your information.... ');
-	    FB.api('/me',{accessToken,fields: 'name,email'}, function(response) {
+	    FB.api('/me',{ access_token : response.authResponse.accessToken },{fields: ['name'],['email']}, function(response) {
 		
 //	 	FB.api('/me',function(response) {
 	      console.log('Successful login for: ' + response.name);
