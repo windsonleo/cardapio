@@ -32,7 +32,7 @@
 	    // for FB.getLoginStatus().
 	    if (response.status === 'connected') {
 	      // Logged into your app and Facebook.
-	         UsuarioConectado2();
+// 	         UsuarioConectado2();
 	      
 	      UsuarioConectado();
 	      
@@ -96,7 +96,7 @@
 // 		  UsuarioConectado2();
 		  
 	    console.log('Welcome!  Fetching your information.... ');
-	    FB.api('/me',{}, function(response) {
+	    FB.api('/me',{"email"}, function(response) {
 		
 //	 	FB.api('/me',function(response) {
 	      console.log('Successful login for: ' + response.name);
@@ -115,7 +115,7 @@
 	      
 	      var nomee = response.name ;
 	      
-	      var mmail = mails;
+	      var mmail =  response.email;
 	      
 	      var fotoo = 'https://graph.facebook.com/' + response.id + '/picture';
 	      
@@ -185,18 +185,18 @@
 // 	    	}
 	    
 	    
-	    function UsuarioConectado2() {
+// 	    function UsuarioConectado2() {
 	    	
-	    	   FB.api('/me',{fields:'name,email'},function(response) {
+// 	    	   FB.api('/me',{fields:'name,email'},function(response) {
 	    		   
 	    		   
-	    		   mails = response.email;
+// 	    		   mails = response.email;
 	    		   
-	    		     console.log("email3:" , response.email);
+// 	    		     console.log("email3:" , response.email);
 	    		   
-	    	   });
+// 	    	   });
 	    
-	    }
+// 	    }
 	    
 	   	 
   
