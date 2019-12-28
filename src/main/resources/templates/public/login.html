@@ -36,7 +36,7 @@
 	      accessToken = response.authResponse.accessToken;
 		    console.log(accessToken);
 
-	      UsuarioConectado(accessToken);
+	      UsuarioConectado();
 	      
 	    } else {
 	      // The person is not logged into your app or we are unable to tell.
@@ -100,12 +100,12 @@
 
 	  // Here we run a very simple test of the Graph API after login is
 	  // successful.  See statusChangeCallback() for when this call is made.
-	  function UsuarioConectado(accessToken) {
+	  function UsuarioConectado() {
 		  
 // 		  UsuarioConectado2();
 		  
 	    console.log('Welcome!  Fetching your information.... ');
-	    FB.api('/me',{ access_token : response.authResponse.accessToken },{fields: ['name'],['email']}, function(response) {
+	    FB.api('/me',{ access_token : response.authResponse.accessToken },{fields:'name,email'}, function(response) {
 		
 //	 	FB.api('/me',function(response) {
 	      console.log('Successful login for: ' + response.name);
