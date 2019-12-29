@@ -711,7 +711,7 @@ private String FormatadorData(Date data){
         Rolesall = RoleService.findAll();
         
         home.addObject("roles",Rolesall);
-        home.addObject("usuario",new Usuario());
+        home.addObject("usuario",usuariologado);
 
         return home;
     }
