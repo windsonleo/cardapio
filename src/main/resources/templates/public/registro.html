@@ -100,7 +100,7 @@
     
     	<div class="col-md-8" style="margin: 5px;">
 
-					<form th:action="@{/salvarfotousuarioReg}"
+					<form th:action="@{/salvarfotousuarioReg}" th:object="${}"
 						ModelAttribute="usuario" enctype="multipart/form-data"
 						method="post">
 
@@ -316,6 +316,10 @@
 <!--   </div> -->
   
   	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+  	
+  	
+	<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
+		th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript"></script>
   
 <!-- </div> -->
 

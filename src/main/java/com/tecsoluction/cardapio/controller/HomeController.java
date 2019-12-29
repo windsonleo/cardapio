@@ -440,7 +440,7 @@ public class HomeController {
         ModelAndView home = new ModelAndView("/public/esquecisenha");
 
         home.addObject("usuario",usuariologado);
-		 model.addAttribute("filename",filename);
+//		 model.addAttribute("filename",filename);
 
 
 
@@ -455,6 +455,7 @@ public class HomeController {
     	boolean existe = false;
     	String senha = new String("");
     	Usuario usuariologado = usuario;
+    	Usuario usuar = null;
     	
     	
     	String html=null;
@@ -473,28 +474,28 @@ public class HomeController {
     	
     	if(email != null && email !=""){
     		
-    		usuario = usuarioService.findByEmail(email);
+    		usuar = usuarioService.findByEmail(email);
         	 
-        	 html = CriarBody(usuario);
+        	 html = CriarBody(usuar);
 
     		
     	}else {
     		
-    		usuario.setEmail(email);
+    		usuar.setEmail(email);
     	}
     	
     	
     	
-    	if((usuariologado.getSenha() != null) && (usuariologado.getSenha()!= "")){
+    	if((usuar.getSenha() != null) && (usuar.getSenha()!= "")){
     		
     		
-    		senha = usuario.getSenha();
+    		senha = usuar.getSenha();
     		existe=true;
     		
     	}else {
     		
     		 model.addAttribute("erro","usuario não existe");
-    		 model.addAttribute("usuario",usuario);
+    		 model.addAttribute("usuario",usuar);
 
     		 
     	return	home;
@@ -564,7 +565,7 @@ public class HomeController {
 
   		   // Set To: header field of the header.
   		   message.addRecipients(Message.RecipientType.TO,
-  	            InternetAddress.parse(usuario.getEmail()));
+  	            InternetAddress.parse(usuar.getEmail()));
   		   
 //  		   message.addRecipients(Message.RecipientType.BCC,
 //  		            InternetAddress.parse(jtxtusuario.getText().trim()));
@@ -588,7 +589,7 @@ public class HomeController {
   		   	
   		   System.out.println("Sent message successfully....");
 
-  		 model.addAttribute("usuario",usuariologado);
+  		 model.addAttribute("usuario",usuar);
  		 model.addAttribute("sucesso",sucesso);
 // 		 model.addAttribute("filename",filename);
 
@@ -608,7 +609,7 @@ public class HomeController {
     		
    		 model.addAttribute("erro","usuario não existe");
    		 model.addAttribute("usuario",usuariologado);
-   		 model.addAttribute("filename",filename);	
+//   		 model.addAttribute("filename",filename);	
     		
     	}
       
@@ -712,7 +713,7 @@ private String FormatadorData(Date data){
         Rolesall = RoleService.findAll();
         
         home.addObject("roles",Rolesall);
-        home.addObject("usuario",usuariologado);
+        home.addObject("usuario",new Usuario());
         home.addObject("filename",filename);
 
         return home;
