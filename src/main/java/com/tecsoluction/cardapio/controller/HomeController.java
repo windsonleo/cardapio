@@ -512,6 +512,9 @@ public class HomeController {
 
     	if(existe){
     		
+    		
+    		 try {
+    		
     		 Message message = new MimeMessage(session);
 
   	 	   // Set From: header field of the header.
