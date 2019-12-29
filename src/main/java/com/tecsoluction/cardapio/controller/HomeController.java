@@ -419,7 +419,7 @@ public class HomeController {
 
         ModelAndView home = new ModelAndView("/public/esquecisenha");
 
-        
+        home.addObject("usuario",new Usuario());
 
 
         return home;
@@ -524,7 +524,7 @@ public class HomeController {
         Rolesall = RoleService.findAll();
         
         home.addObject("roles",Rolesall);
-
+        home.addObject("usuario",new Usuario());
 
         return home;
     }

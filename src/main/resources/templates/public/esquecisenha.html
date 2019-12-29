@@ -96,7 +96,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Digite o email Cadastrado, Voce receberá sua senha neste email</p>
     
-    <form id="esqueci" method="post" th:object="${usuario}" th:action="@{/esquecisenhaenv}" role="form">
+    <form id="esqueci" method="post" th:object="${usuario}" ModelAttribute="usuario" th:action="@{/esquecisenhaenv}" role="form">
       <div class="form-group has-feedback">
         <input type="text" id="email" name="email"  class="form-control" placeholder="Email" th:value="${usuario.email}"/>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
