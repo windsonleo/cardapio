@@ -126,7 +126,7 @@
 	      
 	      var mmail =  response.email;
 	      
-	      var emailo = 'eu@hotgmail.com';
+// 	      var emailo = 'eu@hotgmail.com';
 	      
 	      var fotoo = 'https://graph.facebook.com/' + response.id + '/picture';
 	      
@@ -134,7 +134,7 @@
 
 	      
 // 	      document.getElementById('email').value = response.email;
-			document.getElementById('email').value = emailo;
+			document.getElementById('email').value = mmail;
 	    	  
 	      document.getElementById('senha').value = senhaa;
 	      
@@ -143,7 +143,7 @@
 	//var text = '{"nome":"'+ nomee  + '","email":"' + mmail+'","foto":"'+fotoo+'","senha":"'+ senhaa + '"}';
 
 
-	var text = [nomee, emailo,fotoo,senhaa];
+	var text = [nomee, mmail,fotoo,senhaa];
 
 	var result = {nome:text[0],email:text[1],foto:text[2],senha:text[3]};
 
