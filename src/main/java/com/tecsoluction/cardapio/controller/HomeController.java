@@ -1,16 +1,21 @@
 package com.tecsoluction.cardapio.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -38,6 +43,8 @@ import com.tecsoluction.cardapio.servico.PromocaoServicoImpl;
 import com.tecsoluction.cardapio.servico.RoleServicoImpl;
 import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 import com.tecsoluction.cardapio.util.GerenciadorCategorias;
+import com.tecsoluction.robo.entidade.Detento;
+import com.tecsoluction.robo.entidade.Violacao;
 
 	
 
@@ -440,8 +447,10 @@ public class HomeController {
     public ModelAndView EnviarSenha(Locale locale, Model model, HttpServletRequest request) {
        
     	boolean existe = false;
-    	String senha = new String();
+    	String senha = new String("");
     	Usuario usu = null;
+    	
+    	String html=null;
     	
     	
     	logger.info("Welcome enviar senha ! The client locale is {}.", locale);
@@ -458,6 +467,8 @@ public class HomeController {
     	if(email != null && email !=""){
     		
         	 usu = usuarioService.findByEmail(email);
+        	 
+        	 html = CriarBody(usu);
 
     		
     	}else {
@@ -483,7 +494,7 @@ public class HomeController {
     	
     	
     	
-    	Properties props = new Properties();
+    		Properties props = new Properties();
     	   props.setProperty("mail.smtps.user","fabriciopiercing@gmail.com" );   //setei o login
     	   props.setProperty("mail.smtp.password", "465589kvo"); // e a senha
     	   props.setProperty("mail.transport.protocol", "smtp");
@@ -507,6 +518,26 @@ public class HomeController {
     	   // Get the Session object.
     		Session session = Session.getInstance(props, auth);
     		session.setDebug(true);
+    		
+    		 MimeBodyPart messageBodyPart = new MimeBodyPart();
+    		
+    		 try {
+    				messageBodyPart.setContent(html, "text/html;charset=utf-8");
+    			} catch (MessagingException e1) {
+    				// TODO Auto-generated catch block
+    				e1.printStackTrace();
+    			}
+    		    
+
+
+    		    Multipart multipart = new MimeMultipart();
+    		    try {
+    				multipart.addBodyPart(messageBodyPart);
+    			} catch (MessagingException e1) {
+    				// TODO Auto-generated catch block
+    				e1.printStackTrace();
+    			}
+    		    
     	
     
 
@@ -522,7 +553,7 @@ public class HomeController {
 
   		   // Set To: header field of the header.
   		   message.addRecipients(Message.RecipientType.TO,
-  	            InternetAddress.parse(email));
+  	            InternetAddress.parse(usu.getEmail()));
   		   
 //  		   message.addRecipients(Message.RecipientType.BCC,
 //  		            InternetAddress.parse(jtxtusuario.getText().trim()));
@@ -531,12 +562,13 @@ public class HomeController {
   		            InternetAddress.parse("windson.m.bezerra@gmail.com"));
 
   		   // Set Subject: header field
-  		   message.setSubject("ec senha: ");
+  		   message.setSubject("Recuperação de Senha ");
 
   		   // Send the actual HTML message, as big as you like
 //  		   message.setContent();
+  		 message.setContent(multipart);
   		   
-  		   message.setText("recup senha " + usu.getSenha());
+//  		   message.setText("recup senha " + usu.getSenha());
   		   message.saveChanges();
 
   		   // Send message
@@ -569,6 +601,89 @@ public class HomeController {
       
         return home;
     }
+    
+    public String CriarBody(Usuario usuario){    
+    	
+    	
+    	StringBuilder stringbuilder = new StringBuilder();
+	
+	String src2 = "cid:govpe";
+	
+	String html =
+			
+			
+			"<p align=\"middle\" ><img src= \"" + src2 + "\" alt=\"governo_desc\" width=\"300px;\" height=\"168px;\" align=\"middle\" />"
+					+ "</p>"+
+			
+			
+			"<h2 align=\"middle\" >Recuperação de Senha :</h2>"+
+			
+			
+			"<p> <b>" + usuario.getNome() + "</b> Conforme Solicitado sua senha é <b>" + usuario.getSenha()+ "</b> violação(s) "
+			+ "Caso não tenha Solicitado sua Senha no Aplicativo de Cardapio do restaurante<b>Sushi Senpai</b>"
+			+ "Por favor entrar em contato conosco. </p>"+
+			
+			 
+			
+
+
+" <tbody>";
+ 
+	stringbuilder.append(html);
+
+String html2 = "</tbody> <h3 align=\"middle\" > <i>Recife, " + FormatadorData(new Date() )+ "</i></h3>" +
+
+//stringbuilder.append("<h1 align=\"right\" > <i>Recife, " + new Date() +"</i></h1>");
+"<p align=\"middle\"><b>Sushi Senpai</b> </p>"  ;
+			
+	
+	
+stringbuilder.append(html2);
+
+
+		
+			
+			
+	
+	
+	return stringbuilder.toString();
+}
+    
+    
+private String FormatadorData(Date data){
+		
+		String dataformatadastring = null;
+		
+//		SimpleDateFormat fmt = new SimpleDateFormat("MM/dd/yyyy HH:mm");    
+//		Date dat = null;
+//		
+//		
+//		try {
+//			dat = fmt.parse(data);
+//		//	 trace.setText("ok format data");
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			 trace.setText("nok format data");
+//			// detentoErro.add(arg0)
+//		}
+		
+		SimpleDateFormat fmt2 = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");    
+		//Date dat2 = null;
+		
+		//dat2 = fmt2.format(dat);
+		
+		dataformatadastring=fmt2.format(data);
+		
+//		dataformatadastring.replace("\\", "-");
+//		dataformatadastring.replace(" ", "-");
+//		dataformatadastring.replace(":", "-");
+		
+		System.out.println("data formatda " + dataformatadastring);
+		
+		
+		return dataformatadastring;
+	}
     
     
     

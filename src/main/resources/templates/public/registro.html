@@ -3,7 +3,7 @@
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head th:replace="fragmentos/head :: head-css">
-    <title>Esqueci a Senha</title>
+    <title>Reistro de Usuario</title>
 </head>
 
 <body  class="hold-transition register-page" >
@@ -96,7 +96,7 @@
   <div class="register-box-body">
     <p class="login-box-msg">ReGistro de Novo Membro</p>
 
-    <form id="reg" method="post" th:object="${usuario}" ModelAttribute="usuario" th:action="@{/usuario/add}" role="form">
+    <form id="reg" method="post" th:object="${usuario}" ModelAttribute="usuario" th:action="@{/registroenv}" role="form">
       
       								<div class="form-group has-feedback">
 
