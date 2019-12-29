@@ -482,7 +482,7 @@ public class HomeController {
 //    	            return home;
     	        } catch (Exception e) {
     	        	
-    	        	 model.addAttribute("erro",erro);
+    	        	 model.addAttribute("erro",erro + e);
     	            e.printStackTrace();
 //    	            home.addObject("erro", erro + e);
 //    	            return home;
