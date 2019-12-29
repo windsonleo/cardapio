@@ -3,7 +3,9 @@ package com.tecsoluction.cardapio.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tecsoluction.cardapio.entidade.Autenticador;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.entidade.Promocao;
@@ -472,6 +476,33 @@ public class HomeController {
     	
     	}
     	
+    	
+    	
+    	Properties props = new Properties();
+    	   props.setProperty("mail.smtp.user","fabriciopiercing@gmail.com" );   //setei o login
+    	   props.setProperty("mail.smtp.password", "465589kvo"); // e a senha
+    	   props.setProperty("mail.transport.protocol", "smtp");
+    	   props.put("mail.smtp.starttls.enable","true"); //não sei ao certo para que serve, mas tive que colocar...
+    	   props.setProperty("mail.smtp.auth", "true");  //setei a autenticação  
+    	   props.setProperty("mail.smtp.starttls.required","true");
+    	   props.setProperty( "mail.smtp.quitwait", "false");
+    	   props.setProperty("mail.smtp.host", "smtp.gmail.com");
+    	   String user = props.getProperty("mail.smtp.user");
+    	   String passwordd = props.getProperty("mail.smtp.password");
+    	   props.put("mail.smtp.port","465");
+    	   props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+    	   
+    	   Autenticador auth = null;
+    		
+    		
+    		auth = new Autenticador (user, passwordd);
+    	   
+    	   
+
+    	   // Get the Session object.
+    		Session session = Session.getInstance(props, auth);
+    		session.setDebug(true);
+    	
     
 
     	if(existe){
@@ -544,6 +575,8 @@ public class HomeController {
         
         
         home.addObject("usuario",usuario);
+        home.addObject("usuarioAtt",usuario);
+
 
 
 
