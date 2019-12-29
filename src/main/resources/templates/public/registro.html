@@ -96,24 +96,99 @@
   <div class="register-box-body">
     <p class="login-box-msg">ReGistro de Novo Membro</p>
 
-    <form id="reg" method="post" th:object="${usuario}" th:action="@{/registroenv}" role="form">
+    <form id="reg" method="post" th:object="${usuario}" th:action="@{/add}" role="form">
+      
+      								<div class="form-group has-feedback">
+
+									<div class="checkbox">
+
+
+										<label> <input type="checkbox"
+											th:checked="${usuario.ativo}" /> Ativo
+										</label>
+									</div>
+
+
+
+								</div>
+      
+      
+      
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="name"/>
+       			<input id="nome" name="nome" class="form-control" type="text"
+											th:value="${usuario.nome}" placeholder="Digite o Nome" />
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
+      
+      								<div class="form-group has-feedback ">
+									<div class="input-group date">
+										<div class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+											</div>
+										<input id="datacadastro" class="form-control datepicker"
+											name="datacadastro" type="text"
+											th:value="${usuario.datacadastro}" />
+									</div>
+								</div>
+      
+      
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email"/>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+			<input id="email" name="email" class="form-control"
+											type="text" th:value="${usuario.email}"
+											placeholder="Digite o Email" />     
+											   <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
+      
+      								<div class="form-group has-feedback ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-photo"></i>
+										</div>
+
+										<input id="foto" name="foto" class="form-control" type="text"
+											th:value="${usuario.foto}" placeholder="Digite a foto" />
+
+									</div>
+								</div>
+      
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="senha"/>
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+				<input id="senha" name="senha" class="form-control"
+											type="password" th:value="${usuario.senha}"
+											placeholder="Digite a Senha" />        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Retype password"/>
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       
+      								<div class="form-group has-feedback ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user-secret"></i>
+										</div>
+										<select id="roles" name="roles" multiple="multiple"
+											class="form-control select2">
+											<optgroup label="Tipos de Permissoes do usuario">
+
+												<option th:each="rol: ${usuario.roles}"
+													th:selected="${rol.name}" class="selected" th:text="${rol.name}" th:value="${rol.id}">Usuario
+													Não Tem Nenhuma Regra</option>
+
+
+
+												<option th:each="role : ${roles}" th:value="${role.id}">
+
+													<span th:text="${role.name}">Nenhuma Regra
+														Cadastrada </span>
+
+												</option>
+
+
+											</optgroup>
+										</select>
+
+									</div>
+								</div>
       
       
       <div class="row">

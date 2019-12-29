@@ -21,10 +21,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.entidade.Promocao;
+import com.tecsoluction.cardapio.entidade.Role;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
 import com.tecsoluction.cardapio.servico.PromocaoServicoImpl;
+import com.tecsoluction.cardapio.servico.RoleServicoImpl;
 import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 import com.tecsoluction.cardapio.util.GerenciadorCategorias;
 
@@ -50,6 +52,10 @@ public class HomeController {
 	private ProdutoServicoImpl ProdutoService = new ProdutoServicoImpl();
 	
 	
+	
+	@Autowired
+	private RoleServicoImpl RoleService = new RoleServicoImpl();
+	
     
     private List<Usuario> usuarios = new ArrayList<Usuario>();
     
@@ -59,7 +65,8 @@ public class HomeController {
 //    
 //    private List<Categoria> categoriasfilho = new ArrayList<Categoria>();
     
-    
+    private List<Role> Rolesall = new ArrayList<Role>();
+
     
     private List<Promocao> promocoes = new ArrayList<Promocao>();
     
@@ -412,6 +419,8 @@ public class HomeController {
 
         ModelAndView home = new ModelAndView("/public/esquecisenha");
 
+        
+
 
         return home;
     }
@@ -510,6 +519,11 @@ public class HomeController {
     	logger.info("Welcome registro ! The client locale is {}.", locale);
 
         ModelAndView home = new ModelAndView("/public/registro");
+        
+        
+        Rolesall = RoleService.findAll();
+        
+        home.addObject("roles",Rolesall);
 
 
         return home;
@@ -522,6 +536,8 @@ public class HomeController {
     	logger.info("Welcome registro ! The client locale is {}.", locale);
 
         ModelAndView home = new ModelAndView("/public/registro");
+        
+        
 
 
         return home;
