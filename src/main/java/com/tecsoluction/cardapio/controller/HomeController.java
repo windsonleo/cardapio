@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -66,6 +70,9 @@ public class HomeController {
 
     
     private Usuario usuariologado;
+
+    @Autowired 
+    private JavaMailSender mailSender;
   
     
     
@@ -408,6 +415,93 @@ public class HomeController {
 
         return home;
     }
+    
+    
+    
+    @RequestMapping(value = "/esquecisenhaenv", method = RequestMethod.POST)
+    public ModelAndView EnviarSenha(Locale locale, Model model, HttpServletRequest request) {
+       
+    	boolean existe = false;
+    	String senha = new String();
+    	Usuario usu = null;
+    	
+    	
+    	logger.info("Welcome enviar senha ! The client locale is {}.", locale);
+    	
+        ModelAndView home = new ModelAndView("/public/esquecisenha");
+
+    	
+    	String sucesso = "Email enviado com sucesso!";
+    	String erro = "Erro ao enviar email.";
+	
+    	String email = request.getParameter("email");
+    	
+    	
+    	if(email != null && email !=""){
+    		
+        	 usu = usuarioService.findByEmail(email);
+
+    		
+    	}else {
+    		
+    		
+    	}
+    	
+    	
+    	
+    	if(usu.getSenha() != null){
+    		
+    		
+    		senha = usu.getSenha();
+    		existe=true;
+    		
+    	}else {
+    		
+    		 model.addAttribute("erro","usuario não existe");
+    	return	home;
+    		
+    	
+    	}
+    	
+    
+
+    	if(existe){
+    		
+    		  SimpleMailMessage message = new SimpleMailMessage();
+
+    	        message.setText("Olá Voce Recebeu este Email do Restaurante Sushi Senpai" +"Sua Senha é: " + senha +"\n" + "considere mudar sua senha");
+    	        message.setTo(email);
+    	       message.setFrom("Sushi Senpai - Cardapio");
+
+    	        try {
+    	            mailSender.send(message);
+    	            
+    	            model.addAttribute("sucesso",sucesso);
+    	            model.addAttribute("usuario",usu);
+//    	            home.addObject("sucesso", sucesso);
+//    	            return home;
+    	        } catch (Exception e) {
+    	        	
+    	        	 model.addAttribute("erro",erro);
+    	            e.printStackTrace();
+//    	            home.addObject("erro", erro + e);
+//    	            return home;
+    	        }
+    		
+    		
+    	}else {
+    		
+   		 model.addAttribute("erro","usuario não existe");
+
+    		
+    		
+    	}
+      
+        return home;
+    }
+    
+    
+    
     
     @RequestMapping(value = "/registro", method = RequestMethod.GET)
     public ModelAndView Registro(Locale locale, Model model) {

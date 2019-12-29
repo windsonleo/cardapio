@@ -91,7 +91,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 			    .rememberMe()
 				.and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/login").and().exceptionHandling()
+				.logoutSuccessUrl("/home").and().exceptionHandling()
 				.accessDeniedPage("/accessdenied");
 				
 //		http.sessionManagement().maximumSessions(sessaoMax).and().invalidSessionUrl("/sessaoinvalida").and()
