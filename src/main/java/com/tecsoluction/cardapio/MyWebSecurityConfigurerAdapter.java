@@ -60,7 +60,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/js/**").permitAll()
 				.antMatchers("/esquecisenha").permitAll()
 				.antMatchers("/accessdenied").permitAll()
-				.antMatchers("/usuario/cadastro").permitAll()
+				.antMatchers("/usuario/cadastro**").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/error/**").permitAll()
 				.antMatchers("/erro**").permitAll()
@@ -73,8 +73,9 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/usuario/all**").permitAll()
 				.antMatchers("/usuario/usuarioSave").permitAll()
 				.antMatchers("/usuario/salvarFacebook").permitAll()
-
-			
+				.antMatchers("/esquecisenhaenv").permitAll()
+				.antMatchers("/registro").permitAll()
+				.antMatchers("/registroenv").permitAll()
 //				.antMatchers("/evento/listar/").permitAll()
 //				.antMatchers("/paciente/listar/").permitAll()
 				.antMatchers("/home").permitAll()

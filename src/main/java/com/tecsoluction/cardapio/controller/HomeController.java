@@ -514,6 +514,23 @@ public class HomeController {
         return home;
     }
     
+    
+    @RequestMapping(value = "/registroenv", method = RequestMethod.POST)
+    public ModelAndView RegistroENV(Locale locale, Model model) {
+       
+    	logger.info("Welcome registro ! The client locale is {}.", locale);
+
+        ModelAndView home = new ModelAndView("/public/registro");
+
+
+        return home;
+    }
+    
+    
+    
+    
+    
+    
 //    @RequestMapping(value = "/encontros", method = RequestMethod.GET)
 //    public ModelAndView Encontros(Locale locale, Model model) {
 //       
