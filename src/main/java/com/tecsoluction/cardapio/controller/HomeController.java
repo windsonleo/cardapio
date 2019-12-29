@@ -439,7 +439,7 @@ public class HomeController {
 
         ModelAndView home = new ModelAndView("/public/esquecisenha");
 
-        home.addObject("usuario",usuariologado);
+        home.addObject("usuario",new Usuario());
 //		 model.addAttribute("filename",filename);
 
 
