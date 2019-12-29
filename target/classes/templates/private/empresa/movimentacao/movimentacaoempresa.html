@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Movimentacao Empresa</title>
+
+<body>
+			
+<div class="page-container">
+   <!--/content-inner-->
+	<div class="left-content">
+	
+	<div class="inner-content">
+
+	   			  <div th:replace="fragmentos/top-nav :: top-nav">
+				
+				</div>
+				
+				
+<div class="content">
+
+		                 <div class="card-content table-responsive">
+                                    <table class="table table-hover table data-table">
+                                        <thead class="card-header" data-background-color="blue">
+                                            <th class="hide">Id</th>
+                                            <th >Nome Fantasia</th>
+                                            <th >Email</th>
+                                             <th >CNPJ</th>
+                                             <th >Telefone</th>
+                                             <th >Data Abertura</th>
+                                            <th >Ativo</th>
+<!--                                             <th >Resultado</th> -->
+                                            
+                                            
+                                  <div sec:authorize="hasRole('ROLE_ADM')">
+                                   
+                                   <th >OPERACOES</th>
+                                  
+                                  </div>
+                                            
+<!--                                             <th >2º Premio</th> -->
+<!--                                             <th >3º Premio</th> -->
+<!--                                             <th >4º Premio</th> -->
+<!--                                             <th >5º Premio</th> -->
+
+		
+
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr th:each="empresa: ${empresaList}">
+                                                <td th:text="${empresa.id}" class="hide">id</td>
+                                                  <td th:text="${empresa.nomefantasia}">nome</td>
+                                                   <td th:text="${empresa.email}">email</td>
+                                                    <td th:text="${empresa.cnpj}">cnpj</td>
+                                                   <td th:text="${empresa.telefone}">telefone</td>
+                                                    
+                                                  <td th:text="${#dates.format(empresa.dataabertura,'dd-MM-yyyy')}">Data</td>
+                                                  
+		                                            <td th:text="${empresa.ativo}">ativo</td>
+		                                          
+		                                       
+							              <div sec:authorize="hasRole('ROLE_ADM')" >
+	                                              <td class="td-actions">
+	                                              <div >
+                                                        <a  rel="tooltip" title="Informacoes" class="btn btn-muted btn-simple btn-xs" th:href="@{/empresa/informacao(id=${empresa.id})}">
+                                    						<i class="material-icons">info</i>
+			                       						</a>
+	                       						 
+                                                        <a  rel="tooltip" title="Editar" class="btn btn-muted btn-simple btn-xs" th:href="@{/empresa/editar(id=${empresa.id})}">
+                                    						<i class="material-icons">mode edit</i>
+			                       						</a>
+	                       								                                            
+		                                            																									
+                                                        <a  rel="tooltip" title="Excluir" class="btn btn-danger btn-simple btn-xs" th:href="@{/empresa/delete(id=${empresa.id})}">
+                                    						<i class="material-icons">close</i>
+			                       						</a>
+	                       						</div>
+	                       						 	</td>	
+	                       						 
+					                            </div>
+
+                                        
+                                            </tr>
+                                           
+                                           
+                                      
+                                        </tbody>
+                                    </table>
+                                </div>
+		
+
+				<div class="clearfix"></div>
+
+
+             <div th:replace="fragmentos/footer :: footer">
+            
+            </div>
+            
+            
+
+</div>
+
+</div>
+
+</div>
+<!-- </div> -->
+			
+<!-- </div> -->
+
+				<div th:replace="fragmentos/side-menu :: side-menu">
+		    	</div>
+
+
+</div>	
+
+<!-- </div> -->
+
+<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+			
+</body>
+			
+			
+</html>
+

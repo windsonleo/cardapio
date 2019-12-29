@@ -1,0 +1,509 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragmentos/head :: head-css">
+
+
+</head>
+
+
+<title>Cadastro Usuario</title>
+
+<body class="hold-transition skin-red sidebar-mini"
+	th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
+
+
+
+
+
+
+
+
+	<div class="wrapper">
+
+		<nav th:replace="fragmentos/top-nav :: nav"></nav>
+
+		<div th:replace="fragmentos/nav :: nav-side"></div>
+
+
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Usuario <small>Cadastro</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Usuario</a></li>
+					<li class="active"><a href="#">Cadastro</a></li>
+					<!--         <li class="active">Blank page</li> -->
+				</ol>
+			</section>
+
+
+			<div class="content">
+
+
+				<!-- 				mensagens do sistema  -->
+
+				<div class="row-fluid" th:if="${sucesso}">
+
+					<div class="alert alert-success">
+						<div class="container-fluid">
+							<div class="alert-icon">
+								<i class="material-icons">check</i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true"><i class="material-icons">clear</i></span>
+							</button>
+							<b>Mensagem:</b> <span th:utext="${sucesso}"> </span> <span
+								class="btn btn-sm btn-warning"><a
+								th:href="@{/usuario/cadastro}"><i></i>Novo</a></span> <span
+								class="btn btn-sm btn-warning"><a
+								th:href="@{/usuario/editar(id=${usuario.id})}"><i></i>Editar</a></span>
+
+						</div>
+
+
+					</div>
+
+
+
+				</div>
+
+				<div class="row-fluid" th:if="${erro}">
+
+					<div class="alert alert-danger">
+						<div class="container-fluid">
+							<div class="alert-icon">
+								<i class="material-icons">error</i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true"><i class="material-icons">clear</i></span>
+							</button>
+							<b>Mensagem:</b> <span th:utext="${erro}"></span> <span
+								class="btn btn-sm btn-warning"><a
+								th:href="@{/usuario/cadastro}"><i></i>Novo</a></span> <span
+								class="btn btn-sm btn-warning"><a
+								th:href="@{/usuario/editar(id=${usuario.id})}"><i></i>Editar</a></span>
+
+						</div>
+
+
+					</div>
+
+
+
+				</div>
+
+				<!-- fim das mensagens -->
+
+
+				<!-- inicio do conteudo  -->
+
+
+				<div class="col-md-4" style="margin: 5px;">
+
+					<form th:action="@{/usuario/salvarfotousuario}"
+						ModelAttribute="usuario" enctype="multipart/form-data"
+						method="post">
+
+						<!-- Widget: user widget style 1 -->
+						<div class="box box-widget widget-user">
+							<!-- Add the bg color to the header using any of the bg-* classes -->
+							<div class="widget-user-header bg-aqua-active">
+								<h3 class="widget-user-username" th:text="${usuario.email}">Thanh
+									Nguyen</h3>
+								<h5 class="widget-user-desc" th:text="${usuario.roles}">Founder
+									&amp; CEO</h5>
+							</div>
+
+							<!--             <div class="widget-user-image" th:if="${filename}"> -->
+							<!--               <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar file if"/> -->
+							<!--             </div> -->
+
+							<!--                         <div class="widget-user-image" th:unless="${filename}"> -->
+							<!--               <img class="img-circle" th:src="@{/img/avatar2.png}" alt="User Avatar file unless"/> -->
+							<!--             </div> -->
+
+
+
+							<div class="widget-user-image" th:if="${usuario.foto}">
+								<img class="img-circle"
+									th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}"
+									alt="User Avatar usu if" />
+							</div>
+
+							<div class="widget-user-image" th:unless="${usuario.foto}">
+								<img class="img-circle"
+									th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}"
+									alt="User Avatar usu unless" />
+							</div>
+
+
+							<div class="box-footer">
+								<div class="row">
+									<!--                 <div class="col-sm-4 border-right"> -->
+									<!--                   <div class="description-block"> -->
+									<!--                     <h5 class="description-header">3,200</h5> -->
+									<!--                     <span class="description-text">SALES</span> -->
+									<!--                   </div> -->
+									<!--                   /.description-block -->
+									<!--                 </div> -->
+									<!-- /.col -->
+									<!--                 <div class="col-sm-4 border-right"> -->
+									<!--                   <div class="description-block"> -->
+									<!--                     <h5 class="description-header">13,000</h5> -->
+									<!--                     <span class="description-text">FOLLOWERS</span> -->
+									<!--                   </div> -->
+									<!--                   /.description-block -->
+									<!--                 </div> -->
+									<!-- /.col -->
+									<div class="col-sm-12">
+										<div class="description-block">
+
+											<div class="form-group">
+												<label for="file">File input</label> <input type="text"
+													readonly="" class="form-control" th:value="${filename}"
+													th:placeholder="${filename}" /> <input type="file"
+													id="file" multiple="multiple" name="file" />
+
+												<p class="help-block">Example block-level help text
+													here.</p>
+											</div>
+
+											<h5 class="description-header">
+												<button type="submit"
+													class="btn btn-primary btn-raised btn-block">
+													Add foto
+													<div class="ripple-container"></div>
+												</button>
+
+											</h5>
+
+											<span class="description-text"><i class="fa fa-photo"></i></span>
+										</div>
+										<!-- /.description-block -->
+									</div>
+									<!-- /.col -->
+								</div>
+								<!-- /.row -->
+							</div>
+						</div>
+						<!-- /.widget-user -->
+
+					</form>
+				</div>
+
+
+
+				<div class="col-md-7 panel">
+					<div class="col-md-7">
+						<!--                       <div class="panel form-element-padding"> -->
+						<div class="panel-heading">
+							<h4>Cadastro de Usuarios</h4>
+						</div>
+						<div class="panel-body" style="padding-bottom: 30px;">
+
+
+							<form th:action="@{/usuario/add}" th:object="${usuario}"
+								ModelAttribute="usuario" method="POST">
+
+
+								<div class="form-group">
+
+									<div class="checkbox">
+
+
+										<label> <input type="checkbox"
+											th:checked="${usuario.ativo}" /> Ativo
+										</label>
+									</div>
+
+
+
+								</div>
+
+
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-envelope"></i>
+										</div>
+
+										<input id="nome" name="nome" class="form-control" type="text"
+											th:value="${usuario.nome}" placeholder="Digite o Nome" />
+
+									</div>
+								</div>
+
+
+								<!-- 			            </div> -->
+
+
+
+
+								<!-- 			               <div class="form-group"> -->
+								<!-- 			                <label class="control-label">CPF</label> -->
+								<!-- 			                <div class="controls"> -->
+								<!-- 										<input id="cpf" name="cpf" class="form-control android" type="text"   th:value="${usuario.cpf}" placeholder="Digite o Cpf"/> -->
+
+								<!-- 			                </div> -->
+								<!-- 			              </div>   -->
+
+								<!-- 			 <div class="form-group"> -->
+
+								<!-- 				 <select id="genero" name="genero" multiple="" class="form-control"> -->
+								<!-- 				                                  <optgroup label="Escolha seu Genero"> -->
+
+								<!-- 					           					<option th:text="${usuario.genero}" th:selected="${usuario.genero != null}" class="selected">Usuario Não Tem Nenhuma Regra</option> -->
+
+
+
+								<!-- 					           				<option th:each="genero : ${generos}" th:value="${genero}" > -->
+
+								<!-- 					           				<span th:text="${genero}" >Nenhum Genero Cadastrado </span> -->
+
+								<!-- 					           				</option> -->
+
+
+								<!-- 					                </optgroup> -->
+								<!-- 				                    </select>			 -->
+
+								<!-- 			              </div>   -->
+
+								<div class="form-group label-floating ">
+									<div class="input-group date">
+										<div class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+											</div>
+										<input id="datacadastro" class="form-control datepicker"
+											name="datacadastro" type="text"
+											th:value="${usuario.datacadastro}" />
+									</div>
+								</div>
+<!-- 								</div> -->
+
+
+								<!--                       <div class="form-group"> -->
+								<!--                                 <label >Telefone</label> -->
+								<!--                                 <div class="controls"> -->
+								<!--                                     <input id="telefone" class="form-control android" name="telefone" type="text" th:value="${usuario.telefone}" -->
+								<!--                                            placeholder="" /> -->
+								<!--                                 </div> -->
+								<!--                             </div> -->
+
+
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-envelope"></i>
+										</div>
+
+										<input id="email" name="email" class="form-control"
+											type="text" th:value="${usuario.email}"
+											placeholder="Digite o Email" />
+
+									</div>
+								</div>
+
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-lock"></i>
+										</div>
+
+										<input id="senha" name="senha" class="form-control"
+											type="password" th:value="${usuario.senha}"
+											placeholder="Digite a Senha" />
+									</div>
+
+								</div>
+
+
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-photo"></i>
+										</div>
+
+										<input id="foto" name="foto" class="form-control" type="text"
+											th:value="${usuario.foto}" placeholder="Digite a foto" />
+
+									</div>
+								</div>
+
+
+
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user-secret"></i>
+										</div>
+										<select id="roles" name="roles" multiple="multiple"
+											class="form-control select2">
+											<optgroup label="Tipos de Permissoes do usuario">
+
+												<option th:each="rol: ${usuario.roles}"
+													th:selected="${rol.name}" class="selected" th:text="${rol.name}" th:value="${rol.id}">Usuario
+													Não Tem Nenhuma Regra</option>
+
+
+
+												<option th:each="role : ${roles}" th:value="${role.id}">
+
+													<span th:text="${role.name}">Nenhuma Regra
+														Cadastrada </span>
+
+												</option>
+
+
+											</optgroup>
+										</select>
+
+									</div>
+								</div>
+
+
+
+
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+
+
+
+								<button type="submit" th:value="${acao}" th:text="${acao}"
+									class="btn btn-success">Salvar</button>
+								<a href='javascript:history.back(1)' class="btn btn-default">Voltar</a>
+
+							</form>
+
+							<!-- 						</div> -->
+
+
+
+
+
+							<!-- 				<div th:replace="fragmentos/footer :: script" style="display:none;"></div> -->
+
+
+
+						</div>
+
+						<div class="clearfix"></div>
+
+						<!-- 			</div> -->
+
+					</div>
+
+
+
+					<div class="clearfix"></div>
+
+				</div>
+
+
+
+
+
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="clearfix"></div>
+	</div>
+
+
+	<div th:replace="fragmentos/footer :: script" style="display: none;"></div>
+
+
+	<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
+		th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript"></script>
+
+
+
+
+	<script type="text/javascript">
+	
+    $(function () {
+   	 
+   	 $(".select2").select2();
+	
+    $('.datepicker').datepicker({
+        autoclose: true,
+        format: 'dd/mm/yyyy',
+	    	language: 'pt-BR'
+      });
+    
+	    $(".timepicker").timepicker({
+	        showInputs: false
+	      });
+   
+    
+    });
+	
+	
+	</script>
+
+
+
+	<!-- 			<script src="resources/static/js/jquery-2.2.3.min.js" -->
+	<!-- 			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script> -->
+
+	<!-- 											<script src="resources/static/js/bootstrap.min.js" -->
+	<!-- 			th:src="@{/js/bootstrap.min.js}" th:inline="javascript" ></script> -->
+
+	<!-- 						<script src="resources/static/js/material.min.js" -->
+	<!-- 			th:src="@{/js/material.min.js}" th:inline="javascript" ></script> -->
+
+	<!-- 									<script src="resources/static/js/ripples.min.js" -->
+	<!-- 			th:src="@{/js/ripples.min.js}" th:inline="javascript" ></script> -->
+
+
+	<!-- 			<script type="text/javascript"> -->
+	<!-- //     $.material.init(); -->
+	<!-- </script> -->
+
+	<!-- 								<script src="resources/static/js/jquery.dataTables.min.js" -->
+	<!-- 			th:src="@{/js/jquery.dataTables.min.js}" th:inline="javascript" ></script> -->
+
+	<!-- 								<script src="resources/static/js/dataTables.bootstrap.min.js" -->
+	<!-- 			th:src="@{/js/dataTables.bootstrap.min.js}" th:inline="javascript" ></script> -->
+
+	<!-- 			<script src="resources/static/js/jquery.slimscroll.min.js" -->
+	<!-- 			th:src="@{/js/jquery.slimscroll.min.js}" th:inline="javascript" ></script> -->
+
+
+	<!-- 						<script src="resources/static/js/fastclick.js" -->
+	<!-- 			th:src="@{/js/fastclick.js}" th:inline="javascript" ></script> -->
+
+	<!-- 					<script src="resources/static/js/app.min.js" -->
+	<!-- 		 th:src="@{/js/app.min.js}"  th:inline="javascript"></script> -->
+
+	<!-- 		 				<script src="resources/static/js/demo.js" -->
+	<!-- 			th:src="@{/js/demo.js}"></script> -->
+
+	<!-- 				    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js" -->
+	<!-- 			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script> -->
+
+	<!-- 						<script type="text/javascript"> -->
+
+
+
+
+
+
+
+
+	<!-- 			</script> -->
+
+
+</body>
+
+
+
+
+</html>

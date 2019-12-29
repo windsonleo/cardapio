@@ -1,0 +1,393 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragmentos/head :: head-css">
+</head>
+    <title>Login</title>
+
+<!-- 	<body id="mimin" class="dashboard form-signin-wrapper"> -->
+	<body  class="hold-transition login-page">
+	
+	<div id="fb-root"> </div>
+<script th:async="async" th:defer="defer"  crossorigin="anonymous"
+ th:src="@{https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513}"
+ src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513">
+ 
+ </script>
+	
+	
+	<script>
+	
+	
+	 var accessToken = null;
+	
+	// This is called with the results from from FB.getLoginStatus().
+	  function statusChangeCallback(response) {
+	    console.log('statusChangeCallback');
+	    console.log(response);
+	    // The response object is returned with a status field that lets the
+	    // app know the current login status of the person.
+	    // Full docs on the response object can be found in the documentation
+	    // for FB.getLoginStatus().
+	    if (response.status === 'connected') {
+	      // Logged into your app and Facebook.
+// 	         UsuarioConectado2();
+	      accessToken = response.authResponse.accessToken;
+		    console.log(accessToken);
+
+	      UsuarioConectado();
+	      
+	    } else {
+	      // The person is not logged into your app or we are unable to tell.
+	      
+// 	      loginFacebook();
+	      document.getElementById('status').innerHTML = 'Por Favor Entre ' +
+	        'no Cardapio.';
+	    }
+	  }
+
+	  // This function is called when someone finishes with the Login
+	  // Button.  See the onlogin handler attached to it in the sample
+	  // code below.
+	  function checkLoginState() {
+	    FB.getLoginStatus(function(response) {
+	      statusChangeCallback(response);
+	    });
+	  }
+
+  
+	  window.fbAsyncInit = function() {
+		    FB.init({
+		        appId      : '1047331868960513',
+		        cookie     : true,
+		        xfbml      : true,
+		        version    : 'v5.0'
+		    });
+		    
+		    FB.AppEvents.logPageView();   
+	  
+
+	    // Now that we've initialized the JavaScript SDK, we call 
+	    // FB.getLoginStatus().  This function gets the state of the
+	    // person visiting this page and can return one of three states to
+	    // the callback you provide.  They can be:
+	    //
+	    // 1. Logged into your app ('connected')
+	    // 2. Logged into Facebook, but not your app ('not_authorized')
+	    // 3. Not logged into Facebook and can't tell if they are logged into
+	    //    your app or not.
+	    //
+	    // These three cases are handled in the callback function.
+
+	    FB.getLoginStatus(function(response) {
+	    	
+	        accessToken = response.authResponse.accessToken;
+		    console.log('2' + accessToken);
+	      statusChangeCallback(response);
+	    },true);
+
+	  };
+
+	  // Load the SDK asynchronously
+	  (function(d, s, id) {
+	    var js, fjs = d.getElementsByTagName(s)[0];
+	    if (d.getElementById(id)) return;
+	    js = d.createElement(s); js.id = id;
+	    js.src = "https://connect.facebook.net/pt_BR/sdk.js";
+	    fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));
+
+	  // Here we run a very simple test of the Graph API after login is
+	  // successful.  See statusChangeCallback() for when this call is made.
+	  function UsuarioConectado() {
+		  
+// 		  UsuarioConectado2();
+		  
+	    console.log('Welcome!  Fetching your information.... ');
+	    FB.api('/me',{ access_token : accessToken },{fields:'name,email'}, function(response) {
+		
+//	 	FB.api('/me',function(response) {
+	      console.log('Successful login for: ' + response.name);
+	      console.log('email2:' + response.email);
+
+	      document.getElementById('status').innerHTML =
+	        'Thanks for logging in, ' + response.name + '!'
+	        + 'email : ' +  response.email + '!' +
+//	          'imagem : ' + response.picture + '!' + 
+	      'id : ' + response.id + '!' ;
+	      
+	      document.getElementById('fotho').innerHTML =
+	      '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
+	      
+	      var senhaa = '232425';
+	      
+	      var nomee = response.name ;
+	      
+	      var mmail =  response.email;
+	      
+// 	      var emailo = 'eu@hotgmail.com';
+	      
+	      var fotoo = 'https://graph.facebook.com/' + response.id + '/picture';
+	      
+	      console.log("foto:" + fotoo);
+
+	      
+// 	      document.getElementById('email').value = response.email;
+			document.getElementById('email').value = mmail;
+	    	  
+	      document.getElementById('senha').value = senhaa;
+	      
+//	       document.getElementById('loggin').submit();
+
+	//var text = '{"nome":"'+ nomee  + '","email":"' + mmail+'","foto":"'+fotoo+'","senha":"'+ senhaa + '"}';
+
+
+	var text = [nomee, mmail,fotoo,senhaa];
+
+	var result = {nome:text[0],email:text[1],foto:text[2],senha:text[3]};
+
+
+	// console.log("text:" + text);
+	// var objeto = JSON.parse(text);
+
+
+	var json = JSON.stringify(result);
+
+	console.log("json:" + json);
+
+			$.ajax({
+				type: "POST",
+				contentType: "application/json",
+				url: "/usuario/salvarFacebook",
+//					url: "/evento/salvar/",
+				data: json, // convert array to JSON
+				dataType: 'json',
+				cache: false,
+				timeout: 100000,
+				success: function (data) {
+
+					console.log("SUCCESS : ", data);
+//						alert("Eventos Atualizados : " + data);
+				//	window.location.reload();
+
+				},
+				error: function (e) {
+
+					console.log("ERROR : ", e);
+
+				}
+			});
+			
+			
+			
+//	 		document.getElementById('loggin').submit();
+		
+	      
+	    });
+	    
+	    }
+	    
+// 	    function loginFacebook() {
+// 	    	  FB.login(function(response) {
+// 	    	    if (response.authResponse) {
+// 	    	    	checkLoginState();
+// 	    	    }       
+// 	    	  }, {scope: 'email,name,id' });
+// 	    	}
+	    
+	    
+// 	    function UsuarioConectado2() {
+	    	
+// 	    	   FB.api('/me',{fields:'name,email'},function(response) {
+	    		   
+	    		   
+// 	    		   mails = response.email;
+	    		   
+// 	    		     console.log("email3:" , response.email);
+	    		   
+// 	    	   });
+	    
+// 	    }
+	    
+	   	 
+  
+</script>
+
+
+	
+	<div class="login-box">
+  <div class="login-logo">
+    <a href="#">Sushi <b>Sempai</b></a>
+
+  </div>
+  <div class="login-box-body">
+    <p class="login-box-msg">Acesse para Iniciar sua Sessao</p>
+    
+        <div id="fotho" class="img-circle"></div>
+
+    <form id="loggin" method="post" th:object="${usuario}" th:action="@{/login}" role="form">
+      <div class="form-group has-feedback">
+        <input type="text" id="email" name="email"  class="form-control" placeholder="Email"/>
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password"  id="senha" name="senha" class="form-control" placeholder="Password" />
+        <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+      </div>
+      <div class="row">
+        <div class="col-xs-7">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" /> Lembrar Me
+            </label>
+          </div>
+        </div>
+        <div class="col-xs-5">
+          <input type="submit" class="btn btn-primary btn-raised btn-block btn-flat"></input>
+        </div>
+        
+      </div>
+    </form>
+    
+    <div id="status">
+</div>
+
+    <div class="social-auth-links text-center">
+      <p>- OU -</p>
+      
+                <div class="fb-login-button" data-width="320px" data-size="large" data-button-type="login_with"
+     data-auto-logout-link="false" data-use-continue-as="false" data-onlogin="checkLoginState()" data-scope="public_profile,email" ></div>
+      
+<!--       <a href="#" onclick="checkLoginState();" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Acesse Usando o -->
+<!--         Facebook </a> -->
+      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Acesse Usando o Google+ </a>
+      
+
+      
+<!--               <fb:login-button  -->
+<!--   scope="public_profile,email" -->
+<!--   onlogin="checkLoginState();"> -->
+<!-- </fb:login-button>   -->
+
+    </div>
+    
+
+
+    <p> <a th:href="@{/esquecisenha}">Esqueci a Senha </a></p>
+    <a  th:href="@{/registro}" class="text-center">Registrar novo Usuario </a>
+
+  </div>
+  
+<!--   <div -->
+<!--   class="fb-like" -->
+<!--   data-share="true" -->
+<!--   data-width="450" -->
+<!--   data-show-faces="true"> -->
+<!-- </div> -->
+
+</div>
+
+			
+<!-- 	  <div class="container"> -->
+
+<!--         <form class="form-signin"  method="post" th:object="${usuario}" th:action="@{/login}" role="form"> -->
+<!--           <div class="panel periodic-login"> -->
+<!--               <span class="atomic-number">69</span> -->
+<!--               <div class="panel-body text-center"> -->
+<!--                   <h1 class="atomic-symbol">Un</h1> -->
+<!--                   <p class="atomic-mass">69.123</p> -->
+<!--                   <p class="element-name">Underground</p> -->
+
+<!--                   <i class="icons icon-arrow-down"></i> -->
+<!--                   <div class="form-group form-animate-text" style="margin-top:40px !important;"> -->
+<!--                     <input type="text" id="email" name="email"  class="form-text" required="required" /> -->
+<!--                     <span class="bar"></span> -->
+<!--                     <label>Username</label> -->
+<!--                   </div> -->
+<!--                   <div class="form-group form-animate-text" style="margin-top:40px !important;"> -->
+<!--                     <input type="password"  id="senha" name="senha" class="form-text" required="required" /> -->
+<!--                     <span class="bar"></span> -->
+<!--                     <label>Password</label> -->
+<!--                   </div> -->
+<!--                   <label class="pull-left"> -->
+<!--                   <input type="checkbox" class="icheck pull-left" name="checkbox1"/> Remember me -->
+<!--                   </label> -->
+<!--                   <input type="submit" class="btn col-md-12" value="SignIn"/> -->
+<!--               </div> -->
+<!--                 <div class="text-center" style="padding:5px;"> -->
+<!--                     <a th:href="@{/esquecisenha}">Esqueci a Senha</a> -->
+<!--                     <a th:href="@{/registro}">| Registre-se</a> -->
+<!--                 </div> -->
+<!--           </div> -->
+<!--         </form> -->
+
+<!--       </div> -->
+
+
+<!--           <div class="login" > -->
+<!-- 			<form method="post" th:object="${usuario}" th:action="@{/login}" role="form" > -->
+<!--               <div> -->
+<!-- 		    	<input type="text" id="username" name="username" class="form-control" -->
+<!-- 		           th:value="${username}" placeholder="Digite seu Usuario"/> -->
+		           
+<!-- 		      </div> -->
+<!--               <div> -->
+<!-- 		    	<input type="password" id="senha" name="senha" class="form-control" -->
+<!-- 		           th:value="${senha}" placeholder="Digite sua Senha"/> -->
+<!-- 		      </div> -->
+		      
+<!--               <div> -->
+<!-- 		   		 <button type="submit" value="login" class="btn btn-success">Entrar</button> -->
+<!--                 	<span class=""><a class="reset_pass" th:href="@{/usuario/lost}"><small>Perdeu sua Senha?</small></a></span> -->
+<!--               </div> -->
+
+
+<!--             </form> -->
+<!--           </div> -->
+        
+        
+<!--       </div> -->
+
+
+              
+<!--                <img th:unless="${usuarioAtt.foto}" th:src="@{/img/logo.png}" class="user-image" alt="User Image" /> -->
+               
+<!--                  <img th:if="${usuario.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}" class="user-image" alt="User Image" /> -->
+               
+               
+ 
+ 
+
+
+
+
+                      <div th:replace="fragmentos/footer :: script">
+      </div>
+      
+      
+      <script>
+      
+      $(document).ready(function() {
+    	  
+    	  
+//     	  $(location).attr('href', 'https://sleepy-atoll-65818.herokuapp.com/login');
+
+	window.location.replace('https://sleepy-atoll-65818.herokuapp.com/login');
+    	  
+//     	  window.location.protocol == "https:";
+//     	  checkLoginState();
+    	  
+      });
+      
+      
+      
+      </script>
+     
+      
+  </body>
+  
+
+
+
+</html>

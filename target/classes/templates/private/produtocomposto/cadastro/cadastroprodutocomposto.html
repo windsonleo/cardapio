@@ -1,0 +1,531 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Cadastro de Produtos Composto</title>
+
+<body  class="hold-transition skin-red sidebar-mini"  th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+					  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+       Produto Compostos
+        <small>Cadastro</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Produto Compostos</a></li>
+        <li class="active"><a href="#">Cadastro</a></li>
+<!--         <li class="active">Blank page</li> -->
+      </ol>
+    </section>
+    
+    
+		 <div class="content">
+		 
+		 
+		 <!-- 				mensagens do sistema  -->
+				
+		<div class="row-fluid" th:if="${sucesso}">
+					
+			<div class="alert alert-success">
+				<div class="container-fluid">
+					<div class="alert-icon">
+						<i class="material-icons">check</i>
+					</div>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+					</button>
+					<b>Mensagem:</b> <span th:utext="${sucesso}">
+					
+					
+					
+					</span>
+					
+				
+						<span class="btn btn-sm btn-warning"><a th:href="@{/produtocomposto/cadastro}"><i></i>Novo</a></span>
+					    <span class="btn btn-sm btn-warning"><a th:href="@{/produtocomposto/editar(id=${produtocomposto.id})}"><i></i>Editar</a></span>
+				
+				</div>
+				
+				
+			</div>
+					
+					
+					
+			</div>
+					
+			<div class="row-fluid" th:if="${erro}">
+					
+			<div class="alert alert-danger">
+				<div class="container-fluid">
+					<div class="alert-icon">
+						<i class="material-icons">error</i>
+					</div>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true"><i class="material-icons">clear</i></span>
+					</button>
+					<b>Mensagem:</b> <span th:utext="${erro}"></span>
+				
+						<span class="btn btn-sm btn-warning"><a th:href="@{/produtocomposto/cadastro}"><i></i>Novo</a></span>
+					    <span class="btn btn-sm btn-warning"><a th:href="@{/produtocomposto/editar(id=${produtocomposto.id})}"><i></i>Editar</a></span>
+				
+			
+				</div>
+				
+				
+			</div>
+					
+					
+					
+			</div>
+				
+<!-- fim das mensagens -->
+
+
+<!-- inicio do conteudo  -->
+
+
+ 
+		 
+<!--                       <div class="panel form-element-padding"> -->
+
+      <div class="col-md-12">
+			<div class="col-md-3">
+			<form th:action="@{/produtocomposto/salvarfotocomposto}" th:object="${produtocomposto}" ModelAttribute="produtocomposto"  enctype="multipart/form-data"  method="post">
+			
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username" th:text="${produtocomposto.nome}">Thanh Nguyen</h3>
+              <h5 class="widget-user-desc"  >Foto Produto Composto</h5>
+            </div>
+            
+            
+            
+                       <div class="widget-user-image" th:if="${produtocomposto.foto}">
+              <img class="img-circle" th:src="@{/img/produtocomposto/{fotoc}(fotoc=${produtocomposto.foto})}" alt="User Avatar usu if" width="64" height="64"/>
+            </div>
+            
+                                   <div class="widget-user-image" th:unless="${produtocomposto.foto}">
+              <img class="img-circle" th:src="@{/img/produtocomposto/{fotoc}(fotoc=${filename})}" alt="User Avatar usu unless" width="64" height="64" />
+            </div>
+            
+            
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="description-block">
+                  
+                 <div class="form-group">
+                  <label for="file">File input</label>
+                  <input type="text" readonly="" class="form-control" th:value="${filename}" th:placeholder="${filename}" />
+                  <input type="file" id="file" multiple="multiple" name="file" />
+
+<!--                   <p class="help-block">Example block-level help text here.</p> -->
+                </div>
+                   
+<!--                     <h5 class="description-header"> -->
+                    <button type="submit" class="btn btn-primary btn-raised btn-block">Add foto
+                    	<div class="ripple-container"></div>
+                    </button>
+                    
+<!--                     </h5> -->
+                    
+<!--                     <span class="description-text"><i class="fa fa-photo"></i></span> -->
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+          
+          </form>
+        </div>
+<!--         </div> -->
+<!--         </div> -->
+<!-- 			</div> -->
+<!-- 			</div> -->
+
+
+            
+           <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 panel">
+
+		 
+			 
+				 <form th:action="@{/produtocomposto/add}" ModelAttribute="produtocomposto" method="POST" th:object="${produtocomposto}">      
+      
+                 
+                             
+                             
+			<div class="checkbox">
+                <label>
+				<input id="ativo" name="optionsCheckboxes"  type="checkbox" th:checked="${produtocomposto.ativo}" class="checkbox"/>Ativo?
+				</label>
+              </div>
+
+						<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-key"></i>
+                  </div>
+                                    <input id="id" class="form-control" name="id" type="text" th:value="${produtocomposto.id}"
+                                           placeholder="Nao Preencha este Campo" readonly="readonly"/> 
+                                </div>
+                            </div>
+<!--                             </div> -->
+
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</div>
+										<input id="nome" class="form-control" name="nome" type="text"
+											th:value="${produtocomposto.nome}" placeholder="Nome"> </input>
+									</div>
+								</div>
+								
+								
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</div>
+										<input id="descricao" class="form-control" name="descricao" type="text"
+											th:value="${produtocomposto.descricao}" placeholder="descricao"> </input>
+									</div>
+								</div>
+								
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</div>
+										<input id="codebar" class="form-control" name="codebar" type="text"
+											th:value="${produtocomposto.codebar}" placeholder="codebar"> </input>
+									</div>
+								</div>		
+								
+                           <div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-photo"></i>
+                  </div>
+                                    <input th:unless="${produtocomposto.foto}" autocomplete="off" id="foto" class="form-control" name="foto" type="text" th:value="${filename}"
+                                           placeholder="Foto"> </input>
+                                           
+                                        <input   th:if="${produtocomposto.foto}" autocomplete="off" id="foto" class="form-control" name="foto" type="text" th:value="${produtocomposto.foto}"
+                                           placeholder="Foto"> </input>
+                                           
+                                           
+                                </div>
+                            </div>						
+								
+
+                            
+                            
+							
+							<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-folder"></i>
+                  </div>
+
+                                    <select id="un_medida" name="un_medida" class="form-control">
+                                        <optgroup label="Escolha o tipO un_medida">
+
+                                            <option th:value="${produtocomposto.un_medida}" th:selected="selected"
+                                            th:utext="${produtocomposto.un_medida}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="tipoterapia: ${umList}" th:value="${tipoterapia}" th:utext="${tipoterapia}"> tipo </option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            
+                            	<div class="form-group label-floating ">
+                                                         <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-folder"></i>
+                  </div>
+
+                                    <select id="categoria" name="categoria" class="form-control">
+                                        <optgroup label="Escolha A categoria">
+
+                                            <option th:value="${produtocomposto.categoria}" th:selected="selected"
+                                            th:utext="${produtocomposto.categoria}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="tipoterapia: ${categoriaListall}" th:value="${tipoterapia.id}" th:utext="${tipoterapia.nome}"> tipo </option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</div>
+										<input id="precocusto" class="form-control" name="precocusto" type="text"
+											th:value="${produtocomposto.precocusto}" placeholder="precocusto"> </input>
+									</div>
+								</div>	
+								
+								
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</div>
+										<input id="precovenda" class="form-control" name="precovenda" type="text"
+											th:value="${produtocomposto.precovenda}" placeholder="precovenda"> </input>
+									</div>
+								</div>	                            
+                            
+                            
+                            
+                            
+                            <div class="form-actions">
+                                <input type="submit" th:value="${acao}" class="btn btn-success"> </input>
+                            </div>
+                        </form>
+                        
+                    </div>
+                    
+<!--                            <div class="clearfix"></div> -->
+                           
+                           
+         <div class="col-md-4">
+			<form th:action="@{/produtocomposto/additem}" th:object="${produtocomposto}" ModelAttribute="produtocomposto"    method="get">
+			
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username text-center" th:text="${produtocomposto.nome}">Thanh Nguyen</h3>
+              <h5 class="widget-user-desc text-center"  >Itens do Produto Composto</h5>
+            </div>
+            
+            
+            
+                       <div class="widget-user-image" th:if="${produtocomposto.foto}">
+              <img class="img-circle" th:src="@{/img/produtocomposto/{fotoc}(fotoc=${produtocomposto.foto})}" alt="User Avatar usu if" width="64" height="64"/>
+            </div>
+            
+                                   <div class="widget-user-image" th:unless="${produtocomposto.foto}">
+              <img class="img-circle" th:src="@{/img/produtocomposto/{fotoc}(fotoc=${filename})}" alt="User Avatar usu unless" width="64" height="64" />
+            </div>
+            
+            
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="description-block">
+                  
+
+                  
+             <div class="col-md-12">
+              <div class="form-group label-floating">
+              
+                <select class="form-control select2" id="itens_prodcomp"  name="itens_prodcomp" multiple="multiple" data-placeholder="Select a Produto" style="width: 100%;">
+                 
+          <option th:each="item: ${produtocomposto.itens_prodcomp}" th:text="${item.key.nome}" th:selected="${item.key}" class="selected" th:value="${item.key}"></option>
+                 
+                 
+                 
+                  <option th:each="produto: ${prodList}" th:value="${produto.id}" >
+                  
+                                    	<span th:text="${produto.nome}">Nenhuma Regra
+														Cadastrada </span>
+                  
+                   </option>
+                   
+<!--                   <option  th:text="${produto.nome}">Alaska</option> -->
+
+                </select>
+              </div>
+
+                </div>
+                
+                </div>
+                   
+                    <button type="submit" class="btn btn-primary btn-raised btn-block">Add Item
+                    	<div class="ripple-container"></div>
+                    </button>
+                    
+                    
+                  </div>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+<!--             </div> -->
+            
+
+
+
+              <table id="example15" class="table table-bordered table-striped table-responsive">
+                <thead>
+                <tr>
+                
+                 							<th></th>
+                                            <th>Desc</th>
+                                             <th >Um</th>
+                                            <th >Qt</th>
+                                            <th >$</th>
+                                                                 
+                                            <th >x</th>
+<!--                                              <th >UM</th> -->
+<!--                                              <th >Preço</th> -->
+<!--                                             <th >Ativo</th> -->
+<!--                                             <th >Resultado</th> -->
+                                            
+                                   
+                                            
+     
+                                    </tr>
+     
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr th:each="item: ${items}">
+                                            <td><img th:src="@{/img/produto/{fotoc}(fotoc=${item.key.foto})}" class="img-circle img-sm" alt="fotoPaciente"/></td>
+                                                <td th:text="${item.key.nome}">ITEM</td>
+                                                <td th:text="${item.key.un_medida}">ITEM</td>
+
+                                                  <td th:text="${item.value}">QTD</td>
+                                                   <td th:text="${item.key.precoCusto}">VALOR</td>
+                                                  
+                                                   <td>   <a  rel="tooltip" title="Excluir" class="" th:href="@{/produtocomposto/deleteitem(id=${item.key})}">
+                                    						<i class="material-icons">close</i>
+			                       						</a>   </td>
+                                     
+                                            </tr>
+                                           
+                       
+                                        </tbody>
+                                    </table>
+						</div>
+						
+
+            </form>
+            
+          </div>
+          
+
+                </div>
+                
+                <div class="clearfix"></div> 
+                </div>
+                
+            </div>
+
+        
+        <div class="clearfix"></div>
+        
+        
+	
+
+     <div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+     
+     
+     	<script type="text/javascript">
+			
+		     $(function () {
+		    	 
+		    	 $(".select2").select2();
+	    	
+		     $('#datepicker').datepicker({
+		         autoclose: true,
+		         format: 'dd/mm/yyyy',
+			    	language: 'pt-BR'
+		       });
+		     
+			    $(".timepicker").timepicker({
+			        showInputs: false
+			      });
+			    
+			    
+			    
+			
+		
+			     $('#example15').DataTable({
+			       "paging": true,
+			       "lengthChange": true,
+			       "searching": true,
+			       "ordering": true,
+			       "info": true,
+			       "autoWidth": true,
+			       "language": {
+			           "lengthMenu": "Exibir _MENU_ registro por pagina",
+			           "zeroRecords": "Nenhum Registro - Desculpe",
+			           "info": "Exibindo pagina _PAGE_ of _PAGES_",
+			           "infoEmpty": "Nenhum Registro Disponivel",
+			           "infoFiltered": "(filtrado de _MAX_ registro)",
+			           "search":"Pesquisar:",
+			           "paginate": {
+			               "first":      "Primeiro",
+			               "last":       "Ultimo",
+			               "next":       "Proximo",
+			               "previous":   "Anterior"
+			           }
+			           
+			       }
+			     });
+			    });
+
+
+			
+			</script>
+			
+			</div>
+			
+			
+
+
+			
+</body>
+			
+			
+</html>
+

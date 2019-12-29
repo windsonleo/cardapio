@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragmentos/head :: head-css">
+    <title>Erro dentro</title>
+</head>
+
+<body>
+
+	<div class="wrapper">
+
+ 			<div class="main-panel">
+
+			  	<div th:replace="fragmentos/top-nav :: top-nav">
+				
+				</div>
+			
+			<div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+							<aside>
+							    <h2>Erro Erro Erro </h2>
+							    <h3 th:text="${errCode}">codigo erro</h3>
+							    <a href="#" th:text="${errMsg}"
+							       >Work Begins on HTML5.1</a>
+
+							</aside>
+
+							<main id="posts">
+							
+							</main>
+
+							<footer th:replace="fragmentos/footer ::footer" >
+
+							</footer>
+							
+							</div>
+							</div>
+							</div>
+							</div>
+							</div>
+							
+
+			<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+
+</body>
+
+</html>
+
