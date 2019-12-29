@@ -43,9 +43,6 @@ import com.tecsoluction.cardapio.servico.PromocaoServicoImpl;
 import com.tecsoluction.cardapio.servico.RoleServicoImpl;
 import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 import com.tecsoluction.cardapio.util.GerenciadorCategorias;
-import com.tecsoluction.robo.entidade.Detento;
-import com.tecsoluction.robo.entidade.Violacao;
-
 	
 
 
