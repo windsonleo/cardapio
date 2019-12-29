@@ -492,7 +492,10 @@ public class HomeController {
 //    	            return home;
     	        } catch (Exception e) {
     	        	
+    	        	usu.setEmail(email);
+    	        	
     	        	 model.addAttribute("erro",erro + e);
+    	        	 model.addAttribute("usuario",usu);
     	            e.printStackTrace();
 //    	            home.addObject("erro", erro + e);
 //    	            return home;
@@ -531,13 +534,17 @@ public class HomeController {
     
     
     @RequestMapping(value = "/registroenv", method = RequestMethod.POST)
-    public ModelAndView RegistroENV(Locale locale, Model model) {
+    public ModelAndView RegistroENV(Locale locale, Model model ,@ModelAttribute Usuario usuario) {
        
     	logger.info("Welcome registro ! The client locale is {}.", locale);
 
         ModelAndView home = new ModelAndView("/public/registro");
         
+        usuarioService.save(usuario);
         
+        
+        home.addObject("usuario",usuario);
+
 
 
         return home;
