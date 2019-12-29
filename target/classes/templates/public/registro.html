@@ -98,9 +98,9 @@
   <div class="register-box-body">
     <p class="login-box-msg">ReGistro de Novo Membro</p>
     
-    	<div class="col-md-8" style="margin: 5px;">
+    	<div class="col-md-12" style="margin: 5px;">
 
-					<form th:action="@{/salvarfotousuarioReg}"
+					<form th:action="@{/salvarfotousuarioReg}" th:object="${usuario}"
 						ModelAttribute="usuario" enctype="multipart/form-data"
 						method="post">
 
@@ -297,7 +297,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-5">
-          <button type="submit" class="btn btn-primary btn-raised btn-block">Registro</button>
+          <button type="submit" th:value="${acao}" th:text="${acao}" class="btn btn-primary btn-raised btn-block">Registro</button>
         </div>
         <!-- /.col -->
       </div>
@@ -316,6 +316,10 @@
 <!--   </div> -->
   
   	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+  	
+  	
+	<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
+		th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript"></script>
   
 <!-- </div> -->
 

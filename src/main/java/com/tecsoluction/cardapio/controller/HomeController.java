@@ -440,6 +440,7 @@ public class HomeController {
         ModelAndView home = new ModelAndView("/public/esquecisenha");
 
         home.addObject("usuario",new Usuario());
+        home.addObject("acao","enviar");
 //		 model.addAttribute("filename",filename);
 
 
@@ -496,7 +497,7 @@ public class HomeController {
     		
     		 model.addAttribute("erro","usuario não existe");
     		 model.addAttribute("usuario",usuar);
-
+    		 model.addAttribute("acao","enviar");
     		 
     	return	home;
     		
@@ -513,12 +514,12 @@ public class HomeController {
     	   props.setProperty("mail.transport.protocol", "smtp");
     	   props.put("mail.smtp.starttls.enable","true"); //não sei ao certo para que serve, mas tive que colocar...
     	   props.setProperty("mail.smtp.auth", "true");  //setei a autenticação  
-    	   props.setProperty("mail.smtp.starttls.required","true");
+//    	   props.setProperty("mail.smtp.starttls.required","true");
     	   props.setProperty( "mail.smtp.quitwait", "false");
     	   props.setProperty("mail.smtp.host", "smtp.gmail.com");
     	   String user = props.getProperty("mail.smtp.user");
     	   String passwordd = props.getProperty("mail.smtp.password");
-    	   props.put("mail.smtp.port","465");
+    	   props.put("mail.smtp.port","587");
     	   props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
     	   
     	   Autenticador auth = null;
@@ -591,6 +592,7 @@ public class HomeController {
 
   		 model.addAttribute("usuario",usuar);
  		 model.addAttribute("sucesso",sucesso);
+ 		 model.addAttribute("acao","acao");
 // 		 model.addAttribute("filename",filename);
 
 
@@ -715,6 +717,8 @@ private String FormatadorData(Date data){
         home.addObject("roles",Rolesall);
         home.addObject("usuario",new Usuario());
         home.addObject("filename",filename);
+		 model.addAttribute("acao","acao");
+
 
         return home;
     }
@@ -729,9 +733,10 @@ private String FormatadorData(Date data){
         
         usuarioService.save(usuario);
         
-        
+        home.addObject("roles",Rolesall);
         home.addObject("usuario",usuario);
-//        home.addObject("filename",filename);
+		 model.addAttribute("acao","acao");
+        home.addObject("filename",filename);
 
 
 
