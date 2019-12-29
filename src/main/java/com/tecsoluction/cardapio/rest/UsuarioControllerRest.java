@@ -17,7 +17,9 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
@@ -111,8 +113,16 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     	Usuario usuario = null;
     	
     	UUID idf = UUID.fromString("9e5438c6-6749-43c0-8ecb-59e46e74c155");
+    	UUID idface = UUID.fromString("970a79df-f935-453f-8334-9bec3917655d");
     	
     	Role role = roleService.findOne(idf);
+    	Role roleface = roleService.findOne(idface);
+    	
+    	Set<Role>roles = new HashSet<Role>();
+    	
+    	roles.add(role);
+    	roles.add(roleface);
+    	
     	
     	path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario/");
     	
@@ -133,14 +143,14 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     		
     		usu.setFoto(nome);
     		usu.setDatacadastro(new Date());
-    		usu.getRoles().add(role);
-    		role.getUsers().add(usu);
+    		usu.setRoles(roles);
+//    		role.getUsers().add(usu);
     		usu.setAtivo(true);
     	
     		
     		
     		getservice().save(usu);
-    		roleService.edit(role);
+//    		roleService.edit(role);
 			
 		}
     	

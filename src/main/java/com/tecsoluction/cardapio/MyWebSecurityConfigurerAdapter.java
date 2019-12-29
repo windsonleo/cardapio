@@ -169,6 +169,8 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
                 .and()
                 .withUser("admin").password("passwordadmin").roles("ADM")
                 .and()
+                .withUser("face").password("passwordface").roles("FACE")
+                .and()
                 .withUser("super").password("super").roles("SUPER");
     }
     
