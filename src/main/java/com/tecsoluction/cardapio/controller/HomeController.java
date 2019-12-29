@@ -91,8 +91,8 @@ public class HomeController {
     
     private Usuario usuariologado;
 
-    @Autowired 
-    private JavaMailSender mailSender;
+//    @Autowired 
+//    private JavaMailSender mailSender;
   
     
     
