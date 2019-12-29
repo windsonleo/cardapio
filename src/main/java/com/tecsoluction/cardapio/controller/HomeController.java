@@ -441,7 +441,7 @@ public class HomeController {
     
     
     @RequestMapping(value = "/esquecisenhaenv", method = RequestMethod.POST)
-    public ModelAndView EnviarSenha(Locale locale, Model model, HttpServletRequest request) {
+    public ModelAndView EnviarSenha(Locale locale, Model model, HttpServletRequest request,@ModelAttribute Usuario usuario) {
        
     	boolean existe = false;
     	String senha = new String("");
@@ -484,6 +484,7 @@ public class HomeController {
     	}else {
     		
     		 model.addAttribute("erro","usuario não existe");
+    		 model.addAttribute("usuario",usuario);
     	return	home;
     		
     	
@@ -591,7 +592,7 @@ public class HomeController {
     	}else {
     		
    		 model.addAttribute("erro","usuario não existe");
-
+   		 model.addAttribute("usuario",usuario);
     		
     		
     	}
