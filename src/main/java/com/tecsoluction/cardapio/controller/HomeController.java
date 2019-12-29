@@ -450,11 +450,12 @@ public class HomeController {
     
     
     @RequestMapping(value = "/esquecisenhaenv", method = RequestMethod.POST)
-    public ModelAndView EnviarSenha(Locale locale, Model model, HttpServletRequest request,HttpSession session) {
+    public ModelAndView EnviarSenha(Locale locale, Model model, HttpServletRequest request,HttpSession session ,@ModelAttribute Usuario usuario) {
        
     	boolean existe = false;
     	String senha = new String("");
-    	Usuario usu = null;
+    	Usuario usuariologado = usuario;
+    	
     	
     	String html=null;
     	
@@ -472,28 +473,28 @@ public class HomeController {
     	
     	if(email != null && email !=""){
     		
-        	 usu = usuarioService.findByEmail(email);
+    		usuario = usuarioService.findByEmail(email);
         	 
-        	 html = CriarBody(usu);
+        	 html = CriarBody(usuario);
 
     		
     	}else {
     		
-    		usu.setEmail(email);
+    		usuario.setEmail(email);
     	}
     	
     	
     	
-    	if((usu.getSenha() != null) && (usu.getSenha()!= "")){
+    	if((usuariologado.getSenha() != null) && (usuariologado.getSenha()!= "")){
     		
     		
-    		senha = usu.getSenha();
+    		senha = usuario.getSenha();
     		existe=true;
     		
     	}else {
     		
     		 model.addAttribute("erro","usuario não existe");
-    		 model.addAttribute("usuario",usu);
+    		 model.addAttribute("usuario",usuario);
 
     		 
     	return	home;
@@ -563,7 +564,7 @@ public class HomeController {
 
   		   // Set To: header field of the header.
   		   message.addRecipients(Message.RecipientType.TO,
-  	            InternetAddress.parse(usu.getEmail()));
+  	            InternetAddress.parse(usuario.getEmail()));
   		   
 //  		   message.addRecipients(Message.RecipientType.BCC,
 //  		            InternetAddress.parse(jtxtusuario.getText().trim()));
@@ -587,7 +588,7 @@ public class HomeController {
   		   	
   		   System.out.println("Sent message successfully....");
 
-  		 model.addAttribute("usuario",usu);
+  		 model.addAttribute("usuario",usuariologado);
  		 model.addAttribute("sucesso",sucesso);
 // 		 model.addAttribute("filename",filename);
 
@@ -606,7 +607,7 @@ public class HomeController {
     	}else {
     		
    		 model.addAttribute("erro","usuario não existe");
-   		 model.addAttribute("usuario",usu);
+   		 model.addAttribute("usuario",usuariologado);
    		 model.addAttribute("filename",filename);	
     		
     	}
@@ -712,6 +713,7 @@ private String FormatadorData(Date data){
         
         home.addObject("roles",Rolesall);
         home.addObject("usuario",usuariologado);
+        home.addObject("filename",filename);
 
         return home;
     }
@@ -728,7 +730,7 @@ private String FormatadorData(Date data){
         
         
         home.addObject("usuario",usuario);
-//        home.addObject("usuarioAtt",usuario);
+//        home.addObject("filename",filename);
 
 
 
@@ -946,6 +948,8 @@ private String FormatadorData(Date data){
                              Model model, @ModelAttribute Usuario usuarior) {
     	
    	Usuario usuario = null;
+   	
+   	usuariologado = usuarior;
 
         String sucesso = "Sucesso ao salvar foto";
         
@@ -1011,7 +1015,7 @@ private String FormatadorData(Date data){
      
         this.usuariologado.setFoto(filename);
         
-       return new ModelAndView("redirect:/usuario/cadastro").addObject("usuario", usuariologado);
+       return new ModelAndView("redirect:/registro").addObject("usuario", usuariologado);
 
     }
 
