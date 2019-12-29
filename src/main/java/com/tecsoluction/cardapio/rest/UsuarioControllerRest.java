@@ -56,11 +56,11 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
 	
 	private File file2;
 	
-	private String path;
+	private String path = new String("");
 	
-	private String pathf;
+	private String pathf = new String("");
 	
-	private String nome;
+	private String nome = new String("");
 	
     @Autowired
     public UsuarioControllerRest(UsuarioServicoImpl dao,RoleServicoImpl rol) {
