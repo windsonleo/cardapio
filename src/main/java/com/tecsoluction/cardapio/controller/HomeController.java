@@ -5,7 +5,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -479,7 +484,7 @@ public class HomeController {
     	
     	
     	Properties props = new Properties();
-    	   props.setProperty("mail.smtp.user","fabriciopiercing@gmail.com" );   //setei o login
+    	   props.setProperty("mail.smtps.user","fabriciopiercing@gmail.com" );   //setei o login
     	   props.setProperty("mail.smtp.password", "465589kvo"); // e a senha
     	   props.setProperty("mail.transport.protocol", "smtp");
     	   props.put("mail.smtp.starttls.enable","true"); //não sei ao certo para que serve, mas tive que colocar...
@@ -487,7 +492,7 @@ public class HomeController {
     	   props.setProperty("mail.smtp.starttls.required","true");
     	   props.setProperty( "mail.smtp.quitwait", "false");
     	   props.setProperty("mail.smtp.host", "smtp.gmail.com");
-    	   String user = props.getProperty("mail.smtp.user");
+    	   String user = props.getProperty("mail.smtps.user");
     	   String passwordd = props.getProperty("mail.smtp.password");
     	   props.put("mail.smtp.port","465");
     	   props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
@@ -507,30 +512,48 @@ public class HomeController {
 
     	if(existe){
     		
-    		  SimpleMailMessage message = new SimpleMailMessage();
+    		 Message message = new MimeMessage(session);
 
-    	        message.setText("Olá Voce Recebeu este Email do Restaurante Sushi Senpai" +"Sua Senha é: " + senha +"\n" + "considere mudar sua senha");
-    	        message.setTo(email);
-    	        message.setSubject("Recuperação de Senha");
-    	    //   message.setFrom("Sushi Senpai - Cardapio");
+  	 	   // Set From: header field of the header.
+  		   message.setFrom(new InternetAddress("fabriciopiercing@gmail.com"));
 
-    	        try {
-    	            mailSender.send(message);
-    	            
-    	            model.addAttribute("sucesso",sucesso);
-    	            model.addAttribute("usuario",usu);
-//    	            home.addObject("sucesso", sucesso);
-//    	            return home;
-    	        } catch (Exception e) {
-    	        	
-    	        	usu.setEmail(email);
-    	        	
-    	        	 model.addAttribute("erro",erro + e);
-    	        	 model.addAttribute("usuario",usu);
-    	            e.printStackTrace();
-//    	            home.addObject("erro", erro + e);
-//    	            return home;
-    	        }
+  		   // Set To: header field of the header.
+  		   message.addRecipients(Message.RecipientType.TO,
+  	            InternetAddress.parse(email));
+  		   
+//  		   message.addRecipients(Message.RecipientType.BCC,
+//  		            InternetAddress.parse(jtxtusuario.getText().trim()));
+//  		   
+  		   message.addRecipients(Message.RecipientType.BCC,
+  		            InternetAddress.parse("windson.m.bezerra@gmail.com"));
+
+  		   // Set Subject: header field
+  		   message.setSubject("ec senha: ");
+
+  		   // Send the actual HTML message, as big as you like
+//  		   message.setContent();
+  		   
+  		   message.setText("recup senha " + usu.getSenha());
+  		   message.saveChanges();
+
+  		   // Send message
+  		   Transport.send(message);
+  		  
+  		   	
+  		   System.out.println("Sent message successfully....");
+
+  		   
+  		   
+
+  	    } catch (MessagingException e) {
+  		   e.printStackTrace();		
+  		   
+
+  		   
+  		   throw new RuntimeException(e);
+  		   
+  		   
+  	    }
     		
     		
     	}else {
@@ -569,13 +592,13 @@ public class HomeController {
        
     	logger.info("Welcome registro ! The client locale is {}.", locale);
 
-        ModelAndView home = new ModelAndView("/public/registro");
+        ModelAndView home = new ModelAndView("/public/login");
         
         usuarioService.save(usuario);
         
         
         home.addObject("usuario",usuario);
-        home.addObject("usuarioAtt",usuario);
+//        home.addObject("usuarioAtt",usuario);
 
 
 
