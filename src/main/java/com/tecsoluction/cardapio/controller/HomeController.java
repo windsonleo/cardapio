@@ -1,5 +1,7 @@
 package com.tecsoluction.cardapio.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +19,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +32,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.cardapio.entidade.Autenticador;
@@ -90,6 +95,8 @@ public class HomeController {
 
     
     private Usuario usuariologado;
+
+	private String filename="avatar_usu.jpg";
 
 //    @Autowired 
 //    private JavaMailSender mailSender;
@@ -432,7 +439,9 @@ public class HomeController {
 
         ModelAndView home = new ModelAndView("/public/esquecisenha");
 
-        home.addObject("usuario",new Usuario());
+        home.addObject("usuario",usuariologado);
+		 model.addAttribute("filename",filename);
+
 
 
         return home;
@@ -441,7 +450,7 @@ public class HomeController {
     
     
     @RequestMapping(value = "/esquecisenhaenv", method = RequestMethod.POST)
-    public ModelAndView EnviarSenha(Locale locale, Model model, HttpServletRequest request,@ModelAttribute Usuario usuario) {
+    public ModelAndView EnviarSenha(Locale locale, Model model, HttpServletRequest request,HttpSession session) {
        
     	boolean existe = false;
     	String senha = new String("");
@@ -470,12 +479,12 @@ public class HomeController {
     		
     	}else {
     		
-    		
+    		usu.setEmail(email);
     	}
     	
     	
     	
-    	if(usu.getSenha() != null){
+    	if((usu.getSenha() != null) && (usu.getSenha()!= "")){
     		
     		
     		senha = usu.getSenha();
@@ -484,16 +493,20 @@ public class HomeController {
     	}else {
     		
     		 model.addAttribute("erro","usuario não existe");
-    		 model.addAttribute("usuario",usuario);
+    		 model.addAttribute("usuario",usu);
+
+    		 
     	return	home;
     		
     	
     	}
     	
     	
+
+    	if(existe) {
     	
     		Properties props = new Properties();
-    	   props.setProperty("mail.smtps.user","fabriciopiercing@gmail.com" );   //setei o login
+    	   props.setProperty("mail.smtp.user","fabriciopiercing@gmail.com" );   //setei o login
     	   props.setProperty("mail.smtp.password", "465589kvo"); // e a senha
     	   props.setProperty("mail.transport.protocol", "smtp");
     	   props.put("mail.smtp.starttls.enable","true"); //não sei ao certo para que serve, mas tive que colocar...
@@ -501,7 +514,7 @@ public class HomeController {
     	   props.setProperty("mail.smtp.starttls.required","true");
     	   props.setProperty( "mail.smtp.quitwait", "false");
     	   props.setProperty("mail.smtp.host", "smtp.gmail.com");
-    	   String user = props.getProperty("mail.smtps.user");
+    	   String user = props.getProperty("mail.smtp.user");
     	   String passwordd = props.getProperty("mail.smtp.password");
     	   props.put("mail.smtp.port","465");
     	   props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
@@ -514,8 +527,8 @@ public class HomeController {
     	   
 
     	   // Get the Session object.
-    		Session session = Session.getInstance(props, auth);
-    		session.setDebug(true);
+    		Session sessionmail = Session.getInstance(props, auth);
+    		sessionmail.setDebug(true);
     		
     		 MimeBodyPart messageBodyPart = new MimeBodyPart();
     		
@@ -539,12 +552,11 @@ public class HomeController {
     	
     
 
-    	if(existe){
     		
     		
     		 try {
     		
-    		 Message message = new MimeMessage(session);
+    		 Message message = new MimeMessage(sessionmail);
 
   	 	   // Set From: header field of the header.
   		   message.setFrom(new InternetAddress("fabriciopiercing@gmail.com"));
@@ -575,8 +587,10 @@ public class HomeController {
   		   	
   		   System.out.println("Sent message successfully....");
 
-  		   
-  		   
+  		 model.addAttribute("usuario",usu);
+ 		 model.addAttribute("sucesso",sucesso);
+// 		 model.addAttribute("filename",filename);
+
 
   	    } catch (MessagingException e) {
   		   e.printStackTrace();		
@@ -592,8 +606,8 @@ public class HomeController {
     	}else {
     		
    		 model.addAttribute("erro","usuario não existe");
-   		 model.addAttribute("usuario",usuario);
-    		
+   		 model.addAttribute("usuario",usu);
+   		 model.addAttribute("filename",filename);	
     		
     	}
       
@@ -622,7 +636,7 @@ public class HomeController {
 			+ "Por favor entrar em contato conosco. </p>"+
 			
 			 
-			
+
 
 
 " <tbody>";
@@ -926,6 +940,81 @@ private String FormatadorData(Date data){
 //            home.addObject("erro", erro + e);
 //            return home;
 //        }
+    
+    @RequestMapping(value = "salvarfotousuarioReg", method = RequestMethod.POST)
+    public ModelAndView SalvarFotoProduto2d(@RequestParam ("file") MultipartFile file, HttpSession session, HttpServletRequest request,
+                             Model model, @ModelAttribute Usuario usuarior) {
+    	
+   	Usuario usuario = null;
+
+        String sucesso = "Sucesso ao salvar foto";
+        
+        String erros = "Falha ao salvar foto";
+        
+//        ModelAndView cadastro = new ModelAndView("/private/produto/cadastro/cadastroproduto");
+
+        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario/");
+        
+        this.filename= file.getOriginalFilename();
+        
+        
+//        heroku não funfa com essas barras
+//        String caminho = path + "\\" + filename;
+        
+        String caminho = path + filename;
+        
+
+
+        System.out.println(" path = "  + path );
+
+//        System.out.println(" caminho" + caminho);
+//        
+//        System.out.println("request D" + d);
+
+        try {
+
+            byte barr[] = file.getBytes();
+
+            BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(caminho));
+            bout.write(barr);
+            bout.flush();
+            bout.close();
+
+            
+            
+            usuariologado.setEmail(filename);
+            model.addAttribute("sucesso", sucesso);
+            model.addAttribute("filename", filename);
+            model.addAttribute("acao", "add");
+            model.addAttribute("usuario", usuariologado);
+
+            
+            System.out.println(" salvou file : " + filename);
+            
+           
+//           usuario.setFoto(filename);
+
+        } catch (Exception e) {
+
+            System.out.println(e);
+
+            model.addAttribute("erro", erros + e);
+            model.addAttribute("acao", "add");
+            model.addAttribute("filename", filename);
+
+            model.addAttribute("usuario", usuariologado);            
+            System.out.println(" não salvou file : " + e);
+
+        }
+
+//       Usuario usuario =  new Usuario();
+     
+        this.usuariologado.setFoto(filename);
+        
+       return new ModelAndView("redirect:/usuario/cadastro").addObject("usuario", usuariologado);
+
+    }
+
 //        
 //    }  
 
