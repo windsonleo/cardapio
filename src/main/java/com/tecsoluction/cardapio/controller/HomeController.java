@@ -471,7 +471,8 @@ public class HomeController {
 
     	        message.setText("Olá Voce Recebeu este Email do Restaurante Sushi Senpai" +"Sua Senha é: " + senha +"\n" + "considere mudar sua senha");
     	        message.setTo(email);
-    	       message.setFrom("Sushi Senpai - Cardapio");
+    	        message.setSubject("Recuperação de Senha");
+    	    //   message.setFrom("Sushi Senpai - Cardapio");
 
     	        try {
     	            mailSender.send(message);
