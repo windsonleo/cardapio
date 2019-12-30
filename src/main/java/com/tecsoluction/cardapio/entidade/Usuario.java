@@ -56,7 +56,7 @@ public class Usuario  extends BaseEntity implements Serializable {
 	 @NotBlank(message="o nosenhame do Usuario não pode ser branco")
 	 private String senha;
 	
-	 @Column(name = "email", nullable = false)
+	 @Column(name = "email", nullable = false,unique=true)
 	 @Email(message="digite um email valido")
 	 @NotNull(message="o email do Usuario não pode ser nulo")
 	 @NotBlank(message="o email do Usuario não pode ser branco")
@@ -81,6 +81,11 @@ public class Usuario  extends BaseEntity implements Serializable {
     @JsonIgnore
     @OneToMany( cascade = {CascadeType.REFRESH},fetch=FetchType.EAGER)
 	 private Set<Produto> indicacoes;
+    
+    
+    
+	 @Column(name = "facebookid", nullable = true,unique=true)
+	 private String facebookid;
 
     
 //    @JsonIgnore

@@ -2,6 +2,7 @@ package com.tecsoluction.cardapio.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -462,6 +463,14 @@ public class HomeController {
     	String html=null;
     	
     	
+        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/");
+        
+        String nomearquivo = "logologinnn.png";
+        
+        String caminho = path + nomearquivo;
+
+    	
+    	
     	logger.info("Welcome enviar senha ! The client locale is {}.", locale);
     	
         ModelAndView home = new ModelAndView("/public/esquecisenha");
@@ -495,7 +504,7 @@ public class HomeController {
     		
     	}else {
     		
-    		 model.addAttribute("erro","usuario não existe");
+    		 model.addAttribute("erro",erro);
     		 model.addAttribute("usuario",usuar);
     		 model.addAttribute("acao","enviar");
     		 
@@ -553,7 +562,50 @@ public class HomeController {
     			}
     		    
     	
-    
+    		    String logoid = "sushilogo";
+    			//    
+    			    MimeBodyPart imagePart = new MimeBodyPart();
+    			    try {
+						imagePart.setHeader("Content-ID", "<" + logoid + ">");
+					} catch (MessagingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+    			    try {
+						imagePart.setDisposition(MimeBodyPart.INLINE);
+					} catch (MessagingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+    			    
+    			    
+    			     
+//    			    String imageFilePath = arquivoLocalizado.getPath().replace(arquivoLocalizado.getName(), "") + "img3.png";
+    			    		
+    			    System.out.println("img: "+ caminho);
+    			    
+    		
+    			        try {
+							imagePart.attachFile(caminho);
+						} catch (IOException | MessagingException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+
+
+    			   
+    			    
+    			    
+    			    
+    			    
+    				
+    				 try {
+						multipart.addBodyPart(imagePart);
+					} catch (MessagingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+    			    
 
     		
     		
@@ -621,9 +673,9 @@ public class HomeController {
     public String CriarBody(Usuario usuario){    
     	
     	
-    	StringBuilder stringbuilder = new StringBuilder();
+    StringBuilder stringbuilder = new StringBuilder();
 	
-	String src2 = "cid:govpe";
+	String src2 = "cid:sushilogo";
 	
 	String html =
 			
@@ -650,6 +702,7 @@ public class HomeController {
 String html2 = "</tbody> <h3 align=\"middle\" > <i>Recife, " + FormatadorData(new Date() )+ "</i></h3>" +
 
 //stringbuilder.append("<h1 align=\"right\" > <i>Recife, " + new Date() +"</i></h1>");
+"<p><img src= \"" + src2 + "\" alt=\"governo_desc\" width=\"300px;\" height=\"168px;\" align=\"middle\" /> </p>" +
 "<p align=\"middle\"><b>Sushi Senpai</b> </p>"  ;
 			
 	
