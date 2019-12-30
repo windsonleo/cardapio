@@ -1074,7 +1074,7 @@ private String FormatadorData(Date data){
      
         this.usuariologado.setFoto(filename);
         
-       return new ModelAndView("redirect:/registro").addObject("usuario", usuariologado);
+       return new ModelAndView("redirect:/registro").addObject("usuario", usuariologado).addObject("filename", filename);
 
     }
 
