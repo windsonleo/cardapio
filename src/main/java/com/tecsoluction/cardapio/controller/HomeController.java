@@ -782,7 +782,7 @@ private String FormatadorData(Date data){
        
     	logger.info("Welcome registro ! The client locale is {}.", locale);
 
-        ModelAndView home = new ModelAndView("/public/login");
+        ModelAndView home = new ModelAndView("/public/registro");
         
         usuarioService.save(usuario);
         
