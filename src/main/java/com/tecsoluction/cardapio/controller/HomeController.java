@@ -737,7 +737,7 @@ private String FormatadorData(Date data){
 //			// detentoErro.add(arg0)
 //		}
 		
-		SimpleDateFormat fmt2 = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");    
+		SimpleDateFormat fmt2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");    
 		//Date dat2 = null;
 		
 		//dat2 = fmt2.format(dat);
@@ -1029,6 +1029,8 @@ private String FormatadorData(Date data){
 
 
         System.out.println(" path = "  + path );
+        
+        logger.debug("caminho foto registro : " + caminho);
 
 //        System.out.println(" caminho" + caminho);
 //        
