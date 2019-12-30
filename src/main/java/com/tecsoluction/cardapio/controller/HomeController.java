@@ -525,11 +525,11 @@ public class HomeController {
     	   props.setProperty("mail.smtp.auth", "true");  //setei a autenticação  
 //    	   props.setProperty("mail.smtp.starttls.required","true");
     	   props.setProperty( "mail.smtp.quitwait", "false");
-    	   props.setProperty("mail.smtp.host", "smtp.gmail.com");
+    	   props.setProperty("mail.smtp.host", "smtp.googlemail.com");
     	   String user = props.getProperty("mail.smtp.user");
     	   String passwordd = props.getProperty("mail.smtp.password");
     	   props.put("mail.smtp.port","587");
-    	   props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+    	   props.put("mail.smtp.ssl.trust", "smtp.googlemail.com");
     	   
     	   Autenticador auth = null;
     		
