@@ -53,6 +53,7 @@ import com.tecsoluction.cardapio.util.GerenciadorCategorias;
 
 
 @Controller
+@RequestMapping(value = "cardapio/")
 public class HomeController {
 	
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
