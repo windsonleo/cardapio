@@ -146,23 +146,25 @@ public class UsuarioController extends AbstractController<Usuario> {
     }
     
     @RequestMapping(value = "/registro", method = RequestMethod.POST)
-    public ModelAndView RegistroPost(Locale locale, Model model, HttpServletRequest request) {
+    public ModelAndView RegistroPost(Locale locale, Model model, HttpServletRequest request,@ModelAttribute Usuario usuarior) {
        
     	logger.info("Welcome registro ! The client locale is {}.", locale);
 
         ModelAndView home = new ModelAndView("/public/registro");
         
-        Usuario usuario = new Usuario();
+//        Usuario usuario = new Usuario();
         
 //        usuario.setUsername(request.getParameter("username"));
 //        usuario.setEmail(request.getParameter("email"));
 //        usuario.setSenha(request.getParameter("senha"));
 //        usuario.setRoles(new HashMap().put(arg0, arg1));
        
-        getservice().save(usuario);
+        getservice().save(usuarior);
+        
+        
 
 
-        return new ModelAndView("forward:/login");
+        return new ModelAndView("forward:/registro");
     }
     
     

@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.tecsoluction.cardapio.exception.LoggingAccessDeniedHandler;
+
 
 
 
@@ -29,6 +31,9 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 	
 	@Autowired
 	private DataSourceConf dataSource;
+	
+	  @Autowired
+	    private LoggingAccessDeniedHandler accessDeniedHandler;
 	
 	
 	@Override
@@ -68,6 +73,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/bootstrap/**").permitAll()
 				.antMatchers("/categoria/exibir**").permitAll()
 				.antMatchers("/usuario/perfil**").permitAll()
+				.antMatchers("/produto/perfil**").permitAll()
 				.antMatchers("/usuario/autenticar**").permitAll()
 				.antMatchers("/usuario/lock**").permitAll()
 				.antMatchers("/usuario/add**").permitAll()
@@ -80,21 +86,24 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 //				.antMatchers("/evento/listar/").permitAll()
 //				.antMatchers("/paciente/listar/").permitAll()
 				.antMatchers("/home").permitAll()
-				.antMatchers("https://connect.facebook.net").permitAll()								
+				.antMatchers("https://connect.facebook.net").permitAll()	
+				.antMatchers("https://apis.google.com/js/platform.js").permitAll()
+				
 				.antMatchers("/webjars/**").permitAll()
 				.antMatchers("*/sass/**").permitAll()
 				.antMatchers("/private/**").hasAnyRole("ADM","SUPER").anyRequest().authenticated()
 				.and()
 				.csrf().disable().formLogin()
-				.loginPage("/login").failureUrl("/erro")
+				.loginPage("/login").failureUrl("/login?erro")
 				.defaultSuccessUrl("/home")
 				.usernameParameter("email")
 				.passwordParameter("senha").and()
 			    .rememberMe()
 				.and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/home").and().exceptionHandling()
-				.accessDeniedPage("/accessdenied");
+				.logoutSuccessUrl("/home?logout").and().exceptionHandling()
+				.accessDeniedHandler(accessDeniedHandler);
+//				.accessDeniedPage("/accessdenied");
 				
 //		http.sessionManagement().maximumSessions(sessaoMax).and().invalidSessionUrl("/sessaoinvalida").and()
 //		.sessionManagement().sessionFixation().migrateSession();
@@ -164,7 +173,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 	
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.inMemoryAuthentication()
                 .withUser("cliente").password("passwordcliente").roles("CLIENTE")

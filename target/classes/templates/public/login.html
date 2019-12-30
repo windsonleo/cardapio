@@ -15,6 +15,32 @@
  src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513">
  
  </script>
+ 
+ 
+ <script th:src="@{https://apis.google.com/js/platform.js?onload=renderButton}" src="https://apis.google.com/js/platform.js?onload=renderButton" th:async="async" th:defer="defer" ></script>
+	
+	       <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 300,
+        'height': 40,
+        'longtitle': false,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+	
+	
+	
 	
 	
 	<script>
@@ -216,7 +242,17 @@
   
 </script>
 
+<script type="text/javascript">
 
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+
+</script>
 	
 	<div class="login-box">
   <div class="login-logo">
@@ -255,17 +291,18 @@
     <div id="status">
 </div>
 
-    <div class="social-auth-links text-center">
+    <div class="social-auth-links">
       <p>- OU -</p>
       
-                <div class="fb-login-button" data-width="320px" data-size="large" data-button-type="login_with"
+           <p>     <div class="fb-login-button" data-width="300px" data-size="large" data-button-type="login_with"
      data-auto-logout-link="false" data-use-continue-as="false" data-onlogin="checkLoginState()" data-scope="public_profile,email" ></div>
       
-<!--       <a href="#" onclick="checkLoginState();" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Acesse Usando o -->
-<!--         Facebook </a> -->
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Acesse Usando o Google+ </a>
-      
-
+		</p>
+<!--    			<div class="g-signin2" data-onsuccess="onSignIn" data-width="300px" data-height="40px" data-longtitle="true"></div>    -->
+<!--       <br></br> -->
+			
+			
+			<p>	<div id="my-signin2"></div> </p>
       
 <!--               <fb:login-button  -->
 <!--   scope="public_profile,email" -->
@@ -385,6 +422,9 @@
       
       
       </script>
+      
+      
+
      
       
   </body>

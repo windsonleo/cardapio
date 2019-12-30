@@ -3,7 +3,7 @@
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head th:replace="fragmentos/head :: head-css">
-    <title>Reistro de Usuario</title>
+    <title>Registro de Usuario</title>
 </head>
 
 <body  class="hold-transition register-page" >
@@ -102,7 +102,7 @@
 
 					<form th:action="@{/salvarfotousuarioReg}" th:object="${usuario}"
 						ModelAttribute="usuario" enctype="multipart/form-data"
-						method="post">
+						th:method="post">
 
 						<!-- Widget: user widget style 1 -->
 						<div class="box box-widget widget-user">
@@ -167,6 +167,9 @@
 												<p class="help-block">Example block-level help text
 													here.</p>
 											</div>
+											
+<!-- 																			<input type="hidden" name="${_csrf.parameterName}" -->
+<!-- 									value="${_csrf.token}" /> -->
 
 											<h5 class="description-header">
 												<button type="submit"
@@ -191,8 +194,9 @@
 					</form>
 				</div>
 
+	<div class="col-md-12" style="margin: 5px;">
 	
-    <form id="reg" method="post" th:object="${usuario}" ModelAttribute="usuario" th:action="@{/registroenv}" role="form">
+    <form id="reg" th:method="post" th:object="${usuario}" ModelAttribute="usuario" th:action="@{/registroenv}" role="form">
       
       								<div class="form-group has-feedback">
 
@@ -296,6 +300,10 @@
           </div>
         </div>
         <!-- /.col -->
+        
+        								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+        
         <div class="col-xs-5">
           <button type="submit" th:value="${acao}" th:text="${acao}" class="btn btn-primary btn-raised btn-block">Registro</button>
         </div>
@@ -303,7 +311,7 @@
       </div>
     </form>
 
-
+</div>
 
     <a th:href="@{/login}" class="text-center">já sou Membro</a>
   </div>

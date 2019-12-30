@@ -14,7 +14,12 @@
 
 			<body  class="hold-transition skin-red sidebar-mini" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
 			
-			
+			<div id="fb-root"> </div>
+<script th:async="async" th:defer="defer"  crossorigin="anonymous"
+ th:src="@{https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513}"
+ src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513">
+ 
+ </script>	
 			
 <!-- 			<div id="fb-root"></div> -->
 <!-- <script async defer crossorigin="anonymous" th:src="@{https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v5.0}"></script> -->
@@ -261,8 +266,15 @@
               <ul class="nav nav-stacked">
                 <li><a href="#">Qtd <span class="pull-right badge bg-blue" th:text="${produto.un_medida}" >31</span></a></li>
                 <li><a href="#">Preco <span class="pull-right badge bg-aqua" th:text="${produto.precovenda}" >5</span></a></li>
-                <li><a href="#">Curtir <span class="pull-right badge bg-green"><i class="fa fa-thumbs-up">12</i></span></a></li>
-                <li><a th:href="@{/usuario/indica(id=${produto.id})}">Sugerir <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i>84</span></a></li>
+                
+<!--                 <li><a href="#">Curtir <span class="pull-right badge bg-green"><i class="fa fa-thumbs-up">12</i></span></a></li> -->
+<!--                 <li><a href="#"> Curtir  <span class="pull-right badge bg-green"> <div class="fb-like pull-right" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li> -->
+                
+<!--                 <li> <a href="#"> Recomendar <span class="pull-right badge bg-green"> <div class="fb-like pull-right" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li> -->
+           
+                           <li><a th:href="@{/produto/perfil(id=${produto.id})}">Perfil <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i></span></a></li>
+           
+                <li><a th:href="@{/usuario/indica(id=${produto.id})}">Indicar <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i>84</span></a></li>
               <li><a href="#" data-toggle="modal" class="product-title" th:attr="data-target='#myAtividade' + ${produto.codebar}" >Detalhes <span class="pull-right badge bg-red" ><i class="fa fa-hand-o-right"></i>84</span></a></li>
               </ul>
             </div>

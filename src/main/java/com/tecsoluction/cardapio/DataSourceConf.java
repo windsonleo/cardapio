@@ -72,6 +72,11 @@ public class DataSourceConf {
 		ps.put("spring.datasource.validationQuery","SELECT 1");
 		ps.put("spring.thymeleaf.cache","false");
 		ps.put("security.basic.enabled","false");
+		ps.put("spring.thymeleaf.mode","LEGACYHTML5");
+
+		ps.put("spring.social.facebook.appId","1047331868960513");
+		ps.put("spring.social.facebook.appSecret","88b9a5181187e858176ae7f09a4bb6b4");
+		
 
 		
         lcemfb.setJpaProperties(ps);

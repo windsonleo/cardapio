@@ -49,6 +49,11 @@ public class ContextoAplicacao {
 	 
 	 @Autowired
 	  private ConfiguracaoServicoImpl ConfiguracaoService;
+	 
+	 
+	 private Usuario usuario;
+	 
+	 private Date hoje;
 	 	
 	 
 	 	
@@ -119,7 +124,7 @@ public class ContextoAplicacao {
 		
 		
         
-        Usuario usuario = new Usuario();
+         usuario = new Usuario();
         usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         usuario = userService.findByEmail(usuario.getEmail());
         
@@ -140,7 +145,7 @@ public class ContextoAplicacao {
         
         }
         
-        Date hoje = new Date();
+         hoje = new Date();
         
 
         
@@ -158,6 +163,10 @@ public class ContextoAplicacao {
 		ModelAndView model = new ModelAndView("/public/error/erro");
 		model.addObject("errCode", ex.getErrCode());
 		model.addObject("errMsg", ex.getErrMsg());
+        model.addObject("usuarioAtt", usuario);
+        model.addObject("categoriaLista", categoriaLista);
+        model.addObject("configuracaoAtual", configuracaoAtual);
+        model.addObject("hoje", hoje);
 
 		return model;
 
@@ -168,6 +177,10 @@ public class ContextoAplicacao {
 
 		ModelAndView model = new ModelAndView("/public/error/erro");
 		model.addObject("errMsg", ex.toString());
+        model.addObject("usuarioAtt", usuario);
+        model.addObject("categoriaLista", categoriaLista);
+        model.addObject("configuracaoAtual", configuracaoAtual);
+        model.addObject("hoje", hoje);
 
 		return model;
 

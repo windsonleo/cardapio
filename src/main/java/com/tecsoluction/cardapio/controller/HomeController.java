@@ -96,7 +96,7 @@ public class HomeController {
     
 
     
-    private Usuario usuariologado;
+    private Usuario usuario;
 
 	private String filename="avatar_usu.jpg";
 
@@ -126,7 +126,7 @@ public class HomeController {
 
 		  
 		  
-		  
+		  usuario = new Usuario();
 		  
 //		  qtdusuarios = usuarios.size();
 		  
@@ -149,8 +149,8 @@ public class HomeController {
 	        model.addAttribute("promocoesList", promocoes);
 	        model.addAttribute("gerenciacat", gerenciacat);
 	        model.addAttribute("categoriaListall", categoriasall);
-//	        model.addAttribute("eventos", eventos);
-//	        model.addAttribute("patologias", patologias);
+	        model.addAttribute("usuario", usuario);
+	        model.addAttribute("filename", filename);
 //	        model.addAttribute("qtdpacientesaltas", qtdpacientesaltas);
 //	        model.addAttribute("qtdpacientesinternados", qtdpacientesinternados);
 
@@ -324,7 +324,7 @@ public class HomeController {
         
         
         
-        login.addObject("usuario", usuariologado);
+        login.addObject("usuario", usuario);
 
 
         return login;
@@ -414,7 +414,7 @@ public class HomeController {
 
         ModelAndView home = new ModelAndView("/public/error/erro");
         
-        home.addObject("usuario", new Usuario());
+        home.addObject("usuario",usuario );
 
 
         return home;
@@ -441,7 +441,7 @@ public class HomeController {
 
         ModelAndView home = new ModelAndView("/public/esquecisenha");
 
-        home.addObject("usuario",new Usuario());
+        home.addObject("usuario",usuario);
         home.addObject("acao","enviar");
 //		 model.addAttribute("filename",filename);
 
@@ -492,7 +492,12 @@ public class HomeController {
     		
     	}else {
     		
-    		usuar.setEmail(email);
+    		usuario.setEmail(email);
+   		 model.addAttribute("erro",erro);
+   		 model.addAttribute("usuario",usuario);
+   		 model.addAttribute("acao","enviar");
+   		 
+   		 return	home;
     	}
     	
     	
@@ -531,6 +536,10 @@ public class HomeController {
     	   String passwordd = props.getProperty("mail.smtp.password");
     	   props.put("mail.smtp.port","587");
     	   props.put("mail.smtp.ssl.trust", "smtp.googlemail.com");
+    	   
+    	   props.put("mail.smtp.ssl.enable", "true");
+    	   
+    	 
     	   
     	   Autenticador auth = null;
     		
@@ -645,7 +654,7 @@ public class HomeController {
 
   		 model.addAttribute("usuario",usuar);
  		 model.addAttribute("sucesso",sucesso);
- 		 model.addAttribute("acao","acao");
+ 		 model.addAttribute("acao","enviado");
 // 		 model.addAttribute("filename",filename);
 
 
@@ -663,7 +672,7 @@ public class HomeController {
     	}else {
     		
    		 model.addAttribute("erro","usuario não existe");
-   		 model.addAttribute("usuario",usuariologado);
+   		 model.addAttribute("usuario",usuario);
 //   		 model.addAttribute("filename",filename);	
     		
     	}
@@ -765,13 +774,14 @@ private String FormatadorData(Date data){
 
         ModelAndView home = new ModelAndView("/public/registro");
         
+       Usuario usuario = new Usuario();
         
         Rolesall = RoleService.findAll();
         
         home.addObject("roles",Rolesall);
-        home.addObject("usuario",new Usuario());
+        home.addObject("usuario",usuario);
         home.addObject("filename",filename);
-		 model.addAttribute("acao","acao");
+		 model.addAttribute("acao","add");
 
 
         return home;
@@ -779,23 +789,26 @@ private String FormatadorData(Date data){
     
     
     @RequestMapping(value = "/registroenv", method = RequestMethod.POST)
-    public ModelAndView RegistroENV(Locale locale, Model model ,@ModelAttribute Usuario usuario) {
+    public ModelAndView RegistroENV(Locale locale, Model model ,@ModelAttribute Usuario usuario2) {
        
-    	logger.info("Welcome registro ! The client locale is {}.", locale);
+    	logger.info("Welcome registro env ! The client locale is {}.", locale);
 
         ModelAndView home = new ModelAndView("/public/registro");
         
-        usuarioService.save(usuario);
+        usuarioService.save(usuario2);
+        
+//       Usuario usuariologado = usuario;
         
         home.addObject("roles",Rolesall);
-        home.addObject("usuario",usuario);
-		 model.addAttribute("acao","acao");
+        home.addObject("usuario",usuario2);
+		 model.addAttribute("acao","edit");
         home.addObject("filename",filename);
 
         home.addObject("sucesso","Salvo ! Confira seus dados");
 
 
-        return home;
+        return new ModelAndView("redirect:/registro").addObject("usuario", usuario).addObject("filename", filename)
+        		.addObject("acao", "edit").addObject("roles", Rolesall);
     }
     
     
@@ -1006,10 +1019,10 @@ private String FormatadorData(Date data){
     @RequestMapping(value = "salvarfotousuarioReg", method = RequestMethod.POST)
     public ModelAndView SalvarFotoProduto2d(@RequestParam ("file") MultipartFile file, HttpSession session, HttpServletRequest request,
                              Model model, @ModelAttribute Usuario usuarior) {
-    	
-   	Usuario usuario = null;
+    	logger.info("Welcome salvarfotousuarioReg ! The model {}.", model);	
+//   	Usuario usuario = null;
    	
-   	usuariologado = usuarior;
+//   Usuario	usuariologadoo = usuarior;
 
         String sucesso = "Sucesso ao salvar foto";
         
@@ -1048,11 +1061,11 @@ private String FormatadorData(Date data){
 
             
             
-            usuariologado.setEmail(filename);
+//            usuariologado.setEmail(filename);
             model.addAttribute("sucesso", sucesso);
             model.addAttribute("filename", filename);
             model.addAttribute("acao", "add");
-            model.addAttribute("usuario", usuariologado);
+            model.addAttribute("usuario", usuarior);
 
             
             System.out.println(" salvou file : " + filename);
@@ -1068,16 +1081,19 @@ private String FormatadorData(Date data){
             model.addAttribute("acao", "add");
             model.addAttribute("filename", filename);
 
-            model.addAttribute("usuario", usuariologado);            
+            model.addAttribute("usuario", usuarior);            
             System.out.println(" não salvou file : " + e);
 
         }
 
 //       Usuario usuario =  new Usuario();
      
-        this.usuariologado.setFoto(filename);
+//        this.usuariologado.setFoto(filename);
         
-       return new ModelAndView("redirect:/registro").addObject("usuario", usuariologado).addObject("filename", filename);
+        this.usuario.setFoto(filename);
+        
+       return new ModelAndView("redirect:/registro").addObject("usuario", usuario).addObject("filename", filename)
+    		   .addObject("acao", "add").addObject("roles", Rolesall);
 
     }
 

@@ -226,7 +226,21 @@ public class ProdutoController extends AbstractController<Produto> {
         return gerencia;
     }
     
-    
+    @RequestMapping(value = "/perfil", method = RequestMethod.GET)
+    public ModelAndView ExibirCategoria(HttpServletRequest request) {
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+//        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+        
+        ModelAndView exibircat = new ModelAndView("/public/perfil");
+
+        Produto cat = getservice().findOne(idf);
+
+        exibircat.addObject("produto", cat);
+
+        return exibircat;
+    }  
     
 
     @Override
