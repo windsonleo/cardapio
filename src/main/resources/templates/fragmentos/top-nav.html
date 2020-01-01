@@ -13,6 +13,262 @@
 
 	<body  class="hold-transition skin-black sidebar-mini"   th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
 	
+		<div id="fb-root"> </div>
+<script th:async="async" th:defer="defer"  crossorigin="anonymous"
+ th:src="@{https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513}"
+ src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513">
+ 
+ </script>
+ 
+ 
+  <script th:src="@{https://apis.google.com/js/platform.js?onload=renderButton}" src="https://apis.google.com/js/platform.js?onload=renderButton" th:async="async" th:defer="defer" ></script>
+	
+	
+	<script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      onSignIn(googleUser);
+      
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 300,
+        'height': 40,
+        'longtitle': false,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+	
+	
+	
+	
+	
+	<script>
+	
+	
+	 var accessToken = null;
+	 
+// 	 var senhas =null;
+	
+	// This is called with the results from from FB.getLoginStatus().
+	  function statusChangeCallback(response) {
+	    console.log('statusChangeCallback');
+	    console.log(response);
+	    // The response object is returned with a status field that lets the
+	    // app know the current login status of the person.
+	    // Full docs on the response object can be found in the documentation
+	    // for FB.getLoginStatus().
+	    if (response.status === 'connected') {
+	      // Logged into your app and Facebook.
+// 	         UsuarioConectado2();
+	      accessToken = response.authResponse.accessToken;
+		    console.log(accessToken);
+
+	      UsuarioConectado();
+	      
+	    } else {
+	      // The person is not logged into your app or we are unable to tell.
+	      
+// 	      loginFacebook();
+	      document.getElementById('status').innerHTML = 'Por Favor Entre ' +
+	        'no Cardapio.';
+	    }
+	  }
+
+	  // This function is called when someone finishes with the Login
+	  // Button.  See the onlogin handler attached to it in the sample
+	  // code below.
+	  function checkLoginState() {
+	    FB.getLoginStatus(function(response) {
+	      statusChangeCallback(response);
+	    });
+	  }
+
+  
+	  window.fbAsyncInit = function() {
+		    FB.init({
+		        appId      : '1047331868960513',
+		        cookie     : true,
+		        xfbml      : true,
+		        version    : 'v5.0'
+		    });
+		    
+		    FB.AppEvents.logPageView();   
+	  
+
+	    // Now that we've initialized the JavaScript SDK, we call 
+	    // FB.getLoginStatus().  This function gets the state of the
+	    // person visiting this page and can return one of three states to
+	    // the callback you provide.  They can be:
+	    //
+	    // 1. Logged into your app ('connected')
+	    // 2. Logged into Facebook, but not your app ('not_authorized')
+	    // 3. Not logged into Facebook and can't tell if they are logged into
+	    //    your app or not.
+	    //
+	    // These three cases are handled in the callback function.
+
+	    FB.getLoginStatus(function(response) {
+	    	
+	        accessToken = response.authResponse.accessToken;
+		    console.log('2' + accessToken);
+	      statusChangeCallback(response);
+	    },true);
+
+	  };
+
+	  // Load the SDK asynchronously
+	  (function(d, s, id) {
+	    var js, fjs = d.getElementsByTagName(s)[0];
+	    if (d.getElementById(id)) return;
+	    js = d.createElement(s); js.id = id;
+	    js.src = "https://connect.facebook.net/pt_BR/sdk.js";
+	    fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));
+
+	  // Here we run a very simple test of the Graph API after login is
+	  // successful.  See statusChangeCallback() for when this call is made.
+	  function UsuarioConectado() {
+		  
+// 		  UsuarioConectado2();
+		  
+	    console.log('Welcome!  Fetching your information.... ');
+	    FB.api('/me',{ access_token : accessToken },{fields:'name,email'}, function(response) {
+		
+//	 	FB.api('/me',function(response) {
+	      console.log('Successful login for: ' + response.name);
+	      console.log('email2:' + response.email);
+
+	      document.getElementById('status').innerHTML =
+	        'Thanks for logging in, ' + response.name + '!'
+	        + 'email : ' +  response.email + '!' +
+//	          'imagem : ' + response.picture + '!' + 
+	      'id : ' + response.id + '!' ;
+	      
+	      document.getElementById('fotho').innerHTML =
+	      '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
+	      
+// 	      Gerarnumero();
+	      var senhaa = '2213456';
+	      
+	      var nomee = response.name ;
+	      
+	      var mmail =  response.email;
+	      
+// 	      var emailo = 'eu@hotgmail.com';
+	      
+	      var fotoo = 'https://graph.facebook.com/' + response.id + '/picture';
+	      
+	      var fbid =  response.id;
+	      
+	      console.log("foto:" + fotoo);
+
+	      
+// 	      document.getElementById('email').value = response.email;
+			document.getElementById('email').value = mmail;
+	    	  
+	      document.getElementById('senha').value = senhaa;
+	      
+//	       document.getElementById('loggin').submit();
+
+	//var text = '{"nome":"'+ nomee  + '","email":"' + mmail+'","foto":"'+fotoo+'","senha":"'+ senhaa + '"}';
+
+
+	var text = [nomee, mmail,fotoo,senhaa,fbid];
+
+	var result = {nome:text[0],email:text[1],foto:text[2],senha:text[3],facebookid:text[4]};
+
+
+	// console.log("text:" + text);
+	// var objeto = JSON.parse(text);
+
+
+	var json = JSON.stringify(result);
+
+	console.log("json:" + json);
+
+			$.ajax({
+				type: "POST",
+				contentType: "application/json",
+				url: "/usuario/salvarFacebook",
+//					url: "/evento/salvar/",
+				data: json, // convert array to JSON
+				dataType: 'json',
+				cache: false,
+				timeout: 100000,
+				success: function (data) {
+
+					console.log("SUCCESS : ", data);
+//						alert("Eventos Atualizados : " + data);
+				//	window.location.reload();
+
+				},
+				error: function (e) {
+
+					console.log("ERROR : ", e);
+
+				}
+			});
+			
+			
+			
+//	 		document.getElementById('loggin').submit();
+		
+	      
+	    });
+	    
+	    }
+	    
+// 	    function loginFacebook() {
+// 	    	  FB.login(function(response) {
+// 	    	    if (response.authResponse) {
+// 	    	    	checkLoginState();
+// 	    	    }       
+// 	    	  }, {scope: 'email,name,id' });
+// 	    	}
+	    
+	    
+// 	    function Gerarnumero() {
+	    	
+// 		var senha0 = Math.floor(Math.random() * 10);
+// 		var senha1 = Math.floor(Math.random() * 10);
+// 		var senha2 = Math.floor(Math.random() * 10);
+// 		var senha3 = Math.floor(Math.random() * 10);
+// 		var senha4 = Math.floor(Math.random() * 10);
+// 		var senha5 = Math.floor(Math.random() * 10);
+		
+// 		senhas = senha0 +senha1+senha2+senha3+senha4+senha5;
+		
+	    		   
+// 	   console.log("senha:" , senhas);
+	    		   
+	    	
+	    
+// 	    }
+	    
+	   	 
+  
+</script>
+
+<script type="text/javascript">
+
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+
+</script>
+	
 	<!-- top navigation	    -->
 <!-- 		<nav th:fragment="nav" class="navbar navbar-default header navbar-fixed-top"> -->
 <!--           <div class="col-md-12 nav-wrapper"> -->
@@ -228,7 +484,7 @@
                     <a th:href="@{/usuario/lock}">LOCK</a>
                   </div>
                   <div class="col-xs-4 text-center">
-<!--                     <a href="#">Friends</a> -->
+                    <a th:href="@{/login}">LOGIN</a>
                   </div>
                 </div>
               </li>
