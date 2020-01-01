@@ -171,7 +171,7 @@
 
 				<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 panel">
 
-					<form th:action="@{/produto/add}" ModelAttribute="produto"
+					<form th:action="@{/produto/{acao}(acao=${acao})}" ModelAttribute="produto"
 						method="POST" th:object="${produto}">
 
 

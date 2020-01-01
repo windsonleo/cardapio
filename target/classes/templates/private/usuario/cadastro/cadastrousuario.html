@@ -209,7 +209,7 @@
 						<div class="panel-body" style="padding-bottom: 30px;">
 
 
-							<form th:action="@{/usuario/add}" th:object="${usuario}"
+							<form th:action="@{/usuario/{acao}(acao=${acao})}" th:object="${usuario}"
 								ModelAttribute="usuario" method="POST">
 
 
@@ -225,6 +225,19 @@
 
 
 
+								</div>
+								
+						<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-envelope"></i>
+										</div>
+
+										<input id="id" name="id" class="form-control android"
+											type="text" th:value="${usuario.id}"
+											placeholder="Digite o id" readonly="readonly" />
+
+									</div>
 								</div>
 
 

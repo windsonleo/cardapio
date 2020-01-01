@@ -110,7 +110,7 @@
 
                       
                         <form class="form-horizonta" method="post" th:object="${categoria}" 
-                             th:action="@{/categoria/add}">
+                             th:action="@{/categoria/{acao}(acao=${acao})}">
 
 			<div class="checkbox">
                 <label>
