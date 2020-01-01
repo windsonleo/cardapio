@@ -191,6 +191,9 @@ public class PromocaoController extends AbstractController<Promocao> {
 	    public ModelAndView AddProduto( HttpSession session,
 	                                    HttpServletRequest request, Model model) {
 
+		
+		  ModelAndView addproduto = new ModelAndView("/private/promocao/cadastro/cadastropromocao");
+		  
 		  prodpromo.clear();
 //		  promocao.getProdutos().clear();
 		  
@@ -201,7 +204,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 		  
 		  idfpromo = UUID.fromString(idpromo);
 		  
-		  promocao = getservice().findOne(idfpromo);
+		  this.promocao = getservice().findOne(idfpromo);
 
 //		  promocao.getProdutos().clear();
 		  
@@ -235,7 +238,11 @@ public class PromocaoController extends AbstractController<Promocao> {
 				
 //				p.addPromo(promocao);
 		  
-				promocao.addProduto(p);
+				this.promocao.addProduto(p);
+				
+				p.addPromo(promocao);
+				
+				
 				
 			}
 			
@@ -244,7 +251,9 @@ public class PromocaoController extends AbstractController<Promocao> {
 			//promocao.setProdutos(prodpromo);
 			
 			getservice().edit(promocao);
-	  		
+			
+			
+//			produtoService.edit(p)
 //	  		UUID idf = UUID.fromString(request.getParameter("produtos"));
 //	       
 //	  		Produto produto = produtoService.findOne(idf);

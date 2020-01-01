@@ -117,6 +117,10 @@ public class Promocao extends BaseEntity implements Serializable {
     	
     	this.getProdutos().add(not);
     	
+    	not.addPromo(this);
+    	
+    	
+    	
     	
     }
 
@@ -124,6 +128,7 @@ public class Promocao extends BaseEntity implements Serializable {
     public void removeProduto(Produto not){
     	
     	this.getProdutos().remove(not);
+    	not.removePromo(this);
     	
     } 
     

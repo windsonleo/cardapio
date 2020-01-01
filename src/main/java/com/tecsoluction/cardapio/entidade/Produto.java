@@ -105,19 +105,22 @@ public class Produto extends BaseEntity implements Serializable {
     
     
 	
-//    public void addPromo(Promocao not){
-//    	
-//    	
-//    	this.getPromocoes().add(not);
-//    	
-//    }
-//
-//
-//    public void removePromo(Promocao not){
-//    	
-//    	this.getPromocoes().remove(not);
-//    	
-//    } 
+    public void addPromo(Promocao not){
+    	
+    	
+    	this.getPromocoes().add(not);
+    	
+    	not.addProduto(this);
+    	
+    }
+
+
+    public void removePromo(Promocao not){
+    	
+    	this.getPromocoes().remove(not);
+    	not.removeProduto(this);
+    	
+    } 
     
     
 
