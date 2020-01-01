@@ -478,7 +478,12 @@ public class HomeController {
     	String html=null;
     	
     	
-        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/");
+    //    String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/");
+    	
+    	String path = context.getRealPath("/static/img/");
+    	
+    	logger.info("Welcome enviar senha path img email ! The client locale is {}.", path);
+
         
         String nomearquivo = "logologinnn.png";
         
@@ -1057,7 +1062,9 @@ private String FormatadorData(Date data){
 
 //        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario/");
         
-        String path = context.getRealPath("/WEB-INF/classes/static/img/usuario/");
+//        String path = context.getRealPath("/WEB-INF/classes/static/img/usuario/");
+        
+        String path = context.getRealPath("/resources/static/img/usuario/");
         
         this.filename= file.getOriginalFilename();
         
@@ -1069,7 +1076,7 @@ private String FormatadorData(Date data){
         
 
 
-        System.out.println(" path = "  + path );
+        System.out.println(" path realpath = "  + path );
         
         logger.debug("caminho foto registro : " + caminho);
 
