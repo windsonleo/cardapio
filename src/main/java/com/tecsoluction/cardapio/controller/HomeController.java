@@ -480,7 +480,7 @@ public class HomeController {
     	
     //    String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/");
     	
-    	String path = context.getRealPath("/static/img/");
+    	String path = context.getRealPath("/img/");
     	
     	logger.info("Welcome enviar senha path img email ! The client locale is {}.", path);
 
