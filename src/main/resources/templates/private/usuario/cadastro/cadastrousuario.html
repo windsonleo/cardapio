@@ -209,7 +209,7 @@
 						<div class="panel-body" style="padding-bottom: 30px;">
 
 
-							<form th:action="@{/usuario/add}" th:object="${usuario}"
+							<form th:action="@{/usuario/{acao}(acao=${acao})}" th:object="${usuario}"
 								ModelAttribute="usuario" method="POST">
 
 
