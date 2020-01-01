@@ -202,7 +202,7 @@
 						<div class="panel-body" style="padding-bottom: 30px;">
 
 
-							<form th:action="@{/promocao/add}" th:object="${promocao}"
+							<form th:action="@{/promocao/{acao}(acao=${acao})}" th:object="${promocao}"
 								ModelAttribute="promocao" method="POST">
 
 

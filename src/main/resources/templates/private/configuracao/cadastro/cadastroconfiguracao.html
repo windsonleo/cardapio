@@ -441,7 +441,7 @@
 
                       
                         <form class="form-horizontal" method="post" th:object="${configuracao}" 
-                             th:action="@{/configuracao/add}">
+                             th:action="@{/configuracao/{acao}(acao=${acao})}">
                  
                   <div class="form-group">
                     <label for="id" class="col-sm-2 control-label">Id</label>
