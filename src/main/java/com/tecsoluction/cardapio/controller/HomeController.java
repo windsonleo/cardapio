@@ -1099,7 +1099,7 @@ private String FormatadorData(Date data){
             
             
             this.usuario.setFoto(filename);
-            cadastro.addObject("sucesso", sucesso);
+            model.addAttribute("sucesso", sucesso);
 //            cadastro.addObject("filename", filename);
 //            cadastro.addObject("acao", "add");
 //            cadastro.addObject("usuario", usuario);
@@ -1114,7 +1114,7 @@ private String FormatadorData(Date data){
 
             System.out.println(e);
 
-            cadastro.addObject("erro", erros + e);
+            model.addAttribute("erro", erros + e);
 //            cadastro.addObject("acao", "add");
 //            cadastro.addObject("filename", filename);
 
@@ -1129,10 +1129,10 @@ private String FormatadorData(Date data){
         
 //        usuario.setFoto(filename);
         
-        cadastro.addObject("roles", Rolesall);
-        cadastro.addObject("usuario", usuario); 
-        cadastro.addObject("filename", filename);
-        cadastro.addObject("acao", "add");
+        model.addAttribute("roles", Rolesall);
+        model.addAttribute("usuario", usuario); 
+        model.addAttribute("filename", filename);
+        model.addAttribute("acao", "add");
 
      //   usuarior.setFoto(filename);
 //       return new ModelAndView("redirect:/registro").addObject("usuario", usuarior).addObject("filename", filename)
