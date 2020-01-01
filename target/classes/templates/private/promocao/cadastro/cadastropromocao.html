@@ -358,6 +358,20 @@
 											placeholder="Data validade" />
 									</div>
 								</div>
+								
+								
+								            <div class="col-md-12">
+              <div class="form-group">
+                <label>Produtos</label>
+                <select class="form-control select2" id="produtos"  name="produtos" multiple="multiple" data-placeholder="Select a Produto" style="width: 100%;">
+                 
+          <option th:each="produto: ${promocao.produtos}" th:selected="${produto.nome}" th:text="${produto.nome}" th:value="${produto.id}" class="selected" >Usuario Não Tem Nenhuma Regra</option>
+                 
+                               
+                </select>
+              </div>
+
+                </div>
 
 
 

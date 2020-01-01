@@ -263,7 +263,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 			model.addAttribute("prodpromo",prodpromo);
 			model.addAttribute("promocao",promocao);
 	  		
-	  		return new ModelAndView("forward:/promocao/cadastro/");
+	  		return addproduto;
 
 	    }
 	  	
