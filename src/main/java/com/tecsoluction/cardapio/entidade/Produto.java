@@ -2,6 +2,8 @@ package com.tecsoluction.cardapio.entidade;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -59,7 +61,7 @@ public class Produto extends BaseEntity implements Serializable {
     private BigDecimal precovenda;
     
     @ManyToMany(mappedBy = "produtos")
-    private Set<Promocao> promocoes;
+    private Set<Promocao> promocoes = new HashSet<>();
 
     @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "categoria_id", nullable = false)
@@ -94,6 +96,8 @@ public class Produto extends BaseEntity implements Serializable {
         this.esugestao = esugestao;
         this.novo = novo;
         this.avaliacao = avalia;
+        
+        
     }
 
     public Produto() {

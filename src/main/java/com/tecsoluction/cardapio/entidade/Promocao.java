@@ -63,7 +63,7 @@ public class Promocao extends BaseEntity implements Serializable {
     @JoinTable(name = "promocao_produto",
     joinColumns = @JoinColumn(name = "idpromocao"),
     inverseJoinColumns = @JoinColumn(name = "idproduto"))
-    private Set<Produto> produtos;
+    private Set<Produto> produtos  = new HashSet<>();
     
     
     @Column(name = "corfaixa",nullable = false)
@@ -74,7 +74,7 @@ public class Promocao extends BaseEntity implements Serializable {
     
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date datavalidade;
+	private Date datavalidade = new Date();
     
     
     
@@ -90,7 +90,7 @@ public class Promocao extends BaseEntity implements Serializable {
     public Promocao() {
         // TODO Auto-generated constructor stub
 //        produtos = new HashSet<Produto>();
-        datavalidade = new Date();
+//        datavalidade = new Date();
     }
 
 
