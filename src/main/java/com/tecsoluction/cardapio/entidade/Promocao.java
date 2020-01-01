@@ -91,6 +91,8 @@ public class Promocao extends BaseEntity implements Serializable {
         // TODO Auto-generated constructor stub
 //        produtos = new HashSet<Produto>();
 //        datavalidade = new Date();
+    	
+        super();
     }
 
 
