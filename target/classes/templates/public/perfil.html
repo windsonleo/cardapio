@@ -1,6 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  
+<meta property="og:url"                th:attr="content='https://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" />
+<meta property="og:type"               th:attr="content='website'" />
+<meta property="og:title"               th:attr="content='Perfil:' + ${produto.nome}" />
+<meta property="og:description"        th:attr="content='Descrição:'+ ${produto.descricao}" />
+<meta property="og:image"               th:attr="content='https://sleepy-atoll-65818.herokuapp.com/img/produto/' + ${produto.foto}" />
 
 	<head th:replace="fragmentos/head :: head-css">
 	
@@ -122,9 +128,9 @@
                 <li><a href="#">Preco <span class="pull-right badge bg-aqua" th:text="${produto.precovenda}" >5</span></a></li>
                 
 <!--                 <li><a href="#">Curtir <span class="pull-right badge bg-green"><i class="fa fa-thumbs-up">12</i></span></a></li> -->
-                <li>  <a href="#"> Curtir  <span class="pull-right badge bg-green"> <div class="fb-like pull-right" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li>
+                <li>  <a href="#"> Curtir  <span class="pull-right"> <div class="fb-like" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li>
                 
-                <li> <a href="#"> Recomendar <span class="pull-right badge bg-green"> <div class="fb-like pull-right" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li>
+                <li> <a href="#"> Recomendar <span class="pull-right"> <div class="fb-like" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li>
            
            
 <!--                 <li><a th:href="@{/usuario/indica(id=${produto.id})}">Sugerir <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i>84</span></a></li> -->

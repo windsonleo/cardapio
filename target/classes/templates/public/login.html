@@ -22,6 +22,8 @@
 	       <script>
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      onSignIn(googleUser);
+      
     }
     function onFailure(error) {
       console.log(error);
@@ -47,6 +49,8 @@
 	
 	
 	 var accessToken = null;
+	 
+// 	 var senhas =null;
 	
 	// This is called with the results from from FB.getLoginStatus().
 	  function statusChangeCallback(response) {
@@ -146,7 +150,8 @@
 	      document.getElementById('fotho').innerHTML =
 	      '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
 	      
-	      var senhaa = '232425';
+// 	      Gerarnumero();
+	      var senhaa = '2213456';
 	      
 	      var nomee = response.name ;
 	      
@@ -225,16 +230,21 @@
 // 	    	}
 	    
 	    
-// 	    function UsuarioConectado2() {
+// 	    function Gerarnumero() {
 	    	
-// 	    	   FB.api('/me',{fields:'name,email'},function(response) {
+// 		var senha0 = Math.floor(Math.random() * 10);
+// 		var senha1 = Math.floor(Math.random() * 10);
+// 		var senha2 = Math.floor(Math.random() * 10);
+// 		var senha3 = Math.floor(Math.random() * 10);
+// 		var senha4 = Math.floor(Math.random() * 10);
+// 		var senha5 = Math.floor(Math.random() * 10);
+		
+// 		senhas = senha0 +senha1+senha2+senha3+senha4+senha5;
+		
 	    		   
+// 	   console.log("senha:" , senhas);
 	    		   
-// 	    		   mails = response.email;
-	    		   
-// 	    		     console.log("email3:" , response.email);
-	    		   
-// 	    	   });
+	    	
 	    
 // 	    }
 	    
@@ -405,23 +415,15 @@ function onSignIn(googleUser) {
       </div>
       
       
-      <script>
+<!--       <script> -->
       
-      $(document).ready(function() {
-    	  
-    	  
-//     	  $(location).attr('href', 'https://sleepy-atoll-65818.herokuapp.com/login');
 
-	window.location.replace('https://sleepy-atoll-65818.herokuapp.com/login');
     	  
-//     	  window.location.protocol == "https:";
-//     	  checkLoginState();
-    	  
-      });
+<!--       }); -->
       
       
       
-      </script>
+<!--       </script> -->
       
       
 

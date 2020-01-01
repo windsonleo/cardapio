@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -47,12 +48,16 @@ public class PromocaoController extends AbstractController<Promocao> {
 	 @Autowired
 	private final PromocaoServicoImpl promocaoService;
 	 
+		
+		@Autowired
+		private ServletContext context;
+	 
 	 
 	 @Autowired
 	private final ProdutoServicoImpl produtoService;
 	 
 	 
-	 private Promocao promocao;
+	 private Promocao promocao = new Promocao();
 	 
 //	 private Promocao promocaoProd = new Promocao();
 	 
@@ -71,6 +76,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 		super("promocao");
 		this.promocaoService = roleService;
 		this.produtoService = prd;
+		
 	}
 
 	@InitBinder
@@ -97,7 +103,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 		// usuario = usudao.PegarPorNome(usuario.getUsername());
 		// model.addAttribute("usuarioAtt", usuario);
 		
-		promocao = new Promocao();
+//		promocao = new Promocao();
 		
 		produtos = produtoService.findAll();
 		
@@ -121,7 +127,9 @@ public class PromocaoController extends AbstractController<Promocao> {
 	        
 	        String erros = "Falha ao salvar foto";
 
-	        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/promocao/");
+//	        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/promocao/");
+	        
+	        ModelAndView cadastro = new ModelAndView("/private/promocao/cadastro/cadastropromocao");
 	        
 //	        String path = session.getServletContext().getRealPath("/");
 
@@ -131,6 +139,8 @@ public class PromocaoController extends AbstractController<Promocao> {
 	        // string pathh = file.get
 
 //	        String filename = file.getOriginalFilename();
+	        
+	        String path = context.getRealPath("/WEB-INF/classes/static/img/promocao/");
 	        
 	        this.filename = file.getOriginalFilename();
 	        
@@ -170,9 +180,9 @@ public class PromocaoController extends AbstractController<Promocao> {
 
 	        }
 	        
-	        this.promocao.setFoto(filename);
+	        promocao.setFoto(filename);
 
-	        return new ModelAndView("redirect:/promocao/cadastro").addObject("promocao", promocao);
+	        return cadastro;
 
 	    }
 	  
@@ -181,8 +191,19 @@ public class PromocaoController extends AbstractController<Promocao> {
 	    public ModelAndView AddProduto( HttpSession session,
 	                                    HttpServletRequest request, Model model) {
 
-//		  prodpromo.clear();
-		  this.promocao.getProdutos().clear();
+		  prodpromo.clear();
+//		  promocao.getProdutos().clear();
+		  
+		  UUID idfpromo = null;
+		  
+		  String idpromo = request.getParameter("id");
+		  
+		  
+		  idfpromo = UUID.fromString(idpromo);
+		  
+		  promocao = getservice().findOne(idfpromo);
+
+//		  promocao.getProdutos().clear();
 		  
 		  
 		  String[] ids = null;
@@ -198,35 +219,42 @@ public class PromocaoController extends AbstractController<Promocao> {
 			 System.out.println(" produtos : " + ids.toString());
 			
 			 Produto p = null;
+			 
+			 UUID idf = null;
 			
 			for(int i=0;i<ids.length;i++){
 				
-				UUID idf = UUID.fromString(ids[i]);
+				 idf = UUID.fromString(ids[i]);
 		  
 				//Produto p = new Produto();
 				
 				p=  produtoService.findOne(idf);
 				
+				
 				prodpromo.add(p);
+				
+//				p.addPromo(promocao);
 		  
-				//this.promocao.addProduto(p);
+//				promocao.addProduto(p);
 				
 			}
 			
 			System.out.println("prodpromo : " + prodpromo);
 			
-			this.promocao.setProdutos(prodpromo);
+			promocao.setProdutos(prodpromo);
 			
-		//	getservice().save(promocao);
+			getservice().edit(promocao);
 	  		
 //	  		UUID idf = UUID.fromString(request.getParameter("produtos"));
 //	       
 //	  		Produto produto = produtoService.findOne(idf);
 //	  		
 //	  		this.promocao.addProduto(produto);
+			
+			model.addAttribute("prodpromo",prodpromo);
+			model.addAttribute("promocao",promocao);
 	  		
-	  		
-	  		return new ModelAndView("forward:/promocao/cadastro").addObject("promocao", promocao).addObject("prodpromo", prodpromo);
+	  		return new ModelAndView("forward:/promocao/cadastro/");
 
 	    }
 	  	
@@ -242,12 +270,22 @@ public class PromocaoController extends AbstractController<Promocao> {
 	  		
 	  		prodpromo.remove(produto);
 	  		
-	  		this.promocao.getProdutos().clear();
+//	  		promocao.removeProduto(produto);
 	  		
-	  		this.promocao.setProdutos(prodpromo);
+//	  		produto.removePromo(promocao);
 	  		
+//	  		getservice().edit(promocao);
 	  		
-	        return new ModelAndView("forward:/promocao/cadastro").addObject("promocao", promocao).addObject("prodpromo", prodpromo);
+	  		promocao.getProdutos().clear();
+	  		
+	  		promocao.setProdutos(prodpromo);
+	  		
+	  		getservice().edit(promocao);
+	  		
+			model.addAttribute("prodpromo",prodpromo);
+			model.addAttribute("promocao",promocao);
+	  		
+	        return new ModelAndView("forward:/promocao/cadastro/");
 
 	    }
 	  

@@ -148,14 +148,19 @@
                                     <select id="catpai" name="catpai" class="form-control">
                                         <optgroup label="Tipos de Categoria Pai">
 
-                                            <option th:value="${categoria.catpai}" th:selected="selected"
+                                            <option th:value="${categoria.catpai}" class="selected" th:selected="${categoria.catpai}"
                                             th:utext="${categoria.catpai}">
                                             
                                             
                                             </option>
 
                                                 
-                                             	<option th:each="categoria: ${categoriaListall}" th:value="${categoria.id}" th:utext="${categoria.nome}"> categoria </option>
+                                             	<option th:each="categoria: ${categoriaListall}" th:value="${categoria.id}" > categoria 
+                                             	
+                                             		<span th:utext="${categoria.nome}">Nenhuma Regra
+														Cadastrada </span>
+                                             	
+                                             	</option>
 					           				      	
 				           				   		
 
@@ -200,7 +205,27 @@
 <div th:replace="fragmentos/footer :: script" style="display:none;"></div>
 			
 </body>
-			
+		<script type="text/javascript">
+	
+    $(function () {
+   	 
+   	 $(".select2").select2();
+	
+    $('.datepicker').datepicker({
+        autoclose: true,
+        format: 'dd/mm/yyyy',
+	    	language: 'pt-BR'
+      });
+    
+	    $(".timepicker").timepicker({
+	        showInputs: false
+	      });
+   
+    
+    });
+	
+	
+	</script>		
 			
 </html>
 

@@ -130,16 +130,31 @@ public abstract class AbstractController<Entity> {
 
     @Transactional
     @PostMapping(value = "edicao")
-    public ModelAndView editarEntity(@ModelAttribute Entity entity) {
+    public ModelAndView editarEntity(@Valid Entity entity, BindingResult result,Model model) {
 
 
 
         ModelAndView cadastroEntity = new ModelAndView("/private/"+entityAlias+"/cadastro/cadastro" + entityAlias);
         
-        getservice().edit(entity);
+        if(result.hasErrors()){
+        	
+        	model.addAttribute("acao", "add");
+        		model.addAttribute(entityAlias, entity);
+        		model.addAttribute("erro", result.getFieldError().getDefaultMessage());
+        }else {
+        	
+        	
+        	 getservice().edit(entity);
 
-        cadastroEntity.addObject("acao", "add");
-        cadastroEntity.addObject(entityAlias, entity);
+        	 model.addAttribute("acao", "add");
+        	 model.addAttribute(entityAlias, entity);
+        	model.addAttribute("sucesso", sucesso);
+
+        	
+        }
+        
+        
+       
 
        return cadastroEntity;
     }

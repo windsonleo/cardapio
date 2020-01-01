@@ -21,7 +21,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -46,6 +48,8 @@ public class Promocao extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "nome", nullable = false)
+	 @NotNull(message="o nome do Promocao não pode ser nulo")
+	 @NotBlank(message="o nome do Promocao não pode ser branco")
     private String nome;
 
     //    (cascade = { CascadeType.ALL })
@@ -55,12 +59,16 @@ public class Promocao extends BaseEntity implements Serializable {
 
 
     @JsonIgnore
-    @ManyToMany(fetch=FetchType.EAGER)
+    @ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinTable(name = "promocao_produto",
     joinColumns = @JoinColumn(name = "idpromocao"),
     inverseJoinColumns = @JoinColumn(name = "idproduto"))
     private Set<Produto> produtos;
     
+    
+    @Column(name = "corfaixa",nullable = false)
+	 @NotNull(message="o corfaixa do Promocao não pode ser nulo")
+	 @NotBlank(message="o corfaixa do Promocao não pode ser branco")
     private String corfaixa;
 
     
@@ -70,7 +78,8 @@ public class Promocao extends BaseEntity implements Serializable {
     
     
     
-    @Column(name = "desconto")
+    @Column(name = "desconto",nullable = false)
+	 @NotNull(message="o desconto do Promocao não pode ser nulo")
     private BigDecimal desconto;
     
     @Column(name = "foto")
@@ -80,7 +89,8 @@ public class Promocao extends BaseEntity implements Serializable {
 
     public Promocao() {
         // TODO Auto-generated constructor stub
-        produtos = new HashSet<Produto>();
+//        produtos = new HashSet<Produto>();
+        datavalidade = new Date();
     }
 
 

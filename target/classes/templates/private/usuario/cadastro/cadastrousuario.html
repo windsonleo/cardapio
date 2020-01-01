@@ -166,7 +166,7 @@
 										<div class="description-block">
 
 											<div class="form-group">
-												<label for="file">File input</label> <input type="text"
+												<label for="file">esolha sua foto</label> <input type="text"
 													readonly="" class="form-control" th:value="${filename}"
 													th:placeholder="${filename}" /> <input type="file"
 													id="file" multiple="multiple" name="file" />
@@ -282,7 +282,7 @@
 											</div>
 										<input id="datacadastro" class="form-control datepicker"
 											name="datacadastro" type="text"
-											th:value="${usuario.datacadastro}" />
+											th:value="${#dates.format(usuario.datacadastro,'dd/MM/yyyy')}" />
 									</div>
 								</div>
 <!-- 								</div> -->

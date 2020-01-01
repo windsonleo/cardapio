@@ -53,7 +53,7 @@ public class Usuario  extends BaseEntity implements Serializable {
 	 @Column(name = "senha", nullable = false)
 	 @Size(min=6,message="a senha deve possuir no minimo 6 caracteres")
 	 @NotNull(message="o senha do Usuario não pode ser nulo")
-	 @NotBlank(message="o nosenhame do Usuario não pode ser branco")
+	 @NotBlank(message="o senha do Usuario não pode ser branco")
 	 private String senha;
 	
 	 @Column(name = "email", nullable = false,unique=true)

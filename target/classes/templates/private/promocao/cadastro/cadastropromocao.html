@@ -335,7 +335,7 @@
 										</div>
 
 										<input id="desconto" name="desconto"
-											class="form-control android" type="text"
+											class="form-control android" type="number"
 											th:value="${promocao.desconto}"
 											placeholder="Digite o desconto" />
 									</div>
@@ -352,9 +352,9 @@
 										<!--                                            placeholder="Data validade" /> -->
 
 
-										<input autocomplete="off" id="datepicker" class="form-control datepicker"
+										<input autocomplete="off" id="datavalidade" class="form-control datepicker"
 											name="datavalidade" type="text"
-											th:value="${promocao.datavalidade}"
+											th:value="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}"
 											placeholder="Data validade" />
 									</div>
 								</div>
@@ -492,6 +492,17 @@
                 
 <!--                 								<input type="hidden" name="${_csrf.parameterName}" -->
 <!-- 									value="${_csrf.token}" /> -->
+
+             <div class="col-md-12">
+              <div class="form-group">
+              
+              										<input id="id" name="id" class="form-control android"
+											type="text" th:value="${promocao.id}"
+											placeholder="Digite o id" readonly="readonly" hidden="true" />
+
+              </div>
+
+                </div>
                    
                     <button type="submit" class="btn btn-primary btn-raised btn-block">Add Produdto
                     	<div class="ripple-container"></div>
