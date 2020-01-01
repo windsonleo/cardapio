@@ -729,10 +729,10 @@ public class HomeController {
  
 	stringbuilder.append(html);
 
-String html2 = "</tbody> <h3 align=\"middle\" > <i>Recife, " + FormatadorData(new Date() )+ "</i></h3>" +
+String html2 = "</tbody> <p align=\"middle\" > <h3 align=\"middle\" > <i>Recife, " + FormatadorData(new Date() )+ "</i> </h3> </p>" +
 
 //stringbuilder.append("<h1 align=\"right\" > <i>Recife, " + new Date() +"</i></h1>");
-"<p align=\"middle\"><img src= \"" + src2 + "\" alt=\"governo_desc\" width=\"150px;\" height=\"100px;\"  /> </p>" +
+"<p align=\"middle\"><img src= \"" + src2 + "\" alt=\"governo_desc\" width=\"150px;\" height=\"100px;\" align=\"middle\" /> </p>" +
 "<p align=\"middle\"><b>Sushi Senpai</b> </p>"  ;
 			
 	
