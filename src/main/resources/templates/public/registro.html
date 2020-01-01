@@ -100,9 +100,9 @@
     
     	<div class="col-md-12" style="margin: 5px;">
 
-					<form th:action="@{/salvarfotousuarioReg}" th:object="${usuario}"
+					<form th:action="@{/salvarfotoregistro}"
 						ModelAttribute="usuario" enctype="multipart/form-data"
-						th:method="post">
+						method="post">
 
 						<!-- Widget: user widget style 1 -->
 						<div class="box box-widget widget-user">
@@ -162,7 +162,7 @@
 												<label for="file">File input</label> <input type="text"
 													readonly="" class="form-control" th:value="${filename}"
 													th:placeholder="${filename}" /> <input type="file"
-													id="file" multiple="multiple" name="file" />
+													id="file"  name="file" />
 
 												<p class="help-block">Example block-level help text
 													here.</p>
@@ -196,7 +196,7 @@
 
 	<div class="col-md-12" style="margin: 5px;">
 	
-    <form id="reg" th:method="post" th:object="${usuario}" ModelAttribute="usuario" th:action="@{/registroenv}" role="form">
+    <form id="reg" method="post" th:object="${usuario}" ModelAttribute="usuario" th:action="@{/registroenv}" role="form">
       
       								<div class="form-group has-feedback">
 
@@ -227,7 +227,7 @@
 											</div>
 										<input id="datacadastro" class="form-control datepicker"
 											name="datacadastro" type="text"
-											th:value="${usuario.datacadastro}" />
+											th:value="${#dates.format(usuario.datacadastro,'dd/MM/yyyy')}" />
 									</div>
 								</div>
       

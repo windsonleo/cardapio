@@ -81,7 +81,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/usuario/usuarioSave").permitAll()
 				.antMatchers("/usuario/salvarFacebook").permitAll()
 				.antMatchers("/esquecisenhaenv").permitAll()
-				.antMatchers("/registro").permitAll()
+				.antMatchers("/registro**").permitAll()
 				.antMatchers("/registroenv").permitAll()
 //				.antMatchers("/evento/listar/").permitAll()
 //				.antMatchers("/paciente/listar/").permitAll()
@@ -94,14 +94,14 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/private/**").hasAnyRole("ADM","SUPER").anyRequest().authenticated()
 				.and()
 				.csrf().disable().formLogin()
-				.loginPage("/login").failureUrl("/login?erro")
+				.loginPage("/login").failureUrl("/erro")
 				.defaultSuccessUrl("/home")
 				.usernameParameter("email")
 				.passwordParameter("senha").and()
 			    .rememberMe()
 				.and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/home?logout").and().exceptionHandling()
+				.logoutSuccessUrl("/home").and().exceptionHandling()
 				.accessDeniedHandler(accessDeniedHandler);
 //				.accessDeniedPage("/accessdenied");
 				

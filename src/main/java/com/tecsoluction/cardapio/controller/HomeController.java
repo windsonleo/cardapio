@@ -19,6 +19,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -72,6 +73,9 @@ public class HomeController {
 	private ProdutoServicoImpl ProdutoService = new ProdutoServicoImpl();
 	
 	
+	@Autowired
+	private ServletContext context;
+	
 	
 	@Autowired
 	private RoleServicoImpl RoleService = new RoleServicoImpl();
@@ -96,7 +100,7 @@ public class HomeController {
     
 
     
-    private Usuario usuario;
+    private Usuario usuario ;
 
 	private String filename="avatar_usu.jpg";
 
@@ -125,8 +129,18 @@ public class HomeController {
 		  usuarios = usuarioService.findAll();
 
 		  
+//		  
+//		  if(usuario.getId()!= null){
+			  
+			  usuario = new Usuario(); 
+			  
+//		  }else {
+//			  
+//			  
+//			  
+//		  }
+		 
 		  
-		  usuario = new Usuario();
 		  
 //		  qtdusuarios = usuarios.size();
 		  
@@ -537,7 +551,7 @@ public class HomeController {
     	   props.put("mail.smtp.port","587");
     	   props.put("mail.smtp.ssl.trust", "smtp.googlemail.com");
     	   
-    	   props.put("mail.smtp.ssl.enable", "true");
+    	   props.put("mail.smtp.ssl.enable", "false");
     	   
     	 
     	   
@@ -690,7 +704,7 @@ public class HomeController {
 	String html =
 			
 			
-			"<p align=\"middle\" ><img src= \"" + src2 + "\" alt=\"governo_desc\" width=\"300px;\" height=\"168px;\" align=\"middle\" />"
+			"<p align=\"middle\" ><img src= \"" + src2 + "\" alt=\"governo_desc\" width=\"150px;\" height=\"100px;\" align=\"middle\" />"
 					+ "</p>"+
 			
 			
@@ -712,7 +726,7 @@ public class HomeController {
 String html2 = "</tbody> <h3 align=\"middle\" > <i>Recife, " + FormatadorData(new Date() )+ "</i></h3>" +
 
 //stringbuilder.append("<h1 align=\"right\" > <i>Recife, " + new Date() +"</i></h1>");
-"<p><img src= \"" + src2 + "\" alt=\"governo_desc\" width=\"300px;\" height=\"168px;\" align=\"middle\" /> </p>" +
+"<p align=\"middle\"><img src= \"" + src2 + "\" alt=\"governo_desc\" width=\"150px;\" height=\"100px;\"  /> </p>" +
 "<p align=\"middle\"><b>Sushi Senpai</b> </p>"  ;
 			
 	
@@ -775,6 +789,10 @@ private String FormatadorData(Date data){
         ModelAndView home = new ModelAndView("/public/registro");
         
        Usuario usuario = new Usuario();
+       
+       usuario.setFoto(filename);
+       
+       
         
         Rolesall = RoleService.findAll();
         
@@ -806,8 +824,9 @@ private String FormatadorData(Date data){
 
         home.addObject("sucesso","Salvo ! Confira seus dados");
 
+        
 
-        return new ModelAndView("redirect:/registro").addObject("usuario", usuario).addObject("filename", filename)
+        return new ModelAndView("redirect:/registro").addObject("usuario", usuario2).addObject("filename", filename)
         		.addObject("acao", "edit").addObject("roles", Rolesall);
     }
     
@@ -1016,21 +1035,29 @@ private String FormatadorData(Date data){
 //            return home;
 //        }
     
-    @RequestMapping(value = "salvarfotousuarioReg", method = RequestMethod.POST)
-    public ModelAndView SalvarFotoProduto2d(@RequestParam ("file") MultipartFile file, HttpSession session, HttpServletRequest request,
+    @RequestMapping(value = "salvarfotoregistro", method = RequestMethod.POST)
+    public ModelAndView SalvarFotoPr2d(@RequestParam ("file") MultipartFile file, HttpSession session, HttpServletRequest request,
                              Model model, @ModelAttribute Usuario usuarior) {
-    	logger.info("Welcome salvarfotousuarioReg ! The model {}.", model);	
+    	
+    	logger.info("Welcome salvarfotousuarioReg ! The model {}.");	
 //   	Usuario usuario = null;
    	
 //   Usuario	usuariologadoo = usuarior;
+    	
+//    	this.usuario = usuarior;
+    	
+
+        Rolesall = RoleService.findAll();
 
         String sucesso = "Sucesso ao salvar foto";
         
         String erros = "Falha ao salvar foto";
         
-//        ModelAndView cadastro = new ModelAndView("/private/produto/cadastro/cadastroproduto");
+        ModelAndView cadastro = new ModelAndView("/public/registro");
 
-        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario/");
+//        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario/");
+        
+        String path = context.getRealPath("/WEB-INF/classes/static/img/usuario/");
         
         this.filename= file.getOriginalFilename();
         
@@ -1061,11 +1088,11 @@ private String FormatadorData(Date data){
 
             
             
-//            usuariologado.setEmail(filename);
-            model.addAttribute("sucesso", sucesso);
-            model.addAttribute("filename", filename);
-            model.addAttribute("acao", "add");
-            model.addAttribute("usuario", usuarior);
+            usuario.setFoto(filename);
+            cadastro.addObject("sucesso", sucesso);
+            cadastro.addObject("filename", filename);
+            cadastro.addObject("acao", "add");
+//            cadastro.addObject("usuario", usuario);
 
             
             System.out.println(" salvou file : " + filename);
@@ -1077,11 +1104,11 @@ private String FormatadorData(Date data){
 
             System.out.println(e);
 
-            model.addAttribute("erro", erros + e);
-            model.addAttribute("acao", "add");
-            model.addAttribute("filename", filename);
+            cadastro.addObject("erro", erros + e);
+            cadastro.addObject("acao", "add");
+            cadastro.addObject("filename", filename);
 
-            model.addAttribute("usuario", usuarior);            
+           // cadastro.addObject("usuario", usuario);            
             System.out.println(" não salvou file : " + e);
 
         }
@@ -1090,10 +1117,15 @@ private String FormatadorData(Date data){
      
 //        this.usuariologado.setFoto(filename);
         
-        this.usuario.setFoto(filename);
+//        usuario.setFoto(filename);
         
-       return new ModelAndView("redirect:/registro").addObject("usuario", usuario).addObject("filename", filename)
-    		   .addObject("acao", "add").addObject("roles", Rolesall);
+        cadastro.addObject("roles", Rolesall);
+        cadastro.addObject("usuario", usuario); 
+     //   usuarior.setFoto(filename);
+//       return new ModelAndView("redirect:/registro").addObject("usuario", usuarior).addObject("filename", filename)
+//    		   .addObject("acao", "add").addObject("roles", Rolesall);
+        
+        return cadastro;
 
     }
 

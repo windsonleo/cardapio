@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -56,12 +57,16 @@ public class UsuarioController extends AbstractController<Usuario> {
 	
 	 @Autowired
 	    private final CategoriaServicoImpl categoriaService;
+	 
+		
+		@Autowired
+		private ServletContext context;
 	
 	
 	 
-	 private Usuario usuario ;
+	 private Usuario usuario = new Usuario(); ;
 	 
-	 private String filename="avatar_usu.jpg";
+	 private String filename;
 	 
 	
 	@Autowired
@@ -94,9 +99,9 @@ public class UsuarioController extends AbstractController<Usuario> {
     	
     
     		
-    		usuario = new Usuario();
     		
-    	
+    		
+    		filename="avatar_usu.jpg";
     
     	
 //    	Genero[] generos = Genero.values();
@@ -133,45 +138,45 @@ public class UsuarioController extends AbstractController<Usuario> {
     
     
     
-    
-    @RequestMapping(value = "/registro", method = RequestMethod.GET)
-    public ModelAndView Registro(Locale locale, Model model) {
-       
-    	logger.info("Welcome registro ! The client locale is {}.", locale);
-
-        ModelAndView home = new ModelAndView("/public/registro");
-
-
-        return home;
-    }
-    
-    @RequestMapping(value = "/registro", method = RequestMethod.POST)
-    public ModelAndView RegistroPost(Locale locale, Model model, HttpServletRequest request,@ModelAttribute Usuario usuarior) {
-       
-    	logger.info("Welcome registro ! The client locale is {}.", locale);
-
-        ModelAndView home = new ModelAndView("/public/registro");
-        
-//        Usuario usuario = new Usuario();
-        
-//        usuario.setUsername(request.getParameter("username"));
-//        usuario.setEmail(request.getParameter("email"));
-//        usuario.setSenha(request.getParameter("senha"));
-//        usuario.setRoles(new HashMap().put(arg0, arg1));
-       
-        getservice().save(usuarior);
-        
-        
-
-
-        return new ModelAndView("forward:/registro");
-    }
+//    
+//    @RequestMapping(value = "/registro", method = RequestMethod.GET)
+//    public ModelAndView Registro(Locale locale, Model model) {
+//       
+//    	logger.info("Welcome registro usu ! The client locale is {}.", locale);
+//
+//        ModelAndView home = new ModelAndView("/public/registro");
+//
+//
+//        return home;
+//    }
+//    
+//    @RequestMapping(value = "/registro", method = RequestMethod.POST)
+//    public ModelAndView RegistroPost(Locale locale, Model model, HttpServletRequest request,@ModelAttribute Usuario usuarior) {
+//       
+//    	logger.info("Welcome registro ! The client locale is {}.", locale);
+//
+//        ModelAndView home = new ModelAndView("/public/registro");
+//        
+////        Usuario usuario = new Usuario();
+//        
+////        usuario.setUsername(request.getParameter("username"));
+////        usuario.setEmail(request.getParameter("email"));
+////        usuario.setSenha(request.getParameter("senha"));
+////        usuario.setRoles(new HashMap().put(arg0, arg1));
+//       
+//        getservice().save(usuarior);
+//        
+//        
+//
+//
+//        return new ModelAndView("forward:/registro");
+//    }
     
     
     // verificar tmanho do arquivo e se o arquivo ja existe
     @RequestMapping(value = "salvarfotousuario", method = RequestMethod.POST)
     public ModelAndView SalvarFotoProduto2(@RequestParam ("file") MultipartFile file, HttpSession session, HttpServletRequest request,
-                             Model model, @ModelAttribute Usuario usuarior) {
+                             Model model, @ModelAttribute("usuario")  Usuario usuarior) {
     	
 //    	Usuario usuario = new Usuario();
 
@@ -179,9 +184,11 @@ public class UsuarioController extends AbstractController<Usuario> {
         
         String erros = "Falha ao salvar foto";
         
-//        ModelAndView cadastro = new ModelAndView("/private/produto/cadastro/cadastroproduto");
+        ModelAndView cadastro = new ModelAndView("/private/usuario/cadastro/cadastrousuario");
 
-        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario/");
+//        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario/");
+        
+        String path = context.getRealPath("/WEB-INF/classes/static/img/usuario/");
         
         this.filename = file.getOriginalFilename();
         
@@ -208,10 +215,12 @@ public class UsuarioController extends AbstractController<Usuario> {
             bout.flush();
             bout.close();
 
+            usuarior.setFoto(filename);
+            
             model.addAttribute("sucesso", sucesso);
             model.addAttribute("filename", filename);
             model.addAttribute("acao", "add");
-            
+            model.addAttribute("usuario", usuario);
             System.out.println(" salvou file : " + filename);
             
            
@@ -223,16 +232,16 @@ public class UsuarioController extends AbstractController<Usuario> {
 
             model.addAttribute("erros", erros + e);
             model.addAttribute("acao", "add");
-            
+            model.addAttribute("usuario", usuario);
             System.out.println(" não salvou file : " + e);
 
         }
 
 //       Usuario usuario =  new Usuario();
      
-        this.usuario.setFoto(filename);
+        //usuario.setFoto(filename);
         
-       return new ModelAndView("redirect:/usuario/cadastro").addObject("usuario", usuario);
+       return cadastro;
 
     }
     

@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -57,7 +58,7 @@ public class Produto extends BaseEntity implements Serializable {
     @Column(name = "preco_venda")
     private BigDecimal precovenda;
     
-    @ManyToMany(mappedBy = "produtos")
+    @ManyToMany(mappedBy = "produtos",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private Set<Promocao> promocoes;
 
     @ManyToOne(cascade = {CascadeType.REFRESH})
@@ -71,11 +72,14 @@ public class Produto extends BaseEntity implements Serializable {
     
     @Column(name = "novo", nullable = true)
     private boolean novo;
+    
+    @Column(name = "avaliacao", nullable = true)
+    private int avaliacao = 0;
 
 
     public Produto(UUID id, String foto, String nome, String codebar, String descricao,
                    UnidadeMedida un, BigDecimal precocusto, BigDecimal precovenda,
-                   Categoria cat, boolean ativo, boolean esugestao,boolean novo) {
+                   Categoria cat, boolean ativo, boolean esugestao,boolean novo,int avalia) {
         super();
         this.id = id;
         this.foto = foto;
@@ -89,12 +93,33 @@ public class Produto extends BaseEntity implements Serializable {
         this.ativo = ativo;
         this.esugestao = esugestao;
         this.novo = novo;
+        this.avaliacao = avalia;
     }
 
     public Produto() {
         super();
+        
+        
 
     }
+    
+    
+	
+//    public void addPromo(Promocao not){
+//    	
+//    	
+//    	this.getPromocoes().add(not);
+//    	
+//    }
+//
+//
+//    public void removePromo(Promocao not){
+//    	
+//    	this.getPromocoes().remove(not);
+//    	
+//    } 
+    
+    
 
 
 
