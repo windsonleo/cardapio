@@ -95,10 +95,6 @@ public class HomeController {
     private List<Promocao> promocoes = new ArrayList<Promocao>();
     
     private GerenciadorCategorias gerenciacat;
-
-    
-    
-
     
     private Usuario usuario ;
 
