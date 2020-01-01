@@ -480,7 +480,8 @@ public class HomeController {
     	
     //    String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/");
     	
-    	String path = context.getRealPath("/img/");
+    	String path = context.getRealPath("/WEB-INF/classes/static/img/");
+    	
     	
     	logger.info("Welcome enviar senha path img email ! The client locale is {}.", path);
 
@@ -824,15 +825,17 @@ private String FormatadorData(Date data){
         
         home.addObject("roles",Rolesall);
         home.addObject("usuario",usuario2);
-		 model.addAttribute("acao","edit");
+        home.addObject("acao","edit");
         home.addObject("filename",filename);
 
         home.addObject("sucesso","Salvo ! Confira seus dados");
 
         
 
-        return new ModelAndView("redirect:/registro").addObject("usuario", usuario2).addObject("filename", filename)
-        		.addObject("acao", "edit").addObject("roles", Rolesall);
+//        return new ModelAndView("redirect:/registro").addObject("usuario", usuario2).addObject("filename", filename)
+//        		.addObject("acao", "edit").addObject("roles", Rolesall);
+        
+        return home;
     }
     
     
@@ -1064,7 +1067,7 @@ private String FormatadorData(Date data){
         
 //        String path = context.getRealPath("/WEB-INF/classes/static/img/usuario/");
         
-        String path = context.getRealPath("/resources/static/img/usuario/");
+        String path = context.getRealPath("/WEB-INF/classes/static/img/usuario/");
         
         this.filename= file.getOriginalFilename();
         
@@ -1095,10 +1098,10 @@ private String FormatadorData(Date data){
 
             
             
-            usuario.setFoto(filename);
+            this.usuario.setFoto(filename);
             cadastro.addObject("sucesso", sucesso);
-            cadastro.addObject("filename", filename);
-            cadastro.addObject("acao", "add");
+//            cadastro.addObject("filename", filename);
+//            cadastro.addObject("acao", "add");
 //            cadastro.addObject("usuario", usuario);
 
             
@@ -1112,11 +1115,11 @@ private String FormatadorData(Date data){
             System.out.println(e);
 
             cadastro.addObject("erro", erros + e);
-            cadastro.addObject("acao", "add");
-            cadastro.addObject("filename", filename);
+//            cadastro.addObject("acao", "add");
+//            cadastro.addObject("filename", filename);
 
            // cadastro.addObject("usuario", usuario);            
-            System.out.println(" não salvou file : " + e);
+            System.out.println(" não salvou file : " + e.getCause());
 
         }
 
@@ -1128,6 +1131,9 @@ private String FormatadorData(Date data){
         
         cadastro.addObject("roles", Rolesall);
         cadastro.addObject("usuario", usuario); 
+        cadastro.addObject("filename", filename);
+        cadastro.addObject("acao", "add");
+
      //   usuarior.setFoto(filename);
 //       return new ModelAndView("redirect:/registro").addObject("usuario", usuarior).addObject("filename", filename)
 //    		   .addObject("acao", "add").addObject("roles", Rolesall);
