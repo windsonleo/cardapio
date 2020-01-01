@@ -235,13 +235,13 @@ public class PromocaoController extends AbstractController<Promocao> {
 				
 //				p.addPromo(promocao);
 		  
-//				promocao.addProduto(p);
+				promocao.addProduto(p);
 				
 			}
 			
 			System.out.println("prodpromo : " + prodpromo);
 			
-			promocao.setProdutos(prodpromo);
+			//promocao.setProdutos(prodpromo);
 			
 			getservice().edit(promocao);
 	  		

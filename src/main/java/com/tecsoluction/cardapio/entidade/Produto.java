@@ -58,7 +58,7 @@ public class Produto extends BaseEntity implements Serializable {
     @Column(name = "preco_venda")
     private BigDecimal precovenda;
     
-    @ManyToMany(mappedBy = "produtos",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    @ManyToMany(mappedBy = "produtos")
     private Set<Promocao> promocoes;
 
     @ManyToOne(cascade = {CascadeType.REFRESH})

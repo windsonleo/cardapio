@@ -59,7 +59,7 @@ public class Promocao extends BaseEntity implements Serializable {
 
 
     @JsonIgnore
-    @ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name = "promocao_produto",
     joinColumns = @JoinColumn(name = "idpromocao"),
     inverseJoinColumns = @JoinColumn(name = "idproduto"))
@@ -117,6 +117,7 @@ public class Promocao extends BaseEntity implements Serializable {
     	
     	this.getProdutos().add(not);
     	
+    	
     }
 
 
@@ -125,6 +126,10 @@ public class Promocao extends BaseEntity implements Serializable {
     	this.getProdutos().remove(not);
     	
     } 
+    
+    
+    
+    
     
     
     
