@@ -64,7 +64,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 	 
 	    private String filename="promo.jpg";
 	    
-	    private List<Produto> produtos ;
+	    private List<Produto> produtoss ;
 	    
 	    private Set<Produto> prodpromo = new HashSet<Produto>();
 	    
@@ -105,13 +105,13 @@ public class PromocaoController extends AbstractController<Promocao> {
 		
 //		promocao = new Promocao();
 		
-		produtos = produtoService.findAll();
+		produtoss = produtoService.findAll();
 		
 		
 		
 		 model.addAttribute("promocao", promocao);
 		 model.addAttribute("filename", filename);
-		 model.addAttribute("produtos", produtos);
+		 model.addAttribute("produtoss", produtoss);
 		 model.addAttribute("prodpromo", prodpromo);
 		 
 		 

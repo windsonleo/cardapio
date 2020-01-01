@@ -394,7 +394,7 @@
 
 
 
-								<button type="submit" th:value="${acao}" class="btn btn-success">Salvar</button>
+								<button type="submit" th:value="${acao}"  th:text="${acao}" class="btn btn-success">Salvar</button>
 								<a href='javascript:history.back(1)' class="btn btn-default">Voltar</a>
 
 							</form>
@@ -428,7 +428,7 @@
 <!-- 				<div class="clearfix"></div> -->
 				
 						<div class="col-md-4">
-			<form th:action="@{/promocao/addproduto}" th:object="${promocao}" ModelAttribute="promocao"    method="get">
+			<form th:action="@{/promocao/addproduto}" th:object="${promocaoo}" ModelAttribute="promocao"    method="get">
 			
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
@@ -473,7 +473,7 @@
                  
                  
                  
-                  <option th:each="produt: ${produtos}" th:value="${produt.id}" > 
+                  <option th:each="produt: ${produtoss}" th:value="${produt.id}" > 
                   
                   	<span th:text="${produt.nome}">Nenhuma Regra
 														Cadastrada </span>
