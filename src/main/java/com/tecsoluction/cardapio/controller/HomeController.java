@@ -802,9 +802,9 @@ private String FormatadorData(Date data){
         
         Rolesall = RoleService.findAll();
         
-        home.addObject("roles",Rolesall);
-        home.addObject("usuario",usuario);
-        home.addObject("filename",filename);
+        model.addAttribute("roles",Rolesall);
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("filename",filename);
 		 model.addAttribute("acao","add");
 
 
@@ -823,12 +823,12 @@ private String FormatadorData(Date data){
         
 //       Usuario usuariologado = usuario;
         
-        home.addObject("roles",Rolesall);
-        home.addObject("usuario",usuario2);
-        home.addObject("acao","edit");
-        home.addObject("filename",filename);
+        model.addAttribute("roles",Rolesall);
+        model.addAttribute("usuario",usuario2);
+        model.addAttribute("acao","edit");
+        model.addAttribute("filename",filename);
 
-        home.addObject("sucesso","Salvo ! Confira seus dados");
+        model.addAttribute("sucesso","Salvo ! Confira seus dados");
 
         
 
