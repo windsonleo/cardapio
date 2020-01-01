@@ -413,7 +413,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 
         this.produtocomposto.setFoto(filename);
 
-        return new ModelAndView("redirect:/produtocomposto/cadastro").addObject("produtocomposto", produtocomposto);
+        return new ModelAndView("redirect:/produtocomposto/cadastro");
 
     }
 

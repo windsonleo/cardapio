@@ -211,7 +211,10 @@ public class ConfiguracaoController extends AbstractController<Configuracao>    
 	     
 	        this.configuracao.setLogo(filename);
 	        
-	       return new ModelAndView("redirect:/configuracao/cadastro").addObject("configuracao", configuracao);
+	        
+	        model.addAttribute("configuracao", configuracao);
+	        
+	       return new ModelAndView("redirect:/configuracao/cadastro");
 
 	    }	
 	  
@@ -283,7 +286,10 @@ public class ConfiguracaoController extends AbstractController<Configuracao>    
 	     
 	        this.configuracao.setBanner1(filenamebanner1);
 	        
-	       return new ModelAndView("redirect:/configuracao/cadastro").addObject("configuracao", configuracao);
+	        
+	        model.addAttribute("configuracao", configuracao);
+	        
+	       return new ModelAndView("redirect:/configuracao/cadastro");
 
 	    }	
 	  
@@ -352,7 +358,9 @@ public class ConfiguracaoController extends AbstractController<Configuracao>    
 	     
 	        this.configuracao.setBanner2(filenamebanner2);
 	        
-	       return new ModelAndView("redirect:/configuracao/cadastro").addObject("configuracao", configuracao);
+	        model.addAttribute("configuracao", configuracao);
+	        
+	       return new ModelAndView("redirect:/configuracao/cadastro");
 
 	    }	
 	  
@@ -421,7 +429,9 @@ public class ConfiguracaoController extends AbstractController<Configuracao>    
 	     
 	        this.configuracao.setBanner3(filenamebanner3);
 	        
-	       return new ModelAndView("redirect:/configuracao/cadastro").addObject("configuracao", configuracao);
+	        model.addAttribute("configuracao", configuracao);
+	        
+	       return new ModelAndView("redirect:/configuracao/cadastro");
 
 	    }	
 	  

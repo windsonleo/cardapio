@@ -184,7 +184,7 @@ public class ProdutoController extends AbstractController<Produto> {
         
         this.produto.setFoto(filename);
 
-        return new ModelAndView("redirect:/produto/cadastro").addObject("produto", produto);
+        return new ModelAndView("redirect:/produto/cadastro");
 
     }
 
