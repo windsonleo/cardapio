@@ -30,7 +30,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
