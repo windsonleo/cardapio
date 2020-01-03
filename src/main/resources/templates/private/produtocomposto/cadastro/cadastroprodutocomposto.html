@@ -319,18 +319,18 @@
                                         <optgroup label="Escolha os items">
 
                                             <option th:each="item_prod : ${produtocomposto.itens_prodcomp}" th:selected="selected"
-                                            th:utext="${item_prod.key}" th:value="${item_prod.key.id}">
+                                            th:utext="${item_prod.key.nome}" th:value="${item_prod.key.id}">
                                             
                                             
                                             </option>
 
                                                 
-                                             	<option th:each="tipoterapia: ${prodList}" th:value="${tipoterapia.id}" > tipo </option>
+                                             	<option th:each="prod: ${prodList}" th:value="${prod.id}" > tipo 
 					           				      	
-				           				   		                  	<span th:text="${tipoterapia.nome}">Nenhuma Regra
+				           				   		                  	<span th:text="${prod.nome}">Nenhuma Regra
 														Cadastrada </span>
 
-
+												</option>
                                         </optgroup>
                                     </select>
 
