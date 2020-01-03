@@ -197,6 +197,9 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		
 		this.produtocomposto.setItens_prodcomp(items);
 		
+		
+		getservice().save(produtocomposto);
+		
 //		this.produto = produtoService.findOne(idf);
 
 //		prodList = produtoService.findAll();
@@ -254,6 +257,38 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
         		.addObject("produtocomposto",produtocomposto).addObject("items", items);
 //				.addObject(items).addObject(produto).addObject(filename).addObject(umList);
 	}
+	
+	
+	@RequestMapping(value = "deleteitem",method = RequestMethod.GET )
+    public ModelAndView ExcluirProduto( HttpSession session,
+                                    HttpServletRequest request, Model model) {
+
+  		
+  		UUID idf = UUID.fromString(request.getParameter("id"));
+       
+  		Produto produto = produtoService.findOne(idf);
+  		
+  		items.remove(produto);
+  		
+//  		promocao.removeProduto(produto);
+  		
+//  		produto.removePromo(promocao);
+  		
+//  		getservice().edit(promocao);
+  		
+//  		promocao.getProdutos().clear();
+  		
+  		produtocomposto.setItens_prodcomp(items);
+  		
+  		getservice().edit(produtocomposto);
+  		
+		model.addAttribute("items",items);
+		model.addAttribute("produtocomposto",produtocomposto);
+  		
+        return new ModelAndView("forward:/produtocomposto/cadastro/");
+
+    }
+  
 
 	@RequestMapping(value = "salvaritemprodutocomposto", method = RequestMethod.POST)
 	public ModelAndView salvaritemproduto(HttpServletRequest request) {

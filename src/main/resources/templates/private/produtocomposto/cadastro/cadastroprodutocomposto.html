@@ -261,7 +261,14 @@
                                             </option>
 
                                                 
-                                             	<option th:each="tipoterapia: ${umList}" th:value="${tipoterapia}" th:utext="${tipoterapia}"> tipo </option>
+                                             	<option th:each="tipoterapia: ${umList}" th:value="${tipoterapia}"> tipo
+                                             	
+                                             	
+                                             	                  	<span th:text="${tipoterapia}">Nenhuma Regra
+														Cadastrada </span>
+                                             	
+                                             	
+                                             	 </option>
 					           				      	
 				           				   		
 
@@ -289,9 +296,39 @@
                                             </option>
 
                                                 
-                                             	<option th:each="tipoterapia: ${categoriaListall}" th:value="${tipoterapia.id}" th:utext="${tipoterapia.nome}"> tipo </option>
+                                             	<option th:each="tipoterapia: ${categoriaListall}" th:value="${tipoterapia.id}" > tipo </option>
 					           				      	
-				           				   		
+				           				   		                  	<span th:text="${tipoterapia.nome}">Nenhuma Regra
+														Cadastrada </span>
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            
+                                                        	<div class="form-group label-floating ">
+                                                         <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-folder"></i>
+                  </div>
+
+                                    <select id="itens_prodcomp" name="itens_prodcomp" class="form-control">
+                                        <optgroup label="Escolha os items">
+
+                                            <option th:each="item_prod : ${produtocomposto.itens_prodcomp}" th:selected="selected"
+                                            th:utext="${item_prod.key}" th:value="${item_prod.key.id}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="tipoterapia: ${prodList}" th:value="${tipoterapia.id}" > tipo </option>
+					           				      	
+				           				   		                  	<span th:text="${tipoterapia.nome}">Nenhuma Regra
+														Cadastrada </span>
 
 
                                         </optgroup>
@@ -326,7 +363,7 @@
                             
                             
                             <div class="form-actions">
-                                <input type="submit" th:value="${acao}" class="btn btn-success"> </input>
+                                <input type="submit" th:value="${acao}" th:text="${acao}" class="btn btn-success"> </input>
                             </div>
                         </form>
                         
