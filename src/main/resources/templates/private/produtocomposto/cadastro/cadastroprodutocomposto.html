@@ -296,12 +296,12 @@
                                             </option>
 
                                                 
-                                             	<option th:each="tipoterapia: ${categoriaListall}" th:value="${tipoterapia.id}" > tipo </option>
+                                             	<option th:each="tipoterapia: ${categoriaListall}" th:value="${tipoterapia.id}" > tipo 
 					           				      	
 				           				   		                  	<span th:text="${tipoterapia.nome}">Nenhuma Regra
 														Cadastrada </span>
 
-
+													</option>
                                         </optgroup>
                                     </select>
 
@@ -404,7 +404,7 @@
              <div class="col-md-12">
               <div class="form-group label-floating">
               
-                <select class="form-control select2" id="itens_prodcomp"  name="itens_prodcomp" multiple="multiple" data-placeholder="Select a Produto" style="width: 100%;">
+                <select class="form-control select2" id="itens_prodcompp"  name="itens_prodcompp" multiple="multiple" data-placeholder="Select a Produto" style="width: 100%;">
                  
           <option th:each="item: ${produtocomposto.itens_prodcomp}" th:text="${item.key.nome}" th:selected="${item.key}" class="selected" th:value="${item.key}"></option>
                  

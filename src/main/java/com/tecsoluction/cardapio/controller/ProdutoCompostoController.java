@@ -163,11 +163,11 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 				
 		String[] ids = null;
 		
-		int qtdparam = request.getParameterValues("itens_prodcomp").length;
+		int qtdparam = request.getParameterValues("itens_prodcompp").length;
 		
 		ids = new String[qtdparam];
 		
-		ids = request.getParameterValues("itens_prodcomp");
+		ids = request.getParameterValues("itens_prodcompp");
 		
 		UUID idf =null;
 		
