@@ -163,6 +163,15 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 				
 		String[] ids = null;
 		
+		 String idpromo = request.getParameter("id");
+		  
+		 UUID idfpromo = null;
+		  
+		  idfpromo = UUID.fromString(idpromo);
+		  
+		  this.produtocomposto = getservice().findOne(idfpromo);
+		  
+		
 		int qtdparam = request.getParameterValues("itens_prodcompp").length;
 		
 		ids = new String[qtdparam];
