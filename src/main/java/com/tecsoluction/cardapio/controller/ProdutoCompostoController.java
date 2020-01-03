@@ -195,7 +195,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 			
 			it = new Item(p);
 			
-			items.put(it, "0");
+			items.put(it, "2");
 			
 		}
 		
