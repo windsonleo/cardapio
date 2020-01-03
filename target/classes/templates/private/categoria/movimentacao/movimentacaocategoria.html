@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Movimentacao Categoria</title>
+
+<body  class="hold-transition skin-red sidebar-mini"  th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+					  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+       categoria
+        <small>Movimentacoes</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> categoria</a></li>
+        <li class="active"><a href="#">Movimentacoes</a></li>
+<!--         <li class="active">Blank page</li> -->
+      </ol>
+    </section>
+    
+    
+		 <div class="content">
+
+        <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Listagem de categoria  <a rel="tooltip" title="Adicionar Categoria"  th:href="@{/categoria/cadastro}"> <i class="fa fa-user-plus"></i></a></h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                                            <th class="hide">Id</th>
+                                            <th >Nome</th>
+                                            <th >Categoria Pai</th>
+                                            <th >Ativo</th>
+<!--                                             <th >Resultado</th> -->
+                                            
+                                            
+                                  <div sec:authorize="hasRole('ROLE_ADM')">
+                                   
+                                   <th >OPERACOES</th>
+                                  
+                                  </div>
+                                            
+<!--                                             <th >2º Premio</th> -->
+<!--                                             <th >3º Premio</th> -->
+<!--                                             <th >4º Premio</th> -->
+<!--                                             <th >5º Premio</th> -->
+
+										</tr>
+
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr th:each="categoria: ${categoriaListall}">
+                                                <td th:text="${categoria.id}" class="hide">id</td>
+                                                  <td th:text="${categoria.nome}">nome</td>
+                                                   <td th:text="${categoria.catpai}">catpai</td>
+                                                  
+		                                            <td th:text="${categoria.ativo}">ativo</td>
+<!-- 		                                             <td th:text="${jogobicho.banca}">Banca</td> -->
+		                                            
+<!-- 		                                            <td th:text="${jogobicho}" >Resultado</td> -->
+		                                          
+		                                       
+							              <div sec:authorize="hasRole('ROLE_ADM')" >
+	                                            
+	                                              <div >
+	                                              
+	                                                <td>
+                                                        <a  rel="tooltip" title="Informacoes" class="btn btn-muted btn-simple btn-md" th:href="@{/categoria/informacao(id=${categoria.id})}">
+                                    						<i class="material-icons">info</i>
+			                       						</a>
+	                       						 
+                                                        <a  rel="tooltip" title="Editar" class="btn btn-muted btn-simple btn-md" th:href="@{/categoria/editar(id=${categoria.id})}">
+                                    						<i class="material-icons">mode edit</i>
+			                       						</a>
+	                       								                                            
+		                                            																									
+                                                        <a  rel="tooltip" title="Excluir" class="btn btn-danger btn-simple btn-md" th:href="@{/categoria/delete(id=${categoria.id})}">
+                                    						<i class="material-icons">close</i>
+			                       						</a>
+			                       						
+			                       						</td>
+			                       						
+			                       							</div>
+			                       						
+			                       						
+	                       						</div>
+<!-- 	                       						 	</td>	 -->
+	                       						 
+<!-- 					                            </div> -->
+
+                                        
+                                            </tr>
+                                           
+                       
+                                        </tbody>
+                                    </table>
+                                </div>
+		
+
+				<div class="clearfix"></div>
+
+
+             <div th:replace="fragmentos/footer :: footer">
+            
+            </div>
+            
+            
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- </div> -->
+
+<!-- <div th:replace="fragmentos/footer :: script" style="display:none;"></div> -->
+
+		<script src="resources/static/js/jquery-2.2.3.min.js"
+			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script>
+			
+											<script src="resources/static/js/bootstrap.min.js"
+			th:src="@{/js/bootstrap.min.js}" th:inline="javascript" ></script>
+			
+						<script src="resources/static/js/material.min.js"
+			th:src="@{/js/material.min.js}" th:inline="javascript" ></script>
+			
+									<script src="resources/static/js/ripples.min.js"
+			th:src="@{/js/ripples.min.js}" th:inline="javascript" ></script>
+			
+			
+			<script type="text/javascript">
+    $.material.init();
+</script>
+
+								<script src="resources/static/js/jquery.dataTables.min.js"
+			th:src="@{/js/jquery.dataTables.min.js}" th:inline="javascript" ></script>
+
+								<script src="resources/static/js/dataTables.bootstrap.min.js"
+			th:src="@{/js/dataTables.bootstrap.min.js}" th:inline="javascript" ></script>
+			
+			<script src="resources/static/js/jquery.slimscroll.min.js"
+			th:src="@{/js/jquery.slimscroll.min.js}" th:inline="javascript" ></script>
+	
+			
+						<script src="resources/static/js/fastclick.js"
+			th:src="@{/js/fastclick.js}" th:inline="javascript" ></script>
+			
+					<script src="resources/static/js/app.min.js"
+		 th:src="@{/js/app.min.js}"  th:inline="javascript"></script>
+		 
+		 				<script src="resources/static/js/demo.js"
+			th:src="@{/js/demo.js}"></script>
+
+<script>
+$(function () {
+//  $("#example1").DataTable();
+ $('#example1').DataTable({
+   "paging": true,
+   "lengthChange": true,
+   "searching": true,
+   "ordering": true,
+   "info": true,
+   "autoWidth": true,
+   "language": {
+       "lengthMenu": "Exibir _MENU_ registro por pagina",
+       "zeroRecords": "Nenhum Registro - Desculpe",
+       "info": "Exibindo pagina _PAGE_ of _PAGES_",
+       "infoEmpty": "Nenhum Registro Disponivel",
+       "infoFiltered": "(filtrado de _MAX_ registro)",
+       "search":"Pesquisar:",
+       "paginate": {
+           "first":      "Primeiro",
+           "last":       "Ultimo",
+           "next":       "Proximo",
+           "previous":   "Anterior"
+       }
+       
+   }
+ });
+});
+</script>
+			
+</body>
+			
+			
+</html>
+

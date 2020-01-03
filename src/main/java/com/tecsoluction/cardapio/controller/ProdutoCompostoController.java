@@ -207,7 +207,6 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		this.produtocomposto.setItens_prodcomp(items);
 		
 		
-		getservice().save(produtocomposto);
 		
 //		this.produto = produtoService.findOne(idf);
 
@@ -225,30 +224,30 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 //		  totalpedido = produtocomposto.getPrecocusto();
 //		  totalitem ;
 
-//		produtocomposto.setPrecocusto(produtocomposto.CalcularTotalCusto());
-//		produtocomposto.setPrecovenda(produtocomposto.CalcularTotalVenda());
+		produtocomposto.setPrecocusto(produtocomposto.CalcularTotalCusto());
+		produtocomposto.setPrecovenda(produtocomposto.CalcularTotalVenda());
 
 //	        DecimalFormat df = new DecimalFormat("0.##");
 //	        String totalformatado = df.format(totalpedido);
 		
 		
-//		 BigDecimal total =  new BigDecimal(0.00);
+		 BigDecimal total =  new BigDecimal(0.00);
 		 
-//		 BigDecimal qtd =  new BigDecimal(0.00);
+		 BigDecimal qtd =  new BigDecimal(0.00);
 
 
 	        // mudar para trazer pelo id da mesa e pelo status da mesa
 
-//	        for (Item item : produtocomposto.getItens_prodcomp().keySet()) {
-//	        	
-//	        	BigDecimal qtd =  new BigDecimal(produtocomposto.getItens_prodcomp().get(item));
-//	        
-//
-//	            total = total.add(item.getPrecoUnitario().multiply(qtd));
-//	            
-//	            item.setTotalItem(total);
-//
-//	        }
+	        for (Item item : produtocomposto.getItens_prodcomp().keySet()) {
+	        	
+	        	 qtd =  new BigDecimal(produtocomposto.getItens_prodcomp().get(item));
+	        
+
+	            total = total.add(item.getPrecoUnitario().multiply(qtd));
+	            
+	            item.setTotalItem(total);
+
+	        }
 
 //		additemprodutocomposto.addObject("produtocomposto", produtocomposto);
 //		additemprodutocomposto.addObject("prodList", prodList);
@@ -257,6 +256,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 //		additemprodutocomposto.addObject("filename", filename);
 
 
+		getservice().save(produtocomposto);
 
 		
         logger.info("Add Item ao Produto Composto Form!", produtocomposto);
