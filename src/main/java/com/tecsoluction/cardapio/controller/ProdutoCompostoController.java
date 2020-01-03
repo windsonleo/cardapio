@@ -60,8 +60,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 	
 	private Produto produto;
 
-    private Map<Item, String> items = new HashMap<Item, String>();
-
+    private Map<Item, String> items ;
 	private ProdutoComposto produtocomposto = null;
 
 	private BigDecimal totalitem = new BigDecimal(0.000).setScale(4, RoundingMode.UP);
@@ -125,7 +124,9 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		
 		produto = new Produto();
 
-
+		items  = new HashMap<Item, String>();
+		
+		
 		model.addAttribute("produtocompostosList", produtoList);
 		model.addAttribute("prodList", prodList);
 		model.addAttribute("categoriaListall", categoriaList);
