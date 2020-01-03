@@ -57,7 +57,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 	private final ProdutoServicoImpl produtoService;
 	 
 	 
-	 private Promocao promocao = new Promocao();
+	 private Promocao promocao;
 	 
 //	 private Promocao promocaoProd = new Promocao();
 	 
@@ -106,7 +106,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 //		promocao = new Promocao();
 		
 		produtoss = produtoService.findAll();
-		
+		promocao = new Promocao();
 		
 		
 		 model.addAttribute("promocao", promocao);
