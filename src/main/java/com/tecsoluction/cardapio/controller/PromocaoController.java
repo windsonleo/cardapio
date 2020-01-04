@@ -238,7 +238,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 				
 //				p.addPromo(promocao);
 		  
-				this.promocao.addProduto(p);
+			//	this.promocao.addProduto(p);
 				
 			//	p.addPromo(promocao);
 				
@@ -248,7 +248,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 			
 			System.out.println("prodpromo : " + prodpromo);
 			
-			//promocao.setProdutos(prodpromo);
+			this.promocao.setProdutos(prodpromo);
 			
 			getservice().save( this.promocao);
 			

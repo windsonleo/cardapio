@@ -164,6 +164,11 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 	public ModelAndView additemProdutoCompostoForm(HttpSession session,
             										HttpServletRequest request, Model model) {
 				
+		
+		
+		ModelAndView additemprodutocomposto = new ModelAndView("/private/produtocomposto/cadastro/cadastroprodutocomposto");
+		
+		
 		String[] ids = null;
 		
 		 String idpromo = request.getParameter("id");
@@ -257,16 +262,26 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 //		additemprodutocomposto.addObject("items", items);
 //		additemprodutocomposto.addObject("produto", produto);
 //		additemprodutocomposto.addObject("filename", filename);
+	        
 
 
+	        
 		getservice().save(produtocomposto);
+		
+		
+        model.addAttribute("produtocomposto", produtocomposto);
+        model.addAttribute("items", items);
 
 		
         logger.info("Add Item ao Produto Composto Form!", produtocomposto);
 
 
-        return new ModelAndView("forward:/produtocomposto/cadastro")
-        		.addObject("produtocomposto",produtocomposto).addObject("items", items);
+        
+        
+        return additemprodutocomposto;
+        
+//        return new ModelAndView("forward:/produtocomposto/cadastro")
+//        		.addObject("produtocomposto",produtocomposto).addObject("items", items);
 //				.addObject(items).addObject(produto).addObject(filename).addObject(umList);
 	}
 	
