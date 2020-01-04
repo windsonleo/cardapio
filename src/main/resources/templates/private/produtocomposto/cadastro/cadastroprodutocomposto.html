@@ -289,8 +289,8 @@
                                     <select id="categoria" name="categoria" class="form-control">
                                         <optgroup label="Escolha A categoria">
 
-                                            <option th:value="${produtocomposto.categoria}" th:selected="selected"
-                                            th:utext="${produtocomposto.categoria}">
+                                            <option th:each="cat: ${produtocomposto.categoria}" th:selected="selected"
+                                            th:utext="${cat.nome}" th:value="${cat.id}" >
                                             
                                             
                                             </option>

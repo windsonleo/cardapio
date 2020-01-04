@@ -121,12 +121,24 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 //
 //		model.addAttribute("usuarioAtt", usuario);
 		
+		filename="vazio.jpg";
 		
 		produto = new Produto();
 
 		items  = new HashMap<Item, String>();
 		
 		produtocomposto = new ProdutoComposto();
+		
+		if(!produtocomposto.getItens_prodcomp().isEmpty()){
+			
+			items = produtocomposto.getItens_prodcomp();
+			
+		} else {
+			
+			
+			
+			
+		}
 		
 		
 		model.addAttribute("produtocompostosList", produtoList);

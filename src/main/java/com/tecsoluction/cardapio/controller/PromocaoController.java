@@ -105,9 +105,22 @@ public class PromocaoController extends AbstractController<Promocao> {
 		
 //		promocao = new Promocao();
 		
+		filename="promo.jpg";
+		
 		produtoss = produtoService.findAll();
+		
 		promocao = new Promocao();
-		 prodpromo = new HashSet<Produto>();
+		
+		prodpromo = new HashSet<Produto>();
+		 
+		 if(!promocao.getProdutos().isEmpty()){
+			 
+			prodpromo = promocao.getProdutos(); 
+			 
+		 }else {
+			 
+			 
+		 }
 		
 		 model.addAttribute("promocao", promocao);
 		 model.addAttribute("filename", filename);
