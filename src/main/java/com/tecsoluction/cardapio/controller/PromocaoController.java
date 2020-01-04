@@ -193,7 +193,10 @@ public class PromocaoController extends AbstractController<Promocao> {
 
 	        }
 	        
-	        promocao.setFoto(filename);
+	        this.promocao.setFoto(filename);
+	        
+            model.addAttribute("promocao", promocao);
+
 
 	        return cadastro;
 
