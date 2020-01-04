@@ -211,13 +211,13 @@ public class PromocaoController extends AbstractController<Promocao> {
 		  
 		  String[] ids = null;
 		  
-		  int qtdparam = request.getParameterValues("produtos").length;
+		  int qtdparam = request.getParameterValues("produtoss").length;
 		  
 		  System.out.println("qtd produtos : " + qtdparam);
 		  
 		  ids = new String[qtdparam];
 			
-			ids = request.getParameterValues("produtos");
+			ids = request.getParameterValues("produtoss");
 			
 			 System.out.println(" produtos : " + ids.toString());
 			
@@ -240,7 +240,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 		  
 				this.promocao.addProduto(p);
 				
-				p.addPromo(promocao);
+			//	p.addPromo(promocao);
 				
 				
 				
@@ -250,7 +250,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 			
 			//promocao.setProdutos(prodpromo);
 			
-			getservice().edit(promocao);
+			getservice().save( this.promocao);
 			
 			
 //			produtoService.edit(p)
@@ -261,7 +261,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 //	  		this.promocao.addProduto(produto);
 			
 			model.addAttribute("prodpromo",prodpromo);
-			model.addAttribute("promocao",promocao);
+			model.addAttribute("promocao", this.promocao);
 	  		
 	  		return addproduto;
 
@@ -285,14 +285,14 @@ public class PromocaoController extends AbstractController<Promocao> {
 	  		
 //	  		getservice().edit(promocao);
 	  		
-	  		promocao.getProdutos().clear();
+	  		 this.promocao.getProdutos().clear();
 	  		
-	  		promocao.setProdutos(prodpromo);
+	  		 this.promocao.setProdutos(prodpromo);
 	  		
-	  		getservice().edit(promocao);
+	  		getservice().edit( this.promocao);
 	  		
 			model.addAttribute("prodpromo",prodpromo);
-			model.addAttribute("promocao",promocao);
+			model.addAttribute("promocao", this.promocao);
 	  		
 	        return new ModelAndView("forward:/promocao/cadastro/");
 

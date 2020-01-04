@@ -126,6 +126,8 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 
 		items  = new HashMap<Item, String>();
 		
+		produtocomposto = new ProdutoComposto();
+		
 		
 		model.addAttribute("produtocompostosList", produtoList);
 		model.addAttribute("prodList", prodList);
