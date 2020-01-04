@@ -481,7 +481,7 @@
                                                 <td th:text="${item.key.nome}">ITEM</td>
                                                 <td th:text="${item.key.un_medida}">ITEM</td>
 
-                                                  <td ><input id="qtd" name="qtd" class="inpequeno" th:text="${item.value}">QTD</input></td>
+                                                  <td ><input name="qtd" class="inpequeno" th:text="${item.value}">QTD</input></td>
                                                    <td th:text="${item.key.precoCusto}">VALOR</td>
                                                   
                                                    <td>   <a  rel="tooltip" title="Excluir" class="" th:href="@{/produtocomposto/deleteitem(id=${item.key})}">
