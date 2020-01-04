@@ -85,7 +85,7 @@ public  class Item implements Serializable, Comparable<Item>{
 @Override
 public String toString() {
 
-	return id.toString();
+	return nome;
 }
 
 @Override

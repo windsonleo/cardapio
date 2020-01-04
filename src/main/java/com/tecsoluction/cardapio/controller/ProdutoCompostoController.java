@@ -184,6 +184,8 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		String[] ids = null;
 		
 		 String idpromo = request.getParameter("id");
+		 
+		 String qtd = request.getParameter("qtd");
 		  
 		 UUID idfpromo = null;
 		  
@@ -215,7 +217,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 			
 			it = new Item(p);
 			
-			items.put(it, "2");
+			items.put(it, qtd);
 			
 		}
 		
@@ -253,17 +255,17 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		
 		 BigDecimal total =  new BigDecimal(0.00);
 		 
-		 BigDecimal qtd =  new BigDecimal(0.00);
+		 BigDecimal qtdd =  new BigDecimal(0.00);
 
 
 	        // mudar para trazer pelo id da mesa e pelo status da mesa
 
 	        for (Item item : produtocomposto.getItens_prodcomp().keySet()) {
 	        	
-	        	 qtd =  new BigDecimal(produtocomposto.getItens_prodcomp().get(item));
+	        	 qtdd =  new BigDecimal(produtocomposto.getItens_prodcomp().get(item));
 	        
 
-	            total = total.add(item.getPrecoUnitario().multiply(qtd));
+	            total = total.add(item.getPrecoUnitario().multiply(qtdd));
 	            
 	            item.setTotalItem(total);
 
