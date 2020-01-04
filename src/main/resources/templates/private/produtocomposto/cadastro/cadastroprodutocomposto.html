@@ -406,7 +406,7 @@
               
                 <select class="form-control select2" id="itens_prodcompp"  name="itens_prodcompp"  data-placeholder="Select a Produto" style="width: 100%;">
                  
-          <option th:each="item: ${produtocomposto.itens_prodcomp}" th:text="${item.key.nome}" th:selected="${item.key}" class="selected" th:value="${item.key}"></option>
+          <option th:each="item: ${produtocomposto.itens_prodcomp}" th:text="${item.key.nome}" th:selected="${item.key}" class="selected" th:value="${item.key.id}"></option>
                  
                  
                  
@@ -483,7 +483,7 @@
                                                 <td th:text="${item.key.nome}">ITEM</td>
                                                 <td th:text="${item.key.un_medida}">ITEM</td>
 
-                                                  <td th:text="${item.key.value}" ></td>
+                                                  <td th:text="${item.value}" ></td>
                                                    <td th:text="${item.key.precoCusto}">VALOR</td>
                                                   
                                                    <td>   <a  rel="tooltip" title="Excluir" class="" th:href="@{/produtocomposto/deleteitem(id=${item.key})}">
