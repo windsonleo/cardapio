@@ -258,6 +258,9 @@ public class ContextoAplicacao {
            
         	aberto = true;
         	System.out.print("Aberto!");
+        	System.out.print("hora agora!" + datafor.getTime() );
+        	System.out.print("hora abre!" + horaabertura.getTime());
+        	System.out.print("hora fecha!  " + horafechamento.getTime());
        
         
         }else if ((datafor.getTime() > horaabertura.getTime()) && (datafor.getTime() > horafechamento.getTime())){
@@ -272,6 +275,10 @@ public class ContextoAplicacao {
         	
         	
         	aberto = true;
+        	
+        	System.out.print("hora agora elses!" + datafor.getTime() );
+        	System.out.print("hora abre elses!" + horaabertura.getTime());
+        	System.out.print("hora fecha elses!  " + horafechamento.getTime());
         	
         }
 	
