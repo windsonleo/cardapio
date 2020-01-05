@@ -59,7 +59,7 @@ public class ContextoAplicacao {
 	 
 	 private Date hoje;
 	 	
-	 private boolean estaaberto=true;
+	 private boolean estaaberto;
 	 	
 
 	// @Autowired
@@ -236,7 +236,7 @@ public class ContextoAplicacao {
 	
 	public boolean VerificaHorarioFechamento(Configuracao configuracao) {
       
-	boolean	aberto = true;
+	boolean	aberto = false;
 		
 		SimpleDateFormat sdfConvert = new SimpleDateFormat("HH:mm:ss");
         Date horaabertura = configuracao.getHoraabertura();
