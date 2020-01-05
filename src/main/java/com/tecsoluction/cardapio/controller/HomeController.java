@@ -541,7 +541,7 @@ public class HomeController {
     	
     		Properties props = new Properties();
     	   props.setProperty("mail.smtp.user","fabriciopiercing@gmail.com" );   //setei o login
-    	   props.setProperty("mail.smtp.password", "465589kvoo"); // e a senha
+    	   props.setProperty("mail.smtp.password", "senpai2020"); // e a senha
     	   props.setProperty("mail.transport.protocol", "smtp");
     	   props.put("mail.smtp.starttls.enable","true"); //não sei ao certo para que serve, mas tive que colocar...
     	   props.setProperty("mail.smtp.auth", "true");  //setei a autenticação  
