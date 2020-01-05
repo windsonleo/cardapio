@@ -243,18 +243,29 @@ public class ContextoAplicacao {
         Date horafechamento = configuracao.getHorafechamento();
         Date horaagora = new Date();
         
-       
+        Date datafor = null;
+        
+        
+       try {
+    	   datafor = sdfConvert.parse(sdfConvert.format(horaagora));
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
       
 
-        if ((horaagora.getTime() > horaabertura.getTime()) && (horaagora.getTime() < horafechamento.getTime())){
+        if ((datafor.getTime() > horaabertura.getTime()) && (datafor.getTime() < horafechamento.getTime())){
            
         	aberto = true;
         	System.out.print("Aberto!");
        
         
-        }else if ((horaagora.getTime() > horaabertura.getTime()) && (horaagora.getTime() > horafechamento.getTime())){
+        }else if ((datafor.getTime() > horaabertura.getTime()) && (datafor.getTime() > horafechamento.getTime())){
             
         	System.out.print("Fechado!");
+        	System.out.print("hora agora!" + datafor.getTime() );
+        	System.out.print("hora abre!" + horaabertura.getTime());
+        	System.out.print("hora fecha!  " + horafechamento.getTime());
         	
         	aberto = false;
         }else {
