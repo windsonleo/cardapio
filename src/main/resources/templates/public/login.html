@@ -51,6 +51,8 @@
 	 var accessToken = null;
 	 
 	 var senhas =null;
+	 
+	 var senhas2 =null;
 	
 	// This is called with the results from from FB.getLoginStatus().
 	  function statusChangeCallback(response) {
@@ -260,11 +262,15 @@
 	  		var senha4 = Math.floor(Math.random() * 10);
 	  		var senha5 = Math.floor(Math.random() * 10);
 	 		
-	  		senhas = senha0 +senha1+senha2+senha3+senha4+senha5;
+	  		senhas = senha0 , senha1, senha2, senha3,senha4,senha5;
 	 		
 	 	    		   
 	  	   console.log("senha:" , senhas); 
+	  	   
+	  	   
+	  	   senhas2 = = Math.random().toString(36).substring(7);
 	   		 
+	  	 console.log("senhas2:" , senhas2); 
 	   		 
 	   	 }
   
