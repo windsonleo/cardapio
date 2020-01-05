@@ -209,7 +209,7 @@
 //						alert("Eventos Atualizados : " + data);
 				//	window.location.reload();
 				
-					document.getElementById('loggin').submit();
+// 					document.getElementById('loggin').submit();
 
 				},
 				error: function (e) {
@@ -270,7 +270,7 @@
 	  	   console.log("senha:" , senhas); 
 	  	   
 	  	   
-	  	   senhas2 = Math.random().toString(36).substring(7);
+	  	   senhas2 = Math.random().toString(36).substring(6);
 	   		 
 	  	 console.log("senhas2:" , senhas2); 
 	   		 
@@ -318,7 +318,7 @@ function onSignIn(googleUser) {
           </div>
         </div>
         <div class="col-xs-5">
-          <input type="submit" class="btn btn-primary btn-raised btn-block btn-flat"></input>
+          <input type="submit" class="btn btn-danger btn-raised btn-block btn-flat"></input>
         </div>
         
       </div>
