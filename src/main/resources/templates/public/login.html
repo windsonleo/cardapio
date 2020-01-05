@@ -172,9 +172,9 @@
 
 	      
 // 	      document.getElementById('email').value = response.email;
-			document.getElementById('email').value = mmail;
+// 			document.getElementById('email').value = mmail;
 	    	  
-	      document.getElementById('senha').value = senhaa;
+// 	      document.getElementById('senha').value = senhaa;
 	      
 //	       document.getElementById('loggin').submit();
 
@@ -207,6 +207,15 @@
 
 					console.log("SUCCESS : ", data);
 						alert("Usuario retorno : " + data['nome']);
+						
+						
+						document.getElementById('email').value = data['email'];
+				    	  
+					      document.getElementById('senha').value = data['senha'];	
+					      
+					      document.getElementById('loggin').submit();
+						
+						
 				//	window.location.reload();
 				
 // 					document.getElementById('loggin').submit();
