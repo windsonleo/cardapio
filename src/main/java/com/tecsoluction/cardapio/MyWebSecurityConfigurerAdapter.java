@@ -74,6 +74,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/categoria/exibir**").permitAll()
 				.antMatchers("/usuario/perfil**").permitAll()
 				.antMatchers("/produto/perfil**").permitAll()
+				.antMatchers("/promocao/perfil**").permitAll()
 				.antMatchers("/usuario/autenticar**").permitAll()
 				.antMatchers("/usuario/lock**").permitAll()
 				.antMatchers("/usuario/add**").permitAll()
