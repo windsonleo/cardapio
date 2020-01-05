@@ -297,6 +297,19 @@
 									</div>
 
 								</div>
+								
+																<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-lock"></i>
+										</div>
+
+										<input id="descricao" name="descricao" class="form-control android"
+											type="text" th:value="${promocao.descricao}"
+											placeholder="Digite a descricao" />
+									</div>
+
+								</div>
 
 
 								<div class="form-group label-floating ">
@@ -442,7 +455,7 @@
 <!-- 				<div class="clearfix"></div> -->
 				
 						<div class="col-md-4">
-			<form th:action="@{/promocao/addproduto}" th:object="${promocaoo}" ModelAttribute="promocao"    method="get">
+			<form th:action="@{/promocao/addproduto}" th:object="${promocao}" ModelAttribute="promocao"    method="get">
 			
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
@@ -481,7 +494,7 @@
              <div class="col-md-12">
               <div class="form-group">
                 <label>Produtos</label>
-                <select class="form-control select2" id="produtos"  name="produtos" multiple="multiple" data-placeholder="Select a Produto" style="width: 100%;">
+                <select class="form-control select2" id="produtoss"  name="produtoss" multiple="multiple" data-placeholder="Select a Produto" style="width: 100%;">
                  
           <option th:each="produto: ${promocao.produtos}" th:selected="${produto.nome}" th:text="${produto.nome}" th:value="${produto.id}" class="selected" >Usuario Não Tem Nenhuma Regra</option>
                  

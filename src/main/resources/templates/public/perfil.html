@@ -4,7 +4,7 @@
   
 <meta property="og:url"                th:attr="content='https://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" />
 <meta property="og:type"               th:attr="content='website'" />
-<meta property="og:title"               th:attr="content='Perfil:' + ${produto.nome}" />
+<meta property="og:title"               th:attr="content='Sushi-Senpai' + ${produto.nome}" />
 <meta property="og:description"        th:attr="content='Descrição:'+ ${produto.descricao}" />
 <meta property="og:image"               th:attr="content='https://sleepy-atoll-65818.herokuapp.com/img/produto/' + ${produto.foto}" />
 
@@ -60,12 +60,28 @@
     
     <section class="content">
     
+    <div class="alert alert-info alert-dismissible">
     
+                          <div class="box-tools pull-right">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i>
+                </button>
+              </div>
+        <h4>Deseja Avaliar Este Produto ?</h4>
+        Clique nesse Link que Levaremos vc a Página
+        <a th:href="@{/produto/avaliar}">Página de Avaliação</a>
+        
+
+              
+              
+      </div>
+      
+      
+      
        <div class="row">
        
        
       
-        <div class="col-md-8" >
+        <div class="col-md-4" >
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user-2">
             <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -124,13 +140,13 @@
             
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-                <li><a href="#">Qtd <span class="pull-right badge bg-blue" th:text="${produto.un_medida}" >31</span></a></li>
-                <li><a href="#">Preco <span class="pull-right badge bg-aqua" th:text="${produto.precovenda}" >5</span></a></li>
+<!--                 <li><a href="#">Qtd <span class="pull-right badge bg-blue" th:text="${produto.un_medida}" >31</span></a></li> -->
+<!--                 <li><a href="#">Preco <span class="pull-right badge bg-aqua" th:text="${produto.precovenda}" >5</span></a></li> -->
                 
 <!--                 <li><a href="#">Curtir <span class="pull-right badge bg-green"><i class="fa fa-thumbs-up">12</i></span></a></li> -->
-                <li>  <a href="#"> Curtir  <span class="pull-right"> <div class="fb-like" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li>
+                <li>  <a href="#"> Curtir  <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li>
                 
-                <li> <a href="#"> Recomendar <span class="pull-right"> <div class="fb-like" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li>
+                <li> <a href="#"> Recomendar <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li>
            
            
 <!--                 <li><a th:href="@{/usuario/indica(id=${produto.id})}">Sugerir <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i>84</span></a></li> -->
@@ -225,6 +241,60 @@
    
    
    
+        </div>
+        
+                <div class="col-md-8">
+        
+                  <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Detalhes</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i> Descrição</strong>
+
+              <p class="text-muted" th:text="${produto.descricao}">
+                B.S. in Computer Science from the University of Tennessee at Knoxville
+              </p>
+
+              <hr> </hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Valor</strong>
+
+              <p class="text-muted" th:utext="|R$: ${produto.precovenda}|" >Malibu, California</p>
+
+              <hr> </hr>
+
+              <strong><i class="fa fa-pencil margin-r-5"></i> Avaliação</strong>
+
+								
+								<p>
+								<ul class="rating">
+
+
+									<th:block
+										th:each="i: ${#numbers.sequence(1, 5)}">
+										<li th:if="${produto.avaliacao >= i}" class="active"><a
+											class="rstarR" href="#"> <img th:src="@{/img/star1.png}"
+												class="imgstar" />
+										</a></li>
+										<li th:unless="${produto.avaliacao >= i}"><a
+											class="rstarR" href="#"> <img th:src="@{/img/star0.png}"
+												class="imgstar" />
+										</a></li>
+									</th:block>
+								</ul>
+								</p>
+
+              <hr> </hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Promoções</strong>
+
+              <p th:each = "promocao: ${produto.promocoes}"  th:text="|${promocao.nome}|" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        
         </div>
         
 <!--         <div class="clearfix"></div> -->
@@ -879,6 +949,8 @@ for (var i = 0; i < x.length; i++) {
 //         this.querySelector('img').src = antImg;
 //     });
 }
+
+
    
    
    

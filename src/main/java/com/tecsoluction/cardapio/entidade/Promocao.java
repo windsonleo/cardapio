@@ -52,6 +52,14 @@ public class Promocao extends BaseEntity implements Serializable {
 	 @NotBlank(message="o nome do Promocao não pode ser branco")
     private String nome;
 
+    
+    @Column(name = "descricao", nullable = false)
+	 @NotNull(message="o descricao do Promocao não pode ser nulo")
+	 @NotBlank(message="o descricao do Promocao não pode ser branco")
+    private String descricao;
+    
+    
+    
     //    (cascade = { CascadeType.ALL })
 //    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Promocao.class, optional = true)
 //    @JoinColumn(name = "catpai_id", nullable = true)

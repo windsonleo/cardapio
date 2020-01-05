@@ -261,8 +261,13 @@
 
 
 										<option th:each="tipoterapia: ${umList}"
-											th:value="${tipoterapia}" th:utext="${tipoterapia}">
-											tipo</option>
+											th:value="${tipoterapia}">
+											
+											
+											
+												<span th:utext="${tipoterapia}" >Nenhum Genero Cadastrado </span> 
+											
+											</option>
 
 
 
@@ -288,8 +293,11 @@
 
 
 										<option th:each="tipoterapia: ${categoriaListall}"
-											th:value="${tipoterapia.id}" th:utext="${tipoterapia.nome}">
-											tipo</option>
+											th:value="${tipoterapia.id}" >
+											
+											
+											<span th:utext="${tipoterapia.nome}" >Nenhum Genero Cadastrado </span> 
+											</option>
 
 
 
@@ -321,6 +329,18 @@
 								<input id="precovenda" class="form-control" name="precovenda"
 									type="text" th:value="${produto.precovenda}"
 									placeholder="precovenda"> </input>
+							</div>
+						</div>
+						
+						
+												<div class="form-group label-floating ">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-user"></i>
+								</div>
+								<input id="tempopreparo" class="form-control" name="tempopreparo"
+									type="number" th:value="${produto.tempopreparo}"
+									placeholder="Tempo de Preeparo em MInutos"> </input>
 							</div>
 						</div>
 

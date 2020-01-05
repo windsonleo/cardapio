@@ -1,8 +1,12 @@
 package com.tecsoluction.cardapio;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -55,7 +59,7 @@ public class ContextoAplicacao {
 	 
 	 private Date hoje;
 	 	
-	 
+	 private boolean estaaberto=true;
 	 	
 
 	// @Autowired
@@ -102,6 +106,14 @@ public class ContextoAplicacao {
 		
 		if(configuracaoAtual == null){
 			
+			Date dati = new Date();
+			dati.setHours(18);
+			dati.setMinutes(00);
+			
+			Date datf = new Date();
+			datf.setHours(23);
+			datf.setMinutes(00);
+			
 			configuracaoAtual = new Configuracao();
 			
 			configuracaoAtual.setAtivo(true);
@@ -116,6 +128,9 @@ public class ContextoAplicacao {
 			configuracaoAtual.setUrlface("https://www.facebook.com");
 			configuracaoAtual.setUrlgmail("https://www.gmail.com");
 			configuracaoAtual.setUrlinsta("https://www.instagram.com");
+			configuracaoAtual.setHoraabertura(dati);
+			configuracaoAtual.setHorafechamento(datf);
+
 			
 			
 			
@@ -146,6 +161,8 @@ public class ContextoAplicacao {
         }
         
          hoje = new Date();
+         
+         estaaberto = VerificaHorarioFechamento(configuracaoAtual);
         
 
         
@@ -153,6 +170,7 @@ public class ContextoAplicacao {
         model.addAttribute("categoriaLista", categoriaLista);
         model.addAttribute("configuracaoAtual", configuracaoAtual);
         model.addAttribute("hoje", hoje);
+        model.addAttribute("estaaberto", estaaberto);
         
         
 	}
@@ -215,5 +233,40 @@ public class ContextoAplicacao {
 		return validas;
 		
 	}
+	
+	public boolean VerificaHorarioFechamento(Configuracao configuracao) {
+      
+	boolean	aberto = true;
+		
+		SimpleDateFormat sdfConvert = new SimpleDateFormat("HH:mm:ss");
+        Date horaabertura = configuracao.getHoraabertura();
+        Date horafechamento = configuracao.getHorafechamento();
+        Date horaagora = new Date();
+        
+       
+      
 
+        if ((horaagora.getTime() > horaabertura.getTime()) && (horaagora.getTime() < horafechamento.getTime())){
+           
+        	aberto = true;
+        	System.out.print("Aberto!");
+       
+        
+        }else if ((horaagora.getTime() > horaabertura.getTime()) && (horaagora.getTime() > horafechamento.getTime())){
+            
+        	System.out.print("Fechado!");
+        	
+        	aberto = false;
+        }else {
+        	
+        	
+        	aberto = true;
+        	
+        }
+	
+	
+	return aberto;
+
+}
+	
 }

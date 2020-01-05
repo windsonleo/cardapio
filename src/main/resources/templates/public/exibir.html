@@ -52,6 +52,18 @@
     
     <section class="content">
     
+    <div class="alert alert-success alert-dismissible" th:if="${sucesso}" th:text="${sucesso}">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                Success alert preview. This alert is dismissable.
+              </div>
+              
+                  <div class="alert alert-danger alert-dismissible" th:if="${erro}" th:text="${erro}">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                Success alert preview. This alert is dismissable.
+              </div>
+    
     
             <div class="row mb-30" >
         <div class="col-md-3" th:each="promocao: ${promocoesList}">
@@ -61,7 +73,7 @@
                        <img th:if="${promocao.foto}" th:src="@{/img/promocao/{fotoc}(fotoc=${promocao.foto})}" class="img-circle img-md" alt="User Image" /> 
                      <h4 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h4>
                      
-           <span class="pull-left badge bg-blue" th:utext="${#dates.format(promocao.datavalidade,'dd-MM-yyyy')}" >31</span>    
+           <span class="pull-left badge bg-blue" th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" >31</span>    
            
            
            <br></br>
@@ -101,7 +113,7 @@
             <div class="widget-user-header bg-black" th:class=" 'widget-user-header bg-'+ ${promocao.corfaixa}"  style="background: url('../img/promocao/promo.jpg') center center;">
              
                            <h3 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h3>
-              <h5 class="widget-user-desc"  th:utext="${#dates.format(promocao.datavalidade,'dd-MM-yyyy')}" >Lead Developer</h5>
+              <h5 class="widget-user-desc"  th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" >Lead Developer</h5>
              
              </div>
              
@@ -116,6 +128,9 @@
                 <li><a href="#">Desconto<span class="pull-right badge bg-aqua"  th:text="${promocao.desconto} + ' %' ">5</span></a></li>
                 <li><a href="#">Economia de até <span class="pull-right badge bg-green">R$ 12.00</span></a></li>
 <!--                 <li><a href="#">Sugestao de  <span class="pull-right badge bg-red" th:utext="${usuarioAtt.nome}" >842</span></a></li> -->
+                   <li><a th:href="@{/promocao/perfil(id=${promocao.id})}">Perfil <span class="pull-right badge bg-red">842</span></a></li>
+             
+             
               </ul>
             </div>
           </div>
@@ -226,32 +241,39 @@
               <ul class="rating">
               
               
-             <li>
+              <th:block th:each="i: ${#numbers.sequence(1,5)}">
+    <li th:if="${produto.avaliacao >= i}" class="active"> <a class="rstarr" href="#" >
+    <img th:src="@{/img/star1.png}"  class="imgstar" /> </a></li>
+    <li th:unless="${produto.avaliacao >= i}"><a class="rstarr" href="#" >
+    <img th:src="@{/img/star0.png}"  class="imgstar" /> </a></li>
+</th:block>
+              
+<!--              <li> -->
              
-              <a class="rstar" href="javascript:void(0)" >
-				<img th:src="@{/img/star0.png}" th:id="'s1' + ${produto.nome}" class="imgstar" /> </a>
+<!--               <a class="rstar" href="javascript:void(0)" > -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s1' + ${produto.nome}" class="imgstar" /> </a> -->
              
-             </li>
+<!--              </li> -->
              
              
-             <li>
-             <a class="rstar" href="javascript:void(0)" >
-				<img th:src="@{/img/star0.png}" th:id="'s2' + ${produto.nome}" class="imgstar" /> </a>
-             </li>
+<!--              <li> -->
+<!--              <a class="rstar" href="javascript:void(0)" > -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s2' + ${produto.nome}" class="imgstar" /> </a> -->
+<!--              </li> -->
              
-             <li>
-             <a class="rstar" href="javascript:void(0)">
-				<img th:src="@{/img/star0.png}" th:id="'s3' + ${produto.nome}" class="imgstar" /> </a>
-             </li>
+<!--              <li> -->
+<!--              <a class="rstar" href="javascript:void(0)"> -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s3' + ${produto.nome}" class="imgstar" /> </a> -->
+<!--              </li> -->
              
-             <li>
-             <a class="rstar" href="javascript:void(0)" >
-				<img th:src="@{/img/star0.png}" th:id="'s4' + ${produto.nome}" class="imgstar" /> </a>
-           </li>
-             <li>
-             <a class="rstar" href="javascript:void(0)">
-				<img th:src="@{/img/star0.png}" th:id="'s5' + ${produto.nome}" class="imgstar" /> </a>
-			</li>
+<!--              <li> -->
+<!--              <a class="rstar" href="javascript:void(0)" > -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s4' + ${produto.nome}" class="imgstar" /> </a> -->
+<!--            </li> -->
+<!--              <li> -->
+<!--              <a class="rstar" href="javascript:void(0)"> -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s5' + ${produto.nome}" class="imgstar" /> </a> -->
+<!-- 			</li> -->
               
               </ul>
               
@@ -264,17 +286,17 @@
             
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-                <li><a href="#">Qtd <span class="pull-right badge bg-blue" th:text="${produto.un_medida}" >31</span></a></li>
-                <li><a href="#">Preco <span class="pull-right badge bg-aqua" th:text="${produto.precovenda}" >5</span></a></li>
+                <li><a href="#"  rel="tooltip" title="Quantidade do Produto">Qtd  <span class="pull-right badge bg-blue" th:text="${produto.un_medida}" >31</span></a></li>
+                <li><a href="#"  rel="tooltip" title="Preço do Produto">Preco <span class="pull-right badge bg-aqua" th:text="| R$: ${produto.precovenda}|" >5</span></a></li>
                 
 <!--                 <li><a href="#">Curtir <span class="pull-right badge bg-green"><i class="fa fa-thumbs-up">12</i></span></a></li> -->
 <!--                 <li><a href="#"> Curtir  <span class="pull-right badge bg-green"> <div class="fb-like pull-right" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li> -->
                 
 <!--                 <li> <a href="#"> Recomendar <span class="pull-right badge bg-green"> <div class="fb-like pull-right" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li> -->
            
-                           <li><a th:href="@{/produto/perfil(id=${produto.id})}">Perfil <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i></span></a></li>
+                           <li><a th:href="@{/produto/perfil(id=${produto.id})}"  rel="tooltip" title="Visualizar Perfil do Produto">Perfil <span class="pull-right badge bg-purple" ><i class="fa fa-hand-o-right"></i></span></a></li>
            
-                <li><a th:href="@{/usuario/indica(id=${produto.id})}">Indicar <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i>84</span></a></li>
+                <li><a th:href="@{/usuario/indica(id=${produto.id})}" rel="tooltip" title="Indicar para Cliente">Indicar <span class="pull-right badge bg-green" ><i class="fa fa-hand-o-right"></i>84</span></a></li>
               <li><a href="#" data-toggle="modal" class="product-title" th:attr="data-target='#myAtividade' + ${produto.codebar}" >Detalhes <span class="pull-right badge bg-red" ><i class="fa fa-hand-o-right"></i>84</span></a></li>
               </ul>
             </div>

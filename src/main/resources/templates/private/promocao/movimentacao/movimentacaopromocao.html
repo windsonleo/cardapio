@@ -81,8 +81,8 @@
                                                      <td th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}">senha</td>
                                                     <td th:text="${promocao.produtos}">roles</td>
                                                      <td th:text="${promocao.corfaixa}">roles</td>
-                                                  <td th:text="${promocao.desconto}">roles</td>
-		                                            <td th:text="${promocao.ativo}">ativo</td>		                                          
+                                                  <td th:text="${promocao.desconto} + '%' ">roles</td>
+		                                            <td><label><input name="optionsCheckboxes" class="checkbox" type="checkbox" th:checked="${promocao.ativo}" disabled/></label></td>		                                          
 		                                       
 							              <div sec:authorize="hasRole('ROLE_ADM')" >
 	                                              <td>
@@ -201,6 +201,9 @@ $(function () {
  });
 });
 </script>
+
+<!-- 					<div th:replace="fragmentos/footer :: script" -->
+<!-- 						style="display: none;"></div> -->
 			
 </body>
 			

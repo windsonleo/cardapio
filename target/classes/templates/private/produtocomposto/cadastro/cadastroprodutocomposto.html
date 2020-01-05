@@ -261,7 +261,7 @@
                                             </option>
 
                                                 
-                                             	<option th:each="tipoterapia: ${umList}" th:value="${tipoterapia}"> tipo
+                                             	<option th:each="tipoterapia: ${umList}" th:value="${tipoterapia}">
                                              	
                                              	
                                              	                  	<span th:text="${tipoterapia}">Nenhuma Regra
@@ -289,14 +289,14 @@
                                     <select id="categoria" name="categoria" class="form-control">
                                         <optgroup label="Escolha A categoria">
 
-                                            <option th:value="${produtocomposto.categoria}" th:selected="selected"
-                                            th:utext="${produtocomposto.categoria}">
+                                            <option th:each="cat: ${produtocomposto.categoria}" th:selected="selected"
+                                            th:utext="${cat.nome}" th:value="${cat.id}" >
                                             
                                             
                                             </option>
 
                                                 
-                                             	<option th:each="tipoterapia: ${categoriaListall}" th:value="${tipoterapia.id}" > tipo 
+                                             	<option th:each="tipoterapia: ${categoriaListall}" th:value="${tipoterapia.id}" >  
 					           				      	
 				           				   		                  	<span th:text="${tipoterapia.nome}">Nenhuma Regra
 														Cadastrada </span>
@@ -315,7 +315,7 @@
                     <i class="fa fa-folder"></i>
                   </div>
 
-                                    <select id="itens_prodcomp select2" name="itens_prodcomp" multiple="multiple" class="form-control">
+                                    <select id="itens_prodcomp" name="itens_prodcomp" multiple="multiple" class="form-control select2">
                                         <optgroup label="Escolha os items">
 
                                             <option th:each="item_prod : ${produtocomposto.itens_prodcomp}" th:selected="selected"
@@ -325,7 +325,7 @@
                                             </option>
 
                                                 
-                                             	<option th:each="prod: ${prodList}" th:value="${prod.id}" > tipo 
+                                             	<option th:each="prod: ${prodList}" th:value="${prod.id}" > 
 					           				      	
 				           				   		                  	<span th:text="${prod.nome}">Nenhuma Regra
 														Cadastrada </span>
@@ -359,7 +359,16 @@
 									</div>
 								</div>	                            
                             
-                            
+                            												<div class="form-group label-floating ">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-user"></i>
+								</div>
+								<input id="tempopreparo" class="form-control" name="tempopreparo"
+									type="number" th:value="${produtocomposto.tempopreparo}"
+									placeholder="Tempo de Preeparo em MInutos"> </input>
+							</div>
+						</div>
                             
                             
                             <div class="form-actions">
@@ -404,9 +413,9 @@
              <div class="col-md-12">
               <div class="form-group label-floating">
               
-                <select class="form-control select2" id="itens_prodcompp"  name="itens_prodcompp" multiple="multiple" data-placeholder="Select a Produto" style="width: 100%;">
+                <select class="form-control select2" id="itens_prodcompp"  name="itens_prodcompp"  data-placeholder="Select a Produto" style="width: 100%;">
                  
-          <option th:each="item: ${produtocomposto.itens_prodcomp}" th:text="${item.key.nome}" th:selected="${item.key}" class="selected" th:value="${item.key}"></option>
+          <option th:each="item: ${produtocomposto.itens_prodcomp}" th:text="${item.key.nome}" th:selected="${item.key}" class="selected" th:value="${item.key.id}"></option>
                  
                  
                  
@@ -420,6 +429,8 @@
 <!--                   <option  th:text="${produto.nome}">Alaska</option> -->
 
                 </select>
+                <input name="qtd" id="qtd" class="col-md-04">QTD</input>
+                
               </div>
 
                 </div>
@@ -481,7 +492,7 @@
                                                 <td th:text="${item.key.nome}">ITEM</td>
                                                 <td th:text="${item.key.un_medida}">ITEM</td>
 
-                                                  <td ><input id="qtd" name="qtd" th:text="${item.value}">QTD</input></td>
+                                                  <td th:text="${item.value}" ></td>
                                                    <td th:text="${item.key.precoCusto}">VALOR</td>
                                                   
                                                    <td>   <a  rel="tooltip" title="Excluir" class="" th:href="@{/produtocomposto/deleteitem(id=${item.key})}">

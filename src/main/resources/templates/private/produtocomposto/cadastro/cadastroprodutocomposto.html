@@ -261,7 +261,7 @@
                                             </option>
 
                                                 
-                                             	<option th:each="tipoterapia: ${umList}" th:value="${tipoterapia}"> tipo
+                                             	<option th:each="tipoterapia: ${umList}" th:value="${tipoterapia}">
                                              	
                                              	
                                              	                  	<span th:text="${tipoterapia}">Nenhuma Regra
@@ -296,7 +296,7 @@
                                             </option>
 
                                                 
-                                             	<option th:each="tipoterapia: ${categoriaListall}" th:value="${tipoterapia.id}" > tipo 
+                                             	<option th:each="tipoterapia: ${categoriaListall}" th:value="${tipoterapia.id}" >  
 					           				      	
 				           				   		                  	<span th:text="${tipoterapia.nome}">Nenhuma Regra
 														Cadastrada </span>
@@ -359,7 +359,16 @@
 									</div>
 								</div>	                            
                             
-                            
+                            												<div class="form-group label-floating ">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-user"></i>
+								</div>
+								<input id="tempopreparo" class="form-control" name="tempopreparo"
+									type="number" th:value="${produtocomposto.tempopreparo}"
+									placeholder="Tempo de Preeparo em MInutos"> </input>
+							</div>
+						</div>
                             
                             
                             <div class="form-actions">

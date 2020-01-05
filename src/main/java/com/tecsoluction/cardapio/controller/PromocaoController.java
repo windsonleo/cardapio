@@ -315,7 +315,21 @@ public class PromocaoController extends AbstractController<Promocao> {
 	    }
 	  
 	  
-	  
+	    @RequestMapping(value = "/perfil", method = RequestMethod.GET)
+	    public ModelAndView ExibirPerfilPromocao(HttpServletRequest request) {
+
+	        UUID idf = UUID.fromString(request.getParameter("id"));
+
+//	        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+	        
+	        ModelAndView exibircat = new ModelAndView("/public/perfilpromo");
+
+	        Promocao cat = getservice().findOne(idf);
+
+	        exibircat.addObject("promocao", cat);
+
+	        return exibircat;
+	    }    
 	 
 
 	@Override

@@ -60,7 +60,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 	
 	private Produto produto;
 
-    private Map<Item, String> items ;
+    private Map<Item, String> items = new HashMap<Item, String>();
 	private ProdutoComposto produtocomposto = null;
 
 	private BigDecimal totalitem = new BigDecimal(0.000).setScale(4, RoundingMode.UP);
@@ -105,13 +105,13 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		produtoList = getservice().findAll();
 		prodList = produtoService.findAll();
 		
-		if(produtocomposto == null) {
-			
-			produtocomposto = new ProdutoComposto();
-//			items.clear();
-
-			
-		}
+//		if(produtocomposto == null) {
+//			
+//			produtocomposto = new ProdutoComposto();
+////			items.clear();
+//
+//			
+//		}
 
 		UnidadeMedida[] umList = UnidadeMedida.values();
 
@@ -121,11 +121,11 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 //
 //		model.addAttribute("usuarioAtt", usuario);
 		
-		filename="vazio.jpg";
+//		filename="vazio.jpg";
 		
 		produto = new Produto();
 
-		items  = new HashMap<Item, String>();
+//		items  = new HashMap<Item, String>();
 		
 		produtocomposto = new ProdutoComposto();
 		
@@ -181,9 +181,11 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		ModelAndView additemprodutocomposto = new ModelAndView("/private/produtocomposto/cadastro/cadastroprodutocomposto");
 		
 		
-		String[] ids = null;
+//		String[] ids = null;
 		
 		 String idpromo = request.getParameter("id");
+		 
+		 String idprod = request.getParameter("itens_prodcompp");
 		 
 		 String qtd = request.getParameter("qtd");
 		  
@@ -194,11 +196,11 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		  this.produtocomposto = getservice().findOne(idfpromo);
 		  
 		
-		int qtdparam = request.getParameterValues("itens_prodcompp").length;
+//		int qtdparam = request.getParameterValues("itens_prodcompp").length;
 		
-		ids = new String[qtdparam];
+//		ids = new String[qtdparam];
 		
-		ids = request.getParameterValues("itens_prodcompp");
+//		ids = request.getParameterValues("itens_prodcompp");
 		
 		UUID idf =null;
 		
@@ -206,12 +208,14 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		
 		Item it =null;
 		
-		for(int i=0;i<ids.length;i++){
+//		for(int i=0;i<ids.length;i++){
 			
-			idf = UUID.fromString(ids[i]);
+//			idf = UUID.fromString(ids[i]);
 			
 			
 //			Produp = new Produto();
+		
+		idf = UUID.fromString(idprod);
 			
 			p=  produtoService.findOne(idf);
 			
@@ -219,7 +223,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 			
 			items.put(it, qtd);
 			
-		}
+//		}
 		
 //		UnidadeMedida[] umList = UnidadeMedida.values();
 	//	UUID idf = UUID.fromString(request.getParameterValues("itens_prodcomp"));
@@ -473,7 +477,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 
             model.addAttribute("mensagem", sucesso);
             model.addAttribute("filename", filename);
-            model.addAttribute("produtocomposto", produtocomposto);
+//            model.addAttribute("produtocomposto", produtocomposto);
             model.addAttribute("acao", "add");
 
 

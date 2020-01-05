@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
   
-<meta property="og:url"                th:attr="content='https://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" />
+<meta property="og:url"                th:attr="content='https://sleepy-atoll-65818.herokuapp.com/promocao/perfil?id=' + ${promocao.id}" />
 <meta property="og:type"               th:attr="content='website'" />
-<meta property="og:title"               th:attr="content='Sushi-Senpai' + ${produto.nome}" />
-<meta property="og:description"        th:attr="content='Descrição:'+ ${produto.descricao}" />
-<meta property="og:image"               th:attr="content='https://sleepy-atoll-65818.herokuapp.com/img/produto/' + ${produto.foto}" />
+<meta property="og:title"               th:attr="content='Sushi-Senpai' + ${promocao.nome}" />
+<meta property="og:description"        th:attr="content='Descrição:'+ ${promocao.descricao}" />
+<meta property="og:image"               th:attr="content='https://sleepy-atoll-65818.herokuapp.com/img/promocao/' + ${promocao.foto}" />
 
 	<head th:replace="fragmentos/head :: head-css">
 	
@@ -46,13 +46,13 @@
     <section class="content-header">
       <h1>
 <!--         Início -->
-        Perfil <small th:text="${produto.nome}"> nome</small>
+        Perfil <small th:text="${promocao.nome}"> nome</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"  ></i> Cardapio</a> </li>
         <li> <i class="fa fa-dashboard"  >Perfil</i></li>
         
-          <li class="active" th:text="${produto.nome}"> Perfil</li>
+          <li class="active" th:text="${promocao.nome}"> Perfil</li>
       </ol>
     </section>
     
@@ -60,23 +60,7 @@
     
     <section class="content">
     
-    <div class="alert alert-info alert-dismissible">
     
-                          <div class="box-tools pull-right">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i>
-                </button>
-              </div>
-        <h4>Deseja Avaliar Este Produto ?</h4>
-        Clique nesse Link que Levaremos vc a Página
-        <a th:href="@{/produto/avaliar}">Página de Avaliação</a>
-        
-
-              
-              
-      </div>
-      
-      
-      
        <div class="row">
        
        
@@ -94,42 +78,42 @@
             
             <div class="widget-user-header bg-black" th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard}">
               <div class="widget-user-image">
-             <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" class="img-circle" alt="User Image" />
+             <img th:if="${promocao.foto}" th:src="@{/img/promocao/{fotoc}(fotoc=${promocao.foto})}" class="img-circle" alt="User Image" />
               </div>
           
-              <h5 class="widget-user-username" th:text="${produto.nome}" >Nadia Carmichael</h5>
-              <h6 class="widget-user-desc" th:text="${produto.descricao}" >Lead Developer</h6>
-              <ul class="rating">
+              <h5 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h5>
+              <h6 class="widget-user-desc" th:text="|${promocao.descricao} |" >Lead Developer</h6>
+<!--               <ul class="rating"> -->
               
               
-             <li>
+<!--              <li> -->
              
-              <a class="rstar" href="javascript:void(0)" >
-				<img th:src="@{/img/star0.png}" th:id="'s1' + ${produto.nome}" class="imgstar" /> </a>
+<!--               <a class="rstar" href="javascript:void(0)" > -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s1' + ${promocao.nome}" class="imgstar" /> </a> -->
              
-             </li>
+<!--              </li> -->
              
              
-             <li>
-             <a class="rstar" href="javascript:void(0)" >
-				<img th:src="@{/img/star0.png}" th:id="'s2' + ${produto.nome}" class="imgstar" /> </a>
-             </li>
+<!--              <li> -->
+<!--              <a class="rstar" href="javascript:void(0)" > -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s2' + ${promocao.nome}" class="imgstar" /> </a> -->
+<!--              </li> -->
              
-             <li>
-             <a class="rstar" href="javascript:void(0)">
-				<img th:src="@{/img/star0.png}" th:id="'s3' + ${produto.nome}" class="imgstar" /> </a>
-             </li>
+<!--              <li> -->
+<!--              <a class="rstar" href="javascript:void(0)"> -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s3' + ${promocao.nome}" class="imgstar" /> </a> -->
+<!--              </li> -->
              
-             <li>
-             <a class="rstar" href="javascript:void(0)" >
-				<img th:src="@{/img/star0.png}" th:id="'s4' + ${produto.nome}" class="imgstar" /> </a>
-           </li>
-             <li>
-             <a class="rstar" href="javascript:void(0)">
-				<img th:src="@{/img/star0.png}" th:id="'s5' + ${produto.nome}" class="imgstar" /> </a>
-			</li>
+<!--              <li> -->
+<!--              <a class="rstar" href="javascript:void(0)" > -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s4' + ${promocao.nome}" class="imgstar" /> </a> -->
+<!--            </li> -->
+<!--              <li> -->
+<!--              <a class="rstar" href="javascript:void(0)"> -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s5' + ${promocao.nome}" class="imgstar" /> </a> -->
+<!-- 			</li> -->
               
-              </ul>
+<!--               </ul> -->
               
 <!--               <p id="raating">0</p> -->
               
@@ -140,21 +124,21 @@
             
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-<!--                 <li><a href="#">Qtd <span class="pull-right badge bg-blue" th:text="${produto.un_medida}" >31</span></a></li> -->
-<!--                 <li><a href="#">Preco <span class="pull-right badge bg-aqua" th:text="${produto.precovenda}" >5</span></a></li> -->
+<!--                 <li><a href="#">Qtd <span class="pull-right badge bg-blue" th:text="${promocao.un_medida}" >31</span></a></li> -->
+<!--                 <li><a href="#">Preco <span class="pull-right badge bg-aqua" th:text="${promocao.precovenda}" >5</span></a></li> -->
                 
 <!--                 <li><a href="#">Curtir <span class="pull-right badge bg-green"><i class="fa fa-thumbs-up">12</i></span></a></li> -->
-                <li>  <a href="#"> Curtir  <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li>
+                <li>  <a href="#"> Curtir  <span class="pull-right"> <div class="fb-like" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/promocao/perfil?id=' + ${promocao.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li>
                 
-                <li> <a href="#"> Recomendar <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li>
+                <li> <a href="#"> Recomendar <span class="pull-right"> <div class="fb-like" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/promocao/perfil?id=' + ${promocao.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li>
            
            
-<!--                 <li><a th:href="@{/usuario/indica(id=${produto.id})}">Sugerir <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i>84</span></a></li> -->
-<!--               <li><a href="#" data-toggle="modal" class="product-title" th:attr="data-target='#myAtividade' + ${produto.codebar}" >Detalhes <span class="pull-right badge bg-red" ><i class="fa fa-hand-o-right"></i>84</span></a></li> -->
+<!--                 <li><a th:href="@{/usuario/indica(id=${promocao.id})}">Sugerir <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i>84</span></a></li> -->
+<!--               <li><a href="#" data-toggle="modal" class="product-title" th:attr="data-target='#myAtividade' + ${promocao.codebar}" >Detalhes <span class="pull-right badge bg-red" ><i class="fa fa-hand-o-right"></i>84</span></a></li> -->
               </ul>
             </div>
             
-<!--                <div class="modal fade" th:id=" 'myAtividade'+ ${produto.codebar}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<!--                <div class="modal fade" th:id=" 'myAtividade'+ ${promocao.codebar}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
 <!-- 	<div class="modal-dialog"> -->
 <!-- 		<div class="modal-content"> -->
 		
@@ -171,11 +155,11 @@
 <!-- 		<div class="col-md-12"> -->
 <!--           <div class="box box-widget widget-user"> -->
 <!--             <div class="widget-user-header bg-aqua-active"  th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard} + '-active'">  -->
-<!--               <h4 class="widget-user-username" th:text="${produto.nome}">Thanh Nguyen</h4> -->
-<!--               <h5 class="widget-user-desc" th:text="${produto.descricao}">Founder &amp; CEO</h5> -->
+<!--               <h4 class="widget-user-username" th:text="${promocao.nome}">Thanh Nguyen</h4> -->
+<!--               <h5 class="widget-user-desc" th:text="${promocao.descricao}">Founder &amp; CEO</h5> -->
 <!--             </div> -->
 <!--             <div class="widget-user-image"> -->
-<!--               <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}"  alt="User Image" class="img-circle"/> -->
+<!--               <img th:if="${promocao.foto}" th:src="@{/img/promocao/{fotoc}(fotoc=${promocao.foto})}"  alt="User Image" class="img-circle"/> -->
 <!--             </div> -->
 <!--             <div class="box-footer"> -->
 <!--               <div class="row"> -->
@@ -193,7 +177,7 @@
 <!--                 </div> -->
 <!--                 <div class="col-sm-3 border-right"> -->
 <!--                   <div class="description-block"> -->
-<!--                     <h5 class="description-header" th:text="${produto.precovenda}">35</h5> -->
+<!--                     <h5 class="description-header" th:text="${promocao.precovenda}">35</h5> -->
 <!--                     <span class="description-text" >Preço</span> -->
 <!--                   </div> -->
 <!--                 </div> -->
@@ -201,7 +185,7 @@
                 
 <!--                <div class="col-sm-3"> -->
 <!--                   <div class="description-block"> -->
-<!--                     <h5 class="description-header" th:text="${produto.precovenda}">35 -->
+<!--                     <h5 class="description-header" th:text="${promocao.precovenda}">35 -->
 <!--                     <span><i class="fa fa-clock"></i></span> -->
 <!--                     </h5> -->
 <!--                     <span class="description-text" >Tempo Preparo</span> -->
@@ -243,7 +227,7 @@
    
         </div>
         
-                <div class="col-md-8">
+        <div class="col-md-8">
         
                   <div class="box box-primary">
             <div class="box-header with-border">
@@ -253,50 +237,38 @@
             <div class="box-body">
               <strong><i class="fa fa-book margin-r-5"></i> Descrição</strong>
 
-              <p class="text-muted" th:text="${produto.descricao}">
+              <p class="text-muted" th:text="${promocao.descricao}">
                 B.S. in Computer Science from the University of Tennessee at Knoxville
               </p>
 
               <hr> </hr>
 
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Valor</strong>
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Validade</strong>
 
-              <p class="text-muted" th:utext="|R$: ${produto.precovenda}|" >Malibu, California</p>
-
-              <hr> </hr>
-
-              <strong><i class="fa fa-pencil margin-r-5"></i> Avaliação</strong>
-
-								
-								<p>
-								<ul class="rating">
-
-
-									<th:block
-										th:each="i: ${#numbers.sequence(1, 5)}">
-										<li th:if="${produto.avaliacao >= i}" class="active"><a
-											class="rstarR" href="#"> <img th:src="@{/img/star1.png}"
-												class="imgstar" />
-										</a></li>
-										<li th:unless="${produto.avaliacao >= i}"><a
-											class="rstarR" href="#"> <img th:src="@{/img/star0.png}"
-												class="imgstar" />
-										</a></li>
-									</th:block>
-								</ul>
-								</p>
+              <p class="text-muted" th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" >Malibu, California</p>
 
               <hr> </hr>
 
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Promoções</strong>
+              <strong><i class="fa fa-pencil margin-r-5"></i> Produtos</strong>
 
-              <p th:each = "promocao: ${produto.promocoes}"  th:text="|${promocao.nome}|" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+              <p>
+                <span class="label label-primary" th:each="produto: ${promocao.produtos}"  th:text="${produto.nome}">UI Design</span>
+<!--                 <span class="label label-success">Coding</span> -->
+<!--                 <span class="label label-info">Javascript</span> -->
+<!--                 <span class="label label-warning">PHP</span> -->
+<!--                 <span class="label label-primary">Node.js</span> -->
+              </p>
+
+              <hr> </hr>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Desconto</strong>
+
+              <p th:text="|${promocao.desconto} % em todos os produtos listados acima|" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
             </div>
             <!-- /.box-body -->
           </div>
         
         </div>
-        
 <!--         <div class="clearfix"></div> -->
         
         </div>
@@ -827,7 +799,7 @@
 //    function Avaliar(estrela) {
 // 	   var url = window.location;
 // 	   url = url.toString()
-// 	   url = url.split("produto");
+// 	   url = url.split("promocao");
 // 	   url = url[0];
 
 // 	   var s1 = document.getElementById("s1").src;
@@ -935,8 +907,8 @@
    /*<![CDATA[*/
    
    var x = document.querySelectorAll('.rating .rstar');
-   var novaImg = '../img/produto/star1.png';
-//    var antImg = 'cardapio/img/produto/star0.png';
+   var novaImg = '../img/promocao/star1.png';
+//    var antImg = 'cardapio/img/promocao/star0.png';
 
 for (var i = 0; i < x.length; i++) {
     novoX = x[i];
@@ -955,8 +927,8 @@ for (var i = 0; i < x.length; i++) {
    
    
 // var x = document.querySelectorAll('.rating .rstar');
-// var antImg = '../img/produto/star0.png';
-// // var antImg = 'cardapio/img/produto/star0.png';
+// var antImg = '../img/promocao/star0.png';
+// // var antImg = 'cardapio/img/promocao/star0.png';
 
 // for (var i = 0; i < x.length; i++) {
 //  novoX = x[i];

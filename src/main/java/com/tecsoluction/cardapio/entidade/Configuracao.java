@@ -80,9 +80,18 @@ public class Configuracao  extends BaseEntity implements Serializable {
 	 @NotBlank(message="o urlgmail do Configuracao não pode ser branco")
 	private String urlgmail;
 	
-
-	private String horaabertura;
-	private String horafechamento;
+    @Column(name = "horaabertura",nullable = false)
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern ="HH:mm:ss")
+    @NotNull(message="o horaabertura do Configuracao não pode ser nulo")
+	private Date horaabertura;
+   
+    
+    @Column(name = "horafechamento",nullable = false)
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern ="HH:mm:ss")
+    @NotNull(message="o horafechamento do Configuracao não pode ser nulo")
+	private Date horafechamento;
 	
     @Column(name = "cortopo",nullable = false)
 	 @NotNull(message="o cortopo do Configuracao não pode ser nulo")

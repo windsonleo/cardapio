@@ -247,7 +247,12 @@ public class UsuarioController extends AbstractController<Usuario> {
     
     
     @RequestMapping(value = "/indica", method = RequestMethod.GET)
-    public ModelAndView IndicaProduto(HttpServletRequest request) {
+    public ModelAndView IndicaProduto(HttpServletRequest request, Model model) {
+    	
+    	
+    	String sucesso = "Produto Indicado Com Sucesso !";
+    	
+    	String erro = "Erro ao Indicar  !";
 
         UUID idf = UUID.fromString(request.getParameter("id"));
         
@@ -270,12 +275,13 @@ public class UsuarioController extends AbstractController<Usuario> {
         if(usuario != null){
         	
         	usuario.addIndicacao(cat);
-        	
+        	model.addAttribute("sucesso", sucesso);
+        	model.addAttribute("categoria", cate);
         	
         }else {
         	
-        	
-        	
+        	model.addAttribute("erro", erro);
+        	model.addAttribute("categoria", cate);
         	
         }
         
@@ -283,7 +289,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 
      //   exibircat.addObject("categoria", cat);
 
-        return new ModelAndView("redirect:/categoria/exibir?id="+ cate.getId()).addObject("categoria", cate);
+        return new ModelAndView("forward:/categoria/exibir?id="+ cate.getId()).addObject("sucesso", sucesso);
     } 
     
     
