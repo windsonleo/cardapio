@@ -495,7 +495,7 @@
                                                   <td th:text="${item.value}" ></td>
                                                    <td th:text="${item.key.precoCusto}">VALOR</td>
                                                   
-                                                   <td>   <a  rel="tooltip" title="Excluir" class="" th:href="@{/produtocomposto/deleteitem(id=${item.key})}">
+                                                   <td>   <a  rel="tooltip" title="Excluir" class="" th:href="@{/produtocomposto/deleteitem(id=${item.key.id})}">
                                     						<i class="material-icons">close</i>
 			                       						</a>   </td>
                                      
