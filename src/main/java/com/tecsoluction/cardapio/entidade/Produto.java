@@ -69,7 +69,6 @@ public class Produto extends BaseEntity implements Serializable {
 
     @Column(name = "un_medida",nullable=false)
 	 @NotNull(message="o un_medida do Produto não pode ser nulo")
-	 @NotBlank(message="o un_medida do Produto não pode ser branco")
     @Enumerated(EnumType.STRING)
     private UnidadeMedida un_medida;
 
