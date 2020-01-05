@@ -52,15 +52,24 @@
     
     <section class="content">
     
-    <div class="alert alert-success alert-dismissible" th:if="${sucesso}" th:text="${sucesso}">
+    
+    <div class="row-fluid"  th:if="${sucesso}">
+    
+    <div class="alert alert-success alert-dismissible" th:text="${sucesso}">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i></button>
-                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                <h4><i class="icon fa fa-check"></i> Sucesso</h4>
                 Success alert preview. This alert is dismissable.
               </div>
               
-                  <div class="alert alert-danger alert-dismissible" th:if="${erro}" th:text="${erro}">
+              
+              </div>
+              
+              
+              
+              <div class="row-fluid"  th:if="${erro}">
+                  <div class="alert alert-danger alert-dismissible" th:text="${erro}">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <i class="fa fa-times" style="color:#fff;"></i></button>
-                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                <h4><i class="icon fa fa-check"></i> Erro </h4>
                 Success alert preview. This alert is dismissable.
               </div>
     
