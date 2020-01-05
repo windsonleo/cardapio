@@ -84,7 +84,7 @@
                                                     <td th:text="${usuario.roles}">roles</td>
                                                      <td th:text="${usuario.indicacoes}">roles</td>
                                                   
-		                                            <td th:text="${usuario.ativo}">ativo</td>		                                          
+		                                            <td><label><input name="optionsCheckboxes" class="checkbox" type="checkbox" th:checked="${usuario.ativo}" disabled/></label></td>		                                          
 		                                       
 							              <div sec:authorize="hasRole('ROLE_ADM')" >
 	                                              <td>

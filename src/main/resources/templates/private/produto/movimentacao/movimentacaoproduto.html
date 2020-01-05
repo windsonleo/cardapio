@@ -90,7 +90,7 @@
                                                     <td th:text="${produto.precovenda}" >Resultado</td> 
 <!--                                                   <td th:text="${#dates.format(produto.datanascimento,'dd-MM-yyyy')}">Data</td> -->
                                                   
-		                                            <td th:text="${produto.ativo}">ativo</td>
+		                                            <td><label><input name="optionsCheckboxes" class="checkbox" type="checkbox" th:checked="${produto.ativo}" disabled/></label></td>		                                          
 <!-- 		                                             <td th:text="${jogobicho.banca}">Banca</td> -->
 		                                            
 <!-- 		                                            <td th:text="${jogobicho}" >Resultado</td> -->
