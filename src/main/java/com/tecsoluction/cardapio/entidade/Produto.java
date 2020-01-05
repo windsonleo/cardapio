@@ -84,7 +84,6 @@ public class Produto extends BaseEntity implements Serializable {
     @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "categoria_id", nullable = false)
 	 @NotNull(message="o categoria do Produto não pode ser nulo")
-	 @NotBlank(message="o categoria do Produto não pode ser branco")
     private Categoria categoria;
 
 
