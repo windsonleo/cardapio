@@ -198,7 +198,7 @@
                 <li><a href="#">QTD Produtos <span class="pull-right badge bg-blue" th:text="${#lists.size(promocao.produtos)}" >31</span></a></li>
                 <li><a href="#">Desconto<span class="pull-right badge bg-aqua"  th:text="${promocao.desconto} + ' %' ">5</span></a></li>
                 <li><a href="#">Economia de até <span class="pull-right badge bg-green">R$ 12.00</span></a></li>
-                <li><a th:href="@{/promocao/perfil(id=${promocao.id})}">Perfil <span class="pull-right badge bg-red">842</span></a></li>
+                <li><a th:href="@{/promocao/perfil(id=${promocao.id})}">Perfil <span class="pull-right badge bg-red">ver</span></a></li>
               </ul>
             </div>
           </div>
@@ -634,7 +634,7 @@
           <img th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.logo})}" class="img-circle" alt="User Image" />
               </div>
           
-              <h3 class="widget-user-username" th:text="${categoria.nome}" >Nadia Carmichael</h3>
+              <h4 class="widget-user-username" th:text="${categoria.nome}" >Nadia Carmichael</h4>
 <!--               <h5 class="widget-user-desc" th:text="${categoria.catpai}" >Lead Developer</h5> -->
               
 

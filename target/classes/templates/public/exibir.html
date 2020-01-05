@@ -53,20 +53,20 @@
     <section class="content">
     
     <div class="alert alert-success alert-dismissible" th:if="${sucesso}" th:text="${sucesso}">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i></button>
                 <h4><i class="icon fa fa-check"></i> Alert!</h4>
                 Success alert preview. This alert is dismissable.
               </div>
               
                   <div class="alert alert-danger alert-dismissible" th:if="${erro}" th:text="${erro}">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <i class="fa fa-times" style="color:#fff;"></i></button>
                 <h4><i class="icon fa fa-check"></i> Alert!</h4>
                 Success alert preview. This alert is dismissable.
               </div>
     
     
-            <div class="row mb-30" >
-        <div class="col-md-3" th:each="promocao: ${promocoesList}">
+            <div class="row mb-24" >
+        <div class="col-md-4" th:each="promocao: ${promocoesList}">
             <div class="ribbon-content">
                 <div class="ribbon red"   th:class=" 'ribbon '+ ${promocao.corfaixa}"><span th:text="|${promocao.desconto} %|" >Desconto 10%</span></div>
                 
@@ -128,7 +128,7 @@
                 <li><a href="#">Desconto<span class="pull-right badge bg-aqua"  th:text="${promocao.desconto} + ' %' ">5</span></a></li>
                 <li><a href="#">Economia de até <span class="pull-right badge bg-green">R$ 12.00</span></a></li>
 <!--                 <li><a href="#">Sugestao de  <span class="pull-right badge bg-red" th:utext="${usuarioAtt.nome}" >842</span></a></li> -->
-                   <li><a th:href="@{/promocao/perfil(id=${promocao.id})}">Perfil <span class="pull-right badge bg-red">842</span></a></li>
+                   <li><a th:href="@{/promocao/perfil(id=${promocao.id})}">Perfil <span class="pull-right badge bg-red">ver</span></a></li>
              
              
               </ul>
@@ -296,8 +296,8 @@
            
                            <li><a th:href="@{/produto/perfil(id=${produto.id})}"  rel="tooltip" title="Visualizar Perfil do Produto">Perfil <span class="pull-right badge bg-purple" ><i class="fa fa-hand-o-right"></i></span></a></li>
            
-                <li><a th:href="@{/usuario/indica(id=${produto.id})}" rel="tooltip" title="Indicar para Cliente">Indicar <span class="pull-right badge bg-green" ><i class="fa fa-hand-o-right"></i>84</span></a></li>
-              <li><a href="#" data-toggle="modal" class="product-title" th:attr="data-target='#myAtividade' + ${produto.codebar}" >Detalhes <span class="pull-right badge bg-red" ><i class="fa fa-hand-o-right"></i>84</span></a></li>
+                <li><a th:href="@{/usuario/indica(id=${produto.id})}" rel="tooltip" title="Indicar para Cliente">Indicar <span class="pull-right badge bg-green" ><i class="fa fa-hand-o-right"></i></span></a></li>
+              <li><a href="#" data-toggle="modal" class="product-title" th:attr="data-target='#myAtividade' + ${produto.codebar}" >Detalhes <span class="pull-right badge bg-red" ><i class="fa fa-hand-o-right"></i></span></a></li>
               </ul>
             </div>
             
