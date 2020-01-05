@@ -252,35 +252,49 @@ public class ContextoAplicacao {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+       
+       
+       if((datafor.after(horafechamento) &&(datafor.before(horaabertura)))){
+    	   
+    	   aberto = false;
+    	   
+       }
+       
+       
+       if((datafor.before(horafechamento) &&(datafor.after(horaabertura)))){
+    	   
+    	   aberto = true;
+    	   
+       }
       
 
-        if ((datafor.getTime() > horaabertura.getTime()) && (datafor.getTime() < horafechamento.getTime())){
-           
-        	aberto = true;
-        	System.out.print("Aberto!");
-        	System.out.print("hora agora!" + datafor.getTime() );
-        	System.out.print("hora abre!" + horaabertura.getTime());
-        	System.out.print("hora fecha!  " + horafechamento.getTime());
-       
-        
-        }else if ((datafor.getTime() > horaabertura.getTime()) && (datafor.getTime() > horafechamento.getTime())){
-            
-        	System.out.print("Fechado!");
-        	System.out.print("hora agora!" + datafor.getTime() );
-        	System.out.print("hora abre!" + horaabertura.getTime());
-        	System.out.print("hora fecha!  " + horafechamento.getTime());
-        	
-        	aberto = false;
-        }else {
-        	
-        	
-        	aberto = true;
-        	
-        	System.out.print("hora agora elses!" + datafor.getTime() );
-        	System.out.print("hora abre elses!" + horaabertura.getTime());
-        	System.out.print("hora fecha elses!  " + horafechamento.getTime());
-        	
-        }
+//        if ((datafor.getTime() > horaabertura.getTime()) && (datafor.getTime() < horafechamento.getTime())){
+//           
+//        	aberto = true;
+//        	System.out.print("Aberto!");
+//        	System.out.print("hora agora!" + datafor.getTime() );
+//        	System.out.print("hora abre!" + horaabertura.getTime());
+//        	System.out.print("hora fecha!  " + horafechamento.getTime());
+//       
+//        
+//        }else if ((datafor.getTime() > horaabertura.getTime()) && (datafor.getTime() > horafechamento.getTime())){
+//            
+//        	System.out.print("Fechado!");
+//        	System.out.print("hora agora!" + datafor.getTime() );
+//        	System.out.print("hora abre!" + horaabertura.getTime());
+//        	System.out.print("hora fecha!  " + horafechamento.getTime());
+//        	
+//        	aberto = false;
+//        }else {
+//        	
+//        	
+//        	aberto = true;
+//        	
+//        	System.out.print("hora agora elses!" + datafor.getTime() );
+//        	System.out.print("hora abre elses!" + horaabertura.getTime());
+//        	System.out.print("hora fecha elses!  " + horafechamento.getTime());
+//        	
+//        }
 	
 	
 	return aberto;
