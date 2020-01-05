@@ -62,6 +62,8 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
 	
 	private String nome = new String("");
 	
+	private Usuario usuario;
+	
     @Autowired
     public UsuarioControllerRest(UsuarioServicoImpl dao,RoleServicoImpl rol) {
         this.userService = dao;
@@ -73,7 +75,7 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     public Usuario Post(@Valid @RequestBody Usuario pessoa,final HttpSession session,String caminho)
     {
     	
-    	Usuario usuario = null;
+    	 usuario = null;
     	
     	path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario/");
     	
@@ -110,7 +112,7 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
 //    	System.out.println(eventos.toString());
     	
 //    	for (Evento evento : eventos) {
-    	Usuario usuario = null;
+    	 usuario = null;
     	
     	UUID idf = UUID.fromString("9e5438c6-6749-43c0-8ecb-59e46e74c155");
     	UUID idface = UUID.fromString("970a79df-f935-453f-8334-9bec3917655d");
@@ -133,7 +135,9 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     		
     		System.out.println("usuario já existe" + usu);
     		
-    		usuario = usu;
+//    		usuario = usu;
+    		
+    		return usuario;
     		
     	}else {
     		
@@ -174,7 +178,7 @@ public class UsuarioControllerRest extends AbstractRestController<Usuario> {
     	boolean existe = false;
     
     	
-    	Usuario usuario= getservice().findByEmail(email);
+    	 usuario= getservice().findByEmail(email);
     	
     	if(usuario == null){
     		
