@@ -25,18 +25,18 @@ public class DataSourceConf {
     public DataSource dataSource() {
            
 //        local
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName("org.postgresql.Driver");
-//        dataSource.setUrl("jdbc:postgresql://localhost:5432/cardapio");
-//        dataSource.setUsername("postgres");        
-//        dataSource.setPassword("");
-		
-		//heroku
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://ec2-174-129-209-212.compute-1.amazonaws.com:5432/d8ohkvp5i7jhgt");
-        dataSource.setUsername("qkbqwvgxdgqook");        
-        dataSource.setPassword("619053e4436539119f00f911a8cea51a8d34d7e0f30e7ba661ded0735e2b45f2");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/cardapio");
+        dataSource.setUsername("postgres");        
+        dataSource.setPassword("");
+		
+		//heroku
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("org.postgresql.Driver");
+//        dataSource.setUrl("jdbc:postgresql://ec2-174-129-209-212.compute-1.amazonaws.com:5432/d8ohkvp5i7jhgt");
+//        dataSource.setUsername("qkbqwvgxdgqook");        
+//        dataSource.setPassword("619053e4436539119f00f911a8cea51a8d34d7e0f30e7ba661ded0735e2b45f2");
 
     	return dataSource;
     }

@@ -292,8 +292,8 @@
                 <div class="panel box box-primary" th:each="categoria: ${categoriaLista}">
                   <div class="box-header with-border">
                     <h4 class="box-title">
-                    <i class="fa fa-cutlery"></i>
-                      <a data-toggle="collapse"  data-parent="#accordion" th:href="'#collapseOne' + ${categoria.nome}"  th:text="${categoria.nome}">
+                    <i class="fa fa-cutlery text-green"></i>
+                      <a data-toggle="collapse"  data-parent="#accordion" th:href="'#collapseOne' + ${categoria.nome}"  th:text="| ${categoria.nome}|">
                         Collapsible Group Item #1
                       </a>
                     </h4>
@@ -356,13 +356,13 @@
                 </div>
                 <div class="col-sm-3 border-right">
                   <div class="description-block">
-                    <h5 class="description-header">13,000</h5>
+                    <h5 class="description-header" th:utext="${#lists.size(produto.usuariosIndica)}">13,000</h5>
                     <span class="description-text">Indicado</span>
                   </div>
                 </div>
                 <div class="col-sm-3 border-right">
                   <div class="description-block">
-                    <h5 class="description-header" th:text="|R$: ${produto.precovenda}|">35</h5>
+                    <h5 class="description-header" th:text="|${produto.precovenda}|">35</h5>
                     <span class="description-text" >Preço</span>
                   </div>
                 </div>
@@ -641,6 +641,9 @@
 
               
             </div>
+            
+            <div class="clearfix"></div>
+            
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
                 <li><a href="#">QTD Produtos <span class="pull-right badge bg-blue" th:text="${#lists.size(categoria.produtos)}" >31</span></a></li>

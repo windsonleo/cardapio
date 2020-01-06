@@ -2,6 +2,7 @@ package com.tecsoluction.cardapio.entidade;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -101,9 +102,12 @@ public class Produto extends BaseEntity implements Serializable {
 //    @NotNull(message="o tempopreparo do Produto não pode ser nulo")
     private int tempopreparo = 0;
     
-    @ElementCollection
+    @ElementCollection(fetch=FetchType.EAGER)
     @CollectionTable(name="produto_notas")
     private List<Integer> notas = new ArrayList<Integer>();
+    
+    @ManyToMany(mappedBy="indicacoes")
+    private Set<Usuario> usuariosIndica;
 
 
     public Produto(UUID id, String foto, String nome, String codebar, String descricao,
@@ -210,18 +214,34 @@ public class Produto extends BaseEntity implements Serializable {
     
    public int CalcularAvaliacao(){
 	   
-	   List<Integer> list = Arrays.asList(297, 720, 840, 903, 1110, 1170);
-	    Collections.sort(list);
-	    Integer min = list.get(0);
-	    Integer max = list.get(list.size() - 1);
-	    List<Integer> notes = new ArrayList<Integer>();
-	    for (Integer i : list) {
-	        notes.add(10 - (int) 9.0 * (i - min) / (max - min));
+	   BigDecimal db = null; 
+	   
+	  
+//	    Collections.sort(getNotas());
+////	    Integer min = getNotas().get(0);
+////	    Integer max = getNotas().get(getNotas().size() - 1);
+//	    List<Integer> notes = new ArrayList<Integer>();
+	    int soma = 0;
+	    
+	    int divisor = getNotas().size();
+	    
+	    
+	    
+	    for (Integer i : getNotas()) {
+	     //   notes.add(10 - (int) 9.0 * (i - min) / (max - min));
+	    	
+	    	soma = soma + i;
+	    	
 	    }
-	    System.out.println(notes);
+	    
+	    db=  new BigDecimal(soma/divisor).setScale(1,RoundingMode.HALF_EVEN);
+	    
+	   // setAvaliacao(db.intValue());
+	    
+	    System.out.println("notas BIGDECIMAL : " + db.toString() + "\n");
 	   
 	   
-	   return 0;
+	   return db.intValue();
    }
 
 }

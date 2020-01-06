@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
   
-<meta property="og:url"                th:attr="content='https://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" />
+<meta property="og:url"                th:attr="content='https://sleepy-atoll-65818.herokuapp.com/produto/avaliar?id=' + ${produto.id}" />
 <meta property="og:type"               th:attr="content='website'" />
 <meta property="og:title"               th:attr="content='Sushi-Senpai' + ${produto.nome}" />
 <meta property="og:description"        th:attr="content='Descrição:'+ ${produto.descricao}" />
@@ -16,7 +16,7 @@
 	
 	
 		
-		<title>Perfil</title>
+		<title>Avaliar</title>
 
 			<body  class="hold-transition skin-red sidebar-mini" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
 			
@@ -26,6 +26,9 @@
  src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513">
  
  </script>	
+ 
+ 
+
 			
 <!-- 			<div id="fb-root"></div> -->
 <!-- <script async defer crossorigin="anonymous" th:src="@{https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v5.0}"></script> -->
@@ -46,11 +49,11 @@
     <section class="content-header">
       <h1>
 <!--         Início -->
-        Perfil <small th:text="${produto.nome}"> nome</small>
+        Avaliar <small th:text="${produto.nome}"> nome</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"  ></i> Cardapio</a> </li>
-        <li> <i class="fa fa-dashboard"  >Perfil</i></li>
+        <li> <i class="fa fa-dashboard"  >Avaliar</i></li>
         
           <li class="active" th:text="${produto.nome}"> Perfil</li>
       </ol>
@@ -60,7 +63,9 @@
     
     <section class="content">
     
-    <div class="alert alert-info alert-dismissible">
+    
+    <div class="row" th:if="${mensagem}">
+        <div class="alert alert-info alert-dismissible"  th:text="${mensagem}">
     
                           <div class="box-tools pull-right">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i>
@@ -68,12 +73,28 @@
               </div>
         <h4>Deseja Avaliar Este Produto ?</h4>
         Clique nesse Link que Levaremos vc a Página
-        <a th:href="@{/produto/avaliar}">Página de Avaliação</a>
+<!--         <a th:href="@{/produto/avaliar(id=${produto.id})}">Página de Avaliação</a> -->
         
 
               
               
       </div>
+      </div>
+    
+<!--     <div class="alert alert-info alert-dismissible"> -->
+    
+<!--                           <div class="box-tools pull-right"> -->
+<!--                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i> -->
+<!--                 </button> -->
+<!--               </div> -->
+<!--         <h4>Deseja Avaliar Este Produto ?</h4> -->
+<!--         Clique nesse Link que Levaremos vc a Página -->
+<!--         <a th:href="@{/produto/avaliar}">Página de Avaliação</a> -->
+        
+
+              
+              
+<!--       </div> -->
       
       
       
@@ -104,131 +125,61 @@
               
              <li>
              
-              <a class="rstar" href="javascript:void(0)" >
+              <a class="rstar" href="javascript:void(0)" onclick="Avaliar(1)" >
 				<img th:src="@{/img/star0.png}" th:id="'s1' + ${produto.nome}" class="imgstar" /> </a>
              
              </li>
              
              
              <li>
-             <a class="rstar" href="javascript:void(0)" >
+             <a class="rstar" href="javascript:void(0)" onclick="Avaliar(2)" >
 				<img th:src="@{/img/star0.png}" th:id="'s2' + ${produto.nome}" class="imgstar" /> </a>
              </li>
              
              <li>
-             <a class="rstar" href="javascript:void(0)">
+             <a class="rstar" href="javascript:void(0)"  onclick="Avaliar(3)" >
 				<img th:src="@{/img/star0.png}" th:id="'s3' + ${produto.nome}" class="imgstar" /> </a>
              </li>
              
              <li>
-             <a class="rstar" href="javascript:void(0)" >
+             <a class="rstar" href="javascript:void(0)"  onclick="Avaliar(4)"  >
 				<img th:src="@{/img/star0.png}" th:id="'s4' + ${produto.nome}" class="imgstar" /> </a>
            </li>
              <li>
-             <a class="rstar" href="javascript:void(0)">
+             <a class="rstar" href="javascript:void(0)"  onclick="Avaliar(5)" >
 				<img th:src="@{/img/star0.png}" th:id="'s5' + ${produto.nome}" class="imgstar" /> </a>
 			</li>
               
               </ul>
               
-<!--               <p id="raating">0</p> -->
-              
+
               
             </div>
             
             <div class="clearfix"></div>
             
             <div class="box-footer no-padding">
+            
+
+           
               <ul class="nav nav-stacked">
 <!--                 <li><a href="#">Qtd <span class="pull-right badge bg-blue" th:text="${produto.un_medida}" >31</span></a></li> -->
 <!--                 <li><a href="#">Preco <span class="pull-right badge bg-aqua" th:text="${produto.precovenda}" >5</span></a></li> -->
                 
 <!--                 <li><a href="#">Curtir <span class="pull-right badge bg-green"><i class="fa fa-thumbs-up">12</i></span></a></li> -->
-                <li>  <a href="#"> Curtir  <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li>
+<!--                 <li>  <a href="#"> Curtir  <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sleepy-atoll-65818.herokuapp.com/produto/avaliar?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li> -->
                 
-                <li> <a href="#"> Recomendar <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li>
+                <li> <a href="#"> Avaliação <span class="pull-right badge bg-aqua" ><i class="fa fa-hand-o-right"></i> <span class="pull-right" id="avaliacao" name="avaliacao"> </span> </span></a> </li>
            
            
-<!--                 <li><a th:href="@{/usuario/indica(id=${produto.id})}">Sugerir <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i>84</span></a></li> -->
+                <li><a href="#" onClick="document.getElementById('form_avalia').submit();"> Salvar Avaliacao <span class="pull-right badge bg-green" ><i class="fa fa-hand-o-right"></i></span></a></li>
 <!--               <li><a href="#" data-toggle="modal" class="product-title" th:attr="data-target='#myAtividade' + ${produto.codebar}" >Detalhes <span class="pull-right badge bg-red" ><i class="fa fa-hand-o-right"></i>84</span></a></li> -->
               </ul>
+              
+                
             </div>
             
-<!--                <div class="modal fade" th:id=" 'myAtividade'+ ${produto.codebar}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
-<!-- 	<div class="modal-dialog"> -->
-<!-- 		<div class="modal-content"> -->
-		
-		 
-<!-- 			<div class="modal-header"> -->
-<!-- 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> -->
-<!-- 					<i class="material-icons">clear</i> -->
-<!-- 				</button> -->
-<!-- 			</div> -->
-<!-- 			<div class="modal-body"> -->
 
-			
-			
-<!-- 		<div class="col-md-12"> -->
-<!--           <div class="box box-widget widget-user"> -->
-<!--             <div class="widget-user-header bg-aqua-active"  th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard} + '-active'">  -->
-<!--               <h4 class="widget-user-username" th:text="${produto.nome}">Thanh Nguyen</h4> -->
-<!--               <h5 class="widget-user-desc" th:text="${produto.descricao}">Founder &amp; CEO</h5> -->
-<!--             </div> -->
-<!--             <div class="widget-user-image"> -->
-<!--               <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}"  alt="User Image" class="img-circle"/> -->
-<!--             </div> -->
-<!--             <div class="box-footer"> -->
-<!--               <div class="row"> -->
-<!--                 <div class="col-sm-3 border-right"> -->
-<!--                   <div class="description-block"> -->
-<!--                     <h5 class="description-header">3,200</h5> -->
-<!--                     <span class="description-text">Curtido</span> -->
-<!--                   </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-sm-3 border-right"> -->
-<!--                   <div class="description-block"> -->
-<!--                     <h5 class="description-header">13,000</h5> -->
-<!--                     <span class="description-text">Indicado</span> -->
-<!--                   </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-sm-3 border-right"> -->
-<!--                   <div class="description-block"> -->
-<!--                     <h5 class="description-header" th:text="${produto.precovenda}">35</h5> -->
-<!--                     <span class="description-text" >Preço</span> -->
-<!--                   </div> -->
-<!--                 </div> -->
-                
-                
-<!--                <div class="col-sm-3"> -->
-<!--                   <div class="description-block"> -->
-<!--                     <h5 class="description-header" th:text="${produto.precovenda}">35 -->
-<!--                     <span><i class="fa fa-clock"></i></span> -->
-<!--                     </h5> -->
-<!--                     <span class="description-text" >Tempo Preparo</span> -->
-<!--                   </div> -->
-<!--                 </div> -->
-                
-     
-<!--               </div> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-
-			                
-			                
-			
-<!-- 			</div> -->
-			
-			
-			
-			
-<!-- 			<div class="modal-footer"> -->
-
-<!-- 			</div> -->
-			
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- </div> -->
             
             
             
@@ -252,7 +203,15 @@
             <!-- /.box-header -->
             <div class="box-body">
               <strong><i class="fa fa-book margin-r-5"></i> Descrição</strong>
-
+              
+                          <form id="form_avalia" th:action="@{/produto/avaliarenv}" 
+						method="POST"  hidden="false">
+						
+						<input type="text" th:value="${produto.id}" id="id" name="id" hidden="false"/>
+						
+						<input type="text"  id="nota" name="nota" hidden="false" value="4"/>
+              
+               </form>
               <p class="text-muted" th:text="${produto.descricao}">
                 B.S. in Computer Science from the University of Tennessee at Knoxville
               </p>
@@ -813,188 +772,178 @@
 <!-- 		     <div class="clearfix"></div> -->
 		
 		
-<script type="text/javascript">
+ <script type="text/javascript">
 
-// $(document).ready(function(){
-//    $(".avaliacao").mouseover(function(event){
-//       $(".fa fa-star fa-3x").addClass(".fa fa-star-o fa-3x");
-//    });
-//    $(".avaliacao").mouseout(function(event){
-//       $(".fa fa-star fa-3x").removeClass(".fa fa-star-o fa-3x");
-//    });
    
+//    var x = document.querySelectorAll('.rating .rstar');
+//    var novaImg = '../img/produto/star1.png';
+//    var antImg = '../img/produto/star0.png';
    
-//    function Avaliar(estrela) {
-// 	   var url = window.location;
-// 	   url = url.toString()
-// 	   url = url.split("produto");
-// 	   url = url[0];
+// 	for (var i = 0; i < x.length; i++) {
+// 	    novoX = x[i];
+// 	    novoX.addEventListener('mouseover', function(event){
+	       
+// 	    	this.querySelector('img').src = novaImg;
+	   
+	    
+	   
+	    
+	    
+	    
+// 	    });
+	    
 
-// 	   var s1 = document.getElementById("s1").src;
-// 	   var s2 = document.getElementById("s2").src;
-// 	   var s3 = document.getElementById("s3").src;
-// 	   var s4 = document.getElementById("s4").src;
-// 	   var s5 = document.getElementById("s5").src;
-// 	   var avaliacao = 0;
-	   
 
-// 	  if (estrela == 5){ 
-// 	   if (s5 == url + "img/star0.png") {
-// 	   document.getElementById("s1").src = "img/star1.png";
-// 	   document.getElementById("s2").src = "img/star1.png";
-// 	   document.getElementById("s3").src = "img/star1.png";
-// 	   document.getElementById("s4").src = "img/star1.png";
-// 	   document.getElementById("s5").src = "img/star1.png";
-// 	   avaliacao = 5;
-// 	   } else {
-// 	   document.getElementById("s1").src = "img/star1.png";
-// 	   document.getElementById("s2").src = "img/star1.png";
-// 	   document.getElementById("s3").src = "img/star1.png";
-// 	   document.getElementById("s4").src = "img/star1.png";
-// 	   document.getElementById("s5").src = "img/star0.png";
-// 	   avaliacao = 4;
-// 	  }}
+// 	}
+   
+//    EventMouseOver();
+   
+   function Avaliar(estrela) {
 	   
-// 	   //ESTRELA 4
-// 	  if (estrela == 4){ 
-// 	   if (s4 == url + "img/star0.png") {
-// 	   document.getElementById("s1").src = "img/star1.png";
-// 	   document.getElementById("s2").src = "img/star1.png";
-// 	   document.getElementById("s3").src = "img/star1.png";
-// 	   document.getElementById("s4").src = "img/star1.png";
-// 	   document.getElementById("s5").src = "img/star0.png";
-// 	   avaliacao = 4;
-// 	   } else {
-// 	   document.getElementById("s1").src = "img/star1.png";
-// 	   document.getElementById("s2").src = "img/star1.png";
-// 	   document.getElementById("s3").src = "img/star1.png";
-// 	   document.getElementById("s4").src = "img/star0.png";
-// 	   document.getElementById("s5").src = "img/star0.png";
-// 	   avaliacao = 3;
-// 	  }}
+	   var avaliacao=0;
+	   
+	   if (estrela == 5){ 
+		   
+		   avaliacao=5;
+		   
+		   Preencher(avaliacao);
+	   
+	   }
+	   
+	   if (estrela == 4){ 
+		   
+		   avaliacao=4;
+		   Preencher(avaliacao);
+	   
+	   }
+	   
+	   if (estrela == 3){ 
+		   
+		   avaliacao=3;
+		   Preencher(avaliacao);
+	   
+	   }
+	   
+	   if (estrela == 2){ 
+		   
+		   avaliacao=2;
+		   Preencher(avaliacao);
+	   
+	   }
+	   
+	   if (estrela == 1){ 
+		   
+		   avaliacao=1;
+		   Preencher(avaliacao);
+	   
+	   }
+	   
+	 
+	   var ava = document.getElementById("avaliacao"); 
+	   
+	    document.getElementById("nota").value = avaliacao; 
+	   
+	   
+	   ava.innerHTML = avaliacao;
+   }
 
-// 	  //ESTRELA 3
-// 	  if (estrela == 3){ 
-// 	   if (s3 == url + "img/star0.png") {
-// 	   document.getElementById("s1").src = "img/star1.png";
-// 	   document.getElementById("s2").src = "img/star1.png";
-// 	   document.getElementById("s3").src = "img/star1.png";
-// 	   document.getElementById("s4").src = "img/star0.png";
-// 	   document.getElementById("s5").src = "img/star0.png";
-// 	   avaliacao = 3;
-// 	   } else {
-// 	   document.getElementById("s1").src = "img/star1.png";
-// 	   document.getElementById("s2").src = "img/star1.png";
-// 	   document.getElementById("s3").src = "img/star0.png";
-// 	   document.getElementById("s4").src = "img/star0.png";
-// 	   document.getElementById("s5").src = "img/star0.png";
-// 	   avaliacao = 2;
-// 	  }}
-	   
-// 	  //ESTRELA 2
-// 	  if (estrela == 2){ 
-// 	   if (s2 == url + "img/star0.png") {
-// 	   document.getElementById("s1").src = "img/star1.png";
-// 	   document.getElementById("s2").src = "img/star1.png";
-// 	   document.getElementById("s3").src = "img/star0.png";
-// 	   document.getElementById("s4").src = "img/star0.png";
-// 	   document.getElementById("s5").src = "img/star0.png";
-// 	   avaliacao = 2;
-// 	   } else {
-// 	   document.getElementById("s1").src = "img/star1.png";
-// 	   document.getElementById("s2").src = "img/star0.png";
-// 	   document.getElementById("s3").src = "img/star0.png";
-// 	   document.getElementById("s4").src = "img/star0.png";
-// 	   document.getElementById("s5").src = "img/star0.png";
-// 	   avaliacao = 1;
-// 	  }}
-	   
-// 	   //ESTRELA 1
-// 	  if (estrela == 1){ 
-// 	   if (s1 == url + "img/star0.png") {
-// 	   document.getElementById("s1").src = "img/star1.png";
-// 	   document.getElementById("s2").src = "img/star0.png";
-// 	   document.getElementById("s3").src = "img/star0.png";
-// 	   document.getElementById("s4").src = "img/star0.png";
-// 	   document.getElementById("s5").src = "img/star0.png";
-// 	   avaliacao = 1;
-// 	   } else {
-// 	   document.getElementById("s1").src = "img/star0.png";
-// 	   document.getElementById("s2").src = "img/star0.png";
-// 	   document.getElementById("s3").src = "img/star0.png";
-// 	   document.getElementById("s4").src = "img/star0.png";
-// 	   document.getElementById("s5").src = "img/star0.png";
-// 	   avaliacao = 0;
-// 	  }}
-	   
-// 	   document.getElementById('raating').innerHTML = avaliacao;
-	   
-// 	  }
    
-   
-   /*<![CDATA[*/
-   
-   var x = document.querySelectorAll('.rating .rstar');
-   var novaImg = '../img/produto/star1.png';
-//    var antImg = 'cardapio/img/produto/star0.png';
+	
+function Esvaziar(ava) {
+	
+	
+	 console.log('eSVAZIAR: ' , ava);
+	 
+	 
+ 	   var x = document.querySelectorAll('.rating .rstar');
+	   var novaImgg = '../img/produto/star1.png';
+ 	   var antImg = '../img/produto/star0.png';
+	   
+	   for (var i = 0; i < x.length; i++) {
+		    novoXx = x[i];
+//		    novoX.addEventListener('mouseover', function(event){
+		       
+		    	
+			
+// 				if(i > ava){
+					
+					novoXx.querySelector('img').src = antImg;
+// 				}
+				
+				
 
-for (var i = 0; i < x.length; i++) {
-    novoX = x[i];
-    novoX.addEventListener('mouseover', function(event){
-        this.querySelector('img').src = novaImg;
-    });
-    
-//     AntX = x[i];
-//     AntX.addEventListener('mouseout', function(event){
-//         this.querySelector('img').src = antImg;
-//     });
+			
+			
+			
+		    
+		  
+		   
+// 		   console.log('eSVAZIAR IMG: ' + antImg);
+		   
+// 		   console.log('eSVAZIAR IMG: ' , novoXx);
+		   
+		   
+		    
+		    
+		    }  
+	   
+	   
 }
 
-
-   
-   
-   
-// var x = document.querySelectorAll('.rating .rstar');
-// var antImg = '../img/produto/star0.png';
-// // var antImg = 'cardapio/img/produto/star0.png';
-
-// for (var i = 0; i < x.length; i++) {
-//  novoX = x[i];
-//  novoX.addEventListener('mouseout', function(event){
-//      this.querySelector('img').src = antImg;
-//  });
  
-// //  AntX = x[i];
-// //  AntX.addEventListener('mouseout', function(event){
-// //      this.querySelector('img').src = antImg;
-// //  });
-// }
-   
-
-/*]]>*/
- 
-   function Preencher() {
+   function Preencher(ava) {
+	
+	   Esvaziar(ava);
 	   
+	   console.log('Preencher: ' + ava);
+	
+	   var xxx = document.querySelectorAll('.rating .rstar');
+	   var nnovaImg = '../img/produto/star1.png';
+	   var aantImg = '../img/produto/star0.png';
 	   
+	   for (var i = 0; i < ava; i++) {
+		    novoX = xxx[i];
+// 		    novoX.addEventListener('mouseover', function(event){
+		       
+		    	
+	
+// 			this.querySelector('img').src = nnovaImg;
+			
+			novoX.querySelector('img').src = nnovaImg;
+			
+		//	xxx[i].querySelector('img').src = nnovaImg;
+		   
+// 		    if(ava > i){
+		    	
+// 		    	novoX.querySelector('img').src = nnovaImg;
+		    	
+// 		    	console.log('Preencher: AVA > I' + ava);
+		    	
+// 		    } 
+		    
+// 		    if(ava == i){
+		    	
+// 		    	novoX.querySelector('img').src = nnovaImg;
+		    	
+// 		    	console.log('Preencher: AVA ==I ' + ava);
+		    	
+// 		    }
+		    
+// 		    if(ava < i){
+		    	
+// 		    	novoX.querySelector('img').src = aantImg;
+		    	
+// 		    	console.log('Preencher: AVA <I ' + ava);
+		    	
+// 		    }
+		    
+		    
+		    
+		    }
 	   
 	   
    }
    
-   
-   function Esvaziar() {
-	   
-	   
-	   
-	   
-   }
-   
-   
-   
-   
-   
-// });
-
-
 
 </script>
 	    

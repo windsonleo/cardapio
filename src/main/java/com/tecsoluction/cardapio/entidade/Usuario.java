@@ -79,7 +79,10 @@ public class Usuario  extends BaseEntity implements Serializable {
     
     
     @JsonIgnore
-    @OneToMany( cascade = {CascadeType.REFRESH},fetch=FetchType.EAGER)
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name = "usuario_indicacao",
+    joinColumns = @JoinColumn(name = "idusuario"),
+    inverseJoinColumns = @JoinColumn(name = "idproduto"))
 	 private Set<Produto> indicacoes;
     
     

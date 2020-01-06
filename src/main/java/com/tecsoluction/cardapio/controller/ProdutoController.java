@@ -3,12 +3,15 @@ package com.tecsoluction.cardapio.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +36,10 @@ import com.tecsoluction.cardapio.util.UnidadeMedida;
 @Controller
 @RequestMapping(value = "produto/")
 public class ProdutoController extends AbstractController<Produto> {
+	
+	
+	private static final Logger logger = LoggerFactory.getLogger(ProdutoController.class);
+
 
 //    private final UsuarioServicoImpl userservice;
 	 @Autowired
@@ -240,6 +247,82 @@ public class ProdutoController extends AbstractController<Produto> {
         exibircat.addObject("produto", cat);
 
         return exibircat;
+    }  
+    
+    
+    @RequestMapping(value = "/avaliar", method = RequestMethod.GET)
+    public ModelAndView AvaliarProduto(HttpServletRequest request, Model model) {
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+//        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+        
+        ModelAndView exibircat = new ModelAndView("/private/produto/avaliar/avaliar");
+
+        Produto cat = getservice().findOne(idf);
+
+        exibircat.addObject("produto", cat);
+
+        return exibircat;
+    }  
+    
+    
+    
+    @RequestMapping(value = "/avaliarenv", method = RequestMethod.POST)
+    public ModelAndView AvaliarProdutoPost(HttpServletRequest request, Model model) {
+    	
+    	
+    	String mensagem = "Avaliado com Sucesso!";
+
+      List<Integer> notas = new ArrayList<Integer>();
+    	
+    	UUID idf = UUID.fromString(request.getParameter("id"));
+        
+        String nota = request.getParameter("nota");
+        
+        Integer inteiro = Integer.parseInt(nota);
+
+//        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+        
+//        ModelAndView exibircat = new ModelAndView("/private/produto/avaliar/avaliar");
+
+        Produto cat = getservice().findOne(idf);
+        
+        if(!cat.getNotas().isEmpty()){
+        	
+        	notas = cat.getNotas();
+        	
+        }else {
+        	
+        	
+        	
+        	
+        }
+        
+     //   notas = cat.getNotas();
+        
+        notas.add(inteiro);
+        
+//        cat.addNota(inteiro);
+        cat.setNotas(notas);
+        
+        Integer aux = cat.CalcularAvaliacao();
+        
+    	logger.debug("Calculo Avaliação Controller : " + aux);
+
+      
+        cat.setAvaliacao(aux);
+        
+        
+        
+        getservice().edit(cat);
+
+        model.addAttribute("produto", cat);
+        model.addAttribute("mensagem", mensagem);
+        
+        
+
+        return new ModelAndView("redirect:/produto/avaliar?id=" + cat.getId());
     }  
     
 

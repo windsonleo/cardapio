@@ -68,7 +68,7 @@
               </div>
         <h4>Deseja Avaliar Este Produto ?</h4>
         Clique nesse Link que Levaremos vc a Página
-        <a th:href="@{/produto/avaliar}">Página de Avaliação</a>
+        <a th:href="@{/produto/avaliar(id=${produto.id})}">Página de Avaliação</a>
         
 
               
@@ -101,33 +101,45 @@
               <h6 class="widget-user-desc" th:text="${produto.descricao}" >Lead Developer</h6>
               <ul class="rating">
               
+              									<th:block
+										th:each="i: ${#numbers.sequence(1, 5)}">
+										<li th:if="${produto.avaliacao >= i}" class="active"><a
+											class="rstarR" href="#"> <img th:src="@{/img/star1.png}"
+												class="imgstar" />
+										</a></li>
+										<li th:unless="${produto.avaliacao >= i}"><a
+											class="rstarR" href="#"> <img th:src="@{/img/star0.png}"
+												class="imgstar" />
+										</a></li>
+									</th:block>
               
-             <li>
+              
+<!--              <li> -->
              
-              <a class="rstar" href="javascript:void(0)" >
-				<img th:src="@{/img/star0.png}" th:id="'s1' + ${produto.nome}" class="imgstar" /> </a>
+<!--               <a class="rstar" href="javascript:void(0)" > -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s1' + ${produto.nome}" class="imgstar" /> </a> -->
              
-             </li>
+<!--              </li> -->
              
              
-             <li>
-             <a class="rstar" href="javascript:void(0)" >
-				<img th:src="@{/img/star0.png}" th:id="'s2' + ${produto.nome}" class="imgstar" /> </a>
-             </li>
+<!--              <li> -->
+<!--              <a class="rstar" href="javascript:void(0)" > -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s2' + ${produto.nome}" class="imgstar" /> </a> -->
+<!--              </li> -->
              
-             <li>
-             <a class="rstar" href="javascript:void(0)">
-				<img th:src="@{/img/star0.png}" th:id="'s3' + ${produto.nome}" class="imgstar" /> </a>
-             </li>
+<!--              <li> -->
+<!--              <a class="rstar" href="javascript:void(0)"> -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s3' + ${produto.nome}" class="imgstar" /> </a> -->
+<!--              </li> -->
              
-             <li>
-             <a class="rstar" href="javascript:void(0)" >
-				<img th:src="@{/img/star0.png}" th:id="'s4' + ${produto.nome}" class="imgstar" /> </a>
-           </li>
-             <li>
-             <a class="rstar" href="javascript:void(0)">
-				<img th:src="@{/img/star0.png}" th:id="'s5' + ${produto.nome}" class="imgstar" /> </a>
-			</li>
+<!--              <li> -->
+<!--              <a class="rstar" href="javascript:void(0)" > -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s4' + ${produto.nome}" class="imgstar" /> </a> -->
+<!--            </li> -->
+<!--              <li> -->
+<!--              <a class="rstar" href="javascript:void(0)"> -->
+<!-- 				<img th:src="@{/img/star0.png}" th:id="'s5' + ${produto.nome}" class="imgstar" /> </a> -->
+<!-- 			</li> -->
               
               </ul>
               
