@@ -69,7 +69,7 @@ public abstract class Pedido extends BaseEntity {
     public BigDecimal getTotal() {
 
 
-        return total.setScale(2, RoundingMode.UP);
+        return total;
     }
 
     public void setTotal(BigDecimal total) {
