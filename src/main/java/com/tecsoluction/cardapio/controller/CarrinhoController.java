@@ -197,7 +197,7 @@ public class CarrinhoController  {
     
     
     @RequestMapping(value = "/finalizar", method = RequestMethod.GET)
-    public ModelAndView FinalizarCarrinho(HttpServletRequest request) {
+    public ModelAndView FinalizarCarrinho(HttpServletRequest request,Model model) {
 
   //      UUID idf = UUID.fromString(request.getParameter("id"));
 
@@ -216,11 +216,11 @@ public class CarrinhoController  {
         mesas = mesaService.findAll();
         garcons = garconService.findAll();
 
-        exibircat.addObject("carrinho", carrinho);
+        model.addAttribute("carrinho", carrinho);
         
-        exibircat.addObject("mesas", mesas);
+        model.addAttribute("mesas", mesas);
         
-        exibircat.addObject("garcons", garcons);
+        model.addAttribute("garcons", garcons);
 
         return exibircat;
     }
