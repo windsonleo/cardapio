@@ -113,11 +113,16 @@ public class PedidoVenda extends Pedido implements Serializable {
     		if(items.containsKey(it)){
     			
     			int qtd = Integer.parseInt(it.getQtd());
+    			
+    			
+    			
+    			this.removeItem(it);
+    			
     			qtd = qtd +1;
     			String qtdaux = String.valueOf(qtd);
     			it.setQtd(qtdaux);
     			
-    		//	this.removeItem(it);
+    			
 
     			this.addItem(it, it.getQtd());
     		//	this.items.replace(it, qtdaux);
