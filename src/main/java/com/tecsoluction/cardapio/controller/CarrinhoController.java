@@ -245,9 +245,9 @@ public class CarrinhoController  {
         this.carrinho.setTotal(carrinho.CalcularTotal().setScale(2, RoundingMode.UP));
         this.carrinho.setQtd(new BigDecimal(carrinho.getItens().size()).setScale(2, RoundingMode.UP));
 
-        exibircat.addObject("carrinho", carrinho);
+        model.addAttribute("carrinho", carrinho);
 
-        return exibircat;
+        return new ModelAndView("forward:/carrinho/finalizar") ;
     }
     
     
