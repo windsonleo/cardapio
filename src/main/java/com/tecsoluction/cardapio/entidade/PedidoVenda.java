@@ -118,7 +118,7 @@ public class PedidoVenda extends Pedido implements Serializable {
     			it.setQtd(qtdaux);
     			
     			//this.items.put(it, it.getQtd());
-    			this.items.replace(it, it.getQtd());
+    			this.items.replace(it, qtdaux);
     			
     			
     		}else {
