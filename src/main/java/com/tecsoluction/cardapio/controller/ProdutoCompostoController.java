@@ -250,8 +250,8 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 //		  totalpedido = produtocomposto.getPrecocusto();
 //		  totalitem ;
 
-		produtocomposto.setPrecocusto(produtocomposto.CalcularTotalCusto());
-		produtocomposto.setPrecovenda(produtocomposto.CalcularTotalVenda());
+		produtocomposto.setPrecocusto(produtocomposto.CalcularTotalCusto().setScale(2, RoundingMode.UP));
+		produtocomposto.setPrecovenda(produtocomposto.CalcularTotalVenda().setScale(2, RoundingMode.UP));
 
 //	        DecimalFormat df = new DecimalFormat("0.##");
 //	        String totalformatado = df.format(totalpedido);
@@ -269,7 +269,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 	        	 qtdd =  new BigDecimal(produtocomposto.getItens_prodcomp().get(item));
 	        
 
-	            total = total.add(item.getPrecoUnitario().multiply(qtdd));
+	            total = total.add(item.getPrecoUnitario().multiply(qtdd).setScale(2, RoundingMode.UP));
 	            
 	            item.setTotalItem(total);
 
@@ -367,7 +367,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 			additemprodutocomposto.addObject("produtocomposto",
 					produtocomposto = produtocompostoService.findOne(idfprodcomp));
 			additemprodutocomposto.addObject("prodList", prodList);
-			additemprodutocomposto.addObject("totalitem", produtocomposto.getPrecocusto());
+			additemprodutocomposto.addObject("totalitem", produtocomposto.getPrecocusto().setScale(2, RoundingMode.UP));
 
 			return additemprodutocomposto;
 		}
@@ -395,8 +395,8 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 //			dec = produtocomposto.getPrecocusto();
 //			dicvenda = produtocomposto.getPrecovenda();
 			
-			produtocomposto.setPrecocusto(produtocomposto.getPrecocusto());
-			produtocomposto.setPrecovenda(produtocomposto.CalcularTotalVenda());
+			produtocomposto.setPrecocusto(produtocomposto.getPrecocusto().setScale(2, RoundingMode.UP));
+			produtocomposto.setPrecovenda(produtocomposto.CalcularTotalVenda().setScale(2, RoundingMode.UP));
 			
 		getservice().edit(produtocomposto);
 

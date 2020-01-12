@@ -68,7 +68,7 @@ public class ProdutoComposto extends Produto implements Serializable {
 
 //		BigDecimal mult = new BigDecimal(2.00);
 		
-		return CalcularTotalVenda();
+		return CalcularTotalVenda().setScale(2, RoundingMode.UP);
 
 		}
     
@@ -84,13 +84,13 @@ public class ProdutoComposto extends Produto implements Serializable {
         	
         	String qtd = getItens_prodcomp().get(key);
         	
-        	qtdBigaux = new  BigDecimal(qtd);
+        	qtdBigaux = new  BigDecimal(qtd).setScale(2, RoundingMode.UP);
         	
         	
         	BigDecimal itemvalor = new BigDecimal(key.getPrecoUnitario().toString());
         	
         	
-        	totalpedido = totalpedido.add(itemvalor.multiply(qtdBigaux));
+        	totalpedido = totalpedido.add(itemvalor.multiply(qtdBigaux).setScale(2, RoundingMode.UP)).setScale(2, RoundingMode.UP);
 
         	
 //        	totalpedido = totalpedido.add(totalped);
@@ -120,18 +120,18 @@ public class ProdutoComposto extends Produto implements Serializable {
         	
         	String qtd = getItens_prodcomp().get(key);
         	
-        	qtdAuxBig = new  BigDecimal(qtd);
+        	qtdAuxBig = new  BigDecimal(qtd).setScale(2, RoundingMode.UP);;
         	
-        	BigDecimal itemvalor = new BigDecimal(key.getPrecoUnitario().toString());
+        	BigDecimal itemvalor = new BigDecimal(key.getPrecoUnitario().toString()).setScale(2, RoundingMode.UP);;
         	
-        	totalpedido = totalpedido.add(itemvalor.multiply(qtdAuxBig));
+        	totalpedido = totalpedido.add(itemvalor.multiply(qtdAuxBig).setScale(2, RoundingMode.UP));
         	
         	//total custo
 //        	 = totalpedido.add(totalped);
             
         }
         
-        totalpedido = totalpedido.multiply(lucro);
+        totalpedido = totalpedido.multiply(lucro).setScale(2, RoundingMode.UP);
 
 //        return totalpedido.multiply(new BigDecimal("1.5"));
         
@@ -161,14 +161,14 @@ public class ProdutoComposto extends Produto implements Serializable {
     public BigDecimal getTotalCompostoCusto(){
     	
     	
-    	return  CalcularTotalCusto();
+    	return  CalcularTotalCusto().setScale(2, RoundingMode.UP);
     }
     
     
     public BigDecimal getTotalCompostoVenda(){
     	
     	
-    	return  CalcularTotalVenda();
+    	return  CalcularTotalVenda().setScale(2, RoundingMode.UP);
     }
 
 

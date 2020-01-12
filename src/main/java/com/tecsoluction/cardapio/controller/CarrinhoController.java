@@ -151,7 +151,7 @@ public class CarrinhoController  {
         
         ModelAndView exibircat = new ModelAndView("/public/carrinho/visualizar");
         
-        this.carrinho.setTotal(carrinho.CalcularTotal());
+        this.carrinho.setTotal(carrinho.CalcularTotal().setScale(2, RoundingMode.UP).setScale(2, RoundingMode.UP));
 
 //        Categoria cat = getservice().findOne(idf);
 
@@ -179,11 +179,11 @@ public class CarrinhoController  {
         Item item = new Item(cat);
         
         item.setQtd("01");
-        item.setTotalItem(item.CalcularTotaItem(item.getQtd()));
+        item.setTotalItem(item.CalcularTotaItem(item.getQtd()).setScale(2, RoundingMode.UP));
         
         this.carrinho.addItem(item);
         
-        this.carrinho.setTotal(carrinho.CalcularTotal());
+        this.carrinho.setTotal(carrinho.CalcularTotal().setScale(2, RoundingMode.UP));
         
         
 //        request.setAttribute("carrinho", carrinho); // Setando no escopo de requisição
@@ -209,9 +209,9 @@ public class CarrinhoController  {
 //        
 //        Item item = new Item(cat);
 //        
-        this.carrinho.setSubtotal(carrinho.CalcularTotal());
-        this.carrinho.setTotal(carrinho.CalcularTotal());
-        this.carrinho.setQtd(new BigDecimal(carrinho.getItens().size()));
+        this.carrinho.setSubtotal(carrinho.CalcularTotal().setScale(2, RoundingMode.UP));
+        this.carrinho.setTotal(carrinho.CalcularTotal().setScale(2, RoundingMode.UP));
+        this.carrinho.setQtd(new BigDecimal(carrinho.getItens().size()).setScale(2, RoundingMode.UP));
         
         mesas = mesaService.findAll();
         garcons = garconService.findAll();
@@ -241,8 +241,8 @@ public class CarrinhoController  {
 //        
         this.carrinho.removeItem(item);
         
-        this.carrinho.setSubtotal(carrinho.CalcularTotal());
-        this.carrinho.setTotal(carrinho.CalcularTotal());
+        this.carrinho.setSubtotal(carrinho.CalcularTotal().setScale(2, RoundingMode.UP));
+        this.carrinho.setTotal(carrinho.CalcularTotal().setScale(2, RoundingMode.UP));
         this.carrinho.setQtd(new BigDecimal(carrinho.getItens().size()).setScale(2, RoundingMode.UP));
 
         model.addAttribute("carrinho", carrinho);

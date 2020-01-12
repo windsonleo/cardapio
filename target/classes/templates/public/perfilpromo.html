@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
   
-<meta property="og:url"                th:attr="content='https://sleepy-atoll-65818.herokuapp.com/promocao/perfil?id=' + ${promocao.id}" />
+<meta property="og:url"                th:attr="content='https://sushisenpai.herokuapp.com/promocao/perfil?id=' + ${promocao.id}" />
 <meta property="og:type"               th:attr="content='article'" />
 <meta property="og:title"               th:attr="content='Sushi-Senpai' + ${promocao.nome}" />
 <meta property="og:description"        th:attr="content='Descrição:'+ ${promocao.descricao}" />
-<meta property="og:image"               th:attr="content='https://sleepy-atoll-65818.herokuapp.com/img/promocao/' + ${promocao.foto}" />
+<meta property="og:image"               th:attr="content='https://sushisenpai.herokuapp.com/img/promocao/' + ${promocao.foto}" />
 
 	<head th:replace="fragmentos/head :: head-css">
 	
@@ -128,9 +128,9 @@
 <!--                 <li><a href="#">Preco <span class="pull-right badge bg-aqua" th:text="${promocao.precovenda}" >5</span></a></li> -->
                 
 <!--                 <li><a href="#">Curtir <span class="pull-right badge bg-green"><i class="fa fa-thumbs-up">12</i></span></a></li> -->
-                <li>  <a href="#"> Curtir  <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sleepy-atoll-65818.herokuapp.com/promocao/perfil?id=' + ${promocao.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li>
+                <li>  <a href="#"> Curtir  <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sushisenpai.herokuapp.com/promocao/perfil?id=' + ${promocao.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li>
                 
-                <li> <a href="#"> Recomendar <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sleepy-atoll-65818.herokuapp.com/promocao/perfil?id=' + ${promocao.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li>
+                <li> <a href="#"> Recomendar <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sushisenpai.herokuapp.com/promocao/perfil?id=' + ${promocao.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li>
            
            
 <!--                 <li><a th:href="@{/usuario/indica(id=${promocao.id})}">Sugerir <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i>84</span></a></li> -->

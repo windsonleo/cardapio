@@ -120,14 +120,14 @@ public BigDecimal CalcularTotaItem(String qtd) {
 
 
     
-  return precoUnitario.multiply(qtdAuxBig);
+  return precoUnitario.multiply(qtdAuxBig).setScale(2, RoundingMode.UP);
 
 }
 
 
 public String TotalizacaoPoritem(String qtd){
-	BigDecimal total = getPrecoUnitario();
-	BigDecimal qtdaux = new BigDecimal(qtd);
+	BigDecimal total = getPrecoUnitario().setScale(2, RoundingMode.UP);
+	BigDecimal qtdaux = new BigDecimal(qtd).setScale(2, RoundingMode.UP);
 	
 	
 	return total.multiply(qtdaux).toString();

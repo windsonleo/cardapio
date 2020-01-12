@@ -69,12 +69,12 @@ public abstract class Pedido extends BaseEntity {
     public BigDecimal getTotal() {
 
 
-        return total;
+        return total.setScale(2, RoundingMode.UP);
     }
 
     public void setTotal(BigDecimal total) {
        
-    	this.total = total;
+    	this.total = total.setScale(2, RoundingMode.UP);
     }
 
 
@@ -97,14 +97,14 @@ public abstract class Pedido extends BaseEntity {
         	//QTD ITEM
         	String total = itens.get(key);
         	
-        	totalpedidoaux = new  BigDecimal(total);
+        	totalpedidoaux = new  BigDecimal(total).setScale(2, RoundingMode.UP);
         	
-        	BigDecimal totalped = new BigDecimal(key.getPrecoUnitario().toString());
+        	BigDecimal totalped = new BigDecimal(key.getPrecoUnitario().toString()).setScale(2, RoundingMode.UP);
         	
-        	totalped = totalped.multiply(totalpedidoaux);
+        	totalped = totalped.multiply(totalpedidoaux).setScale(2, RoundingMode.UP);
         	
 
-        	totalpedido = totalpedido.add(totalped);
+        	totalpedido = totalpedido.add(totalped).setScale(2, RoundingMode.UP);
         }
 
 
