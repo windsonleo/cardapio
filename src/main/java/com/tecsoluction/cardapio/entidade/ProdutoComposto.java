@@ -75,8 +75,8 @@ public class ProdutoComposto extends Produto implements Serializable {
 
     public BigDecimal CalcularTotalCusto() {
 
-    	BigDecimal totalpedido = new BigDecimal(0.000).setScale(4, RoundingMode.UP);
-    	BigDecimal qtdBigaux = new BigDecimal(0.000).setScale(4, RoundingMode.UP);
+    	BigDecimal totalpedido = new BigDecimal(0.00).setScale(2, RoundingMode.UP);
+    	BigDecimal qtdBigaux = new BigDecimal(0.00).setScale(2, RoundingMode.UP);
 
 
         for (Item key : getItens_prodcomp().keySet()) {
@@ -108,8 +108,8 @@ public class ProdutoComposto extends Produto implements Serializable {
     
     public BigDecimal CalcularTotalVenda() {
 
-    	BigDecimal totalpedido = new BigDecimal("0.000").setScale(4, RoundingMode.UP);
-    	BigDecimal qtdAuxBig = new BigDecimal("0.000").setScale(2, RoundingMode.UP);
+    	BigDecimal totalpedido = new BigDecimal("0.00").setScale(2, RoundingMode.UP);
+    	BigDecimal qtdAuxBig = new BigDecimal("0.00").setScale(2, RoundingMode.UP);
     	BigDecimal lucro = new BigDecimal("1.50").setScale(2, RoundingMode.UP);
 
 

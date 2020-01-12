@@ -63,9 +63,9 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
     private Map<Item, String> items = new HashMap<Item, String>();
 	private ProdutoComposto produtocomposto = null;
 
-	private BigDecimal totalitem = new BigDecimal(0.000).setScale(4, RoundingMode.UP);
+	private BigDecimal totalitem = new BigDecimal(0.00).setScale(2, RoundingMode.UP);
 	
-    private BigDecimal totalpedido = new BigDecimal(0.000).setScale(4, RoundingMode.UP);
+    private BigDecimal totalpedido = new BigDecimal(0.00).setScale(2, RoundingMode.UP);
     
     private String filename="vazio.jpg";
     
@@ -257,9 +257,9 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 //	        String totalformatado = df.format(totalpedido);
 		
 		
-		 BigDecimal total =  new BigDecimal(0.00);
+		 BigDecimal total =  new BigDecimal(0.00).setScale(2, RoundingMode.HALF_UP);
 		 
-		 BigDecimal qtdd =  new BigDecimal(0.00);
+		 BigDecimal qtdd =  new BigDecimal(0.00).setScale(2, RoundingMode.HALF_UP);
 
 
 	        // mudar para trazer pelo id da mesa e pelo status da mesa
