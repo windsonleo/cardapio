@@ -216,11 +216,11 @@ public class CarrinhoController  {
         mesas = mesaService.findAll();
         garcons = garconService.findAll();
 
-        model.addAttribute("carrinho", carrinho);
+        exibircat.addObject("carrinho", carrinho);
         
-        model.addAttribute("mesas", mesas);
+        exibircat.addObject("mesas", mesas);
         
-        model.addAttribute("garcons", garcons);
+        exibircat.addObject("garcons", garcons);
 
         return exibircat;
     }
@@ -237,7 +237,7 @@ public class CarrinhoController  {
 
         Produto cat = produtoService.findOne(idf);
 //        
-        Item item = new Item(cat);
+        Item item = new Item(cat,"01");
 //        
         this.carrinho.removeItem(item);
         
