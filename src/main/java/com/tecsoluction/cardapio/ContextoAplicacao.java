@@ -12,16 +12,19 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Configuracao;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.exception.CustomGenericException;
+import com.tecsoluction.cardapio.exception.LoggingAccessDeniedHandler;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
 import com.tecsoluction.cardapio.servico.ConfiguracaoServicoImpl;
 import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
@@ -60,6 +63,9 @@ public class ContextoAplicacao {
 	 private Date hoje;
 	 	
 	 private boolean estaaberto;
+	 
+	 
+	 private Carrinho carrinho = new Carrinho();
 	 	
 
 	// @Autowired
@@ -163,6 +169,18 @@ public class ContextoAplicacao {
          hoje = new Date();
          
          estaaberto = VerificaHorarioFechamento(configuracaoAtual);
+         
+         
+ 		if(!carrinho.getItens().isEmpty()){
+			
+			
+			
+ 		}else {
+ 			
+ 			UUID uuid = UUID.randomUUID();
+ 			carrinho.setId(uuid);
+ 			
+ 		}
         
 
         
@@ -171,6 +189,9 @@ public class ContextoAplicacao {
         model.addAttribute("configuracaoAtual", configuracaoAtual);
         model.addAttribute("hoje", hoje);
         model.addAttribute("estaaberto", estaaberto);
+        model.addAttribute("carrinho", carrinho); 
+        
+        
         
         
 	}
@@ -185,6 +206,8 @@ public class ContextoAplicacao {
         model.addObject("categoriaLista", categoriaLista);
         model.addObject("configuracaoAtual", configuracaoAtual);
         model.addObject("hoje", hoje);
+        model.addObject("estaaberto", estaaberto);
+        model.addObject("carrinho", carrinho); 
 
 		return model;
 
@@ -199,6 +222,24 @@ public class ContextoAplicacao {
         model.addObject("categoriaLista", categoriaLista);
         model.addObject("configuracaoAtual", configuracaoAtual);
         model.addObject("hoje", hoje);
+        model.addObject("estaaberto", estaaberto);
+        model.addObject("carrinho", carrinho); 
+
+		return model;
+
+	}
+	
+	@ExceptionHandler(LoggingAccessDeniedHandler.class)
+	public ModelAndView handleLoggingAccessDeniedHandler(Exception ex) {
+
+		ModelAndView model = new ModelAndView("/public/accessdenied");
+		model.addObject("errMsg", ex.toString());
+        model.addObject("usuarioAtt", usuario);
+        model.addObject("categoriaLista", categoriaLista);
+        model.addObject("configuracaoAtual", configuracaoAtual);
+        model.addObject("hoje", hoje);
+        model.addObject("estaaberto", estaaberto);
+        model.addObject("carrinho", carrinho); 
 
 		return model;
 

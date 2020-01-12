@@ -54,7 +54,7 @@ public  class Item implements Serializable, Comparable<Item>{
     private String foto;
 
 
-
+    private String qtd;
 
 
     public Item() {
@@ -76,7 +76,25 @@ public  class Item implements Serializable, Comparable<Item>{
         this.precoCusto = produto.getPrecocusto();
         this.un_medida = produto.getUn_medida();
         this.foto = produto.getFoto();
-//        this.situacao = SituacaoItem.AGUARDANDO;
+        this.situacao = SituacaoItem.AGUARDANDO;
+
+        
+
+    }
+    
+    public Item(Produto produto,String qtd) {
+    	super();
+    	this.id = produto.getId();
+        this.codigo = produto.getCodebar();
+        this.nome = produto.getNome();
+        this.descricao = produto.getDescricao();
+        this.precoUnitario = produto.getPrecovenda();
+        this.precoCusto = produto.getPrecocusto();
+        this.un_medida = produto.getUn_medida();
+        this.foto = produto.getFoto();
+        this.qtd = qtd;
+        this.situacao = SituacaoItem.AGUARDANDO;
+
 
         
 
@@ -87,6 +105,8 @@ public String toString() {
 
 	return nome;
 }
+
+
 
 @Override
 public int compareTo(Item arg0) {

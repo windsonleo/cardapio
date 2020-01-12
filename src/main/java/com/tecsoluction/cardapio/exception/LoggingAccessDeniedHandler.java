@@ -18,9 +18,13 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class LoggingAccessDeniedHandler implements AccessDeniedHandler {
+public class LoggingAccessDeniedHandler extends Throwable implements AccessDeniedHandler {
 
-    private static Logger log = LoggerFactory.getLogger(LoggingAccessDeniedHandler.class);
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static Logger log = LoggerFactory.getLogger(LoggingAccessDeniedHandler.class);
 
 
 
