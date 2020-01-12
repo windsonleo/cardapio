@@ -247,7 +247,7 @@ public class CarrinhoController  {
 
         model.addAttribute("carrinho", carrinho);
 
-        return new ModelAndView("forward:/carrinho/finalizar") ;
+        return new ModelAndView("redirect:/carrinho/finalizar") ;
     }
     
     
