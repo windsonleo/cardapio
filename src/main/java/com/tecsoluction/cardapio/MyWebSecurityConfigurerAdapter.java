@@ -93,6 +93,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/carrinho/cancelar**").permitAll()
 				.antMatchers("/carrinho/deleteitem**").permitAll()
 				.antMatchers("/pedidovenda/id**").permitAll()
+				.antMatchers("/pedidovenda/**").permitAll()
 				.antMatchers("/home").permitAll()
 				.antMatchers("https://connect.facebook.net").permitAll()	
 				.antMatchers("https://apis.google.com/js/platform.js").permitAll()

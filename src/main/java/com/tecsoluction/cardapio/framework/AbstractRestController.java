@@ -1,6 +1,7 @@
 package com.tecsoluction.cardapio.framework;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public abstract class AbstractRestController<Entity> {
         }
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Entity> buscarEntity(@PathVariable String id) {
 
 
