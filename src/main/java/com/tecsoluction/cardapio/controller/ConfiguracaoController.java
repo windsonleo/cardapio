@@ -2,6 +2,7 @@ package com.tecsoluction.cardapio.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tecsoluction.cardapio.CarrinhoBean;
+import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Configuracao;
 import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.servico.ConfiguracaoServicoImpl;
@@ -40,6 +43,12 @@ public class ConfiguracaoController extends AbstractController<Configuracao>    
 	 
 	 
 	 private String filenamebanner3="vazio.jpg";
+	 
+//	    private Carrinho carrinho = new Carrinho();
+	    
+	    
+		 @Autowired
+		 private CarrinhoBean carrinhobean;
 	 
 //	       
 //	 @Autowired
@@ -95,11 +104,25 @@ public class ConfiguracaoController extends AbstractController<Configuracao>    
     	
     	configuracao = new Configuracao();
     	
+//if(carrinho == null){
+//        	
+//        	carrinho = new Carrinho();
+//        	UUID uuid = UUID.randomUUID();
+// 			carrinho.setId(uuid);
+//            }else {
+//            	
+////            	UUID uuid = UUID.randomUUID();
+////     			carrinho.setId(uuid);	
+//            	  	
+//            }
+    	
         model.addAttribute("filename", filename);
         model.addAttribute("filenamebanner1", filenamebanner1);
         model.addAttribute("filenamebanner2", filenamebanner2);
         model.addAttribute("filenamebanner3", filenamebanner3);
         model.addAttribute("configuracao", configuracao);
+        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
+
 
     }
 

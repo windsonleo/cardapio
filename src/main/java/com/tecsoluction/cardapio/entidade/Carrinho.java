@@ -40,8 +40,8 @@ public class Carrinho extends BaseEntity implements Serializable {
 
 
     @JsonIgnore
-    @OneToMany(cascade = {CascadeType.REFRESH},fetch=FetchType.EAGER)
-    private List<Item> itens;
+    @OneToMany(fetch=FetchType.EAGER)
+    private List<Item> itens = new ArrayList<Item>();
     
     
     @Transient
@@ -66,7 +66,7 @@ public class Carrinho extends BaseEntity implements Serializable {
 
     public Carrinho() {
         // TODO Auto-generated constructor stub
-        itens = new ArrayList<Item>();
+    //    itens = new ArrayList<Item>();
     }
     
     

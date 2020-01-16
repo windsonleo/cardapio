@@ -54,6 +54,65 @@
         <li><a href="#">Carrinho</a></li>
         <li class="active">Finalizar</li>
       </ol>
+      
+      
+      				<div class="row-fluid" th:if="${sucesso}">
+
+					<div class="alert alert-success">
+						<div class="container-fluid">
+							<div class="alert-icon">
+								<i class="material-icons">check</i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true"><i class="material-icons">clear</i></span>
+							</button>
+							<b>Mensagem:</b> <span th:utext="${sucesso}"> </span>
+							
+<!-- 							 <span -->
+<!-- 								class="btn btn-sm btn-warning"><a -->
+<!-- 								th:href="@{/usuario/cadastro}"><i></i>Novo</a></span> <span -->
+<!-- 								class="btn btn-sm btn-warning"><a -->
+<!-- 								th:href="@{/usuario/editar(id=${usuario.id})}"><i></i>Editar</a></span> -->
+
+						</div>
+
+
+					</div>
+
+
+
+				</div>
+
+				<div class="row-fluid" th:if="${erro}">
+
+					<div class="alert alert-danger">
+						<div class="container-fluid">
+							<div class="alert-icon">
+								<i class="material-icons">error</i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true"><i class="material-icons">clear</i></span>
+							</button>
+							<b>Mensagem:</b> <span th:utext="${erro}"></span> 
+<!-- 							<span -->
+<!-- 								class="btn btn-sm btn-warning"> -->
+<!-- 								<a -->
+<!-- 								th:href="@{/usuario/cadastro}"><i></i>Novo</a></span> <span -->
+<!-- 								class="btn btn-sm btn-warning"><a -->
+<!-- 								th:href="@{/usuario/editar(id=${usuario.id})}"><i></i>Editar</a></span> -->
+
+						</div>
+
+
+					</div>
+
+
+
+				</div>
+      
+      
     </section>
 
 <!--     <div class="pad margin no-print"> -->

@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
+import java.util.UUID;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -38,7 +39,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tecsoluction.cardapio.CarrinhoBean;
 import com.tecsoluction.cardapio.entidade.Autenticador;
+import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.entidade.Promocao;
@@ -99,6 +102,12 @@ public class HomeController {
     private Usuario usuario ;
 
 	private String filename="avatar_usu.jpg";
+	
+	 private Carrinho carrinho = new Carrinho();
+	 
+	 
+	 @Autowired
+	 private CarrinhoBean carrinhobean;
 
 //    @Autowired 
 //    private JavaMailSender mailSender;
@@ -123,6 +132,17 @@ public class HomeController {
 		  
 		  
 		  usuarios = usuarioService.findAll();
+		  
+//		  if(!carrinho.getItens().isEmpty()){
+//				
+//				
+//				
+//			}else {
+//				
+//				UUID uuid = UUID.randomUUID();
+//				carrinho.setId(uuid);
+//				
+//			}
 
 		  
 //		  
@@ -140,7 +160,19 @@ public class HomeController {
 		  
 //		  qtdusuarios = usuarios.size();
 		  
-
+		        if(carrinho == null){
+		        	carrinho = new Carrinho();
+		        	UUID uuid = UUID.randomUUID();
+		 			carrinho.setId(uuid);
+		          //  model.addAttribute("carrinho", carrinho); 
+		            }else {
+		            	
+//		            	UUID uuid = UUID.randomUUID();
+//			 			carrinho.setId(uuid);
+		            	
+		            }
+		        
+		     //   carrinhobean.SetarCarrinhoSessao(carrinho);
 		  
 		  
 //		  	List<Produto> produtos = produtoService.findAll();
@@ -151,6 +183,8 @@ public class HomeController {
 	         promocoes = PromocaoService.findAll();
 	         
 	         gerenciacat = new GerenciadorCategorias(categoriasall);
+	         
+	         
 	        
 //
 //	        model.addAttribute("atividades", atividades);
@@ -161,6 +195,10 @@ public class HomeController {
 	        model.addAttribute("categoriaListall", categoriasall);
 	        model.addAttribute("usuario", usuario);
 	        model.addAttribute("filename", filename);
+	        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
+	        
+	        
+
 //	        model.addAttribute("qtdpacientesaltas", qtdpacientesaltas);
 //	        model.addAttribute("qtdpacientesinternados", qtdpacientesinternados);
 
@@ -304,6 +342,9 @@ public class HomeController {
         
        
 //        home.addObject("usuario", new Usuario());
+        
+        
+        
 
 
         return home;

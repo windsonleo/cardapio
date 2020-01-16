@@ -54,8 +54,12 @@
                                             <th class="hide">Id</th>
                                             <th >Mesa</th>
                                             <th >Garcon</th>
+                                             <th >Data</th>
+                                              <th >Status</th>
                                             
                                             <th >Items</th>
+                                            
+                                             <th >Total</th>
 <!--                                              <th>Senha</th> -->
 <!--                                             <th>Permissao</th> -->
 <!--                                             <th>Indicações</th> -->
@@ -80,7 +84,10 @@
 <!--                                                   <td><img th:src="@{/img/pedidovenda/{fotoc}(fotoc=${pedidovenda.foto})}" class="img-circle img-sm" alt="fotouser"/></td> -->
                                                     <td th:text="${pedidovenda.mesa}">email</td>
                                                    <td th:text="${pedidovenda.garcon}">email</td>
-                                                     <td th:text="${pedidovenda.items}">senha</td>
+                                                    <td th:utext="${#dates.format(pedidovenda.data,'dd/MM/yyyy')}">email</td>
+                                                     <td th:text="${pedidovenda.status}">email</td>
+                                                        <td th:text="${pedidovenda.items}">senha</td>
+                                                        <td th:text="${pedidovenda.total}">senha</td>
 <!--                                                     <td th:text="${pedidovenda.roles}">roles</td> -->
 <!--                                                      <td th:text="${pedidovenda.indicacoes}">roles</td> -->
                                                   
@@ -89,7 +96,7 @@
 							              <div sec:authorize="hasRole('ROLE_ADM')" >
 	                                              <td>
 	                                             
-	                                              <div class="btn-group-horizontal" >
+	                                              <div class="btn-group" >
                                                         <a  rel="tooltip" title="Informacoes" class="" th:href="@{/pedidovenda/perfil(id=${pedidovenda.id})}">
                                     						<i class="material-icons">info</i>
 			                       						</a>

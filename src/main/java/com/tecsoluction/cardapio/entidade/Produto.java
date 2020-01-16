@@ -58,7 +58,7 @@ public class Produto extends BaseEntity implements Serializable {
 	 @NotBlank(message="o nome do Produto não pode ser branco")
     private String nome;
 
-    @Column(name = "codebar", nullable = false)
+    @Column(name = "codebar", nullable = false,unique=true)
 	 @NotNull(message="o codebar do Produto não pode ser nulo")
 	 @NotBlank(message="o codebar do Produto não pode ser branco")
     private String codebar;

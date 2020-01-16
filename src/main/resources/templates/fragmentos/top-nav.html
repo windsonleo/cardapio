@@ -445,7 +445,7 @@ function onSignIn(googleUser) {
 
 <li>
 <a href="#" th:href="@{/carrinho/visualizar}"> <i class="fa fa-shopping-cart"> </i>
-<span class="label label-success" th:text="${#lists.size(carrinho.itens)}">10</span> </a>
+<span class="label label-success" th:text="|${#lists.size(carrinho.itens)}|">10</span> </a>
 
 
 </li>

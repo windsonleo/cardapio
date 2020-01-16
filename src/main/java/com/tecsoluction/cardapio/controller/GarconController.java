@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tecsoluction.cardapio.CarrinhoBean;
+import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Garcon;
 import com.tecsoluction.cardapio.entidade.Role;
 import com.tecsoluction.cardapio.entidade.Usuario;
@@ -50,6 +52,13 @@ public class GarconController extends AbstractController<Garcon> {
 	 
 		@Autowired
 		private ServletContext context;
+		
+				 
+		    private Carrinho carrinho = new Carrinho();
+		    
+		    
+			 @Autowired
+			 private CarrinhoBean carrinhobean;
 	 
 //	 @Autowired
 //	private final RoleServicoImpl roleService;
@@ -89,6 +98,8 @@ public class GarconController extends AbstractController<Garcon> {
 		// usuario = usudao.PegarPorNome(usuario.getUsername());
 		 model.addAttribute("garcon", garcon);
 		 model.addAttribute("filename", filename);
+	        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
+
 		// model.addAttribute("usuarioList", usuarioList);
 
 	}
@@ -112,7 +123,7 @@ public class GarconController extends AbstractController<Garcon> {
 	        
 	        this.filename = file.getOriginalFilename();
 	        
-	        
+
 //	        heroku não funfa com essas barras
 //	        String caminho = path + "\\" + filename;
 	        

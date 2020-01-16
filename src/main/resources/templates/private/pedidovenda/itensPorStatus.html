@@ -16,7 +16,7 @@
 	
 	
 		
-		<title>Cozinha</title>
+		<title>Itens Por Status</title>
 
 			<body  class="hold-transition skin-red sidebar-mini" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
 			
@@ -46,13 +46,13 @@
     <section class="content-header">
       <h1>
 <!--         Início -->
-        Cozinha <small > Itens</small>
+        Cozinha <small > Itens Por Status</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"  ></i> Cardapio</a> </li>
         <li> <i class="fa fa-dashboard"  >Cozinha</i></li>
         
-          <li class="active"> Itens</li>
+          <li class="active"> Itens Por Status</li>
       </ol>
     </section>
     
@@ -161,7 +161,7 @@
        
 <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Pedidos Adicionado Recentemente</h3>
+              <h3 class="box-title">Itens Por Status</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -171,43 +171,43 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <ul class="products-list product-list-in-box" th:each="pedido : ${pedidos}">
-                  <span class="product-title" th:text="|Pedido Id : ${pedido.id}|" >$1800</span>
+              <ul class="products-list product-list-in-box">
+                  <span class="product-title" >IDPEDIDO</span>
                 
-                <li class="item"  th:each="item: ${pedido.items}">
+                <li class="item"  th:each="item: ${itens}">
               
                   
                   
                   <div class="product-img">
-                    <img th:src="@{/img/produto/{fotoc}(fotoc=${item.key.foto})}" alt="Product Image">
+                    <img th:src="@{/img/produto/{fotoc}(fotoc=${item.foto})}" alt="Product Image">
                   </div>
                   <div class="product-info">
                   
                       <div class="btn-group pull-right">
                        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" >
-                        <a th:href="@{/pedidovenda/item/mudarpronto(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-aqua btn-flat btn-sm"><span >PRONTO</span></a>
-                        <a th:href="@{/pedidovenda/item/mudarpreparacao(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-yellow btn-flat btn-sm"><span>PREPARAR</span></a>
+                        <a th:href="@{/pedidovenda/item/mudarpronto(id=${item.id})}" class="btn  btn-block bg-aqua btn-flat btn-sm"><span >PRONTO</span></a>
+                        <a th:href="@{/pedidovenda/item/mudarpreparacao(id=${item.id})}" class="btn  btn-block bg-yellow btn-flat btn-sm"><span>PREPARAR</span></a>
                      </div>
                       <div sec:authorize="hasAnyRole('ROLE_GARCON','ROLE_ADM','ROLE_SUPER')" >
-                       <a th:href="@{/pedidovenda/item/mudarcancelar(id=${item.key.id},idped=${pedido.id})}" class="btn btn-block bg-red btn-flat btn-sm "><span >CANCELAR</span></a>
-                        <a th:href="@{/pedidovenda/item/mudarentregar(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-green btn-flat btn-sm"><span>ENTREGAR</span></a>
+                       <a th:href="@{/pedidovenda/item/mudarcancelar(id=${item.id})}" class="btn btn-block bg-red btn-flat btn-sm "><span >CANCELAR</span></a>
+                        <a th:href="@{/pedidovenda/item/mudarentregar(id=${item.id})}" class="btn  btn-block bg-green btn-flat btn-sm"><span>ENTREGAR</span></a>
                       </div> 
                                           
                       </div> 
                   
-                    <a href="javascript:void(0)" class="product-title" th:text="${item.key.nome}">Samsung TV
+                    <a href="javascript:void(0)" class="product-title" th:text="${item.nome}">Samsung TV
                       </a>
 
 <!--                        <span class="label bg-purple" th:text="${item.key.situacao}">$1800</span> -->
-                        <span class="product-description" th:text="${item.key.descricao}">
+                        <span class="product-description" th:text="${item.descricao}">
                           Samsung 32" 1080p 60Hz LED Smart HDTV.
                         </span>
                         
-                         <span class="label bg-green" th:text="|QTD: ${item.key.qtd}|">
+                         <span class="label bg-green" th:text="|QTD: ${item.qtd}|">
                           Samsung 32" 1080p 60Hz LED Smart HDTV.
                         </span>
                         
-                           <span class="label bg-purple" th:text="${item.key.situacao}">$1800</span>
+                           <span class="label bg-purple" th:text="${item.situacao}">$1800</span>
         			
 <!--                        <div class="btn-group pull-right"> -->
 <!--                        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" > -->

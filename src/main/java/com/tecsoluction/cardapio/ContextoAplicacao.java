@@ -65,7 +65,11 @@ public class ContextoAplicacao {
 	 private boolean estaaberto;
 	 
 	 
-	 private Carrinho carrinho = new Carrinho();
+	 private Carrinho  carrinho = new Carrinho();
+
+	 
+	 @Autowired
+	 private CarrinhoBean carrinhobean;
 	 	
 
 	// @Autowired
@@ -171,28 +175,37 @@ public class ContextoAplicacao {
          estaaberto = VerificaHorarioFechamento(configuracaoAtual);
          
          
- 		if(!carrinho.getItens().isEmpty()){
-			
-			
-			
- 		}else {
- 			
- 			UUID uuid = UUID.randomUUID();
- 			carrinho.setId(uuid);
- 			
- 		}
-        
-
-        
+         
+         if(carrinho == null){
+         	
+         	carrinho = new Carrinho();
+         	UUID uuid = UUID.randomUUID();
+  			carrinho.setId(uuid);
+  			
+//  			carrinhobean.SetarCarrinhoSessao(carrinho);
+         	
+       
+         }else {
+        	 
+         	carrinho = carrinhobean.getCarrinho();
+         // 	UUID uuid = UUID.randomUUID();
+   		//	carrinho.setId(uuid);
+//   			carrinhobean.SetarCarrinhoSessao(carrinho);
+         	
+         	
+         }
+         
+         carrinhobean.SetarCarrinhoSessao(carrinho);
+         
+     
         model.addAttribute("usuarioAtt", usuario);
         model.addAttribute("categoriaLista", categoriaLista);
         model.addAttribute("configuracaoAtual", configuracaoAtual);
         model.addAttribute("hoje", hoje);
         model.addAttribute("estaaberto", estaaberto);
-        model.addAttribute("carrinho", carrinho); 
-        
-        
-        
+        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
+      
+     
         
 	}
 
@@ -207,7 +220,24 @@ public class ContextoAplicacao {
         model.addObject("configuracaoAtual", configuracaoAtual);
         model.addObject("hoje", hoje);
         model.addObject("estaaberto", estaaberto);
-        model.addObject("carrinho", carrinho); 
+//        model.addObject("carrinho", carrinho); 
+        
+        if(carrinho == null){
+        	
+        	carrinho = new Carrinho();
+        	UUID uuid = UUID.randomUUID();
+ 			carrinho.setId(uuid);
+        	
+       
+        }else {
+        	
+        	
+        	UUID uuid = UUID.randomUUID();
+ 			carrinho.setId(uuid);	
+        	
+        }
+        
+        model.addObject("carrinho", carrinhobean.getCarrinho()); 
 
 		return model;
 
@@ -223,7 +253,24 @@ public class ContextoAplicacao {
         model.addObject("configuracaoAtual", configuracaoAtual);
         model.addObject("hoje", hoje);
         model.addObject("estaaberto", estaaberto);
-        model.addObject("carrinho", carrinho); 
+//        model.addObject("carrinho", carrinho); 
+        
+        if(carrinho == null){
+        	
+        	carrinho = new Carrinho();
+        	UUID uuid = UUID.randomUUID();
+ 			carrinho.setId(uuid);
+        	
+       
+        }else {
+        	
+        	
+        	UUID uuid = UUID.randomUUID();
+ 			carrinho.setId(uuid);	
+        	
+        }
+        
+        model.addObject("carrinho", carrinhobean.getCarrinho()); 
 
 		return model;
 
@@ -239,7 +286,27 @@ public class ContextoAplicacao {
         model.addObject("configuracaoAtual", configuracaoAtual);
         model.addObject("hoje", hoje);
         model.addObject("estaaberto", estaaberto);
-        model.addObject("carrinho", carrinho); 
+        
+        
+//        model.addObject("carrinho", carrinho); 
+        
+        
+        if(carrinho == null){
+        	
+        	carrinho = new Carrinho();
+        	UUID uuid = UUID.randomUUID();
+ 			carrinho.setId(uuid);
+        	
+       
+        }else {
+        	
+        	
+        	UUID uuid = UUID.randomUUID();
+ 			carrinho.setId(uuid);	
+        	
+        }
+        
+        model.addObject("carrinho", carrinhobean.getCarrinho()); 
 
 		return model;
 

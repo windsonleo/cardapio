@@ -76,7 +76,7 @@ public  class Item implements Serializable, Comparable<Item>{
         this.precoCusto = produto.getPrecocusto();
         this.un_medida = produto.getUn_medida();
         this.foto = produto.getFoto();
-        this.situacao = SituacaoItem.AGUARDANDO;
+  //      this.situacao = SituacaoItem.AGUARDANDO;
 
         
 
@@ -93,7 +93,7 @@ public  class Item implements Serializable, Comparable<Item>{
         this.un_medida = produto.getUn_medida();
         this.foto = produto.getFoto();
         this.qtd = qtd;
-        this.situacao = SituacaoItem.AGUARDANDO;
+     //   this.situacao = SituacaoItem.AGUARDANDO;
 
 
         
@@ -132,6 +132,14 @@ public String TotalizacaoPoritem(String qtd){
 	
 	return total.multiply(qtdaux).toString();
 	
+	
+}
+
+
+public void MudarStatus(SituacaoItem sit){
+	
+	
+	this.situacao = sit;
 	
 }
 

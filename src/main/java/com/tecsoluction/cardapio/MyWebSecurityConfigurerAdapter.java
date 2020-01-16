@@ -82,6 +82,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/usuario/usuarioSave").permitAll()
 				.antMatchers("/usuario/salvarFacebook").permitAll()
 				.antMatchers("/salvarfotoregistro**").permitAll()
+				.antMatchers("/carrinho/adicionar**").permitAll()				
 				.antMatchers("/esquecisenhaenv").permitAll()
 				.antMatchers("/registro**").permitAll()
 				.antMatchers("/registroenv").permitAll()

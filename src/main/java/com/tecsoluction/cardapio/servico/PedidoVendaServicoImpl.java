@@ -58,6 +58,14 @@ public class PedidoVendaServicoImpl extends AbstractEntityService<PedidoVenda> {
 
         return dao.findAllByStatusIsOrderByDataAsc(statusPedido);
     }
+    
+    
+    
+    public List<PedidoVenda>  findAllByStatusIsOrderByDataAsc(StatusPedido status){
+    	
+    	
+    	return dao.findAllByStatusIsOrderByDataAsc(status);
+    }
 
     //TODO ajeitar metodo de buscar cliente por pedidos de venda
 //    public long findClienteByPedidoVenda() {

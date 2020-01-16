@@ -75,7 +75,7 @@ public class PedidoVenda extends Pedido implements Serializable {
     public PedidoVenda() {
         super();
         
-        this.items = new HashMap<Item, String>();
+    //    this.items = new HashMap<Item, String>();
 
 
     }
@@ -87,7 +87,7 @@ public class PedidoVenda extends Pedido implements Serializable {
         this.mesa = mesa;
         this.garcon = garcon;
         this.origempedido = origempedido;
-        this.items = new HashMap<Item, String>();
+     //   this.items = new HashMap<Item, String>();
     }
     
     
@@ -96,7 +96,7 @@ public class PedidoVenda extends Pedido implements Serializable {
 //        this.cliente = cliente;
         this.mesa = carrinho.getMesa();
         this.garcon = carrinho.getGarcon();
-        this.items = new HashMap<Item, String>();
+    //    this.items = new HashMap<Item, String>();
         this.status = StatusPedido.PENDENTE;
         this.data = new Date();
         this.origempedido = OrigemPedido.MESA;

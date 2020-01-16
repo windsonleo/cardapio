@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tecsoluction.cardapio.CarrinhoBean;
+import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Promocao;
 import com.tecsoluction.cardapio.framework.AbstractController;
@@ -42,8 +44,14 @@ public class CategoriaController extends AbstractController<Categoria> {
 	    private Categoria categoria;
 	    
 	    
+	    private Carrinho carrinho = new Carrinho();
 	    
-
+	    
+		 @Autowired
+		 private CarrinhoBean carrinhobean;
+		 
+		 
+		 
 
     @Autowired
     public CategoriaController(CategoriaServicoImpl dao,PromocaoServicoImpl pro) {
@@ -74,17 +82,33 @@ public class CategoriaController extends AbstractController<Categoria> {
         
         promocoes = PromocaoService.findAll();
         
-        categorias = getservice().findAll();        
+        categorias = getservice().findAll();  
+        
+		
+//		if(carrinho == null){
+//        	
+//        	carrinho = new Carrinho();
+//        	UUID uuid = UUID.randomUUID();
+// 			carrinho.setId(uuid);
+//            }else {
+//            	
+////            	UUID uuid = UUID.randomUUID();
+////     			carrinho.setId(uuid);	
+//            	  	
+//            }
         
         model.addAttribute("promocoesList", promocoes);
         model.addAttribute("categoriaListall", categorias);
 		model.addAttribute("categoria", categoria);
+        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
+
+
     }
     
     
     
     @RequestMapping(value = "/exibir", method = RequestMethod.GET)
-    public ModelAndView ExibirCategoria(HttpServletRequest request) {
+    public ModelAndView ExibirCategoria(HttpServletRequest request, Model model) {
 
         UUID idf = UUID.fromString(request.getParameter("id"));
 
@@ -95,6 +119,24 @@ public class CategoriaController extends AbstractController<Categoria> {
         Categoria cat = getservice().findOne(idf);
 
         exibircat.addObject("categoria", cat);
+     
+        
+        if(carrinho == null){
+        	carrinho = new Carrinho();
+        	UUID uuid = UUID.randomUUID();
+ 			carrinho.setId(uuid);
+      
+            }else {
+            	
+//            	UUID uuid = UUID.randomUUID();
+//     			carrinho.setId(uuid);
+            	
+            	
+            }
+        
+        exibircat.addObject("carrinho", carrinhobean.getCarrinho());
+        
+        model.addAttribute("carrinho", carrinhobean.getCarrinho());
 
         return exibircat;
     }
