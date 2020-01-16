@@ -107,8 +107,8 @@ public  class Item implements Serializable, Comparable<Item>{
 @JsonValue
 public String toString() {
 
-	return id.toString() + "and" + codigo + "and" + nome +"and"+descricao+"and"+precoUnitario+"and"+precoCusto+"and"+
-	un_medida + "and" + totalItem + "and" + situacao + "and" + foto + "and" + qtd;
+	return id.toString() + " and " + codigo + " and " + nome +" and "+descricao+" and "+precoUnitario+" and "+precoCusto+" and "+
+	un_medida + " and " + totalItem + " and " + situacao + " and " + foto + " and " + qtd;
 }
 
 
