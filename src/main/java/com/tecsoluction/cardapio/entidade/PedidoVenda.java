@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -23,10 +24,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyClass;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.tecsoluction.cardapio.util.ItemDeserializador;
 import com.tecsoluction.cardapio.util.OrigemPedido;
 import com.tecsoluction.cardapio.util.StatusPedido;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,6 +41,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "PEDIDO_VENDA")
+@AllArgsConstructor
 public class PedidoVenda extends Pedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -69,6 +77,8 @@ public class PedidoVenda extends Pedido implements Serializable {
 //    @Lob
     @Column(name = "qtd")
     @MapKeyColumn(name = "idit")
+    @JsonProperty("items")
+    @JsonDeserialize(keyUsing = ItemDeserializador.class)
     private Map<Item, String> items = new HashMap<Item, String>();
 
 
@@ -80,6 +90,16 @@ public class PedidoVenda extends Pedido implements Serializable {
 
     }
 
+    
+    @JsonCreator
+    public PedidoVenda(Map<Item, String> kk) {
+        super();
+        this.items = kk;
+        
+    //    this.items = new HashMap<Item, String>();
+
+
+    }
 
     public PedidoVenda( Mesa mesa, Garcon garcon, OrigemPedido origempedido) {
         super();
