@@ -11,7 +11,6 @@ import javax.persistence.Transient;
 
 import com.tecsoluction.cardapio.util.SituacaoItem;
 import com.tecsoluction.cardapio.util.UnidadeMedida;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -103,7 +102,7 @@ public  class Item implements Serializable, Comparable<Item>{
 @Override
 public String toString() {
 
-	return nome;
+	return id.toString();
 }
 
 
@@ -178,6 +177,21 @@ public void MudarStatus(SituacaoItem sit){
 //	return true;
 //}
 
+@Override
+public boolean equals(Object obj) {
+    if (!(obj instanceof Item)) {
+        return false;
+    }
+    final Item other = (Item) obj;
+    return this.id.equals(other.getId());
+}
 
+
+
+@Override
+public int hashCode() {
+	// TODO Auto-generated method stub
+	return super.hashCode();
+}
 
 }
