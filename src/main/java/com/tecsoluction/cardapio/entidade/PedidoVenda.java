@@ -25,11 +25,14 @@ import javax.persistence.MapKeyClass;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.tecsoluction.cardapio.util.ItemDeserializador;
+import com.tecsoluction.cardapio.util.ItemSerializador;
 import com.tecsoluction.cardapio.util.OrigemPedido;
 import com.tecsoluction.cardapio.util.StatusPedido;
 
@@ -77,8 +80,8 @@ public class PedidoVenda extends Pedido implements Serializable {
 //    @Lob
     @Column(name = "qtd")
     @MapKeyColumn(name = "idit")
-    @JsonProperty("items")
-//    @JsonDeserialize(keyUsing = ItemDeserializador.class)
+    @JsonDeserialize(keyUsing = ItemDeserializador.class)
+    @JsonSerialize(keyUsing = ItemSerializador.class)
     private Map<Item, String> items = new HashMap<Item, String>();
 
 
@@ -91,15 +94,15 @@ public class PedidoVenda extends Pedido implements Serializable {
     }
 
     
-    @JsonCreator
-    public PedidoVenda(Map<Item, String> kk) {
-        super();
-        this.items = kk;
-        
-    //    this.items = new HashMap<Item, String>();
-
-
-    }
+//    @JsonCreator
+//    public PedidoVenda(Map<Item, String> kk) {
+//        super();
+//        this.items = kk;
+//        
+//    //    this.items = new HashMap<Item, String>();
+//
+//
+//    }
 
     public PedidoVenda( Mesa mesa, Garcon garcon, OrigemPedido origempedido) {
         super();
@@ -191,5 +194,7 @@ public class PedidoVenda extends Pedido implements Serializable {
     	
     	return  CalcularTotal(getItems());
     }
+    
+    
 
 }

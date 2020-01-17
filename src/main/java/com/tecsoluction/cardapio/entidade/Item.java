@@ -11,6 +11,7 @@ import javax.persistence.Transient;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.tecsoluction.cardapio.util.ItemDeserializador;
@@ -29,7 +30,8 @@ import lombok.Setter;
 //@EqualsAndHashCode(exclude={"codigo","nome","descricao","precoUnitario","precoCusto","un_medida","situacao","totalItem"})
 //@EqualsAndHashCode
 @AllArgsConstructor
-@JsonDeserialize(using= ItemDeserializador.class)
+//@JsonDeserialize(using= ItemDeserializador.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public  class Item implements Serializable, Comparable<Item>{
 
 
