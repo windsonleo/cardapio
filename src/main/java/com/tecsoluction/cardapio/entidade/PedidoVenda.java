@@ -182,7 +182,7 @@ public class PedidoVenda extends Pedido implements Serializable {
     	
     }
     
-    public BigDecimal getTotalVenda(){
+    public BigDecimal CalcTotalVenda(){
     	
     	
     	return  CalcularTotal(getItems());
