@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.tecsoluction.cardapio.util.ItemDeserializador;
 import com.tecsoluction.cardapio.util.SituacaoItem;
 import com.tecsoluction.cardapio.util.UnidadeMedida;
 
@@ -25,6 +27,7 @@ import lombok.Setter;
 //@EqualsAndHashCode(exclude={"codigo","nome","descricao","precoUnitario","precoCusto","un_medida","situacao","totalItem"})
 //@EqualsAndHashCode
 @AllArgsConstructor
+@JsonDeserialize(using= ItemDeserializador.class)
 public  class Item implements Serializable, Comparable<Item>{
 
 
@@ -61,7 +64,7 @@ public  class Item implements Serializable, Comparable<Item>{
 
 
     public Item() {
- //   	super();
+    	super();
 //    	this.un_medida = UnidadeMedida.UND;
 //    	this.situacao = SituacaoItem.AGUARDANDO;
 
@@ -102,14 +105,24 @@ public  class Item implements Serializable, Comparable<Item>{
         
 
     }
+//    
+//@Override
+//@JsonValue
+//public String toString() {
+//
+//	return id.toString() + " and " + codigo + " and " + nome +" and "+descricao+" and "+precoUnitario+" and "+precoCusto+" and "+
+//	un_medida + " and " + totalItem + " and " + situacao + " and " + foto + " and " + qtd;
+//}
+
     
 @Override
 @JsonValue
 public String toString() {
 
-	return id.toString() + " and " + codigo + " and " + nome +" and "+descricao+" and "+precoUnitario+" and "+precoCusto+" and "+
-	un_medida + " and " + totalItem + " and " + situacao + " and " + foto + " and " + qtd;
+	return super.toString();
 }
+
+
 
 
 

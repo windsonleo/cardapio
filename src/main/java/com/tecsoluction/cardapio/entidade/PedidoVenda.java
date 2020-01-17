@@ -78,7 +78,7 @@ public class PedidoVenda extends Pedido implements Serializable {
     @Column(name = "qtd")
     @MapKeyColumn(name = "idit")
     @JsonProperty("items")
-    @JsonDeserialize(keyUsing = ItemDeserializador.class)
+//    @JsonDeserialize(keyUsing = ItemDeserializador.class)
     private Map<Item, String> items = new HashMap<Item, String>();
 
 
