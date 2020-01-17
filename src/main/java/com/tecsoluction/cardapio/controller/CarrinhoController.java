@@ -14,8 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,22 +21,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.cardapio.CarrinhoBean;
 import com.tecsoluction.cardapio.entidade.Carrinho;
-import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Garcon;
 import com.tecsoluction.cardapio.entidade.Item;
 import com.tecsoluction.cardapio.entidade.Mesa;
 import com.tecsoluction.cardapio.entidade.PedidoVenda;
 import com.tecsoluction.cardapio.entidade.Produto;
-import com.tecsoluction.cardapio.entidade.Role;
-import com.tecsoluction.cardapio.entidade.Usuario;
-import com.tecsoluction.cardapio.framework.AbstractController;
-import com.tecsoluction.cardapio.framework.AbstractEditor;
 import com.tecsoluction.cardapio.servico.GarconServicoImpl;
 import com.tecsoluction.cardapio.servico.MesaServicoImpl;
 import com.tecsoluction.cardapio.servico.PedidoVendaServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
-import com.tecsoluction.cardapio.servico.RoleServicoImpl;
-import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 import com.tecsoluction.cardapio.util.SituacaoItem;
 
 

@@ -6,29 +6,20 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapKeyClass;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 
-
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.tecsoluction.cardapio.util.ItemDeserializador;
@@ -39,12 +30,14 @@ import com.tecsoluction.cardapio.util.StatusPedido;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "PEDIDO_VENDA")
 @AllArgsConstructor
+@ToString
 public class PedidoVenda extends Pedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -165,11 +158,11 @@ public class PedidoVenda extends Pedido implements Serializable {
 	}
 
 
-	@Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString().toUpperCase();
-    }
+//	@Override
+//    public String toString() {
+//        // TODO Auto-generated method stub
+//        return super.toString();
+//    }
 
     public void addItem(Item item, String qtd){
     	

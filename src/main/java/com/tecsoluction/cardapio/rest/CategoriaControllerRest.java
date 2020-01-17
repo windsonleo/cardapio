@@ -2,6 +2,8 @@ package com.tecsoluction.cardapio.rest;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.framework.AbstractRestController;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "categoria")

@@ -1,8 +1,6 @@
 package com.tecsoluction.cardapio.util;
 
 import java.awt.Image;
-import java.net.MalformedURLException;
-import java.net.URI;
 
 public class FacebookAux {
 	

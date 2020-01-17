@@ -9,19 +9,14 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Transient;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.tecsoluction.cardapio.util.ItemDeserializador;
 import com.tecsoluction.cardapio.util.SituacaoItem;
 import com.tecsoluction.cardapio.util.UnidadeMedida;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -32,6 +27,7 @@ import lombok.Setter;
 @AllArgsConstructor
 //@JsonDeserialize(using= ItemDeserializador.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ToString
 public  class Item implements Serializable, Comparable<Item>{
 
 
@@ -119,24 +115,24 @@ public  class Item implements Serializable, Comparable<Item>{
 //}
 
     
-@Override
-@JsonValue
-public String toString() {
-
-	return new ToStringBuilder(this).
-		       append("id", id).
-		       append("codigo", codigo).
-		       append("nome", nome).
-		       append("descricao", descricao).
-		       append("precoUnitario", precoUnitario).
-		       append("precoCusto", precoCusto).
-		       append("un_medida", un_medida).
-		       append("totalItem", totalItem).
-		       append("situacao", situacao).
-		       append("foto", foto).
-		       append("qtd", qtd).
-		       toString(); 
-}
+//@Override
+//@JsonValue
+//public String toString() {
+//
+//	return new ToStringBuilder(this).
+//		       append("id", id).
+//		       append("codigo", codigo).
+//		       append("nome", nome).
+//		       append("descricao", descricao).
+//		       append("precoUnitario", precoUnitario).
+//		       append("precoCusto", precoCusto).
+//		       append("un_medida", un_medida).
+//		       append("totalItem", totalItem).
+//		       append("situacao", situacao).
+//		       append("foto", foto).
+//		       append("qtd", qtd).
+//		       toString(); 
+//}
 
 
 

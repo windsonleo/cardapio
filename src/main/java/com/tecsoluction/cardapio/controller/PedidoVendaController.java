@@ -22,20 +22,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.cardapio.CarrinhoBean;
 import com.tecsoluction.cardapio.entidade.Carrinho;
-import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Item;
 import com.tecsoluction.cardapio.entidade.PedidoVenda;
 import com.tecsoluction.cardapio.entidade.Produto;
-import com.tecsoluction.cardapio.entidade.Role;
-import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.framework.AbstractEditor;
 import com.tecsoluction.cardapio.servico.PedidoVendaServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
-import com.tecsoluction.cardapio.servico.RoleServicoImpl;
-import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 import com.tecsoluction.cardapio.util.SituacaoItem;
-import com.tecsoluction.cardapio.util.StatusPedido;
 
 
 /**

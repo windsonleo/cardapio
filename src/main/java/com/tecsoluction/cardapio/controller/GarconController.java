@@ -24,13 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tecsoluction.cardapio.CarrinhoBean;
 import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Garcon;
-import com.tecsoluction.cardapio.entidade.Role;
-import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.framework.AbstractEditor;
 import com.tecsoluction.cardapio.servico.GarconServicoImpl;
-import com.tecsoluction.cardapio.servico.RoleServicoImpl;
-import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 
 
 /**

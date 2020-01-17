@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tecsoluction.cardapio.dao.IPromocaoDAO;
-import com.tecsoluction.cardapio.dao.IRoleDAO;
 import com.tecsoluction.cardapio.entidade.Promocao;
-import com.tecsoluction.cardapio.entidade.Role;
 import com.tecsoluction.cardapio.framework.AbstractEntityService;
 
 

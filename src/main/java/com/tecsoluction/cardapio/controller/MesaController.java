@@ -22,16 +22,12 @@ import com.tecsoluction.cardapio.CarrinhoBean;
 import com.tecsoluction.cardapio.entidade.Item;
 import com.tecsoluction.cardapio.entidade.Mesa;
 import com.tecsoluction.cardapio.entidade.PedidoVenda;
-import com.tecsoluction.cardapio.entidade.Role;
-import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.framework.AbstractEditor;
 import com.tecsoluction.cardapio.framework.AbstractEntityService;
 import com.tecsoluction.cardapio.servico.MesaServicoImpl;
 import com.tecsoluction.cardapio.servico.PedidoVendaServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
-import com.tecsoluction.cardapio.servico.RoleServicoImpl;
-import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 import com.tecsoluction.cardapio.util.SituacaoItem;
 import com.tecsoluction.cardapio.util.StatusMesa;
 
