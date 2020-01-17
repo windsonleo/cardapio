@@ -9,6 +9,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Transient;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.tecsoluction.cardapio.util.ItemDeserializador;
@@ -119,7 +121,19 @@ public  class Item implements Serializable, Comparable<Item>{
 @JsonValue
 public String toString() {
 
-	return super.toString();
+	return new ToStringBuilder(this).
+		       append("id", id).
+		       append("codigo", codigo).
+		       append("nome", nome).
+		       append("descricao", descricao).
+		       append("precoUnitario", precoUnitario).
+		       append("precoCusto", precoCusto).
+		       append("un_medida", un_medida).
+		       append("totalItem", totalItem).
+		       append("situacao", situacao).
+		       append("foto", foto).
+		       append("qtd", qtd).
+		       toString(); 
 }
 
 
