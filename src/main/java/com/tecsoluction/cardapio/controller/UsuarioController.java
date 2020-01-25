@@ -135,7 +135,21 @@ public class UsuarioController extends AbstractController<Usuario> {
         return profileusuario;
     }
     
-    
+    @RequestMapping(value = "/allonline", method = RequestMethod.GET)
+    public ModelAndView profileUsuarioOnline(HttpServletRequest request) {
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+        ModelAndView profileusuario = new ModelAndView("/private/usuario/online");
+
+//        Usuario usuario = getservice().findOne(idf);
+//
+//        profileusuario.addObject("usuario", usuario);
+        
+        
+
+        return profileusuario;
+    }
     
     
 //    
