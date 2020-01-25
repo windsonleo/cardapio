@@ -7,7 +7,7 @@
 	
 	</head>
 		
-		<title>Movimentacao Categoria</title>
+		<title>Movimentacao Garçon</title>
 
 <body  class="hold-transition skin-red sidebar-mini"  th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
 			
@@ -24,11 +24,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       categoria
+       garcon
         <small>Movimentacoes</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> categoria</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> garcon</a></li>
         <li class="active"><a href="#">Movimentacoes</a></li>
 <!--         <li class="active">Blank page</li> -->
       </ol>
@@ -39,7 +39,7 @@
 
         <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Listagem de categoria  <a rel="tooltip" title="Adicionar Categoria"  th:href="@{/categoria/cadastro}"> <i class="fa fa-user-plus"></i></a></h3>
+              <h3 class="box-title">Listagem de garcon  <a rel="tooltip" title="Adicionar Garçon"  th:href="@{/garcon/cadastro}"> <i class="fa fa-user-plus"></i></a></h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -47,13 +47,14 @@
                 <thead>
                 <tr>
                                             <th class="hide">Id</th>
-                                            <th >Nome</th>
-                                            <th >Categoria Pai</th>
+                                            <th >foto</th>
+                                            <th >nome</th>
                                             <th >Ativo</th>
 <!--                                             <th >Resultado</th> -->
                                             
                                             
- 					<div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >                                   
+                                  <div sec:authorize="hasRole('ROLE_ADM')">
+                                   
                                    <th >OPERACOES</th>
                                   
                                   </div>
@@ -68,31 +69,34 @@
                                         </thead>
                                         
                                         <tbody>
-                                            <tr th:each="categoria: ${categoriaListall}">
-                                                <td th:text="${categoria.id}" class="hide">id</td>
-                                                  <td th:text="${categoria.nome}">nome</td>
-                                                   <td th:text="${categoria.catpai}">catpai</td>
+                                            <tr th:each="garcon: ${garconList}">
+                                                <td th:text="${garcon.id}" class="hide">id</td>
+                                               <td><img th:src="@{/img/garcon/{fotoc}(fotoc=${garcon.foto})}" class="img-circle img-sm" width="48" height="48" alt="fotouser"/></td>
+                                                
+                                                  <td th:text="${garcon.nome}">nome</td>
+                                                   
                                                   
-		                                            <td><label><input name="optionsCheckboxes" class="checkbox" type="checkbox" th:checked="${categoria.ativo}" disabled/></label></td>		                                          
+		                                            <td><label><input name="optionsCheckboxes" class="checkbox" type="checkbox" th:checked="${garcon.ativo}" disabled/></label></td>		                                          
 <!-- 		                                             <td th:text="${jogobicho.banca}">Banca</td> -->
 		                                            
 <!-- 		                                            <td th:text="${jogobicho}" >Resultado</td> -->
 		                                          
 		                                       
- 										<div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >	                                            
-	                                              <div class="btn-group" >
+							              <div sec:authorize="hasRole('ROLE_ADM')" >
+	                                            
+	                                              <div >
 	                                              
 	                                                <td>
-                                                        <a  rel="tooltip" title="Informacoes" class="btn btn-muted btn-simple btn-md" th:href="@{/categoria/informacao(id=${categoria.id})}">
+                                                        <a  rel="tooltip" title="Informacoes" class="btn btn-muted btn-simple btn-md" th:href="@{/garcon/informacao(id=${garcon.id})}">
                                     						<i class="material-icons">info</i>
 			                       						</a>
 	                       						 
-                                                        <a  rel="tooltip" title="Editar" class="btn btn-muted btn-simple btn-md" th:href="@{/categoria/editar(id=${categoria.id})}">
+                                                        <a  rel="tooltip" title="Editar" class="btn btn-muted btn-simple btn-md" th:href="@{/garcon/editar(id=${garcon.id})}">
                                     						<i class="material-icons">mode edit</i>
 			                       						</a>
 	                       								                                            
 		                                            																									
-                                                        <a  rel="tooltip" title="Excluir" class="btn btn-danger btn-simple btn-md" th:href="@{/categoria/delete(id=${categoria.id})}">
+                                                        <a  rel="tooltip" title="Excluir" class="btn btn-danger btn-simple btn-md" th:href="@{/garcon/delete(id=${garcon.id})}">
                                     						<i class="material-icons">close</i>
 			                       						</a>
 			                       						
@@ -138,12 +142,10 @@
 
 <!-- <div th:replace="fragmentos/footer :: script" style="display:none;"></div> -->
 
+
+		<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
 		
-
-
-	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
-	
-	<script src="resources/static/js/jquery-2.2.3.min.js"
+				<script src="resources/static/js/jquery-2.2.3.min.js"
 			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script>
 			
 											<script src="resources/static/js/bootstrap.min.js"
@@ -178,8 +180,8 @@
 		 
 		 				<script src="resources/static/js/demo.js"
 			th:src="@{/js/demo.js}"></script>
-	
-	<script>
+
+<script>
 $(function () {
 //  $("#example1").DataTable();
  $('#example1').DataTable({

@@ -53,7 +53,8 @@
 <!--                                             <th >Resultado</th> -->
                                             
                                             
- 					<div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >                                   
+                                  <div sec:authorize="hasRole('ROLE_ADM')">
+                                   
                                    <th >OPERACOES</th>
                                   
                                   </div>
@@ -79,8 +80,9 @@
 <!-- 		                                            <td th:text="${jogobicho}" >Resultado</td> -->
 		                                          
 		                                       
- 										<div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >	                                            
-	                                              <div class="btn-group" >
+							              <div sec:authorize="hasRole('ROLE_ADM')" >
+	                                            
+	                                              <div >
 	                                              
 	                                                <td>
                                                         <a  rel="tooltip" title="Informacoes" class="btn btn-muted btn-simple btn-md" th:href="@{/categoria/informacao(id=${categoria.id})}">
@@ -118,9 +120,9 @@
 				<div class="clearfix"></div>
 
 
-<!--              <div th:replace="fragmentos/footer :: footer"> -->
+             <div th:replace="fragmentos/footer :: footer">
             
-<!--             </div> -->
+            </div>
             
             
 
@@ -138,12 +140,7 @@
 
 <!-- <div th:replace="fragmentos/footer :: script" style="display:none;"></div> -->
 
-		
-
-
-	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
-	
-	<script src="resources/static/js/jquery-2.2.3.min.js"
+		<script src="resources/static/js/jquery-2.2.3.min.js"
 			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script>
 			
 											<script src="resources/static/js/bootstrap.min.js"
@@ -178,8 +175,8 @@
 		 
 		 				<script src="resources/static/js/demo.js"
 			th:src="@{/js/demo.js}"></script>
-	
-	<script>
+
+<script>
 $(function () {
 //  $("#example1").DataTable();
  $('#example1').DataTable({
