@@ -145,7 +145,9 @@
 <!--            <h5 th:unless="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioAtt.nome}" >Nadia Carmichael</h5> -->
            
             </div>
-<!--             <div class="box-body"> -->
+            <div class="box-body">
+            
+            <h6 class="widget-user-username" >Indicação</h6>
 
 <!-- 			<h6 th:if="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioIndica.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6> -->
 <!-- 			<h6 th:unless="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioAtt.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6> -->
@@ -159,7 +161,7 @@
 <!--  			<a th:if="${produtoIndica.id}" th:href="@{/produto/perfil(id=${produtoIndica.id})}" href="#"> Clique Para Ver</a> -->
 <!--  			<a th:unless="${produtoIndica.id}" href="#"> Clique Para Ver</a> -->
 
-<!--             </div> -->
+            </div>
             <!-- /.box-body -->
             <!-- Loading (remove the following to stop the loading)-->
 <!--             <div id="overlayy" class="overlay" th:hidden="${esconderOver}" > -->
@@ -905,7 +907,7 @@ $(function() {
 	   function setTime() {
 	     // var date = new Date().getTime();
 	      
-	      setTimeout(setTime, 5000);
+	      setTimeout(setTime, 10000);
 	      
 	      $('#overlayy').hide();
 	      $('#notificacao').hide();
