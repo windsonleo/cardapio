@@ -10,8 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
@@ -28,8 +30,9 @@ public abstract class AbstractRestController<Entity> {
 
 
     @Transactional
-    @PostMapping
-    public ResponseEntity<Entity> AdicionarEntity(Entity entity) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, 
+    produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Entity> AdicionarEntity(@RequestBody Entity entity) {
         try {
             getservice().validateSave(entity);
             getservice().save(entity);
@@ -46,17 +49,26 @@ public abstract class AbstractRestController<Entity> {
         Entity entity = getservice().findOne(UUID.fromString(id));
 
         if (entity == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Entity>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(entity, HttpStatus.OK);
+        return new ResponseEntity<Entity>(entity, HttpStatus.OK);
     }
+
+//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,headers="Accept=application/json")
+//    public @ResponseBody List<Entity> listarEntity() {
+//        return getservice().findAll();
+//
+//    }
+    
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Entity> listarEntity() {
-        return getservice().findAll();
+    public  List<Entity> listarEntity() {
+      return getservice().findAll();
 
-    }
+  }   
+    
+    
 
     @Transactional
     @RequestMapping(value = "/edit", method = RequestMethod.POST)

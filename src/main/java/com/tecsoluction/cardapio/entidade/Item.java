@@ -24,11 +24,23 @@ import lombok.ToString;
 //@ToString(includeFieldNames=false,exclude={"id", "codigo","descricao","precoUnitario","precoCusto","un_medida","totalItem","situacao"})
 //@EqualsAndHashCode(exclude={"codigo","nome","descricao","precoUnitario","precoCusto","un_medida","situacao","totalItem"})
 //@EqualsAndHashCode
-@AllArgsConstructor
+//@AllArgsConstructor
 //@JsonDeserialize(using= ItemDeserializador.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
-@ToString
+//@JsonIgnoreProperties(ignoreUnknown = true)
+//@ToString
 public  class Item implements Serializable, Comparable<Item>{
+
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", codigo=" + codigo + ", nome=" + nome + ", descricao=" + descricao
+				+ ", precoUnitario=" + precoUnitario + ", precoCusto=" + precoCusto + ", un_medida=" + un_medida
+				+ ", totalItem=" + totalItem + ", situacao=" + situacao + ", foto=" + foto + ", qtd=" + qtd + "]";
+	}
 
 
 

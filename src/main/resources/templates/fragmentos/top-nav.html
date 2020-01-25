@@ -461,7 +461,12 @@ function onSignIn(googleUser) {
            
 <!--            <img   th:src="@{/img/fabricio.jpg}" class="user-image" alt="User Image" /> -->
            
-              <span class="hidden-xs"><span th:utext="${usuarioAtt.email}" >Akihiko Avaron</span></span>
+              <span class="hidden-xs"><span th:utext="${usuarioAtt.nome}" >Akihiko Avaron</span>
+              
+
+              
+              
+              </span>
 <!-- 		<span class="hidden-xs"><span>Akihiko Avaron</span></span>  -->
 
 <!--  			<span ><span >Akihiko Avaron</span></span>  -->
@@ -469,6 +474,14 @@ function onSignIn(googleUser) {
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
+              
+               <span class="pull-right info">
+<!--           <p > <span th:utext="${usuarioAtt.email}">Akihiko Avaron</span></p> -->
+<!--  			<p> <span>Cardápio</span></p> -->
+         		 <a href="#" th:if="${usuarioAtt.online}"><i class="fa fa-circle text-success"></i> Online</a>
+      			 <a href="#" th:unless="${usuarioAtt.online}"><i class="fa fa-circle text-danger"></i> Offline</a>
+       
+        		</span>
                 <img th:if="${usuarioAtt.foto}"  th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioAtt.foto})}" class="img-circle" alt="User Image" />
 
                  <img  th:unless="${usuarioAtt.foto}"  th:src="@{/img/fabricio.jpg}" class="img-circle" alt="User Image" />

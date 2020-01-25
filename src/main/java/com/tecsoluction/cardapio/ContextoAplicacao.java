@@ -5,10 +5,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,12 +23,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Configuracao;
+import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.exception.CustomGenericException;
 import com.tecsoluction.cardapio.exception.LoggingAccessDeniedHandler;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
 import com.tecsoluction.cardapio.servico.ConfiguracaoServicoImpl;
+import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
 import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
+
+import javassist.NotFoundException;
 
 
 
@@ -54,19 +62,39 @@ public class ContextoAplicacao {
 	 @Autowired
 	  private ConfiguracaoServicoImpl ConfiguracaoService;
 	 
-	 
+	 @Autowired
+	  private ProdutoServicoImpl produtoService;
+
 	 private Usuario usuario;
 	 
 	 private Date hoje;
 	 	
 	 private boolean estaaberto;
 	 
+	 private boolean nmostrar = true;
+	 
+	 private boolean acessoubanco = false;
+	 
+	 private boolean  primeiroacesso = true;
+	 
+	  private boolean esconderOver = true;
+	 
+	 private List<Usuario> usuarios ;
+	
+	 private Usuario usuarioIndica = new Usuario();
+	 
+	 private Produto produtoIndica = new Produto();
 	 
 	 private Carrinho  carrinho = new Carrinho();
 
 	 
 	 @Autowired
 	 private CarrinhoBean carrinhobean;
+	 
+	 
+	 private Timer timer;
+	 
+	 int  index = 0;
 	 	
 
 	// @Autowired
@@ -144,12 +172,22 @@ public class ContextoAplicacao {
 		}
 		
 		
-		
+//		if(timer == null && primeiroacesso){
+//			timer = new Timer();
+//			AgendadorTarefa();
+//			primeiroacesso = false;
+//			 PegarIndicacao();
+//			
+//		}else {
+//			
+//			 PegarIndicacao();
+//			
+//		}
         
          usuario = new Usuario();
         usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         usuario = userService.findByEmail(usuario.getEmail());
-        
+  
         //verifica se há usuario cadastrado
         if(usuario == null) {
         	
@@ -161,6 +199,9 @@ public class ContextoAplicacao {
         	
         	
         } else {
+        	
+        	usuario.setOnline(true);
+        	usuario.setDataultimoAcesso(new Date());
     	
 	        model.addAttribute("mensagem", "Bem-Vindo " + usuario.getEmail());
 
@@ -192,6 +233,43 @@ public class ContextoAplicacao {
          	
          }
          
+         
+         
+         
+//         if(!nmostrar && acessoubanco){
+//        	 
+//        	usuarioIndica = PegarIndicacao();
+//        	
+////        	produtoIndica ;
+//        	
+//        	 Iterator<Produto> i= usuarioIndica.getIndicacoes().iterator();  
+//             if(i.hasNext())  
+//             {  
+//            	 esconderOver = true;
+//            	 
+//            	 produtoIndica = i.next();  
+//            	 model.addAttribute("usuarioIndica", usuarioIndica);
+//            	 model.addAttribute("produtoIndica", produtoIndica);
+//            	 model.addAttribute("mostrar", nmostrar);
+//             	 model.addAttribute("esconderOver", esconderOver);
+//            
+//             }  else {
+//            	 
+//            	 
+//            	 
+//             }
+//
+//
+//        	 
+//        	 
+//         }else {
+//        	 
+//        	 
+//        	 
+//         }
+         
+         
+         
          carrinhobean.SetarCarrinhoSessao(carrinho);
          
      
@@ -200,11 +278,113 @@ public class ContextoAplicacao {
         model.addAttribute("configuracaoAtual", configuracaoAtual);
         model.addAttribute("hoje", hoje);
         model.addAttribute("estaaberto", estaaberto);
-        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
-      
+        model.addAttribute("carrinho", carrinhobean.getCarrinho());
+//	   	 model.addAttribute("usuarioIndica", usuarioIndica);
+//	   	 model.addAttribute("produtoIndica", produtoIndica);
+//	   	 model.addAttribute("mostrar", nmostrar);
+//	   	 model.addAttribute("esconderOver", esconderOver);
+	   	
      
         
 	}
+
+	private Usuario PegarIndicacao() {
+		// TODO Auto-generated method stub
+		
+	    Usuario usu = null;
+        usuarios = userService.findAll();
+        acessoubanco = true;
+        
+        usu = IndicacaoUsuario(usuarios);
+        
+		
+		return usu;
+	}
+
+	private Usuario IndicacaoUsuario(List<Usuario> usuarios2) {
+
+		for(Usuario us: usuarios2){
+			
+			if(!us.getIndicacoes().isEmpty()){
+				
+				
+				return us;
+			}
+			
+		}
+		
+		
+		return null;
+	}
+	
+	
+	  @ExceptionHandler(NotFoundException.class)
+	  public ModelAndView errorPage() {
+		  
+			ModelAndView model = new ModelAndView("/public/error/erro");
+			
+			model.addObject("errCode", "55055");
+			model.addObject("errMsg", "Pagina não encontrada");
+	        model.addObject("usuarioAtt", usuario);
+	        model.addObject("categoriaLista", categoriaLista);
+	        model.addObject("configuracaoAtual", configuracaoAtual);
+	        model.addObject("hoje", hoje);
+	        model.addObject("estaaberto", estaaberto);
+	        
+	        if(carrinho == null){
+	        	
+	        	carrinho = new Carrinho();
+	        	UUID uuid = UUID.randomUUID();
+	 			carrinho.setId(uuid);
+	        	
+	       
+	        }else {
+	        	
+	        	
+	        	UUID uuid = UUID.randomUUID();
+	 			carrinho.setId(uuid);	
+	        	
+	        }
+	        
+	        model.addObject("carrinho", carrinhobean.getCarrinho()); 
+
+	    return model;
+	  }
+	  
+	  
+	  
+	  @ExceptionHandler(DataIntegrityViolationException.class)
+	  public ModelAndView conflict() {
+
+			ModelAndView model = new ModelAndView("/public/error/erro");
+			
+			model.addObject("errCode", "6666");
+			model.addObject("errMsg", "Foi lançada DataIntegrityViolationException!");
+	        model.addObject("usuarioAtt", usuario);
+	        model.addObject("categoriaLista", categoriaLista);
+	        model.addObject("configuracaoAtual", configuracaoAtual);
+	        model.addObject("hoje", hoje);
+	        model.addObject("estaaberto", estaaberto);
+	        
+	        if(carrinho == null){
+	        	
+	        	carrinho = new Carrinho();
+	        	UUID uuid = UUID.randomUUID();
+	 			carrinho.setId(uuid);
+	        	
+	       
+	        }else {
+	        	
+	        	
+	        	UUID uuid = UUID.randomUUID();
+	 			carrinho.setId(uuid);	
+	        	
+	        }
+	        
+	        model.addObject("carrinho", carrinhobean.getCarrinho()); 
+
+	    return model;
+	  }
 
 	@ExceptionHandler(CustomGenericException.class)
 	public ModelAndView handleCustomException(CustomGenericException ex) {
@@ -405,5 +585,58 @@ public class ContextoAplicacao {
 	return aberto;
 
 }
+	
+	
+private void AgendadorTarefa(){
+			
+//			timer = new Timer(); 
+			timer.scheduleAtFixedRate(new TimerTask() {
+			    @Override public void run() { 
+			    System.out.println("Executando a primeira vez em " +
+			     "1 segundo e as demais a cada 5 segundos!"); 
+			    
+
+			   if(nmostrar){
+				   
+				   nmostrar=false;
+				   esconderOver=false;
+				   
+			   }else {
+				   
+				   nmostrar=true;
+				   esconderOver=true;
+				   
+			   }
+			   // mostrar = true;
+			  
+
+			    
+			    
+			    }
+			    
+
+			    }, 1000, 10000);
+			
+			
+			
+		}
+
+
+		private boolean UsuarioPossuiIndicacao(Usuario usuario){
+			
+			boolean possui = false;
+			
+			if(!usuario.getIndicacoes().isEmpty()){
+				
+				possui = true;
+				
+			}else {
+				
+				
+				
+			}
+			
+			return possui;
+		}
 	
 }

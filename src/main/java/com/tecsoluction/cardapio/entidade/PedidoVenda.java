@@ -36,8 +36,8 @@ import lombok.ToString;
 @Setter
 @Entity
 @Table(name = "PEDIDO_VENDA")
-@AllArgsConstructor
-@ToString
+//@AllArgsConstructor
+//@ToString
 public class PedidoVenda extends Pedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -187,6 +187,23 @@ public class PedidoVenda extends Pedido implements Serializable {
     	
     	return  CalcularTotal(getItems());
     }
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "PedidoVenda [mesa=" + mesa + ", garcon=" + garcon + ", origempedido=" + origempedido + ", ispago="
+				+ ispago + ", status=" + status + ", items=" + items + ", data=" + data + ", id=" + id + ", ativo="
+				+ ativo + "]";
+	}
+    
+//    @Override
+//    public String toString() {
+//        // TODO Auto-generated method stub
+//        return super.toString().toUpperCase();
+//    }
     
     
 

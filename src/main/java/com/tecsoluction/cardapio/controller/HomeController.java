@@ -157,10 +157,11 @@ public class HomeController {
 		  
 //		  qtdusuarios = usuarios.size();
 		  
-		        if(carrinho == null){
+		        if(carrinhobean.getCarrinho() == null){
 		        	carrinho = new Carrinho();
 		        	UUID uuid = UUID.randomUUID();
 		 			carrinho.setId(uuid);
+		 			carrinhobean.SetarCarrinhoSessao(carrinho);
 		          //  model.addAttribute("carrinho", carrinho); 
 		            }else {
 		            	

@@ -10,6 +10,8 @@ import javax.persistence.MappedSuperclass;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,6 +30,7 @@ public abstract class BaseEntity {
     @Column(name = "isativo")
     protected boolean ativo =true;
 
+    @JsonIgnore
     public boolean isNew() {
         return (this.id == null);
     }

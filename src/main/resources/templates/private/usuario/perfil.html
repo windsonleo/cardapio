@@ -42,8 +42,22 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
+            <p>
+              
+              <div class="pull-right">
+               
+
+         		 <a href="#" th:if="${usuarioAtt.online}"><i class="fa fa-circle text-success"></i> Online</a>
+      			 <a href="#" th:unless="${usuarioAtt.online}"><i class="fa fa-circle text-danger"></i> Offline</a>
+      			</div>
+      			
               <img class="profile-user-img img-responsive img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}" alt="User profile picture"/>
 
+      			
+      			 </p>
+      			 
+<!--         	</div> -->
+        	
               <h3 class="profile-username text-center" th:utext="${usuario.nome}">Nina Mcintire</h3>
 
               <p class="text-muted text-center" th:utext="${usuario.email}">Software Engineer</p>

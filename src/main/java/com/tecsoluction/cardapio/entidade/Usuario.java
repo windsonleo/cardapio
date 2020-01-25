@@ -3,8 +3,10 @@ package com.tecsoluction.cardapio.entidade;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +15,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -85,8 +88,20 @@ public class Usuario  extends BaseEntity implements Serializable {
     
     
     
-	 @Column(name = "facebookid", nullable = true,unique=true)
-	 private String facebookid;
+		 @Column(name = "facebookid", nullable = true,unique=true)
+		 private String facebookid;
+	 
+	    @Column(name = "online", nullable = true)
+	    private boolean online;
+	    
+	    @Temporal(TemporalType.DATE)
+	    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+		private Date dataultimoAcesso;
+	    
+
+	    @JsonIgnore
+	    @OneToMany(mappedBy = "usuario", cascade = {CascadeType.REFRESH},fetch=FetchType.EAGER)
+		 private Set<Atividade> atividades; 
 
     
 //    @JsonIgnore
