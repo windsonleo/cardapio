@@ -68,6 +68,8 @@ public class UsuarioController extends AbstractController<Usuario> {
 	 
 	 private String filename;
 	 
+	 private List<Usuario> usus;
+	 
 	
 	@Autowired
     public UsuarioController(RoleServicoImpl roleimpl,UsuarioServicoImpl usuimpl,ProdutoServicoImpl prod,CategoriaServicoImpl cate) {
@@ -141,10 +143,13 @@ public class UsuarioController extends AbstractController<Usuario> {
 //        UUID idf = UUID.fromString(request.getParameter("id"));
 
         ModelAndView profileusuario = new ModelAndView("/private/usuario/online");
+        
+        
+        usus = getservice().findAll();
 
 //        Usuario usuario = getservice().findOne(idf);
 //
-//        profileusuario.addObject("usuario", usuario);
+        profileusuario.addObject("usuarioList", usus);
         
         
 
