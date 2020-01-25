@@ -176,7 +176,10 @@
 		 				<script src="resources/static/js/demo.js"
 			th:src="@{/js/demo.js}"></script>
 
-<script>
+
+	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+	
+	<script>
 $(function () {
 //  $("#example1").DataTable();
  $('#example1').DataTable({
@@ -204,7 +207,6 @@ $(function () {
  });
 });
 </script>
-	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
 			
 </body>
 			

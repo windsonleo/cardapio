@@ -146,7 +146,10 @@
 
 <!-- <div th:replace="fragmentos/footer :: script" style="display:none;"></div> -->
 
-		<script src="resources/static/js/jquery-2.2.3.min.js"
+
+		
+	<div th:replace="fragmentos/footer :: script" style="display: none;"></div>	
+			<script src="resources/static/js/jquery-2.2.3.min.js"
 			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script>
 			
 											<script src="resources/static/js/bootstrap.min.js"
@@ -210,8 +213,8 @@ $(function () {
  });
 });
 </script>
-		
-	<div th:replace="fragmentos/footer :: script" style="display: none;"></div>	
+	
+	
 </body>
 			
 			

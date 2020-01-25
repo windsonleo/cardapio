@@ -778,7 +778,6 @@
            
   </div>
 
-	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
 	
 	    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
 			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
@@ -789,7 +788,11 @@
 <!-- 		     <div class="clearfix"></div> -->
 		
 		
-<script type="text/javascript">
+
+	    
+		<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+		
+		<script type="text/javascript">
 
 // $(document).ready(function(){
 //    $(".avaliacao").mouseover(function(event){
@@ -973,7 +976,6 @@ for (var i = 0; i < x.length; i++) {
 
 
 </script>
-	    
 	    
 </body>
 			
