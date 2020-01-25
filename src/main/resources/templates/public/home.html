@@ -433,6 +433,7 @@
              
               <span class="product-description" th:utext="${produto.descricao}" >31</span>
                
+               <a th:href="@{/carrinho/adicionar(id=${produto.id})}" rel="tooltip" title="Add para Carrinho">Adicionar ao Carrinho <span class="pull-right badge bg-green" ><i class="fa fa-cart-plus"></i></span></a>
                 
 
                   </div>
@@ -536,7 +537,7 @@
     
     </div>
     
-    
+     <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >
        <div class="col-md-4">
               <!-- USERS LIST -->
               <div class="box">
@@ -552,7 +553,7 @@
                   </div>
                 </div>
         
-                        <div class="box-body no-padding">
+                 <div class="box-body no-padding">
                   <ul class="users-list clearfix">
                     <li th:each="usuario : ${usuarios}">
                       <img th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}" alt="User Image" />
@@ -572,6 +573,7 @@
             </div>
             
             </div>
+<!--             </div> -->
             
        <div class="row">
        
@@ -729,7 +731,7 @@
             
             
     
-             <div class="row">
+          <div class="row">
       
         <div class="col-md-4"  th:each="categoria: ${categoriaLista}" >
           <!-- Widget: user widget style 1 -->
@@ -768,7 +770,7 @@
         
         </div>
 
-
+</div>
       
 
 

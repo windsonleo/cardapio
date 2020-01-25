@@ -68,6 +68,16 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 	 private List<Item> itenspreparacao;
 	 
 	 private List<Item> itensentregue;
+	 
+	 private List<PedidoVenda> pedidospreparacao;
+	 
+	 private List<PedidoVenda> pedidosentregue;
+	 
+	 private List<PedidoVenda> pedidoscancelados;
+	 
+	 private List<PedidoVenda> pedidosaguardando;
+	 
+	 private List<PedidoVenda> pedidosprontos;
 
 
 	@Autowired
@@ -133,6 +143,16 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 		 model.addAttribute("itensentregue", itensentregue);
 		 model.addAttribute("itenspreparacao", itenspreparacao);
 		 model.addAttribute("itensprontos", itensprontos);
+		 
+		 model.addAttribute("pedidosaguardando", pedidosaguardando);
+		 model.addAttribute("pedidoscancelados", pedidoscancelados);
+		 model.addAttribute("pedidosentregue", pedidosentregue);
+		 model.addAttribute("pedidospreparacao", pedidospreparacao);
+		 model.addAttribute("pedidosprontos", pedidosprontos);
+		 
+		 
+		 
+		 
 
 	}
 	
@@ -182,6 +202,8 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 //        exibircat.addObject("pedidos", pedidos);
         
         exibircat.addObject("itens", itensprontos);
+        
+        exibircat.addObject("pedidos", pedidosprontos);
 
         
         
@@ -204,6 +226,7 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
      //   exibircat.addObject("pedidos", pedidos);
         
         exibircat.addObject("itens", itensentregue);
+        exibircat.addObject("pedidos", pedidosentregue);
 
 
         return exibircat;
@@ -222,6 +245,9 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
       //  pedidos = getservice().findAllByStatusIsOrderByDataAsc(StatusPedido.PENDENTE);
 
         exibircat.addObject("itens", itenspreparacao);
+        
+        exibircat.addObject("pedidos", pedidospreparacao);
+
 
         return exibircat;
     }
@@ -242,7 +268,7 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         
         exibircat.addObject("itens", itensaguardando);
 
-        
+        exibircat.addObject("pedidos", pedidosaguardando);
 
         return exibircat;
     }
@@ -263,6 +289,8 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         
         
         exibircat.addObject("itens", itenscancelados);
+        
+        exibircat.addObject("pedidos", pedidoscancelados);
 
 
         return exibircat;
@@ -583,6 +611,12 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
     	itenspreparacao = new ArrayList<Item>();
     	itensprontos = new ArrayList<Item>();
     	
+    	pedidosaguardando = new ArrayList<PedidoVenda>();
+    	pedidoscancelados = new ArrayList<PedidoVenda>();
+    	pedidosentregue = new ArrayList<PedidoVenda>();
+    	pedidospreparacao  = new ArrayList<PedidoVenda>(); 
+    	pedidosprontos = new ArrayList<PedidoVenda>();
+    	
     	
     	for( PedidoVenda pv: pedidos){
     		
@@ -592,26 +626,31 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
     			if(it.getSituacao().equals(SituacaoItem.AGUARDANDO)){
     				
     				itensaguardando.add(it);
+    				pedidosaguardando.add(pv);
     				
     			}
     			else if (it.getSituacao().equals(SituacaoItem.CANCELADO)){
     				
     				itenscancelados.add(it);
+    				pedidoscancelados.add(pv);
     			}
     			
     			else if (it.getSituacao().equals(SituacaoItem.EM_EXECUCAO)){
     				
     				itenspreparacao.add(it);
+    				pedidospreparacao.add(pv);
     				
     			}
     			else if (it.getSituacao().equals(SituacaoItem.ENTREGUE)){
     				
     				itensentregue.add(it);
+    				pedidosentregue.add(pv);
     				
     			}else {
     				
     				
     				itensprontos.add(it);
+    				pedidosprontos.add(pv);
     				
     			}
     			
