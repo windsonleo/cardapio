@@ -1198,7 +1198,7 @@ private String FormatadorData(Date data){
         
       //  acessoubanco = true;
         
-        if(indexUsuario <=  index){
+        if(indexUsuario <  index){
         
         usu = IndicacaoUsuario(usuarios);
        
