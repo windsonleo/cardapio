@@ -335,8 +335,12 @@ function finalizaAgora(id) {
 	
     $.post("finalizaCarrinho", {'id' : id}, function(resposta) {
         $("#carrinho_"+id).html("Finalizado com Sucesso");
-        txt.focus();
-        var txtt = $("#carrinho_"+id).focus();
+//         txt.focus();
+//         var txtt = $("#carrinho_"+id).focus();
+
+        window.location.replace("http://sushisenpai.herokuapp.com/home");
+        
+//         window.location.replace("http://localhost:8082/cardapio/home");
 
     });
 }
