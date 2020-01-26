@@ -22,11 +22,15 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,6 +40,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.tecsoluction.cardapio.CarrinhoBean;
 import com.tecsoluction.cardapio.entidade.Autenticador;
 import com.tecsoluction.cardapio.entidade.Carrinho;
@@ -508,6 +513,32 @@ public class HomeController {
 
         return home;
     }
+    
+    
+    @RequestMapping(value = "/logout" )
+    public ModelAndView logout(Mode model, HttpServletRequest request,HttpServletResponse response){
+        request.getSession(true).invalidate();
+        ModelAndView home = new ModelAndView("/public/home");
+        
+       Object obj = context.getAttribute("usuarioAtt");
+       
+       System.out.println("objeeto usuario" + obj.toString());
+      
+       usuario = new Usuario();
+       usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+       usuario = usuarioService.findByEmail(usuario.getEmail());
+       
+       usuario.setOnline(false);
+       
+       usuarioService.edit(usuario);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null)
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        
+        System.out.println("logout user page shown--------------------");
+        return home;       
+   }
     
     
     
