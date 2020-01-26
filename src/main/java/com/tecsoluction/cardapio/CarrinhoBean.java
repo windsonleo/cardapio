@@ -70,7 +70,7 @@ public class CarrinhoBean {
 		
 		for(Produto prod : getUsuarioIndica().getIndicacoes()){
 			
-			produtosIndica.add(prod);
+			this.produtosIndica.add(prod);
 			
 		}
 		
