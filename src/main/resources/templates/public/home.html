@@ -142,10 +142,10 @@
         </div>
         
 <!--         <div id="notificacao" class="col-lg-4" th:hidden="${mostrar}"> -->
-        <div th:if="${usuarioIndica}" id="notificacao" class="col-lg-4" >
+        <div th:if="${usuarioIndica}" id="notificacao" class="col-md-4 pull-right" >
           <div class="box box-danger box-solid">
             <div class="box-header">
-              <h5 class="box-title">SunshiSenpai</h5>
+              <h5 class="box-title">Indicação</h5>
 
 				<div class="box-tools pull-right">
 					<button type="button" class="btn btn-box-tool"
@@ -166,7 +166,7 @@
             </div>
             <div class="box-body">
             
-            <h6 class="widget-user-username" >Indicação</h6>
+<!--             <h6 class="widget-user-username" >Indicação</h6> -->
 
 			<h6 th:if="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioIndica.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6>
 			<h6 th:unless="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioAtt.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6>
@@ -935,7 +935,7 @@ $(function() {
 	   function setTime() {
 	     // var date = new Date().getTime();
 	      
-	      setTimeout(setTime, 70000);
+	      setTimeout(setTime, 7000);
 	      
 	      $('#overlayy').show();
 	      $('#notificacao').hide();

@@ -185,6 +185,7 @@ public class HomeController {
 	         gerenciacat = new GerenciadorCategorias(categoriasall);
 	         
 	         Usuario us =   PegarIndicacao();
+	         
 	         carrinhobean.SetarProdutosIndicaSessao();
 	        
 //
