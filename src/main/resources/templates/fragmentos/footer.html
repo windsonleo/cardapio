@@ -321,6 +321,21 @@
 			
 		<script src="resources/static/js/app.min.js"
 		 th:src="@{/js/app.min.js}"  th:inline="javascript"></script>
+		 
+		           	<script type="text/javascript">
+$(function(){
+    $("#notificacao").fadeIn(700, function(){
+        window.setTimeout(function(){
+        	   $('#overlayy').show();
+        	$('#notificacao').fadeOut();
+         
+        }, 7000);
+        
+        $('#overlayy').hide();
+    });
+});
+
+</script> 
 
 
 								<script src="resources/static/js/dashboard.js"
