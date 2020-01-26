@@ -168,8 +168,8 @@
             
 <!--             <h6 class="widget-user-username" >Indicação</h6> -->
 
-			<h6 th:if="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioIndica.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6>
-			<h6 th:unless="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioAtt.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6>
+<!-- 			<h6 th:if="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioIndica.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6> -->
+<!-- 			<h6 th:unless="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioAtt.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6> -->
 
           <img th:if="${produtoIndica.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produtoIndica.foto})}" src="" class="img-circle img-sm" alt="User Image" /> 
  		<img th:unless="${produtoIndica.foto}" th:src="@{/img/produto/vazio.jpg}" class="img-circle img-sm" src=""  alt="User Image" /> 
