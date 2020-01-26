@@ -80,7 +80,7 @@ public class CarrinhoBean {
 	
 	public Produto PegarProdutoIndicaSessao(){
 		
-		if(index <= produtosIndica.size()){
+		if(index < produtosIndica.size()){
 			
 			this.produtoIndica = produtosIndica.get(index);
 			index++;
@@ -88,6 +88,7 @@ public class CarrinhoBean {
 		}else {
 			
 			index = 0;
+			this.produtoIndica = produtosIndica.get(index);
 			
 		}
 		
