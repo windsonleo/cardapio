@@ -50,9 +50,9 @@
     
     <section class="content">
     
-    <div id="fotho" class="img-circle"></div>
+<!--     <div id="fotho" class="img-circle"></div> -->
     
-    <div id="status"></div>
+<!--     <div id="status"></div> -->
     
 <!--           <div class="row"> -->
 <!--         <div class="col-xs-12"> -->
@@ -122,11 +122,30 @@
         </div>
         </div>
         
+        
+                <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >
+        
+               <div class="col-lg-3 col-xs-6">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline" ></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Usuarios</span>
+              <span class="info-box-number">50<small>%</small></span>
+<!--               <a th:href="@{/pedidovenda/cozinha}">cozinha</a> -->
+              <a th:href="@{/usuario/allonline}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        </div>
+        
 <!--         <div id="notificacao" class="col-lg-4" th:hidden="${mostrar}"> -->
-        <div id="notificacao" class="col-lg-4" >
-          <div class="box box-danger box-solid">
+        <div th:if="${usuarioIndica}" id="notificacao" class="col-md-3 pull-right" >
+          <div class="box box-primary box-solid">
             <div class="box-header">
-              <h5 class="box-title">SunshiSenpai</h5>
+              <h6 class="box-title" th:text="${usuarioIndica.nome}" >Indicação</h6>
 
 				<div class="box-tools pull-right">
 					<button type="button" class="btn btn-box-tool"
@@ -135,31 +154,31 @@
 					</button>
 				</div>
 
-<!-- 			<img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" src="" class="img-circle img-md" alt="User Image" />  -->
-<!--           <img th:unless="${usuarioIndica.foto}" th:src="@{/img/usuario/avatar_uso.jpg}" src="" class="img-circle img-md" alt="User Image" />  -->
+			<img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" src="" class="img-circle img-sm" alt="User Image" /> 
+          <img th:unless="${usuarioIndica.foto}" th:src="@{/img/usuario/avatar_uso.jpg}" src="" class="img-circle img-sm" alt="User Image" /> 
          
       
          
          
-<!--            <h5 th:if="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioIndica.nome}" >Nadia Carmichael</h5> -->
+           <h5  class="widget-user-username"  >Indica</h5>
 <!--            <h5 th:unless="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioAtt.nome}" >Nadia Carmichael</h5> -->
            
             </div>
             <div class="box-body">
             
-            <h6 class="widget-user-username" >Indicação</h6>
+<!--             <h6 class="widget-user-username" >Indicação</h6> -->
 
 <!-- 			<h6 th:if="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioIndica.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6> -->
 <!-- 			<h6 th:unless="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioAtt.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6> -->
 
-<!--           <img th:if="${produtoIndica.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produtoIndica.foto})}" src="" class="img-circle img-sm" alt="User Image" />  -->
-<!--  		<img th:unless="${produtoIndica.foto}" th:src="@{/img/produto/vazio.jpg}" class="img-circle img-sm" src=""  alt="User Image" />  -->
+          <img th:if="${produtoIndica.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produtoIndica.foto})}" src="" class="img-circle img-sm" alt="User Image" /> 
+ 		<img th:unless="${produtoIndica.foto}" th:src="@{/img/produto/vazio.jpg}" class="img-circle img-sm" src=""  alt="User Image" /> 
  			
-<!--  			<h5 th:if="${produtoIndica.nome}" class="widget-user-username" th:text="${produtoIndica.nome}" >Nadia Carmichael</h5> -->
-<!--  			 <h5 th:unless="${produtoIndica.nome}" class="widget-user-username" >Nadia Carmichael</h5> -->
+ 			<h5 th:if="${produtoIndica.nome}" class="widget-user-username" th:text="${produtoIndica.nome}" >Nadia Carmichael</h5>
+ 			 <h5 th:unless="${produtoIndica.nome}" class="widget-user-username" >Nadia Carmichael</h5>
  			
-<!--  			<a th:if="${produtoIndica.id}" th:href="@{/produto/perfil(id=${produtoIndica.id})}" href="#"> Clique Para Ver</a> -->
-<!--  			<a th:unless="${produtoIndica.id}" href="#"> Clique Para Ver</a> -->
+ 			<a th:if="${produtoIndica.id}" th:href="@{/produto/perfil(id=${produtoIndica.id})}" href="#"> Clique Para Ver</a>
+ 			<a th:unless="${produtoIndica.id}" href="#"> Clique Para Ver</a>
 
             </div>
             <!-- /.box-body -->
@@ -172,9 +191,25 @@
             <!-- end loading -->
           </div>
           <!-- /.box -->
+          	<script type="text/javascript">
+$(function(){
+    $("#notificacao").fadeIn(700, function(){
+        window.setTimeout(function(){
+        	   $('#overlayy').show();
+        	$('#notificacao').fadeOut();
+         
+        }, 5000);
+        
+        $('#overlayy').hide();
+    });
+});
+
+</script> 
+          
         </div>
 
        
+       </div>
        </div>
        
        <div class="row">
@@ -393,7 +428,7 @@
    
    
    
-         <div class="row">
+<!--          <div class="row"> -->
         <div class="col-md-8">
           <div class="box box-solid">
             <div class="box-header bg-black with-border"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border'">
@@ -536,6 +571,8 @@
 <!--         <div class="clearfix"></div> -->
     
     </div>
+    
+<!--     </div> -->
     
      <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >
        <div class="col-md-4">
@@ -767,38 +804,52 @@
           </div>
 
         </div>
+        <div class="clearfix"></div>
         
         </div>
+        
+     <div class="clearfix"></div>   
+     
+     </div>
+     
+     
+     
+</section>
+
 
 </div>
-      
 
 
-    <div class="clearfix"></div>
     
-</section>
+
 
  <div class="clearfix"></div>
     
     	</div> 
     	
-    	<div class="clearfix"></div>
-    	
-    	</div>
+
 
     
 
-<!-- 	<div th:replace="fragmentos/footer :: script" style="display:none;"></div> -->
-	
+    
 
-			
-	
-<!-- 		</div>	 -->
-		
-
- 
 
 	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+	
+	<script type="text/javascript">
+$(function(){
+    $("#notificacao").fadeIn(700, function(){
+        window.setTimeout(function(){
+        	   $('#overlayy').show();
+        	$('#notificacao').fadeOut();
+         
+        }, 5000);
+        
+        $('#overlayy').hide();
+    });
+});
+
+</script> 
 	
 		    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
 			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
@@ -908,24 +959,30 @@
 <!--   </script>     -->
 
 
-<script>
+<!-- <script type="text/javascript"> -->
 
-$(function() {
-	   setTime();
-	   function setTime() {
-	     // var date = new Date().getTime();
+<!-- // $(function() { -->
+<!-- // 	   setTime(); -->
+	   
+<!-- // 	      $('#overlayy').hide(); -->
+<!-- // 	      $('#notificacao').show(); -->
 	      
-	      setTimeout(setTime, 10000);
+<!-- // 	   function setTime() { -->
+<!-- // 	     // var date = new Date().getTime(); -->
 	      
-	      $('#overlayy').hide();
-	      $('#notificacao').hide();
-	   }
+<!-- // 	      setTimeout(setTime, 7000); -->
+	      
+<!-- // 	      $('#overlayy').show(); -->
+<!-- // 	      $('#notificacao').hide(); -->
+<!-- // 	   } -->
 	   
 
-	 });
+<!-- // 	 }); -->
 
 
-</script>
+<!-- </script> -->
+
+
 
 </body>
 			

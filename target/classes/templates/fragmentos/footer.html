@@ -14,13 +14,13 @@
 
 	<footer class="main-footer">
 		<div class="pull-right hidden-xs">
-			<b>Version</b> 2.3.8
+			<b>Versão</b> 2.3.8
 		</div>
-		<strong>Copyright &copy; 2014-2016 <a
-			href="http://almsaeedstudio.com">Almsaeed Studio</a>, <a
-			href="https://fezvrasta.github.io">Federico Zivolo</a> and <a
-			href="https://ducthanhnguyen.github.io">Thanh Nguyen</a>.
-		</strong> All rights reserved.
+		<strong>Copyright &copy; 2019 <a
+			href="http://almsaeedstudio.com">TecSoluction</a>, <a
+			href="https://fezvrasta.github.io">Windson Melo</a> and <a
+			href="https://ducthanhnguyen.github.io">Thyago Moura</a>.
+		</strong> Todos Direitos Reservados.
 	</footer>
 	
 	<aside class="control-sidebar control-sidebar-dark">
@@ -321,6 +321,21 @@
 			
 		<script src="resources/static/js/app.min.js"
 		 th:src="@{/js/app.min.js}"  th:inline="javascript"></script>
+		 
+		           	<script type="text/javascript">
+$(function(){
+    $("#notificacao").fadeIn(700, function(){
+        window.setTimeout(function(){
+        	   $('#overlayy').show();
+        	$('#notificacao').fadeOut();
+         
+        }, 5000);
+        
+        $('#overlayy').hide();
+    });
+});
+
+</script> 
 
 
 								<script src="resources/static/js/dashboard.js"

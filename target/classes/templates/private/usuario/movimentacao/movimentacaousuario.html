@@ -63,8 +63,7 @@
 <!--                                             <th >Resultado</th> -->
                                             
                                             
-                                  <div sec:authorize="hasRole('ROLE_ADM')">
-                                   
+ 					<div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >                                   
                                    <th >OPERACOES</th>
                                   
                                   </div>
@@ -86,7 +85,7 @@
                                                   
 		                                            <td><label><input name="optionsCheckboxes" class="checkbox" type="checkbox" th:checked="${usuario.ativo}" disabled/></label></td>		                                          
 		                                       
-							              <div sec:authorize="hasRole('ROLE_ADM')" >
+ 					<div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >                                   
 	                                              <td>
 	                                             
 	                                              <div class="btn-group-horizontal" >
