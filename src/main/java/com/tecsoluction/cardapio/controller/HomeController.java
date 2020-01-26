@@ -102,6 +102,8 @@ public class HomeController {
 	
 	 private Carrinho carrinho = new Carrinho();
 	 
+	 private int indexUsuario = 0;
+	 
 	 
 	 @Autowired
 	 private CarrinhoBean carrinhobean;
@@ -182,7 +184,8 @@ public class HomeController {
 	         
 	         gerenciacat = new GerenciadorCategorias(categoriasall);
 	         
-	         
+	         Usuario us =   PegarIndicacao();
+	         carrinhobean.SetarProdutosIndicaSessao();
 	        
 //
 //	        model.addAttribute("atividades", atividades);
@@ -194,6 +197,12 @@ public class HomeController {
 	        model.addAttribute("usuario", usuario);
 	        model.addAttribute("filename", filename);
 	        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
+	        
+	        model.addAttribute("usuarioIndica", carrinhobean.PegarUsuarioIndicaSessao());  
+	        
+	        model.addAttribute("produtoIndica", carrinhobean.PegarProdutoIndicaSessao());  
+
+	       
 	        
 	        
 
@@ -1176,6 +1185,57 @@ private String FormatadorData(Date data){
         return cadastro;
 
     }
+    
+	private Usuario PegarIndicacao() {
+		// TODO Auto-generated method stub
+		
+	    Usuario usu = null;
+        usuarios = usuarioService.findAll();
+        
+        carrinhobean.SetarUsuariosIndicaSessao(usuarios);
+        
+        int index = usuarios.size();
+        
+      //  acessoubanco = true;
+        
+        if(indexUsuario < index){
+        
+        usu = IndicacaoUsuario(usuarios);
+       
+        
+        }else {
+        	
+        	indexUsuario = 0;	
+        	
+        }
+        
+		
+		return usu;
+	}
+    
+    
+    private Usuario IndicacaoUsuario(List<Usuario> usuarios2) {
+
+//		for(Usuario us: usuarios2){
+    	
+    	
+    	Usuario us = usuarios2.get(indexUsuario);
+			
+			if(!us.getIndicacoes().isEmpty()){
+				
+				carrinhobean.SetarUsuarioIndicaSessao(us);
+				
+				 indexUsuario++;
+				 		
+				 
+				return us;
+			}
+			
+//		}
+		
+		
+		return null;
+	}
 
 //        
 //    }  

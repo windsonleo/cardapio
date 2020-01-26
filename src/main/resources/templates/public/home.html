@@ -154,31 +154,31 @@
 					</button>
 				</div>
 
-<!-- 			<img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" src="" class="img-circle img-md" alt="User Image" />  -->
-<!--           <img th:unless="${usuarioIndica.foto}" th:src="@{/img/usuario/avatar_uso.jpg}" src="" class="img-circle img-md" alt="User Image" />  -->
+			<img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" src="" class="img-circle img-md" alt="User Image" /> 
+          <img th:unless="${usuarioIndica.foto}" th:src="@{/img/usuario/avatar_uso.jpg}" src="" class="img-circle img-md" alt="User Image" /> 
          
       
          
          
-<!--            <h5 th:if="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioIndica.nome}" >Nadia Carmichael</h5> -->
-<!--            <h5 th:unless="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioAtt.nome}" >Nadia Carmichael</h5> -->
+           <h5 th:if="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioIndica.nome}" >Nadia Carmichael</h5>
+           <h5 th:unless="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioAtt.nome}" >Nadia Carmichael</h5>
            
             </div>
             <div class="box-body">
             
             <h6 class="widget-user-username" >Indicação</h6>
 
-<!-- 			<h6 th:if="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioIndica.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6> -->
-<!-- 			<h6 th:unless="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioAtt.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6> -->
+			<h6 th:if="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioIndica.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6>
+			<h6 th:unless="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioAtt.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6>
 
-<!--           <img th:if="${produtoIndica.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produtoIndica.foto})}" src="" class="img-circle img-sm" alt="User Image" />  -->
-<!--  		<img th:unless="${produtoIndica.foto}" th:src="@{/img/produto/vazio.jpg}" class="img-circle img-sm" src=""  alt="User Image" />  -->
+          <img th:if="${produtoIndica.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produtoIndica.foto})}" src="" class="img-circle img-sm" alt="User Image" /> 
+ 		<img th:unless="${produtoIndica.foto}" th:src="@{/img/produto/vazio.jpg}" class="img-circle img-sm" src=""  alt="User Image" /> 
  			
-<!--  			<h5 th:if="${produtoIndica.nome}" class="widget-user-username" th:text="${produtoIndica.nome}" >Nadia Carmichael</h5> -->
-<!--  			 <h5 th:unless="${produtoIndica.nome}" class="widget-user-username" >Nadia Carmichael</h5> -->
+ 			<h5 th:if="${produtoIndica.nome}" class="widget-user-username" th:text="${produtoIndica.nome}" >Nadia Carmichael</h5>
+ 			 <h5 th:unless="${produtoIndica.nome}" class="widget-user-username" >Nadia Carmichael</h5>
  			
-<!--  			<a th:if="${produtoIndica.id}" th:href="@{/produto/perfil(id=${produtoIndica.id})}" href="#"> Clique Para Ver</a> -->
-<!--  			<a th:unless="${produtoIndica.id}" href="#"> Clique Para Ver</a> -->
+ 			<a th:if="${produtoIndica.id}" th:href="@{/produto/perfil(id=${produtoIndica.id})}" href="#"> Clique Para Ver</a>
+ 			<a th:unless="${produtoIndica.id}" href="#"> Clique Para Ver</a>
 
             </div>
             <!-- /.box-body -->
@@ -371,7 +371,7 @@
         
 <!--                <div class="clearfix"></div> -->
         
-<!--         <br></br> -->
+        <br></br>
 <!--         <br></br> -->
         
 <!--         <div class="col-md-3"> -->
@@ -593,8 +593,8 @@
 
             </div>
             
-<!--             </div> -->
-<!--             </div> -->
+            </div>
+            </div>
             
        <div class="row">
        
@@ -935,15 +935,15 @@
 $(function() {
 	   setTime();
 	   
-	      $('#overlayy').show();
+	      $('#overlayy').hide();
 	      $('#notificacao').show();
 	      
 	   function setTime() {
 	     // var date = new Date().getTime();
 	      
-	      setTimeout(setTime, 10000);
+	      setTimeout(setTime, 70000);
 	      
-	      $('#overlayy').hide();
+	      $('#overlayy').show();
 	      $('#notificacao').hide();
 	   }
 	   

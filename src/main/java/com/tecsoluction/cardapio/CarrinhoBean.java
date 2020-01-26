@@ -1,5 +1,6 @@
 package com.tecsoluction.cardapio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.Scope;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Item;
+import com.tecsoluction.cardapio.entidade.Produto;
+import com.tecsoluction.cardapio.entidade.Usuario;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +24,16 @@ public class CarrinhoBean {
 	
 	private Carrinho carrinho;
 	
+	private List<Usuario> usuariosIndica;
+	
+	private List<Produto> produtosIndica = new ArrayList<Produto>();
+	
+	private Produto produtoIndica;
+	
+	private Usuario usuarioIndica;
+	
+	private int index = 0;
+	
 
 
 	public void SetarCarrinhoSessao(Carrinho car){
@@ -30,6 +43,56 @@ public class CarrinhoBean {
 		
 	}
 	
+	public void SetarUsuariosIndicaSessao(List<Usuario> usus){
+		
+		
+		this.usuariosIndica = usus;
+		
+	}
+	
+	
+	public void SetarUsuarioIndicaSessao(Usuario usu){
+		
+		
+		this.usuarioIndica = usu;
+		
+	}
+	
+	public Usuario PegarUsuarioIndicaSessao(){
+		
+		return usuarioIndica;
+	}
+	
+	
+	public void SetarProdutosIndicaSessao(){
+		
+		produtosIndica.clear();
+		
+		for(Produto prod : getUsuarioIndica().getIndicacoes()){
+			
+			produtosIndica.add(prod);
+			
+		}
+		
+//		this.produtoIndica = prod;
+		
+	}
+	
+	public Produto PegarProdutoIndicaSessao(){
+		
+		if(index <= produtosIndica.size()){
+			
+			this.produtoIndica = produtosIndica.get(index);
+			index++;
+			
+		}else {
+			
+			index = 0;
+			
+		}
+		
+		return produtoIndica;
+	}
 	
 	public List<Item> PegarItensCarrinhoSessao(){
 		
@@ -48,6 +111,9 @@ public class CarrinhoBean {
 		this.carrinho.removeItem(it);
 		
 	}
+	
+	
+	
 	
 	
 }
