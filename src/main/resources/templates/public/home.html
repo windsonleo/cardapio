@@ -821,6 +821,21 @@
 
 	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
 	
+	<script type="text/javascript">
+$(function(){
+    $("#notificacao").fadeIn(700, function(){
+        window.setTimeout(function(){
+        	   $('#overlayy').show();
+        	$('#notificacao').fadeOut();
+         
+        }, 7000);
+        
+        $('#overlayy').hide();
+    });
+});
+
+</script> 
+	
 		    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
 			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
 	
@@ -952,20 +967,7 @@
 
 <!-- </script> -->
 
-<script type="text/javascript">
-$(function(){
-    $("#notificacao").fadeIn(700, function(){
-        window.setTimeout(function(){
-        	   $('#overlayy').show();
-        	$('#notificacao').fadeOut();
-         
-        }, 7000);
-        
-        $('#overlayy').hide();
-    });
-});
 
-</script> 
 
 </body>
 			
