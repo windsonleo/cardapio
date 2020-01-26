@@ -145,7 +145,7 @@
         <div th:if="${usuarioIndica}" id="notificacao" class="col-md-4 pull-right" >
           <div class="box box-danger box-solid">
             <div class="box-header">
-              <h5 class="box-title">Indicação</h5>
+              <h5 class="box-title" th:text="${usuarioIndica.nome}" >Indicação</h5>
 
 				<div class="box-tools pull-right">
 					<button type="button" class="btn btn-box-tool"
@@ -160,8 +160,8 @@
       
          
          
-           <h5 th:if="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioIndica.nome}" >Nadia Carmichael</h5>
-           <h5 th:unless="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioAtt.nome}" >Nadia Carmichael</h5>
+           <h5  class="widget-user-username"  >Indicação</h5>
+<!--            <h5 th:unless="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioAtt.nome}" >Nadia Carmichael</h5> -->
            
             </div>
             <div class="box-body">
