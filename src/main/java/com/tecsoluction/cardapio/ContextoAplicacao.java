@@ -588,56 +588,56 @@ public class ContextoAplicacao {
 }
 	
 	
-private void AgendadorTarefa(){
-			
-//			timer = new Timer(); 
-			timer.scheduleAtFixedRate(new TimerTask() {
-			    @Override public void run() { 
-			    System.out.println("Executando a primeira vez em " +
-			     "1 segundo e as demais a cada 5 segundos!"); 
-			    
+//private void AgendadorTarefa(){
+//			
+////			timer = new Timer(); 
+//			timer.scheduleAtFixedRate(new TimerTask() {
+//			    @Override public void run() { 
+//			    System.out.println("Executando a primeira vez em " +
+//			     "1 segundo e as demais a cada 5 segundos!"); 
+//			    
+//
+//			   if(nmostrar){
+//				   
+//				   nmostrar=false;
+//				   esconderOver=false;
+//				   
+//			   }else {
+//				   
+//				   nmostrar=true;
+//				   esconderOver=true;
+//				   
+//			   }
+//			   // mostrar = true;
+//			  
+//
+//			    
+//			    
+//			    }
+//			    
+//
+//			    }, 1000, 10000);
+//			
+//			
+//			
+//		}
 
-			   if(nmostrar){
-				   
-				   nmostrar=false;
-				   esconderOver=false;
-				   
-			   }else {
-				   
-				   nmostrar=true;
-				   esconderOver=true;
-				   
-			   }
-			   // mostrar = true;
-			  
 
-			    
-			    
-			    }
-			    
-
-			    }, 1000, 10000);
-			
-			
-			
-		}
-
-
-		private boolean UsuarioPossuiIndicacao(Usuario usuario){
-			
-			boolean possui = false;
-			
-			if(!usuario.getIndicacoes().isEmpty()){
-				
-				possui = true;
-				
-			}else {
-				
-				
-				
-			}
-			
-			return possui;
-		}
+//		private boolean UsuarioPossuiIndicacao(Usuario usuario){
+//			
+//			boolean possui = false;
+//			
+//			if(!usuario.getIndicacoes().isEmpty()){
+//				
+//				possui = true;
+//				
+//			}else {
+//				
+//				
+//				
+//			}
+//			
+//			return possui;
+//		}
 	
 }
