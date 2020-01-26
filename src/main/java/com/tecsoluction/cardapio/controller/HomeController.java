@@ -516,15 +516,15 @@ public class HomeController {
     
     
     @RequestMapping(value = "/logout",method = RequestMethod.GET )
-    public ModelAndView logout(Mode model, HttpServletRequest request,HttpServletResponse response){
+    public void logout(Mode model, HttpServletRequest request,HttpServletResponse response){
         request.getSession(true).invalidate();
-        ModelAndView home = new ModelAndView("/public/home");
+//        ModelAndView home = new ModelAndView("/public/home");
         
-       Object obj = context.getAttribute("usuarioAtt");
-       
-       System.out.println("objeeto usuario" + obj.toString());
-       
-       logger.debug("objeeto usuario : " + obj.toString());
+//       Object obj = context.getAttribute("usuarioAtt");
+//       
+//       System.out.println("objeeto usuario" + obj.toString());
+//       
+//       logger.debug("objeeto usuario : " + obj.toString());
       
        usuario = new Usuario();
        usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -540,20 +540,20 @@ public class HomeController {
         
         System.out.println("logout user page shown--------------------");
        
-        return home;       
+//        return home;       
    }
     
     
     @RequestMapping(value = "/logoutsucess",method = RequestMethod.GET )
     public ModelAndView logoeut(Mode model, HttpServletRequest request,HttpServletResponse response){
-        request.getSession(true).invalidate();
+      //  request.getSession(true).invalidate();
         ModelAndView home = new ModelAndView("/public/home");
         
-       Object obj = context.getAttribute("usuarioAtt");
+//       Object obj = context.getAttribute("usuarioAtt");
+//       
+//       System.out.println("objeeto usuario" + obj.toString());
        
-       System.out.println("objeeto usuario" + obj.toString());
-       
-       logger.debug("objeeto usuario : " + obj.toString());
+       logger.debug("objeeto usuario : ");
       
 //       usuario = new Usuario();
 //       usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
