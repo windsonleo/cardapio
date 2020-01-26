@@ -956,8 +956,12 @@
 $(function(){
     $("#notificacao").fadeIn(700, function(){
         window.setTimeout(function(){
-            $('#notificacao').fadeOut();
+        	   $('#overlayy').show();
+        	$('#notificacao').fadeOut();
+         
         }, 7000);
+        
+        $('#overlayy').hide();
     });
 });
 

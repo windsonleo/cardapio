@@ -523,6 +523,8 @@ public class HomeController {
        Object obj = context.getAttribute("usuarioAtt");
        
        System.out.println("objeeto usuario" + obj.toString());
+       
+       logger.debug("objeeto usuario : " + obj.toString());
       
        usuario = new Usuario();
        usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -537,6 +539,7 @@ public class HomeController {
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         
         System.out.println("logout user page shown--------------------");
+       
         return home;       
    }
     

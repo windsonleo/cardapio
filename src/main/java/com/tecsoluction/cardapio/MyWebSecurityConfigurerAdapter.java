@@ -95,6 +95,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/pedidovenda/id**").permitAll()
 				.antMatchers("/pedidovenda/**").permitAll()
 				.antMatchers("/home").permitAll()
+				.antMatchers("/logout").permitAll()
 				.antMatchers("https://connect.facebook.net").permitAll()	
 				.antMatchers("https://apis.google.com/js/platform.js").permitAll()
 				
