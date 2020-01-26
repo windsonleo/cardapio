@@ -66,7 +66,7 @@ public class CarrinhoBean {
 	
 	public void SetarProdutosIndicaSessao(){
 		
-		produtosIndica.clear();
+//		produtosIndica.clear();
 		
 		for(Produto prod : getUsuarioIndica().getIndicacoes()){
 			
