@@ -184,8 +184,8 @@ public class HomeController {
 	         
 	         gerenciacat = new GerenciadorCategorias(categoriasall);
 	         
-	         Usuario us =   PegarIndicacao();
-	         carrinhobean.SetarProdutosIndicaSessao();
+//	         Usuario us =   PegarIndicacao();
+//	         carrinhobean.SetarProdutosIndicaSessao();
 	        
 //
 //	        model.addAttribute("atividades", atividades);
@@ -198,9 +198,9 @@ public class HomeController {
 	        model.addAttribute("filename", filename);
 	        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
 	        
-	        model.addAttribute("usuarioIndica", carrinhobean.PegarUsuarioIndicaSessao());  
-	        
-	        model.addAttribute("produtoIndica", carrinhobean.PegarProdutoIndicaSessao());  
+//	        model.addAttribute("usuarioIndica", carrinhobean.PegarUsuarioIndicaSessao());  
+//	        
+//	        model.addAttribute("produtoIndica", carrinhobean.PegarProdutoIndicaSessao());  
 
 	       
 	        
