@@ -114,8 +114,8 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.usernameParameter("email")
 				.passwordParameter("senha").and()
 			    .rememberMe()
-				.and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.and().logout().logoutUrl("/logout")
+//				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/logoutsucess").and().exceptionHandling()
 				.accessDeniedHandler(accessDeniedHandler);
 //				.accessDeniedPage("/accessdenied");

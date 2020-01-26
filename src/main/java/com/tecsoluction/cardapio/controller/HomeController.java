@@ -515,7 +515,7 @@ public class HomeController {
     }
     
     
-    @RequestMapping(value = "/logoutsucess",method = RequestMethod.GET )
+    @RequestMapping(value = "/logout",method = RequestMethod.GET )
     public ModelAndView logout(Mode model, HttpServletRequest request,HttpServletResponse response){
         request.getSession(true).invalidate();
         ModelAndView home = new ModelAndView("/public/home");
@@ -537,6 +537,35 @@ public class HomeController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null)
             new SecurityContextLogoutHandler().logout(request, response, authentication);
+        
+        System.out.println("logout user page shown--------------------");
+       
+        return home;       
+   }
+    
+    
+    @RequestMapping(value = "/logoutsucess",method = RequestMethod.GET )
+    public ModelAndView logoeut(Mode model, HttpServletRequest request,HttpServletResponse response){
+        request.getSession(true).invalidate();
+        ModelAndView home = new ModelAndView("/public/home");
+        
+       Object obj = context.getAttribute("usuarioAtt");
+       
+       System.out.println("objeeto usuario" + obj.toString());
+       
+       logger.debug("objeeto usuario : " + obj.toString());
+      
+//       usuario = new Usuario();
+//       usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+//       usuario = usuarioService.findByEmail(usuario.getEmail());
+//       
+//       usuario.setOnline(false);
+//       
+//       usuarioService.edit(usuario);
+//
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication != null)
+//            new SecurityContextLogoutHandler().logout(request, response, authentication);
         
         System.out.println("logout user page shown--------------------");
        
