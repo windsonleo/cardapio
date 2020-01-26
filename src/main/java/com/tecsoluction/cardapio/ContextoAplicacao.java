@@ -454,41 +454,41 @@ public class ContextoAplicacao {
 
 	}
 	
-	@ExceptionHandler(LoggingAccessDeniedHandler.class)
-	public ModelAndView handleLoggingAccessDeniedHandler(Exception ex) {
-
-		ModelAndView model = new ModelAndView("/public/accessdenied");
-		model.addObject("errMsg", ex.toString());
-        model.addObject("usuarioAtt", usuario);
-        model.addObject("categoriaLista", categoriaLista);
-        model.addObject("configuracaoAtual", configuracaoAtual);
-        model.addObject("hoje", hoje);
-        model.addObject("estaaberto", estaaberto);
-        
-        
-//        model.addObject("carrinho", carrinho); 
-        
-        
-        if(carrinho == null){
-        	
-        	carrinho = new Carrinho();
-        	UUID uuid = UUID.randomUUID();
- 			carrinho.setId(uuid);
-        	
-       
-        }else {
-        	
-        	
-        	UUID uuid = UUID.randomUUID();
- 			carrinho.setId(uuid);	
-        	
-        }
-        
-        model.addObject("carrinho", carrinhobean.getCarrinho()); 
-
-		return model;
-
-	}
+//	@ExceptionHandler(LoggingAccessDeniedHandler.class)
+//	public ModelAndView handleLoggingAccessDeniedHandler(Exception ex) {
+//
+//		ModelAndView model = new ModelAndView("/public/accessdenied");
+//		model.addObject("errMsg", ex.toString());
+//        model.addObject("usuarioAtt", usuario);
+//        model.addObject("categoriaLista", categoriaLista);
+//        model.addObject("configuracaoAtual", configuracaoAtual);
+//        model.addObject("hoje", hoje);
+//        model.addObject("estaaberto", estaaberto);
+//        
+//        
+////        model.addObject("carrinho", carrinho); 
+//        
+//        
+//        if(carrinho == null){
+//        	
+//        	carrinho = new Carrinho();
+//        	UUID uuid = UUID.randomUUID();
+// 			carrinho.setId(uuid);
+//        	
+//       
+//        }else {
+//        	
+//        	
+//        	UUID uuid = UUID.randomUUID();
+// 			carrinho.setId(uuid);	
+//        	
+//        }
+//        
+//        model.addObject("carrinho", carrinhobean.getCarrinho()); 
+//
+//		return model;
+//
+//	}
 	
 	
 	public List<Categoria> CategoriasComProduto(List<Categoria> cats){

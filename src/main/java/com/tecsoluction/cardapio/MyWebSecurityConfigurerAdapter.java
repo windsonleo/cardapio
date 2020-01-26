@@ -65,10 +65,14 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/js/**").permitAll()
 				.antMatchers("/esquecisenha**").permitAll()
 				.antMatchers("*/accessdenied**").permitAll()
+				.antMatchers("*/accessdenied").permitAll()
+				.antMatchers("/accessdenied").permitAll()
 				.antMatchers("/usuario/cadastro/**").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("*/error/**").permitAll()
 				.antMatchers("/erro**").permitAll()
+				.antMatchers("*/erro**").permitAll()
+				.antMatchers("/erro").permitAll()
 				.antMatchers("/fonts/**").permitAll()
 				.antMatchers("/bootstrap/**").permitAll()
 				.antMatchers("/categoria/exibir**").permitAll()
@@ -96,6 +100,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/pedidovenda/**").permitAll()
 				.antMatchers("/home").permitAll()
 				.antMatchers("/logout").permitAll()
+				.antMatchers("/logoutsucess").permitAll()				
 				.antMatchers("https://connect.facebook.net").permitAll()	
 				.antMatchers("https://apis.google.com/js/platform.js").permitAll()
 				
@@ -111,7 +116,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 			    .rememberMe()
 				.and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/home").and().exceptionHandling()
+				.logoutSuccessUrl("/logoutsucess").and().exceptionHandling()
 				.accessDeniedHandler(accessDeniedHandler);
 //				.accessDeniedPage("/accessdenied");
 				
