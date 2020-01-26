@@ -1242,6 +1242,8 @@ private String FormatadorData(Date data){
         	
         	indexUsuario = 0;	
         	
+        	 usu = IndicacaoUsuario(usuarios);
+        	
         }
         
 		
@@ -1266,30 +1268,33 @@ private String FormatadorData(Date data){
 				return us;
 			}else {
 				
+				
+				
+				
 				indexUsuario++;
-				Usuario uss = usuarios2.get(indexUsuario);
+				PegarIndicacao();
 				
-				if(!uss.getIndicacoes().isEmpty()){
-					
-					carrinhobean.SetarUsuarioIndicaSessao(uss);
-					
-					 indexUsuario++;
-					 		
-					 
-					return uss;
-				}else {
-					
-					 indexUsuario++;
-					IndicacaoUsuario(usuarios2);
-				}
+//				Usuario uss = usuarios2.get(indexUsuario);
+//				
+//				if(!uss.getIndicacoes().isEmpty()){
+//					
+//					carrinhobean.SetarUsuarioIndicaSessao(uss);
+//					
+//					 indexUsuario++;
+//					 		
+//					 
+//					return uss;
+//				}else {
+//					
+//					 indexUsuario++;
+//					IndicacaoUsuario(usuarios2);
+//				}
 				
-				
+				return null;
 			}
 			
 //		}
-		
-		
-		return null;
+
 	}
 
 //        

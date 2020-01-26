@@ -143,7 +143,7 @@
         
 <!--         <div id="notificacao" class="col-lg-4" th:hidden="${mostrar}"> -->
         <div th:if="${usuarioIndica}" id="notificacao" class="col-md-3 pull-right" >
-          <div class="box box-danger box-solid">
+          <div class="box box-aqua box-solid">
             <div class="box-header">
               <h5 class="box-title" th:text="${usuarioIndica.nome}" >Indicação</h5>
 
@@ -154,8 +154,8 @@
 					</button>
 				</div>
 
-			<img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" src="" class="img-circle img-md" alt="User Image" /> 
-          <img th:unless="${usuarioIndica.foto}" th:src="@{/img/usuario/avatar_uso.jpg}" src="" class="img-circle img-md" alt="User Image" /> 
+			<img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" src="" class="img-circle img-sm" alt="User Image" /> 
+          <img th:unless="${usuarioIndica.foto}" th:src="@{/img/usuario/avatar_uso.jpg}" src="" class="img-circle img-sm" alt="User Image" /> 
          
       
          
