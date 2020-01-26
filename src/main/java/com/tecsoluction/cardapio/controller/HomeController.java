@@ -515,7 +515,7 @@ public class HomeController {
     }
     
     
-    @RequestMapping(value = "/logout",method = RequestMethod.GET )
+    @RequestMapping(value = "/logout",method = RequestMethod.POST )
     public void logout(Mode model, HttpServletRequest request,HttpServletResponse response){
         request.getSession(true).invalidate();
 //        ModelAndView home = new ModelAndView("/public/home");

@@ -145,7 +145,7 @@
         <div th:if="${usuarioIndica}" id="notificacao" class="col-md-3 pull-right" >
           <div class="box box-primary box-solid">
             <div class="box-header">
-              <h5 class="box-title" th:text="${usuarioIndica.nome}" >Indicação</h5>
+              <h6 class="box-title" th:text="${usuarioIndica.nome}" >Indicação</h6>
 
 				<div class="box-tools pull-right">
 					<button type="button" class="btn btn-box-tool"
@@ -160,7 +160,7 @@
       
          
          
-           <h5  class="widget-user-username"  >Indicação</h5>
+           <h5  class="widget-user-username"  >Indica</h5>
 <!--            <h5 th:unless="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioAtt.nome}" >Nadia Carmichael</h5> -->
            
             </div>
@@ -198,7 +198,7 @@ $(function(){
         	   $('#overlayy').show();
         	$('#notificacao').fadeOut();
          
-        }, 7000);
+        }, 5000);
         
         $('#overlayy').hide();
     });
@@ -843,7 +843,7 @@ $(function(){
         	   $('#overlayy').show();
         	$('#notificacao').fadeOut();
          
-        }, 7000);
+        }, 5000);
         
         $('#overlayy').hide();
     });
