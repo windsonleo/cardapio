@@ -929,28 +929,39 @@
 <!--   </script>     -->
 
 
+<!-- <script type="text/javascript"> -->
+
+<!-- // $(function() { -->
+<!-- // 	   setTime(); -->
+	   
+<!-- // 	      $('#overlayy').hide(); -->
+<!-- // 	      $('#notificacao').show(); -->
+	      
+<!-- // 	   function setTime() { -->
+<!-- // 	     // var date = new Date().getTime(); -->
+	      
+<!-- // 	      setTimeout(setTime, 7000); -->
+	      
+<!-- // 	      $('#overlayy').show(); -->
+<!-- // 	      $('#notificacao').hide(); -->
+<!-- // 	   } -->
+	   
+
+<!-- // 	 }); -->
+
+
+<!-- </script> -->
+
 <script type="text/javascript">
+$(function(){
+    $("#notificacao").fadeIn(700, function(){
+        window.setTimeout(function(){
+            $('#notificacao').fadeOut();
+        }, 7000);
+    });
+});
 
-$(function() {
-	   setTime();
-	   
-	      $('#overlayy').hide();
-	      $('#notificacao').show();
-	      
-	   function setTime() {
-	     // var date = new Date().getTime();
-	      
-	      setTimeout(setTime, 7000);
-	      
-	      $('#overlayy').show();
-	      $('#notificacao').hide();
-	   }
-	   
-
-	 });
-
-
-</script>
+</script> 
 
 </body>
 			

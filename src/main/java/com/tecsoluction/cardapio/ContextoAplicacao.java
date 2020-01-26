@@ -196,7 +196,8 @@ public class ContextoAplicacao {
         usuario = new Usuario();
         UUID idf = UUID.fromString("4b71a569-c0bd-41a2-bffe-35e39e1a875a");
         usuario = userService.findOne(idf);
-        	
+        usuario.setDataultimoAcesso(new Date());	
+        usuario.setOnline(true);
         	
         } else {
         	
