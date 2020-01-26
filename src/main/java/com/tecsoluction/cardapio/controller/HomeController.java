@@ -1198,7 +1198,7 @@ private String FormatadorData(Date data){
         
       //  acessoubanco = true;
         
-        if(indexUsuario < index){
+        if(indexUsuario <=  index){
         
         usu = IndicacaoUsuario(usuarios);
        
@@ -1229,6 +1229,26 @@ private String FormatadorData(Date data){
 				 		
 				 
 				return us;
+			}else {
+				
+				indexUsuario++;
+				Usuario uss = usuarios2.get(indexUsuario);
+				
+				if(!uss.getIndicacoes().isEmpty()){
+					
+					carrinhobean.SetarUsuarioIndicaSessao(uss);
+					
+					 indexUsuario++;
+					 		
+					 
+					return us;
+				}else {
+					
+					 indexUsuario++;
+					IndicacaoUsuario(usuarios2);
+				}
+				
+				
 			}
 			
 //		}
