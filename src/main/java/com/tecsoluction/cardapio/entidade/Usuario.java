@@ -146,6 +146,20 @@ public class Usuario  extends BaseEntity implements Serializable {
     	this.getIndicacoes().remove(not);
     	
     }
+    
+    public void addAtividade(Atividade not){
+    	
+    	
+    	this.getAtividades().add(not);
+    	
+    }
+
+
+    public void removeAtividade(Atividade not){
+    	
+    	this.getAtividades().remove(not);
+    	
+    }
 	
 	    
 	    
