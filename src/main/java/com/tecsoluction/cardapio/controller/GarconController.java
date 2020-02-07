@@ -37,6 +37,8 @@ import com.tecsoluction.cardapio.servico.GarconServicoImpl;
 public class GarconController extends AbstractController<Garcon> {
 
 	private static final Logger logger = LoggerFactory.getLogger(GarconController.class);
+	
+	
 	 @Autowired
 	private final GarconServicoImpl GarconService;
 	 
@@ -77,6 +79,10 @@ public class GarconController extends AbstractController<Garcon> {
 	@ModelAttribute
 	public void addAttributes(Model model) {
 
+		
+		
+		logger.info("Welcome add atribute Garcon Controller !" + model);
+		
 		
 		garcon = new Garcon();
 		

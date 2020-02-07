@@ -89,6 +89,8 @@ public class PromocaoController extends AbstractController<Promocao> {
 
 	@ModelAttribute
 	public void addAttributes(Model model) {
+		
+		logger.info("Welcome add atribute Promocao Controller !" + model);
 
 		// List<Role> roleList = rdao.getAll();
 		// List<Usuario> usuarioList = dao.getAll();

@@ -100,6 +100,10 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 
 	@ModelAttribute
 	public void addAttributes(Model model) {
+		
+		
+		logger.info("Welcome add atribute ProdutoComposto Controller !" + model);
+
 
 		List<Categoria> categoriaList = categoriaService.findAll();
 		produtoList = getservice().findAll();

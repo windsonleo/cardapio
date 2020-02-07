@@ -11,6 +11,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tecsoluction.cardapio.controller.HomeController;
 import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Configuracao;
@@ -47,6 +50,8 @@ public class ContextoAplicacao {
 	 @Autowired
 	 private
 	 UsuarioServicoImpl userService;
+	 
+	 private static final Logger logger = LoggerFactory.getLogger(ContextoAplicacao.class);
 	 
 	 @Autowired
 	    private CategoriaServicoImpl categoriaService;
@@ -522,7 +527,9 @@ public class ContextoAplicacao {
 	
 	public boolean VerificaHorarioFechamento(Configuracao configuracao) {
       
-	boolean	aberto = false;
+	
+		boolean aberto = false;
+		
 		
 		SimpleDateFormat sdfConvert = new SimpleDateFormat("HH:mm:ss");
         Date horaabertura = configuracao.getHoraabertura();
@@ -531,27 +538,53 @@ public class ContextoAplicacao {
         
         Date datafor = null;
         
+        Date horaabre = null;
+        
+        Date horafecha=null;
+        
         
        try {
     	   datafor = sdfConvert.parse(sdfConvert.format(horaagora));
+    	   horaabre = sdfConvert.parse(sdfConvert.format(horaabertura));
+    	   horafecha = sdfConvert.parse(sdfConvert.format(horafechamento));
+    	   
 	} catch (ParseException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+ 	   logger.info("erro conversão data hora Contexto /Fechado! data.",e);
+
 	}
        
        
-       if((datafor.after(horafechamento) &&(datafor.before(horaabertura)))){
+       if( (datafor.after(horafecha)) && (datafor.before(horaabre))){
     	   
-    	   aberto = false;
+    	   System.out.print("Fechado! " + datafor);
+    	   
+    	   logger.info("Welcome Contexto /Fechado! data.", datafor);
+    	   
+       }else {
+    	   
+    	   if((datafor.before(horafecha)) && (datafor.after(horaabre))){
+        	   
+        	   aberto = true;
+        	   
+        	   System.out.print("Aberto! " + datafor);
+        	   
+        	   logger.info("Welcome Contexto /Aberto! data.", datafor);
+        	   
+           }else {
+        	   
+        	   
+        	  
+        	   
+           }
+    	   
+    	   
     	   
        }
        
        
-       if((datafor.before(horafechamento) &&(datafor.after(horaabertura)))){
-    	   
-    	   aberto = true;
-    	   
-       }
+      
       
 
 //        if ((datafor.getTime() > horaabertura.getTime()) && (datafor.getTime() < horafechamento.getTime())){

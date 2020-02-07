@@ -80,6 +80,10 @@ public class ProdutoController extends AbstractController<Produto> {
 
     @ModelAttribute
     public void addAttributes(Model model) {
+    	
+    	
+		logger.info("Welcome add atribute Produto Controller !" + model);
+
 
         UnidadeMedida[] umList = UnidadeMedida.values();
 

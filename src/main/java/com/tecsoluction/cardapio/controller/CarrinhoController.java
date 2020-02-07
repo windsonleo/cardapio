@@ -94,6 +94,9 @@ public class CarrinhoController  {
 
 	@ModelAttribute
 	public void addAttributes(Model model) {
+		
+		logger.info("Welcome add atribute Carrinho Controller !" + model);
+
 
 		// List<Role> roleList = rdao.getAll();
 		// List<Usuario> usuarioList = dao.getAll();

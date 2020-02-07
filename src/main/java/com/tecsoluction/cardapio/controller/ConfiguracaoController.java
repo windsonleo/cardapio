@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,10 @@ import com.tecsoluction.cardapio.servico.ConfiguracaoServicoImpl;
 @Controller
 @RequestMapping(value = "configuracao/")
 public class ConfiguracaoController extends AbstractController<Configuracao>    {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ConfiguracaoController.class);
+	
+	
 	 @Autowired
 	private 
 	ConfiguracaoServicoImpl confService;
@@ -92,6 +98,7 @@ public class ConfiguracaoController extends AbstractController<Configuracao>    
 
     @ModelAttribute
     public void addAttributes(Model model) {
+		logger.info("Welcome add atribute Configuracao Controller !" + model);
 
     	
 //    	List<Produto> sugestaoList = produtoService.findAll();

@@ -103,6 +103,9 @@ public class MesaController extends AbstractController<Mesa> {
 
 		// List<Role> roleList = rdao.getAll();
 		// List<Usuario> usuarioList = dao.getAll();
+		
+		logger.info("Welcome add atribute Mesa Controller !" + model);
+
 		////
 		 StatusMesa[] status = StatusMesa.values();
 		 mesa = new Mesa();

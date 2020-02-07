@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,11 @@ import com.tecsoluction.cardapio.servico.PromocaoServicoImpl;
 @Controller
 @RequestMapping(value = "categoria/")
 public class CategoriaController extends AbstractController<Categoria> {
+	
+	
+	private static final Logger logger = LoggerFactory.getLogger(CategoriaController.class);
+	
+	
 	 @Autowired
     private CategoriaServicoImpl categoriaService;
 	 
@@ -76,6 +83,10 @@ public class CategoriaController extends AbstractController<Categoria> {
 		
 		
       //  List<Categoria> categoriaList = getservice().getCategoriaPai();
+    	
+    	
+		logger.info("Welcome add atribute Categoria Controller !" + model);
+
         
         categoria = new Categoria();
         

@@ -65,17 +65,17 @@ public class HomeController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
     
 	@Autowired
-	private  UsuarioServicoImpl usuarioService = new UsuarioServicoImpl();
+	private  UsuarioServicoImpl usuarioService;
 	
 	@Autowired
-	private  CategoriaServicoImpl CategoriaService = new CategoriaServicoImpl();
+	private  CategoriaServicoImpl CategoriaService;
 	
 	@Autowired
-	private PromocaoServicoImpl PromocaoService = new PromocaoServicoImpl();
+	private PromocaoServicoImpl PromocaoService;
 	
 	
 	@Autowired
-	private ProdutoServicoImpl ProdutoService = new ProdutoServicoImpl();
+	private ProdutoServicoImpl ProdutoService;
 	
 	
 	@Autowired
@@ -83,7 +83,7 @@ public class HomeController {
 	
 	
 	@Autowired
-	private RoleServicoImpl RoleService = new RoleServicoImpl();
+	private RoleServicoImpl RoleService;
 	
     
     private List<Usuario> usuarios = new ArrayList<Usuario>();
@@ -366,7 +366,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView Homem(Locale locale, Model model) {
        
-    	logger.info("Welcome login /! The client locale is {}.", locale);
+    	logger.info("Welcome HOMEE /! The client locale is {}.", locale);
 
         ModelAndView home = new ModelAndView("/public/home");
         
@@ -474,7 +474,7 @@ public class HomeController {
     @RequestMapping(value = "/erro", method = RequestMethod.GET)
     public ModelAndView Error(Locale locale, Model model) {
        
-    	logger.info("Welcome Error ! The client locale is {}.", locale);
+    	logger.info("Welcome Erro ! The client locale is {}.", locale);
 
         ModelAndView home = new ModelAndView("/public/error/erro");
         
@@ -501,7 +501,7 @@ public class HomeController {
     @RequestMapping(value = "/esquecisenha", method = RequestMethod.GET)
     public ModelAndView Cadastros(Locale locale, Model model) {
        
-    	logger.info("Welcome cadastros ! The client locale is {}.", locale);
+    	logger.info("Welcome esquecisenha ! The client locale is {}.", locale);
 
         ModelAndView home = new ModelAndView("/public/esquecisenha");
 
@@ -515,9 +515,13 @@ public class HomeController {
     }
     
     
-    @RequestMapping(value = "/logout",method = RequestMethod.POST )
-    public void logout(Mode model, HttpServletRequest request,HttpServletResponse response){
-        request.getSession(true).invalidate();
+    @RequestMapping(value = "/logout",method = RequestMethod.GET )
+    public ModelAndView logout(Mode model, HttpServletRequest request,HttpServletResponse response,HttpSession session){
+      
+		logger.info("Welcome LOGOUT  HOME Controller !" + model);
+
+    	
+  //  	request.getSession(true).invalidate();
 //        ModelAndView home = new ModelAndView("/public/home");
         
 //       Object obj = context.getAttribute("usuarioAtt");
@@ -535,12 +539,18 @@ public class HomeController {
        usuarioService.edit(usuario);
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        
         if (authentication != null)
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         
         System.out.println("logout user page shown--------------------");
+        
+        ModelAndView home = new ModelAndView("/public/home");
+        
+        session.invalidate();
+
        
-//        return home;       
+        return home;       
    }
     
     

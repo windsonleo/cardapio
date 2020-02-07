@@ -31,8 +31,8 @@
     function renderButton() {
       gapi.signin2.render('my-signin2', {
         'scope': 'profile email',
-        'width': 300,
-        'height': 40,
+        'width': 320,
+        'height': 32,
         'longtitle': false,
         'theme': 'dark',
         'onsuccess': onSuccess,
@@ -297,6 +297,14 @@ function onSignIn(googleUser) {
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 
+
+function mostrar() {
+
+	document.getElementById('formlog').style.display = "block";
+	document.getElementById('btlog').hidden = "true";
+	
+	}
+
 </script>
 	
 	<div class="login-box">
@@ -309,6 +317,8 @@ function onSignIn(googleUser) {
     
         <div id="fotho" class="img-circle"></div>
 
+
+<div id="formlog" style="display: none;">
     <form id="loggin" method="post" th:object="${usuario}" th:action="@{/login}" role="form">
       <div class="form-group has-feedback">
         <input type="text" id="email" name="email"  class="form-control" placeholder="Email"/>
@@ -327,19 +337,27 @@ function onSignIn(googleUser) {
           </div>
         </div>
         <div class="col-xs-5">
-          <input type="submit" class="btn btn-danger btn-raised btn-block btn-flat"></input>
+          <input type="submit" class="btn btn-danger btn-raised btn-block btn-flat" value="Entrar"></input>
         </div>
         
       </div>
     </form>
+   
+    </div>
     
     <div id="status">
 </div>
 
-    <div class="social-auth-links">
+    <div class="social-auth-links text-center">
       <p>- OU -</p>
       
-           <p>     <div class="fb-login-button" data-width="300px" data-size="large" data-button-type="login_with"
+            <p  >  <div onclick="mostrar()" id="btlog" hidden="false"> <a href="#" class="btn btn-block btn-social btn-foursquare"><i class="fa fa-foursquare"></i> Acessar Com Login</a></div>   </p>
+      
+      
+      <p>  <div> <a th:href="@{/home}" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-user-plus"></i> Acessar Sem Cadastro</a></div>   </p>
+      
+      
+           <p>     <div class="fb-login-button" data-width="320" data-size="large" data-button-type="login_with"
      data-auto-logout-link="true" data-use-continue-as="true" data-onlogin="checkLoginState()" data-scope="public_profile,email" ></div>
       
 		</p>
@@ -349,7 +367,6 @@ function onSignIn(googleUser) {
 			
 			<p>	<div id="my-signin2"></div> </p>
 			
-			      <a th:href="@{/home}" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-user-plus"></i> Acessar Sem Cadastro</a>
       
 <!--               <fb:login-button  -->
 <!--   scope="public_profile,email" -->
