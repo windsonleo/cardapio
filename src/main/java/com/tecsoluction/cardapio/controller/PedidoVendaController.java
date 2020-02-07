@@ -192,6 +192,38 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
     }
     
     
+    @RequestMapping(value = "/monitor", method = RequestMethod.GET)
+    public ModelAndView MonitorCozinha(HttpServletRequest request) {
+
+//        UUID idf = UUID.fromString(request.getParameter("id"));
+
+//        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+        
+        ModelAndView exibircat = new ModelAndView("/private/pedidovenda/monitor");
+
+        pedidos = getservice().findAll();
+        
+        if(carrinho == null){
+        	carrinho = new Carrinho();
+        	UUID uuid = UUID.randomUUID();
+ 			carrinho.setId(uuid);
+      
+            }else {
+            	
+//            	UUID uuid = UUID.randomUUID();
+//     			carrinho.setId(uuid);
+            	
+            	
+            }
+        
+        
+        exibircat.addObject("carrinho", carrinhobean.getCarrinho());
+        exibircat.addObject("pedidos", pedidos);
+
+        return exibircat;
+    }
+    
+    
     @RequestMapping(value = "/item/pronto", method = RequestMethod.GET)
     public ModelAndView ExibirCozinhaPRONTO(HttpServletRequest request) {
 
