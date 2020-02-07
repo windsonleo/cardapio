@@ -82,8 +82,8 @@
        <div class="row">
         <div th:if="${usuarioIndica}" id="notificacao" class="col-md-6" >
           <div class="box box-primary box-solid">
-            <div class="box-header">
-              <h6 class="box-title" th:text="${usuarioIndica.nome}" >Indicação</h6>
+            <div class="box-header no-padding">
+              <h6 class="box-title text-center " th:text="${usuarioIndica.nome}" >Indicação</h6>
 
 				<div class="box-tools pull-right">
 					<button type="button" class="btn btn-box-tool"
@@ -92,13 +92,13 @@
 					</button>
 				</div>
 
-			<img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" src="" class="img-circle img-sm" alt="User Image" /> 
-          <img th:unless="${usuarioIndica.foto}" th:src="@{/img/usuario/avatar_uso.jpg}" src="" class="img-circle img-sm" alt="User Image" /> 
+			<img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" src="" class="img-circle img-md" alt="User Image" /> 
+          <img th:unless="${usuarioIndica.foto}" th:src="@{/img/usuario/avatar_uso.jpg}" src="" class="img-circle img-md" alt="User Image" /> 
          
       
          
          
-           <h5  class="widget-user-username"  >Indica</h5>
+           <h5  class="widget-user-username text-center "  >Indica</h5>
 <!--            <h5 th:unless="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioAtt.nome}" >Nadia Carmichael</h5> -->
            
             </div>
@@ -112,8 +112,8 @@
           <img th:if="${produtoIndica.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produtoIndica.foto})}" src="" class="img-circle img-sm" alt="User Image" /> 
  		<img th:unless="${produtoIndica.foto}" th:src="@{/img/produto/vazio.jpg}" class="img-circle img-sm" src=""  alt="User Image" /> 
  			
- 			<h5 th:if="${produtoIndica.nome}" class="widget-user-username" th:text="${produtoIndica.nome}" >Nadia Carmichael</h5>
- 			 <h5 th:unless="${produtoIndica.nome}" class="widget-user-username" >Nadia Carmichael</h5>
+ 			<h5 th:if="${produtoIndica.nome}" class="widget-user-username text-center " th:text="${produtoIndica.nome}" >Nadia Carmichael</h5>
+ 			 <h5 th:unless="${produtoIndica.nome}" class="widget-user-username text-center " >Nadia Carmichael</h5>
  			
  			<a th:if="${produtoIndica.id}" th:href="@{/produto/perfil(id=${produtoIndica.id})}" href="#"> Clique Para Ver</a>
  			<a th:unless="${produtoIndica.id}" href="#"> Clique Para Ver</a>
@@ -216,75 +216,8 @@ $(function(){
        </div>
        </div>
        
-       <div class="row">
        
-      	 <div class="col-md-10">
-          <div class="box box-solid">
-<!--             <div class="box-header with-border"> -->
-<!--               <h3 class="box-title"></h3> -->
-<!--             </div> -->
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-                </ol>
-                <div class="carousel-inner">
-                  <div class="item active">
-                    <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner1})}" alt="First slide" />
-
-                    <div class="carousel-caption">
-                      Compromisso
-                    </div>
-                  </div>
-                  <div class="item">
-                      <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner2})}" alt="Second slide" />
-
-                    <div class="carousel-caption">
-                      Dedicação
-                    </div>
-                  </div>
-                  <div class="item">
-                        <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner3})}" alt="Third slide" />
-
-                    <div class="carousel-caption">
-                      Comprometimento
-                    </div>
-                  </div>
-                </div>
-                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                  <span class="fa fa-angle-left"></span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                  <span class="fa fa-angle-right"></span>
-                </a>
-              </div>
-              
-            
-              
-              
-            </div>
-            
-
-
-          
-          
-        </div>
-        
-        </div>
-
-                
-                          <div class="clearfix"></div>
-                
-        
-        </div>
-        
-        
-<!--           -->
-       
-        <div class="row">
+               <div class="row">
         
     
          <div class="row mb-24" >
@@ -388,6 +321,76 @@ $(function(){
         </div>
         
         </div>
+       
+       <div class="row">
+       
+      	 <div class="col-md-10">
+          <div class="box box-solid">
+<!--             <div class="box-header with-border"> -->
+<!--               <h3 class="box-title"></h3> -->
+<!--             </div> -->
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner1})}" alt="First slide" />
+
+                    <div class="carousel-caption">
+                      Compromisso
+                    </div>
+                  </div>
+                  <div class="item">
+                      <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner2})}" alt="Second slide" />
+
+                    <div class="carousel-caption">
+                      Dedicação
+                    </div>
+                  </div>
+                  <div class="item">
+                        <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner3})}" alt="Third slide" />
+
+                    <div class="carousel-caption">
+                      Comprometimento
+                    </div>
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                  <span class="fa fa-angle-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                  <span class="fa fa-angle-right"></span>
+                </a>
+              </div>
+              
+            
+              
+              
+            </div>
+            
+
+
+          
+          
+        </div>
+        
+        </div>
+
+                
+                          <div class="clearfix"></div>
+                
+        
+        </div>
+        
+        
+<!--           -->
+       
+
         
 <!--                <div class="clearfix"></div> -->
         
