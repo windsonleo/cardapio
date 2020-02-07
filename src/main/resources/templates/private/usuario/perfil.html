@@ -207,10 +207,10 @@
                   <li>
                     <i class="fa fa-camera bg-purple"></i>
 
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+                    <div class="timeline-item" th:each="atv: ${usuario.atividades}">
+                      <span class="time" th:text="${#dates.format(atv.data,'dd/MM/yyyy')}"><i class="fa fa-clock-o"></i> 2 days ago</span>
 
-                      <h3 class="timeline-header"><a href="#" th:utext="${usuario.nome}" >Mina Lee</a> Cadastrou-se no Cardapio</h3>
+                      <h3 class="timeline-header" th:utext="${atv.nome}"><a href="#" th:utext="${usuario.nome}" >Mina Lee</a> Cadastrou-se no Cardapio</h3>
 
 <!--                       <div class="timeline-body"> -->
 <!--                         <img src="http://placehold.it/150x100" alt="..." class="margin"/> -->

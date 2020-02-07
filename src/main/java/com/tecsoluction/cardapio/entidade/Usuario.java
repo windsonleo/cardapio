@@ -128,7 +128,7 @@ public class Usuario  extends BaseEntity implements Serializable {
 		
 		indicacoes = new HashSet<Produto>();
 		datacadastro = new Date();
-		
+		atividades = new HashSet<Atividade>();
 		
 	}
 	
