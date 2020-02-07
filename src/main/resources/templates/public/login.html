@@ -351,7 +351,7 @@ function mostrar() {
     <div class="social-auth-links text-center">
       <p>- OU -</p>
       
-            <p  >  <div onclick="mostrar()" id="btlog" hidden="false"> <a href="#" class="btn btn-block btn-social btn-foursquare"><i class="fa fa-foursquare"></i> Acessar Com Login</a></div>   </p>
+            <p  >  <div onclick="mostrar()" id="btlog"> <a href="#" class="btn btn-block btn-social btn-foursquare"><i class="fa fa-foursquare"></i> Acessar Com Login</a></div>   </p>
       
       
       <p>  <div> <a th:href="@{/home}" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-user-plus"></i> Acessar Sem Cadastro</a></div>   </p>
@@ -482,6 +482,15 @@ function mostrar() {
       
 
                            <div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+                         <script  type="text/javascript">
+                         $(function(){
+
+                                 
+                                 $('.main-footer').hide();
+                        
+                         });
+                        </script>    
+                           
      
       
   </body>

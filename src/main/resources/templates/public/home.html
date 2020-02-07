@@ -78,71 +78,7 @@
 <!--         </div> -->
 <!--         /.col -->
 <!--       </div> -->
-    
-       <div class="col-md-12">
-       
-       <div class="row">
-       
-        <div sec:authorize="hasAnyRole('ROLE_GARCON','ROLE_ADM','ROLE_SUPER')" >
-       
-       <div class="col-lg-3 col-xs-6">
-          <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="ion ion-ios-photos-outline"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Salão</span>
-              <span class="info-box-number">90<small>%</small></span>
-<!--               <a th:href="@{/mesa/salao}">salao</a> -->
-              <a th:href="@{/mesa/salao}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-              
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        
-        </div>
-        
-        
-        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" >
-        
-               <div class="col-lg-3 col-xs-6">
-          <div class="info-box">
-            <span class="info-box-icon bg-purple"><i class="ion ion-ios-nutrition-outline" ></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Cozinha</span>
-              <span class="info-box-number">50<small>%</small></span>
-<!--               <a th:href="@{/pedidovenda/cozinha}">cozinha</a> -->
-              <a th:href="@{/pedidovenda/cozinha}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        </div>
-        
-        
-                <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >
-        
-               <div class="col-lg-3 col-xs-6">
-          <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline" ></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Usuarios</span>
-              <span class="info-box-number">50<small>%</small></span>
-<!--               <a th:href="@{/pedidovenda/cozinha}">cozinha</a> -->
-              <a th:href="@{/usuario/allonline}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        </div>
-        
-<!--         <div id="notificacao" class="col-lg-4" th:hidden="${mostrar}"> -->
-      
        <div class="row">
         <div th:if="${usuarioIndica}" id="notificacao" class="col-md-3 pull-right" >
           <div class="box box-primary box-solid">
@@ -210,6 +146,72 @@ $(function(){
           
         </div>
 </div>
+    
+       <div class="col-md-12">
+       
+       <div class="row">
+       
+        <div sec:authorize="hasAnyRole('ROLE_GARCON','ROLE_ADM','ROLE_SUPER')" >
+       
+       <div class="col-lg-3 col-xs-6">
+          <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="ion ion-ios-photos-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Salão</span>
+              <span class="info-box-number">90<small>%</small></span>
+<!--               <a th:href="@{/mesa/salao}">salao</a> -->
+              <a th:href="@{/mesa/salao}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
+              
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        
+        </div>
+        
+        
+        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" >
+        
+               <div class="col-lg-3 col-xs-6">
+          <div class="info-box">
+            <span class="info-box-icon bg-purple"><i class="ion ion-ios-nutrition-outline" ></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Cozinha</span>
+              <span class="info-box-number">50<small>%</small></span>
+<!--               <a th:href="@{/pedidovenda/cozinha}">cozinha</a> -->
+              <a th:href="@{/pedidovenda/cozinha}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        </div>
+        
+        
+                <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >
+        
+               <div class="col-lg-3 col-xs-6">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline" ></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Usuarios</span>
+              <span class="info-box-number">50<small>%</small></span>
+<!--               <a th:href="@{/pedidovenda/cozinha}">cozinha</a> -->
+              <a th:href="@{/usuario/allonline}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        </div>
+        
+<!--         <div id="notificacao" class="col-lg-4" th:hidden="${mostrar}"> -->
+      
+
        
        </div>
        </div>
