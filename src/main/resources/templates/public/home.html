@@ -233,7 +233,19 @@ $(function(){
        
                <div class="row">
         
-    
+    <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Monitor</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            
          <div class="row mb-24" >
 <!--          <h4 class="page_header">Oferta Diária</h4> -->
         <div class="col-md-4" th:each="promocao: ${promocoesList}">
@@ -336,11 +348,15 @@ $(function(){
         
         </div>
         
+        </div>
+        </div>
+        
+        
          <br></br>
        
        <div class="row">
        
-      	 <div class="col-md-10">
+      	 <div class="col-md-12">
           <div class="box box-solid">
 <!--             <div class="box-header with-border"> -->
 <!--               <h3 class="box-title"></h3> -->

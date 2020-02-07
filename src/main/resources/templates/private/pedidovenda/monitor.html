@@ -94,7 +94,7 @@
             <div class="box-body">
               <ul class="products-list product-list-in-box" th:each="pedido : ${pedidos}">
                   <span class="product-title" th:text="|Pedido Id : ${pedido.id}|" >$1800</span>
-                  <span th:utext="${#dates.format(pedido.data,'dd/MM/yyyy')}">data</span>
+                  <span class="product-title" th:utext="${#dates.format(pedido.data,'dd/MM/yyyy')}">data</span>
                   
 <!--                   </span> -->
                 
@@ -133,7 +133,7 @@
                         
                            <span class="label bg-purple" th:text="${item.key.situacao}">$1800</span>
         			
-<!--                        <div class="btn-group pull-right"> -->
+                       <div class="btn-group pull-right">
 <!--                        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" > -->
 <!--                         <a th:href="@{/pedidovenda/item/mudarpronto(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-aqua btn-flat"><span >PRONTO</span></a> -->
 <!--                         <a th:href="@{/pedidovenda/item/mudarpreparacao(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-yellow btn-flat"><span>PREPARAR</span></a> -->
@@ -143,7 +143,9 @@
 <!--                         <a th:href="@{/pedidovenda/item/mudarentregar(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-green btn-flat"><span>ENTREGAR</span></a> -->
 <!--                       </div>  -->
                                           
-<!--                       </div>  -->
+                     <img th:src="@{/img/pronto.png}" alt="Product Image">
+                     
+                      </div> 
                       
                   </div>
                 </li>
