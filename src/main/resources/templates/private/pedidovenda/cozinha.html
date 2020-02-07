@@ -172,10 +172,8 @@
             <!-- /.box-header -->
             <div class="box-body">
               <ul class="products-list product-list-in-box" th:each="pedido : ${pedidos}">
-                  <span class="product-title" th:text="|Pedido Id : ${pedido.id}|" >$1800
-                  <span th:utext="${#dates.format(pedido.data,'dd/MM/yyyy hh:MM:ss')}"></span>
-                  
-                  </span>
+                  <span class="product-title" th:text="|Pedido Id : ${pedido.id}|" >$1800</span>
+                  <span th:utext="${#dates.format(pedido.data,'dd/MM/yyyy')}">data</span>
                 
                 <li class="item"  th:each="item: ${pedido.items}">
               
