@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tecsoluction.cardapio.entidade.Atividade;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.entidade.Role;
@@ -35,6 +36,7 @@ import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
 import com.tecsoluction.cardapio.servico.RoleServicoImpl;
 import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
+import com.tecsoluction.cardapio.util.OrigemAtividade;
 
 
 
@@ -275,7 +277,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 
         UUID idf = UUID.fromString(request.getParameter("id"));
         
-       
+     
 
        // ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
 
@@ -294,6 +296,10 @@ public class UsuarioController extends AbstractController<Usuario> {
         if(usuario != null){
         	
         	usuario.addIndicacao(cat);
+        	  Atividade atividade = CriarAtividadeIndicar(usuario,cat);
+        	  atividade.setUsuario(usuario);
+        	  usuario.addAtividade(atividade);
+        	
         	model.addAttribute("sucesso", sucesso);
         	model.addAttribute("categoria", cate);
         	
@@ -313,7 +319,22 @@ public class UsuarioController extends AbstractController<Usuario> {
     
     
     
-    @RequestMapping(value = "/lock", method = RequestMethod.GET)
+    private Atividade CriarAtividadeIndicar(Usuario usuario2, Produto cat) {
+		// TODO Auto-generated method stub
+    	
+    	Atividade atividade = new Atividade();
+    	atividade.setNome("Indicou");
+    	atividade.setOrigem(OrigemAtividade.INDICOU_PRODUTO);
+//    	atividade.setUsuario(usuario2);
+    	
+//    	usuario2.addAtividade(atividade);
+    	
+    	
+		return atividade;
+	}
+
+
+	@RequestMapping(value = "/lock", method = RequestMethod.GET)
     public ModelAndView lock(Locale locale, Model model, HttpServletRequest request) {
       
     	logger.info("Welcome LOCK! The client locale is {}.", locale);
