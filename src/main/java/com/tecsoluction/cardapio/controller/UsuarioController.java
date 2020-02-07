@@ -32,6 +32,7 @@ import com.tecsoluction.cardapio.entidade.Role;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.framework.AbstractEditor;
+import com.tecsoluction.cardapio.servico.AtividadeServicoImpl;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
 import com.tecsoluction.cardapio.servico.RoleServicoImpl;
@@ -60,7 +61,10 @@ public class UsuarioController extends AbstractController<Usuario> {
 	 @Autowired
 	    private final CategoriaServicoImpl categoriaService;
 	 
-		
+	 @Autowired
+	    private final AtividadeServicoImpl atividadeService;
+	 
+	 
 		@Autowired
 		private ServletContext context;
 	
@@ -74,12 +78,14 @@ public class UsuarioController extends AbstractController<Usuario> {
 	 
 	
 	@Autowired
-    public UsuarioController(RoleServicoImpl roleimpl,UsuarioServicoImpl usuimpl,ProdutoServicoImpl prod,CategoriaServicoImpl cate) {
+    public UsuarioController(RoleServicoImpl roleimpl,UsuarioServicoImpl usuimpl,ProdutoServicoImpl prod,CategoriaServicoImpl cate,
+    		AtividadeServicoImpl atvs) {
 		super("usuario");
 		this.roleservico = roleimpl;
 		this.ususervice = usuimpl;
 		this.produtoservico = prod;
 		this.categoriaService = cate;
+		this.atividadeService = atvs;
 		
 	}
 
@@ -270,6 +276,7 @@ public class UsuarioController extends AbstractController<Usuario> {
     @RequestMapping(value = "/indica", method = RequestMethod.GET)
     public ModelAndView IndicaProduto(HttpServletRequest request, Model model) {
     	
+    	 Atividade atividade = null;
     	
     	String sucesso = "Produto Indicado Com Sucesso !";
     	
@@ -296,8 +303,10 @@ public class UsuarioController extends AbstractController<Usuario> {
         if(usuario != null){
         	
         	usuario.addIndicacao(cat);
-        	  Atividade atividade = CriarAtividadeIndicar(usuario,cat);
+        	   atividade = CriarAtividadeIndicar(usuario,cat);
         	  atividade.setUsuario(usuario);
+        	  
+        	 
         	  usuario.addAtividade(atividade);
         	
         	model.addAttribute("sucesso", sucesso);
@@ -309,6 +318,8 @@ public class UsuarioController extends AbstractController<Usuario> {
         	model.addAttribute("categoria", cate);
         	
         }
+        
+        atividadeService.save(atividade);
         
         getservice().edit(usuario);
 
