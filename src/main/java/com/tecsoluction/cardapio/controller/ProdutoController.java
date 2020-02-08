@@ -326,7 +326,7 @@ public class ProdutoController extends AbstractController<Produto> {
         
         
 
-        return new ModelAndView("redirect:/produto/avaliar?id=" + cat.getId());
+        return new ModelAndView("redirect:/categoria/exibir?id=" + cat.getCategoria().getId());
     }  
     
 

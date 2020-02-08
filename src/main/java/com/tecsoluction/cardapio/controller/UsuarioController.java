@@ -334,7 +334,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 		// TODO Auto-generated method stub
     	
     	Atividade atividade = new Atividade();
-    	atividade.setNome("Indicou");
+    	atividade.setNome("Indicou " + cat.getNome());
     	atividade.setOrigem(OrigemAtividade.INDICOU_PRODUTO);
 //    	atividade.setUsuario(usuario2);
     	
