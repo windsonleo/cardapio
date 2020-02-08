@@ -305,13 +305,16 @@
                 
 <!--                 <li> <a href="#"> Recomendar <span class="pull-right badge bg-green"> <div class="fb-like pull-right" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li> -->
            
-                           <li><a th:href="@{/produto/perfil(id=${produto.id})}"  rel="tooltip" title="Visualizar Perfil do Produto">Perfil <span class="pull-right badge bg-purple" ><i class="fa fa-building-o"></i></span></a></li>
            
                 <li><a th:href="@{/usuario/indica(id=${produto.id})}" rel="tooltip" title="Indicar para Cliente">Indicar <span class="pull-right badge bg-green" ><i class="fa fa-hand-o-right"></i></span></a></li>
                 <li><a th:href="@{/carrinho/adicionar(id=${produto.id})}" rel="tooltip" title="Add para Carrinho">Adicionar ao Carrinho <span class="pull-right badge bg-green" ><i class="fa fa-cart-plus"></i></span></a></li>
-             
-             
+               <li><a th:href="@{/produto/perfil(id=${produto.id})}"  rel="tooltip" title="Visualizar Perfil do Produto">Perfil <span class="pull-right badge bg-purple" ><i class="fa fa-building-o"></i></span></a></li>
+ 
               <li><a href="#" data-toggle="modal" class="product-title" th:attr="data-target='#myAtividade' + ${produto.codebar}" >Detalhes <span class="pull-right badge bg-red" ><i class="fa fa-info-circle"></i></span></a></li>
+              
+            <li><a  th:href="@{/produto/avaliar(id=${produto.id})}"  rel="tooltip" title="Visualizar Perfil do Produto">Avaliar <span class="pull-right badge bg-yellow" ><i class="fa fa-building-o"></i></span></a></li>
+              
+             
               </ul>
             </div>
             

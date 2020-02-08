@@ -81,8 +81,8 @@
        
        
 			<div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Monitor</h3>
+            <div class="box-header bg-black with-border"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border'">
+                          <h3 class="box-title">Monitor</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -94,7 +94,7 @@
             <div class="box-body">
               <ul class="products-list product-list-in-box" th:each="pedido : ${pedidos}">
                   <span class="product-title" th:text="|Pedido Id : ${pedido.id}|" >$1800</span>
-                  <span class="product-title text-center" th:utext="| Data : ${#dates.format(pedido.data,'dd/MM/yyyy hh:MM:ss')} |">data</span>
+                <p>  <span class="product-title text-center" th:utext="| Data : ${#dates.format(pedido.data,'dd/MM/yyyy hh:MM:ss')} |">data</span> </p>
                   
 <!--                   </span> -->
                 
