@@ -47,8 +47,8 @@
               <div class="pull-right">
                
 
-         		 <a href="#" th:if="${usuarioAtt.online}"><i class="fa fa-circle text-success"></i> Online</a>
-      			 <a href="#" th:unless="${usuarioAtt.online}"><i class="fa fa-circle text-danger"></i> Offline</a>
+         		 <a href="#" th:if="${usuario.online}"><i class="fa fa-circle text-success"></i> Online</a>
+      			 <a href="#" th:unless="${usuario.online}"><i class="fa fa-circle text-danger"></i> Offline</a>
       			</div>
       			
               <img class="profile-user-img img-responsive img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}" alt="User profile picture"/>
@@ -235,7 +235,7 @@
                     <div class="timeline-item" >
                       <span class="time" th:text="${#dates.format(atv.data,'dd/MM/yyyy hh:MM:ss')}"><i class="fa fa-clock-o"></i> 2 days ago</span>
 
-                      <h3 class="timeline-header" th:utext="${atv.nome}"><a href="#" th:utext="${usuario.nome}" >Mina Lee</a> Cadastrou-se no Cardapio</h3>
+                      <h3 class="timeline-header" th:utext="${atv.nome}"> <a th:href="@{}" th:utext="${usuario.nome}" >Mina Lee</a> Cadastrou-se no Cardapio</h3>
 
 <!--                       <div class="timeline-body"> -->
 <!--                         <img src="http://placehold.it/150x100" alt="..." class="margin"/> -->
