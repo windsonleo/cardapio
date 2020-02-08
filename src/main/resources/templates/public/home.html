@@ -212,6 +212,7 @@ $(function(){
         
 <!--         <div id="notificacao" class="col-lg-4" th:hidden="${mostrar}"> -->
       
+      <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER','ROLE_GARCON')" >
                <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
             <span class="info-box-icon bg-black"><i class="ion ion-ios-people-outline" ></i></span>
@@ -229,6 +230,7 @@ $(function(){
        
        </div>
        </div>
+       </div>
        
        
                <div class="">
@@ -238,9 +240,9 @@ $(function(){
               <h3 class="box-title">Promoções</h3>
 
               <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
                 </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
               </div>
             </div>
             <!-- /.box-header -->
