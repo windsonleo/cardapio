@@ -209,6 +209,7 @@
                     <i class="fa fa-camera bg-purple"></i>
 
                     <div class="timeline-item">
+                      <span class="time" th:text="${#dates.format(usuario.datacadastro,'dd/MM/yyyy hh:MM:ss')}"><i class="fa fa-clock-o"></i> 2 days ago</span>
 
                       <h3 class="timeline-header"><a href="#" th:utext="${usuario.nome}" >Mina Lee</a> Cadastrou-se no Cardapio</h3>
 
@@ -233,9 +234,10 @@
                     <i class="fa fa-camera bg-purple"></i>
 
                     <div class="timeline-item" >
+                    
                       <span class="time" th:text="${#dates.format(atv.data,'dd/MM/yyyy hh:MM:ss')}"><i class="fa fa-clock-o"></i> 2 days ago</span>
 
-                      <h3 class="timeline-header" th:utext="${atv.nome}"> <a th:href="@{}" th:utext="${usuario.nome}"> Mina Lee</a> Cadastrou-se no Cardapio</h3>
+                      <h3 class="timeline-header" th:text="${atv.nome}"> <a th:href="@{}" th:utext="${usuario.nome}"> Mina Lee</a> Cadastrou-se no Cardapio</h3>
 
 <!--                       <div class="timeline-body"> -->
 <!--                         <img src="http://placehold.it/150x100" alt="..." class="margin"/> -->
