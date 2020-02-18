@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragmentos/head :: head-css">
+
+</head>
+
+    <title>Profile Usuario </title>
+
+
+
+<body>
+
+ <div class="wrapper">
+	
+		    <div th:replace="fragmentos/side-menu :: side-menu">
+	    	</div>
+
+ <div class="main-panel">
+
+			  	<div th:replace="fragmentos/top-nav :: top-nav">
+				
+				</div>
+	
+		 <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header" data-background-color="blue">
+                                    <h4 class="title">Edite seu  Perfil</h4>
+                                    <p class="category">Complete seus  Dados</p>
+                                </div>
+                                <div class="card-content">
+			 
+				 <form action="@{/usuario/edicao}" ModelAttribute="usuario" method="POST">
+			 
+
+			 
+			 
+<!-- 			 			<div class="control-group pull right"> -->
+<!-- 		               	<label class="control-label">Foto -->
+<!-- 			                <div class="controls"> -->
+
+<!-- 							<span class="img-circle profile_img"> -->
+<!-- 								<input src="img/sof.jpg" type="image" alt="..." th:src="${usuario.foto}" class="img-thumbnail">	 -->
+<!-- 								</input> -->
+									
+<!-- 							</span> -->
+							
+							
+<!-- 							</div> -->
+							
+<!-- 							</label>   -->
+<!-- 			              </div> -->
+			 
+			
+
+			
+			         <div class="control-group">
+			         		<label class="control-label">Ativo</label>
+			         
+			               		<div class="controls">
+									
+								<input id="isativo" name="isativo" class="js-switch" type="checkbox" th:checked="${usuario.isativo}"/>
+								
+					
+
+								
+			            </div>
+			            </div>
+			                
+			              
+			               
+			              
+			               <div class="control-group">
+			                <label class="control-label">UserName</label>
+			                <div class="controls">
+										<input id="username" name="username" class="form-control" type="text" value=""  th:value="${usuario.username}" placeholder="Digite o UserName"/>
+							
+							
+			                </div>
+			              </div>    
+			              
+			              
+			              <div class="control-group">
+			                <label class="control-label">Foto</label>
+			                <div class="controls">
+										<input id="foto" name="foto" class="form-control" type="text" value=""  th:value="${usuario.foto}" placeholder="Digite o Endereco da Foto"/>
+							
+							
+			                </div>
+			              </div>           
+			
+			
+			
+			              <div class="control-group">
+			                <label class="control-label">Senha</label>
+			                <div class="controls">
+										<input id="senha" name="senha" class="form-control" type="text" value="" th:value="${usuario.senha}" placeholder="Digite a Senha"/>					
+							
+							
+			                </div>
+			              </div>
+			
+			
+			
+			              <div class="control-group">
+			                <label class="control-label">Email</label>
+			                <div class="controls">
+							
+										<input id="email" name="email" class="form-control" type="text" value="" th:value="${usuario.email}" placeholder="Digite o Email" />
+							
+			                </div>
+			              </div>
+			
+			
+			              <div class="control-group">
+			                <label class="control-label">Roles</label>
+			                <div class="controls">
+				 <select id="roles" name="roles" multiple="multiple" class="form-control">
+				                                  <optgroup label="Tipos de Permissoes do usuario">
+					           				
+					           					<option th:text="${usuario.roles}" th:selected="${usuario.roles != null}" class="selected">Usuario Não Tem Nenhuma Regra</option>
+					           				
+					           				
+					           			
+					           				<option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}">Nenhuma Regra Cadastrada</option>
+					           				      				
+					           				
+					                </optgroup>
+				                    </select>			
+							
+			                </div>
+			              </div>
+				
+			           
+					 	 
+			                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		
+				 	 
+						
+							<button type="submit" class="btn btn-info">Atualizar</button>
+							<a href='javascript:history.back(1)' class="btn btn-default">Voltar</a>
+						
+						</form>
+						
+						</div>
+                        </div>
+                        
+                       </div>
+                       
+                        <div class="col-md-4">
+                            <div class="card card-profile">
+                                <div class="card-avatar">
+                                    <a href="#pablo">
+                                        <img class="img" src="../img/faces/sof.jpg"  th:src="${usuario.foto}"/>
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <h6 class="category text-gray">Usuario Roles: <p th:text="${usuario.roles}">roles</p> </h6>
+                                    <h4 class="card-title" th:text="${usuario.username}">Alec Thompson</h4>
+                                    <p class="card-content">
+                                        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                                    </p>
+                                    <a href="#pablo" class="btn btn-info btn-round">Mudar Foto</a>
+                               
+                                   <div sec:authorize="hasRole('ROLE_ADM')">
+						  				<span class="text-danger">This content is only shown to administrators.</span>
+                                    <a th:href="@{/usuario/cadastro}" class="btn btn-info btn-round ">Adicionar Usuario</a>
+                    			 </div>
+                               
+                                </div>
+                            
+
+                            
+                            
+                            </div>
+                        </div>
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+						
+
+						<footer th:replace="fragmentos/footer :: footer">
+						
+						</footer>
+
+
+					</div>
+
+
+				</div>
+				
+				<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+				
+		</body>
+
+</html>

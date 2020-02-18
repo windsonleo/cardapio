@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Movimentacao Categoria</title>
+
+<body>
+			
+<div class="page-container">
+   <!--/content-inner-->
+	<div class="left-content">
+	
+	<div class="inner-content">
+
+	   			  <div th:replace="fragmentos/top-nav :: top-nav">
+				
+				</div>
+				
+				
+				<div class="content">
+
+		                 <div class="card-content table-responsive">
+                                    <table class="table table-hover table data-table">
+                                        <thead class="card-header" data-background-color="blue">
+                                            <th class="hide">Id</th>
+                                            <th >Nome</th>
+                                            <th >Categoria Pai</th>
+                                            <th >Ativo</th>
+<!--                                             <th >Resultado</th> -->
+                                            
+                                            
+                                  <div sec:authorize="hasRole('ROLE_ADM')">
+                                   
+                                   <th >OPERACOES</th>
+                                  
+                                  </div>
+                                            
+<!--                                             <th >2º Premio</th> -->
+<!--                                             <th >3º Premio</th> -->
+<!--                                             <th >4º Premio</th> -->
+<!--                                             <th >5º Premio</th> -->
+
+		
+
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr th:each="categoria: ${categoriaList}">
+                                                <td th:text="${categoria.id}" class="hide">id</td>
+                                                  <td th:text="${categoria.nome}">nome</td>
+                                                   <td th:text="${categoria.catpai}">catpai</td>
+                                                  
+		                                            <td th:text="${categoria.ativo}">ativo</td>
+<!-- 		                                             <td th:text="${jogobicho.banca}">Banca</td> -->
+		                                            
+<!-- 		                                            <td th:text="${jogobicho}" >Resultado</td> -->
+		                                          
+		                                       
+							              <div sec:authorize="hasRole('ROLE_ADM')" >
+	                                              <td class="td-actions">
+	                                              <div >
+                                                        <a  rel="tooltip" title="Informacoes" class="btn btn-muted btn-simple btn-xs" th:href="@{/categoria/informacao(id=${categoria.id})}">
+                                    						<i class="material-icons">info</i>
+			                       						</a>
+	                       						 
+                                                        <a  rel="tooltip" title="Editar" class="btn btn-muted btn-simple btn-xs" th:href="@{/categoria/editar(id=${categoria.id})}">
+                                    						<i class="material-icons">mode edit</i>
+			                       						</a>
+	                       								                                            
+		                                            																									
+                                                        <a  rel="tooltip" title="Excluir" class="btn btn-danger btn-simple btn-xs" th:href="@{/categoria/delete(id=${categoria.id})}">
+                                    						<i class="material-icons">close</i>
+			                       						</a>
+	                       						</div>
+	                       						 	</td>	
+	                       						 
+					                            </div>
+		                                            
+		                                         
+		                                            
+		                                            
+<!-- 		                                            <td th:text="${jogobicho.segundopremio}" >2º Premio</td> -->
+<!-- 		                                            <td th:text="${jogobicho.terceiropremio}" > 3º Premio</td> -->
+<!-- 		                                            <td th:text="${jogobicho.quartopremio}" >4º Premio </td> -->
+<!-- 		                                            <td th:text="${jogobicho.quintopremio}" >5º Premio</td> -->
+		                      
+		 
+
+		
+                                        
+                                            </tr>
+                                           
+                                           
+                                      
+                                        </tbody>
+                                    </table>
+                                </div>
+		
+
+				<div class="clearfix"></div>
+
+
+             <div th:replace="fragmentos/footer :: footer">
+            
+            </div>
+            
+            
+
+</div>
+
+</div>
+
+</div>
+<!-- </div> -->
+			
+<!-- </div> -->
+
+				<div th:replace="fragmentos/side-menu :: side-menu">
+		    	</div>
+
+
+</div>	
+
+<!-- </div> -->
+
+<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+			
+</body>
+			
+			
+</html>
+
