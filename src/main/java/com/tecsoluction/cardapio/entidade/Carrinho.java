@@ -5,11 +5,18 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tecsoluction.cardapio.framework.BaseEntity;
@@ -51,6 +58,13 @@ public class Carrinho extends BaseEntity implements Serializable {
     @Transient
     private Garcon garcon ;
     
+    @Transient
+    @Column(name = "horapedido",nullable = false)
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern ="HH:mm:ss")
+    @NotNull(message="o hora do pedido não pode ser nulo")
+	private Date horapedido;
+    
     
     
     //CONSTRUTOR PADRAO
@@ -58,6 +72,10 @@ public class Carrinho extends BaseEntity implements Serializable {
     public Carrinho() {
         // TODO Auto-generated constructor stub
     //    itens = new ArrayList<Item>();
+    	
+    	Date dat = new Date();
+    	horapedido = dat;
+    	
     }
     
     

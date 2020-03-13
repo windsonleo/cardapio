@@ -13,6 +13,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -45,6 +46,13 @@ public abstract class Pedido extends BaseEntity {
     //aberto,pendente,fechado,cancelado
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
+    
+    
+    @Column(name = "horapedido",nullable = true)
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern ="HH:mm:ss")
+  //  @NotNull(message="o hora do pedido não pode ser nulo")
+    protected Date horapedido;
 
     
     private boolean ispago = false;

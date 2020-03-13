@@ -116,6 +116,7 @@ public class PedidoVenda extends Pedido implements Serializable {
         this.status = StatusPedido.PENDENTE;
         this.data = new Date();
         this.origempedido = OrigemPedido.MESA;
+        this.horapedido = carrinho.getHorapedido();
         
         SetarItems(carrinho.getItens());
     }

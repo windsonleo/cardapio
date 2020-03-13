@@ -73,6 +73,9 @@ public  class Item implements Serializable, Comparable<Item>{
 
 
     private String qtd;
+    
+    private int tempopreparo = 0;
+
 
 
     public Item() {
@@ -94,6 +97,7 @@ public  class Item implements Serializable, Comparable<Item>{
         this.precoCusto = produto.getPrecocusto();
         this.un_medida = produto.getUn_medida();
         this.foto = produto.getFoto();
+        this.tempopreparo = produto.getTempopreparo();
   //      this.situacao = SituacaoItem.AGUARDANDO;
 
         
@@ -111,6 +115,8 @@ public  class Item implements Serializable, Comparable<Item>{
         this.un_medida = produto.getUn_medida();
         this.foto = produto.getFoto();
         this.qtd = qtd;
+        this.tempopreparo = produto.getTempopreparo();
+
      //   this.situacao = SituacaoItem.AGUARDANDO;
 
 

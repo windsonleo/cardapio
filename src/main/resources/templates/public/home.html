@@ -18,7 +18,7 @@
 							<script src="resources/static/js/morris.min.js"
 			th:src="@{/js/morris.min.js}" th:inline="javascript" ></script>
 	
-	
+
 		
 		<title>Cardápio</title>
 
@@ -232,6 +232,70 @@
        </div>
        </div>
        
+              <div class="row">
+       
+      	 <div class="col-md-12">
+          <div class="box box-solid">
+<!--             <div class="box-header with-border"> -->
+<!--               <h3 class="box-title"></h3> -->
+<!--             </div> -->
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner1})}" alt="First slide" />
+
+                    <div class="carousel-caption">
+                      Compromisso
+                    </div>
+                  </div>
+                  <div class="item">
+                      <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner2})}" alt="Second slide" />
+
+                    <div class="carousel-caption">
+                      Dedicação
+                    </div>
+                  </div>
+                  <div class="item">
+                        <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner3})}" alt="Third slide" />
+
+                    <div class="carousel-caption">
+                      Comprometimento
+                    </div>
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                  <span class="fa fa-angle-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                  <span class="fa fa-angle-right"></span>
+                </a>
+              </div>
+              
+            
+              
+              
+            </div>
+            
+
+
+          
+          
+        </div>
+        
+        </div>
+                
+                          <div class="clearfix"></div>
+                
+        
+        </div>
+       
        
                <div class="">
         
@@ -360,69 +424,7 @@
         
 <!--          <br></br> -->
        
-       <div class="row">
-       
-      	 <div class="col-md-12">
-          <div class="box box-solid">
-<!--             <div class="box-header with-border"> -->
-<!--               <h3 class="box-title"></h3> -->
-<!--             </div> -->
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-                </ol>
-                <div class="carousel-inner">
-                  <div class="item active">
-                    <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner1})}" alt="First slide" />
 
-                    <div class="carousel-caption">
-                      Compromisso
-                    </div>
-                  </div>
-                  <div class="item">
-                      <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner2})}" alt="Second slide" />
-
-                    <div class="carousel-caption">
-                      Dedicação
-                    </div>
-                  </div>
-                  <div class="item">
-                        <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner3})}" alt="Third slide" />
-
-                    <div class="carousel-caption">
-                      Comprometimento
-                    </div>
-                  </div>
-                </div>
-                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                  <span class="fa fa-angle-left"></span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                  <span class="fa fa-angle-right"></span>
-                </a>
-              </div>
-              
-            
-              
-              
-            </div>
-            
-
-
-          
-          
-        </div>
-        
-        </div>
-                
-                          <div class="clearfix"></div>
-                
-        
-        </div>
         
         
 <!--           -->
@@ -858,6 +860,89 @@
      
      
    <div class="clearfix"></div>  
+   
+<!--    <div class="row"> -->
+<!-- <div class="demo"> -->
+<!--   <header class="demo__header"></header> -->
+<!--   <div class="demo__content"> -->
+<!--     <div class="demo__card-cont"> -->
+<!--       <div class="demo__card"> -->
+<!--         <div class="demo__card__top brown"> -->
+<!--           <div class="demo__card__img"></div> -->
+<!--           <p class="demo__card__name">Hungry cat 6</p> -->
+<!--         </div> -->
+<!--         <div class="demo__card__btm"> -->
+<!--           <p class="demo__card__we">Whatever</p> -->
+<!--         </div> -->
+<!--         <div class="demo__card__choice m--reject"></div> -->
+<!--         <div class="demo__card__choice m--like"></div> -->
+<!--         <div class="demo__card__drag"></div> -->
+<!--       </div> -->
+<!--       <div class="demo__card"> -->
+<!--         <div class="demo__card__top lime"> -->
+<!--           <div class="demo__card__img"></div> -->
+<!--           <p class="demo__card__name">Hungry cat 5</p> -->
+<!--         </div> -->
+<!--         <div class="demo__card__btm"> -->
+<!--           <p class="demo__card__we">Whatever</p> -->
+<!--         </div> -->
+<!--         <div class="demo__card__choice m--reject"></div> -->
+<!--         <div class="demo__card__choice m--like"></div> -->
+<!--         <div class="demo__card__drag"></div> -->
+<!--       </div> -->
+<!--       <div class="demo__card"> -->
+<!--         <div class="demo__card__top cyan"> -->
+<!--           <div class="demo__card__img"></div> -->
+<!--           <p class="demo__card__name">Hungry cat 4</p> -->
+<!--         </div> -->
+<!--         <div class="demo__card__btm"> -->
+<!--           <p class="demo__card__we">Whatever</p> -->
+<!--         </div> -->
+<!--         <div class="demo__card__choice m--reject"></div> -->
+<!--         <div class="demo__card__choice m--like"></div> -->
+<!--         <div class="demo__card__drag"></div> -->
+<!--       </div> -->
+<!--       <div class="demo__card"> -->
+<!--         <div class="demo__card__top indigo"> -->
+<!--           <div class="demo__card__img"></div> -->
+<!--           <p class="demo__card__name">Hungry cat 3</p> -->
+<!--         </div> -->
+<!--         <div class="demo__card__btm"> -->
+<!--           <p class="demo__card__we">Whatever</p> -->
+<!--         </div> -->
+<!--         <div class="demo__card__choice m--reject"></div> -->
+<!--         <div class="demo__card__choice m--like"></div> -->
+<!--         <div class="demo__card__drag"></div> -->
+<!--       </div> -->
+<!--       <div class="demo__card"> -->
+<!--         <div class="demo__card__top blue"> -->
+<!--           <div class="demo__card__img"></div> -->
+<!--           <p class="demo__card__name">Hungry cat 2</p> -->
+<!--         </div> -->
+<!--         <div class="demo__card__btm"> -->
+<!--           <p class="demo__card__we">Whatever</p> -->
+<!--         </div> -->
+<!--         <div class="demo__card__choice m--reject"></div> -->
+<!--         <div class="demo__card__choice m--like"></div> -->
+<!--         <div class="demo__card__drag"></div> -->
+<!--       </div> -->
+<!--       <div class="demo__card"> -->
+<!--         <div class="demo__card__top purple"> -->
+<!--           <div class="demo__card__img"></div> -->
+<!--           <p class="demo__card__name">Hungry cat</p> -->
+<!--         </div> -->
+<!--         <div class="demo__card__btm"> -->
+<!--           <p class="demo__card__we">Whatever</p> -->
+<!--         </div> -->
+<!--         <div class="demo__card__choice m--reject"></div> -->
+<!--         <div class="demo__card__choice m--like"></div> -->
+<!--         <div class="demo__card__drag"></div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--     <p class="demo__tip">Swipe left or right</p> -->
+<!--   </div> -->
+<!-- </div> -->
+   
 </section>
 
 
@@ -868,6 +953,10 @@
 
 
  <div class="clearfix"></div>
+ 
+ 
+
+ 
     
     	</div> 
     	
@@ -1003,28 +1092,7 @@ $(function(){
 <!--   </script>     -->
 
 
-<!-- <script type="text/javascript"> -->
 
-<!-- // $(function() { -->
-<!-- // 	   setTime(); -->
-	   
-<!-- // 	      $('#overlayy').hide(); -->
-<!-- // 	      $('#notificacao').show(); -->
-	      
-<!-- // 	   function setTime() { -->
-<!-- // 	     // var date = new Date().getTime(); -->
-	      
-<!-- // 	      setTimeout(setTime, 7000); -->
-	      
-<!-- // 	      $('#overlayy').show(); -->
-<!-- // 	      $('#notificacao').hide(); -->
-<!-- // 	   } -->
-	   
-
-<!-- // 	 }); -->
-
-
-<!-- </script> -->
 
 
 

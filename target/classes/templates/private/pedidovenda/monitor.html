@@ -95,7 +95,10 @@
             <div class="box-body">
               <ul class="products-list product-list-in-box" th:each="pedido : ${pedidos}">
                   <span class="product-title" th:text="|Pedido Id : ${pedido.id}|" >$1800</span>
-                <p>  <span class="product-title text-center" th:utext="| Data : ${#dates.format(pedido.data,'dd/MM/yyyy hh:MM:ss')} |">data</span> </p>
+                <p>  <span class="product-title text-center" th:utext="| Data : ${#dates.format(pedido.data,'dd/MM/yyyy hh:MM:ss')} |">data</span>
+                
+                <span class="product-title pull-right" th:utext="| HOra : ${#dates.format(pedido.horapedido,'hh:MM:ss')} |">data</span>
+                 </p>
                   
 <!--                   </span> -->
                 
@@ -156,12 +159,15 @@
                       </div> 
                       <br></br>
 <!--               <p>Preparo: <code>40%</code></p> -->
-			<p>
-			<div class="progress progress-sm active" style="height:15px;">
-                <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%;">
-                  <span class="sr-only">40% Pronto</span>
-                </div>
-              </div>
+<!-- 			<p> -->
+<!-- 			<div class="progress progress-sm active" style="height:15px;"> -->
+<!--                 <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%;"> -->
+<!--                   <span class="sr-only">40% Pronto</span> -->
+<!--                 </div> -->
+<!--               </div> -->
+<!--              </p> -->
+<p>
+             <div th:id="'progressTimer'+ ${pedido.id} + ${item.key.codigo}" class="progressTimer" style="height:15px;" th:attr="data-tempo=${item.key.tempopreparo}" ></div>
              </p>
                       
                   </div>
@@ -199,6 +205,61 @@
 	    
 	  
 	<div th:replace="fragmentos/footer :: script" style="display: none;"></div>  
+	
+		    				<script src="resources/static/js/jquery.progressTimer.js"
+			th:src="@{/js/jquery.progressTimer.js}" th:inline="javascript" ></script>
+			
+<script type="text/javascript">	
+
+
+
+			
+// 	$(".progressTimer").progressTimer({
+//     timeLimit: 10,
+//     warningThreshold: 5,
+//     baseStyle: 'progress-bar-warning',
+//     warningStyle: 'progress-bar-danger',
+//     completeStyle: 'progress-bar-info',
+//     onFinish: function() {
+//         console.log("I'm done");
+//     }
+// });
+	
+	
+	
+	 $('.item div.progressTimer').each(function() {
+	      $(this).on('click',function(){    
+	          var id = $(this).attr('id');
+	         var value = $(this).siblings('div').val();
+	         var tempo =  $(this).attr('data-tempo');
+
+	 
+	       //   alert("Botão: "+id + " clicado.  Dado a ser enviado: "+ value);
+	        
+	      	$("#" + id).progressTimer({
+	      	    timeLimit: tempo,
+	      	    warningThreshold: 5,
+	      	    baseStyle: 'progress-bar-warning',
+	      	    warningStyle: 'progress-bar-danger',
+	      	    completeStyle: 'progress-bar-success',
+	      	    onFinish: function() {
+	      	        console.log("I'm done");
+	      	    }
+	      	});
+	        
+	          
+	      });
+	      
+	      
+	   });
+	 
+	 $('.item div.progressTimer').each(function() {
+		 $(this).click();
+	 
+	 });
+
+			
+			</script>
 </body>
 			
 			

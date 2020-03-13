@@ -394,6 +394,40 @@ public class HomeController {
         return login;
     }
     
+    @RequestMapping(value = "/card", method = RequestMethod.GET)
+    public ModelAndView card(Locale locale, Model model) {
+      
+    	logger.info("Welcome card! The client locale is {}.", locale);
+
+
+        ModelAndView login = new ModelAndView("/public/card");
+        
+        
+//        
+//        login.addObject("usuario", usuario);
+
+
+        return login;
+    }
+    
+    
+    @RequestMapping(value = "/card2", method = RequestMethod.GET)
+    public ModelAndView card2(Locale locale, Model model) {
+      
+    	logger.info("Welcome card2! The client locale is {}.", locale);
+
+
+        ModelAndView login = new ModelAndView("/public/card2");
+        
+        
+//        
+//        login.addObject("usuario", usuario);
+
+
+        return login;
+    }
+    
+    
     
     
 //    @RequestMapping(value = "/autenticar", method = RequestMethod.POST)

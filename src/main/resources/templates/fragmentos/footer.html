@@ -74,11 +74,23 @@
           </li>
           
                     <li>
-            <a href="javascript:void(0)">
+            <a th:href="@{/card}">
               <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Sugestão do Cardapio</h4>
+                <h4 class="control-sidebar-subheading">Card</h4>
+
+                <p>nora@example.com</p>
+              </div>
+            </a>
+          </li>
+          
+                              <li>
+            <a th:href="@{/card2}">
+              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Card2</h4>
 
                 <p>nora@example.com</p>
               </div>
@@ -455,9 +467,11 @@ $(function(){
   
   
 </script>
-			
-  
-  
+
+<!-- 				<script src="resources/static/js/script.js" -->
+<!-- 			th:src="@{/js/script.js}"></script> -->
+
+
 	</div>
 			
 			

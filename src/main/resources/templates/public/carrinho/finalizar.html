@@ -273,6 +273,11 @@
         <div class="col-xs-6">
           <p class="lead" th:utext="|Data: ${#dates.format(hoje,'dd/MM/yyyy')}|">Amount Due 2/22/2014</p>
 
+<!--                     <div class="col-sm-10"> -->
+                      <input type="text" class="form-control timepicker" id="horapedido" name="horapedido" th:value="|${carrinho.horapedido}|" placeholder="Skills"/>
+<!--                     </div> -->
+<!--                   </div> -->
+
           <div class="table-responsive">
             <table class="table">
               <tr>
@@ -320,6 +325,8 @@
 	
 	    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
 			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
+			
+			
 			
 	
 <!-- 		</div>	 -->
