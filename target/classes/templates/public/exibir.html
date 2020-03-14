@@ -50,7 +50,7 @@
     
     
     
-    <section class="content">
+    <section class="content connectedSortable">
     
     
     <div class="row-fluid"  th:if="${sucesso}">
@@ -76,16 +76,31 @@
               </div>
     
     
-            <div class="row mb-24" >
+               <div class="">
+        
+            <div class="box box-solid">
+            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border ui-sortable-handle'">
+              <h3 class="box-title">PROMOÇÕES</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            
+         <div class="row mb-24" >
+<!--          <h4 class="page_header">Oferta Diária</h4> -->
         <div class="col-md-4" th:each="promocao: ${promocoesList}">
             <div class="ribbon-content">
-                <div class="ribbon red"   th:class=" 'ribbon '+ ${promocao.corfaixa}"><span th:text="|${promocao.desconto} %|" >Desconto 10%</span></div>
+                <div class="ribbon red"  th:class=" 'ribbon '+ ${promocao.corfaixa}"><span th:text="|${promocao.desconto} %|" >Desconto 10%</span></div>
                 
                        <img th:if="${promocao.foto}" th:src="@{/img/promocao/{fotoc}(fotoc=${promocao.foto})}" class="img-circle img-md" alt="User Image" /> 
                      <h4 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h4>
                      
-           <span class="pull-left badge bg-blue" th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" >31</span>    
-           
+           <span class="pull-left badge bg-blue" th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" ><i class="fa fa-clock"></i>31</span>    
            
            <br></br>
            
@@ -95,6 +110,9 @@
                   <i class="fa fa-arrow-circle-right"></i> Mais info</a>
                   
                 </div>
+                
+                <br></br>
+                 
              <div class="modal fade" th:id="'myPromocao'+${promocao.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabelPromo" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -108,7 +126,8 @@
 			</div>
 			<div class="modal-body">
 
-<div class="row">
+			
+		<div class="row">
        
 <!--  	<h4 class="page_header">Resumo das Categorias</h4> -->
       
@@ -121,7 +140,7 @@
                 </button>
               </div>
             
-            <div class="widget-user-header bg-black" th:class=" 'widget-user-header bg-'+ ${promocao.corfaixa}"  style="background: url('../img/promocao/promo.jpg') center center;">
+            <div class="widget-user-header bg-black"  th:class=" 'widget-user-header bg-'+ ${promocao.corfaixa}" style="background: url('img/promocao/promo.jpg') center center;">
              
                            <h3 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h3>
               <h5 class="widget-user-desc"  th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" >Lead Developer</h5>
@@ -138,10 +157,7 @@
                 <li><a href="#">QTD Produtos <span class="pull-right badge bg-blue" th:text="${#lists.size(promocao.produtos)}" >31</span></a></li>
                 <li><a href="#">Desconto<span class="pull-right badge bg-aqua"  th:text="${promocao.desconto} + ' %' ">5</span></a></li>
                 <li><a href="#">Economia de até <span class="pull-right badge bg-green">R$ 12.00</span></a></li>
-<!--                 <li><a href="#">Sugestao de  <span class="pull-right badge bg-red" th:utext="${usuarioAtt.nome}" >842</span></a></li> -->
-                   <li><a th:href="@{/promocao/perfil(id=${promocao.id})}">Perfil <span class="pull-right badge bg-red">ver</span></a></li>
-             
-             
+                <li><a th:href="@{/promocao/perfil(id=${promocao.id})}">Perfil <span class="pull-right badge bg-red">ver</span></a></li>
               </ul>
             </div>
           </div>
@@ -168,15 +184,20 @@
 		</div>
 	</div>
 </div>
-           
+
             </div>
        
 
        
         </div> 
         
-<!--         <div class="clearfix"></div> -->
+<!--             <div class="clearfix"></div> -->
         
+        </div>
+        
+        </div>
+        
+        </div>
         </div>
         
         <br></br>

@@ -72,7 +72,7 @@
        
         <div sec:authorize="hasRole('ROLE_ADM')" class="sidebar-menu" >
        
-  		<li class="header">NAVEGACAO ADM</li>
+  		<li class="header">ADMINISTRADOR</li>
         
         <li class="treeview">
           <a th:href="@{/categoria/movimentacao}">
@@ -248,11 +248,11 @@
          
          </div>
          
-                <li class="header">NAVEGACAO PRINCIPAL</li>
+                <li class="header">CATEGORIAS</li>
         
                 <li class="treeview">
           <a th:href="@{/home}">
-            <i class="fa fa-home" style="color:red;"></i> <span>INÍCIO</span>
+            <i class="fa fa-home"  ></i> <span>INÍCIO</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -267,7 +267,7 @@
          <li th:each="categoria: ${categoriaLista}" class="treeview" >
          
           <a th:href="@{/categoria/exibir(id=${categoria.id})}">
-            <i class="fa fa-cutlery" style="color:red;"></i> <span th:text="${categoria.nome}">Usuarios</span>
+            <i class="fa fa-cutlery"  ></i> <span th:text="${categoria.nome}">Usuarios</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>

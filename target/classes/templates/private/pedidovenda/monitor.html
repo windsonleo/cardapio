@@ -58,7 +58,7 @@
     
     
     
-    <section class="content">
+    <section class="content connectedSortable">
     
 <!--     <div class="alert alert-info alert-dismissible"> -->
     
@@ -74,16 +74,18 @@
               
               
 <!--       </div> -->
+
+ <div class="row">
       
-      
+
       
 
        
-       
+       		<div class="col-md-5">
 			<div class="box box-primary">
             <div class="box-header bg-black with-border"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border'">
              <i class="fa fa-television"></i>
-             <h3 class="box-title">MONITOR</h3>
+             <h3 class="box-title">PROGRESSO</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
@@ -95,9 +97,9 @@
             <div class="box-body">
               <ul class="products-list product-list-in-box" th:each="pedido : ${pedidos}">
                   <span class="product-title" th:text="|Pedido Id : ${pedido.id}|" >$1800</span>
-                <p>  <span class="product-title text-center" th:utext="| Data : ${#dates.format(pedido.data,'dd/MM/yyyy hh:MM:ss')} |">data</span>
+                <p>  <span class="product-title text-center" th:utext="| Data : ${#dates.format(pedido.data,'dd/MM/yyyy')} |">data</span>
                 
-                <span class="product-title pull-right" th:utext="| HOra : ${#dates.format(pedido.horapedido,'hh:MM:ss')} |">data</span>
+                <span class="product-title" th:utext="| Hora : ${#dates.format(pedido.horapedido,'hh:MM:ss')} |">data</span>
                  </p>
                   
 <!--                   </span> -->
@@ -166,7 +168,7 @@
 <!--                 </div> -->
 <!--               </div> -->
 <!--              </p> -->
-<p>
+			 <p>
              <div th:id="'progressTimer'+ ${pedido.id} + ${item.key.codigo}" class="progressTimer" style="height:15px;" th:attr="data-tempo=${item.key.tempopreparo}" ></div>
              </p>
                       
@@ -180,11 +182,47 @@
               <a href="javascript:void(0)" class="uppercase">Ver Todos os Pedidos</a>
             </div>
             <!-- /.box-footer -->
-          </div>
+<!--           </div> -->
      
    
   </div>
   
+  </div>
+  
+        <div class="col-md-5">
+        			<div class="box box-primary">
+            <div class="box-header bg-green with-border">
+             <i class="fa fa-television"></i>
+             <h3 class="box-title">PRONTOS</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            
+            <div id="item_pronto">
+            
+            
+            </div>
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer text-center">
+              <a href="javascript:void(0)" class="uppercase">Ver Todos os Pedidos</a>
+            </div>
+            <!-- /.box-footer -->
+<!--           </div> -->
+     
+   
+  </div>
+  
+  </div>
+
+  </div>
   
 
     </section>
@@ -194,8 +232,8 @@
 
 <!-- 	<div th:replace="fragmentos/footer :: script" style="display:none;"></div> -->
 	
-	    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
-			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
+<!-- 	    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js" -->
+<!-- 			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script> -->
 			
 	
 		</div>	
@@ -239,11 +277,21 @@
 	      	$("#" + id).progressTimer({
 	      	    timeLimit: tempo,
 	      	    warningThreshold: 5,
-	      	    baseStyle: 'progress-bar-warning',
-	      	    warningStyle: 'progress-bar-danger',
+	      	    baseStyle: 'progress-bar-info',
+	      	    warningStyle: 'progress-bar-warning',
 	      	    completeStyle: 'progress-bar-success',
 	      	    onFinish: function() {
-	      	        console.log("I'm done");
+	      	    	
+	      	    	
+	      	    	$("#item_pronto").empty();
+	      	       
+	      	    	console.log("I'm done");
+	      	       
+	      	    	
+	      	   //   var $copia = $(this).parents('.item').clone();
+					var $copia = $('.item div#' + id).parents('.item').clone();
+	      	        
+	      	      $("#item_pronto").html($copia);
 	      	    }
 	      	});
 	        

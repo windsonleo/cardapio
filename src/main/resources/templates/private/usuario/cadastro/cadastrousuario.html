@@ -335,6 +335,18 @@
 									</div>
 
 								</div>
+								
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-photo"></i>
+										</div>
+
+										<input id="facebookid" name="facebookid" class="form-control" type="text"
+											th:value="${usuario.facebookid}" placeholder="Digite a facebookid" readonly="readonly" />
+
+									</div>
+								</div>
 
 
 								<div class="form-group label-floating ">
@@ -344,7 +356,7 @@
 										</div>
 
 										<input id="foto" name="foto" class="form-control" type="text"
-											th:value="${usuario.foto}" placeholder="Digite a foto" />
+											th:value="${usuario.foto}" placeholder="Digite a foto" readonly="readonly" />
 
 									</div>
 								</div>
@@ -372,6 +384,64 @@
 														Cadastrada </span>
 
 												</option>
+
+
+											</optgroup>
+										</select>
+
+									</div>
+								</div>
+								
+								<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user-secret"></i>
+										</div>
+										<select id="indicacoes" name="indicacoes" multiple="multiple"
+											class="form-control select2">
+											<optgroup label="Tipos de indicacoes do usuario">
+
+												<option th:each="rol: ${usuario.indicacoes}"
+													th:selected="${rol.nome}" class="selected" th:text="${rol.nome}" th:value="${rol.id}">Usuario
+													Não Tem Nenhuma indicacoes</option>
+
+
+
+<!-- 												<option th:each="role : ${roles}" th:value="${role.id}"> -->
+
+<!-- 													<span th:text="${role.name}">Nenhuma indicacoes -->
+<!-- 														Cadastrada </span> -->
+
+<!-- 												</option> -->
+
+
+											</optgroup>
+										</select>
+
+									</div>
+								</div>
+								
+																<div class="form-group label-floating ">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-user-secret"></i>
+										</div>
+										<select id="atividades" name="atividades" multiple="multiple"
+											class="form-control select2">
+											<optgroup label="Tipos de atividades do usuario">
+
+												<option th:each="rol: ${usuario.atividades}"
+													th:selected="${rol.nome}" class="selected" th:text="${rol.nome}" th:value="${rol.id}">Usuario
+													Não Tem Nenhuma atividades</option>
+
+
+
+<!-- 												<option th:each="role : ${roles}" th:value="${role.id}"> -->
+
+<!-- 													<span th:text="${role.name}">Nenhuma Regra -->
+<!-- 														Cadastrada </span> -->
+
+<!-- 												</option> -->
 
 
 											</optgroup>

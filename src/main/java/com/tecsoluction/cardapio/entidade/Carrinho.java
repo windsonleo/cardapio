@@ -150,6 +150,6 @@ public class Carrinho extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return itens.toString();
+        return id.toString();
     }
 }

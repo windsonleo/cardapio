@@ -2,8 +2,14 @@
     $.fn.progressTimer = function (options) {
 		var settings = $.extend({}, $.fn.progressTimer.defaults, options);
 
+		  var i = 0;
         this.each(function () {
+        	
+        	 var idd = $(this).attr('id');
+        	
             $(this).empty();
+            
+            i=i++;
             var barContainer = $("<div>").addClass("progress active progress-striped");
             var bar = $("<div>").addClass("progress-bar").addClass(settings.baseStyle)
                 .attr("role", "progressbar")
@@ -14,16 +20,39 @@
             bar.appendTo(barContainer);
             barContainer.appendTo($(this));
             
+//            var idd = $(this).attr('id');
+//            var idaux = idd + i;
+//			var span = $("<span>").addClass("sr-onlyy").attr("id", idaux);
+//			span.appendTo(bar);
+//			
+//			$("#" + idaux).text(((elapsed / limit) * 100) + "%");
+            
             var start = new Date();
             var limit = settings.timeLimit * 1000;
             var interval = window.setInterval(function () {
                 var elapsed = new Date() - start;
                 bar.width(((elapsed / limit) * 100) + "%");
+                
+              //  var idd = $(this).attr('id');
+                var idaux = idd + i;
+				var span = $("<span>").addClass("sr-onlyy").attr("id", idaux);
+				span.appendTo(bar);
+				
+				var arrendodar = Math.round(((elapsed / limit) * 100));
+				
+				$("#" + idaux).text( arrendodar + "%");
 
                 if (limit - elapsed <= 5000)
                     bar.removeClass(settings.baseStyle)
                        .removeClass(settings.completeStyle)
                        .addClass(settings.warningStyle);
+                
+//                var idd = $(this).attr('id');
+//                var idaux = idd + i;
+//				var span = $("<span>").addClass("sr-onlyy").attr("id", idaux);
+//				span.appendTo(bar);
+//				
+//				$("#" + idaux).text(((elapsed / limit) * 100) + "%");
 
                 if (elapsed >= limit) {
                     window.clearInterval(interval);
@@ -31,6 +60,11 @@
                     bar.removeClass(settings.baseStyle)
                        .removeClass(settings.warningStyle)
                        .addClass(settings.completeStyle);
+                    
+//                    var idd = $(this).attr('id');   
+//                    var idaux = idd + i;
+//    				var span = $("<span>").addClass("sr-onlyy").attr("id", idaux);    				span.appendTo(bar);
+//    				$("#" + idaux).text(((elapsed / limit) * 100) + "%");
 
                     settings.onFinish.call(this);
                 }

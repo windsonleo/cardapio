@@ -274,7 +274,7 @@
           <p class="lead" th:utext="|Data: ${#dates.format(hoje,'dd/MM/yyyy')}|">Amount Due 2/22/2014</p>
 
 <!--                     <div class="col-sm-10"> -->
-                      <input type="text" class="form-control timepicker" id="horapedido" name="horapedido" th:value="|${carrinho.horapedido}|" placeholder="Skills"/>
+                      <input type="text" class="form-control timepicker" id="horapedido" name="horapedido" th:value="| Hora : ${#dates.format(carrinho.horapedido,'hh:MM:ss')} |" placeholder="Skills"/>
 <!--                     </div> -->
 <!--                   </div> -->
 
@@ -345,9 +345,9 @@ function finalizaAgora(id) {
 //         txt.focus();
 //         var txtt = $("#carrinho_"+id).focus();
 
-//         window.location.replace("http://sushisenpai.herokuapp.com/home");
+        window.location.replace("http://sushisenpai.herokuapp.com/home");
         
-        window.location.replace("http://localhost:8082/cardapio/home");
+//         window.location.replace("http://localhost:8082/cardapio/home");
 
     });
 }

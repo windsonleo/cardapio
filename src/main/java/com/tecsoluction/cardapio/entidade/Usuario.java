@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -76,6 +77,7 @@ public class Usuario  extends BaseEntity implements Serializable {
     @JoinTable(name = "usuario_role",
             joinColumns = @JoinColumn(name = "idusuario"),
             inverseJoinColumns = @JoinColumn(name = "idrole"))
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
 	 private Set<Role> roles;
     
     
@@ -84,6 +86,7 @@ public class Usuario  extends BaseEntity implements Serializable {
     @JoinTable(name = "usuario_indicacao",
     joinColumns = @JoinColumn(name = "idusuario"),
     inverseJoinColumns = @JoinColumn(name = "idproduto"))
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
 	 private Set<Produto> indicacoes;
     
     
@@ -101,6 +104,7 @@ public class Usuario  extends BaseEntity implements Serializable {
 
 	    @JsonIgnore
 	    @OneToMany(mappedBy = "usuario", cascade = {CascadeType.REFRESH},fetch=FetchType.EAGER)
+	    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
 		 private Set<Atividade> atividades; 
 
     

@@ -196,11 +196,13 @@ public class CarrinhoController  {
         
         //this.carrinho = request.getAttribute("carrinho");
         
-
+       
         
         ModelAndView exibircat = new ModelAndView("/public/carrinho/visualizar");
 
         Produto cat = produtoService.findOne(idf);
+        
+        String msg = "Produto , " + cat.getNome() + " Adiccionado ao Carrinho";
         
         
         ModelAndView exibircatt = new ModelAndView("redirect:/categoria/exibir?id=" +cat.getCategoria().getId() );
@@ -223,7 +225,13 @@ public class CarrinhoController  {
     //    context.setAttribute("carrinho", carrinho); // Setando no escopo de aplicação
 
       exibircatt.addObject("carrinho", carrinhobean.getCarrinho());
+      
+      exibircatt.addObject("sucesso", msg);
+
+      
       model.addAttribute("carrinho", carrinhobean.getCarrinho());
+      model.addAttribute("sucesso", msg);
+
 
         return exibircatt;
     }
