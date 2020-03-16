@@ -25,6 +25,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.mapping.Value;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.tecsoluction.cardapio.framework.BaseEntity;
@@ -98,6 +100,7 @@ public class Produto extends BaseEntity implements Serializable {
     
     @ElementCollection(fetch=FetchType.EAGER)
     @CollectionTable(name="produto_notas")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Integer> notas = new ArrayList<Integer>();
     
     @ManyToMany(mappedBy="indicacoes")

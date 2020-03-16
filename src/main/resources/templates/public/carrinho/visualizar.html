@@ -124,7 +124,10 @@
             
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-                <li><a href="#">Qtd <span class="pull-right badge bg-blue" th:text="${#lists.size(carrinho.itens)}" >31</span></a></li>
+<!--                 <li><a href="#">Qtd <span class="pull-right badge bg-blue" th:text="${#lists.size(carrinho.itens)}" >31</span></a></li> -->
+                <li><a href="#">Qtd <span class="pull-right badge bg-blue" th:text="${totalitens}" >31</span></a></li>
+
+
 <!--                 <li><a href="#">Preco <span class="pull-right badge bg-aqua" th:text="${promocao.precovenda}" >5</span></a></li> -->
                 
 <!--                 <li><a href="#">Curtir <span class="pull-right badge bg-green"><i class="fa fa-thumbs-up">12</i></span></a></li> -->
@@ -256,7 +259,11 @@
               <strong><i class="fa fa-pencil margin-r-5"></i> Produtos</strong>
 
               <p>
-                <span class="label label-primary" th:each="item: ${carrinho.itens}"  th:text="${item.nome}">UI Design</span>
+                <span class="label label-primary" th:each="item: ${carrinho.itens}"  th:text="|${item.nome} , ${item.qtd}|">UI Design
+                
+<!--                  <span class="label label-info" th:text="${item.qtd}">UI Design </span> -->
+                
+                </span>
 <!--                 <span class="label label-success">Coding</span> -->
 <!--                 <span class="label label-info">Javascript</span> -->
 <!--                 <span class="label label-warning">PHP</span> -->

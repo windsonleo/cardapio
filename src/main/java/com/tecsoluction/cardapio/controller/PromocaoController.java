@@ -2,6 +2,7 @@ package com.tecsoluction.cardapio.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -65,6 +68,12 @@ public class PromocaoController extends AbstractController<Promocao> {
 	    private List<Produto> produtoss ;
 	    
 	    private Set<Produto> prodpromo;
+	    
+	    private List<Promocao> promocoes ;
+	    
+	    private List<Produto> produtosFiltro;
+
+
 	    
 	    
 	    
@@ -330,7 +339,61 @@ public class PromocaoController extends AbstractController<Promocao> {
 
 	        return exibircat;
 	    }    
-	 
+	    
+	    
+	    @RequestMapping(value = "filtroOfertasHoje", method = RequestMethod.GET)
+	    public ModelAndView filtroOfertasHoje(HttpServletRequest request) {
+
+	        // long idf = Long.parseLong(request.getParameter("idpedido"));
+	        ModelAndView novosprodutos = new ModelAndView("/public/filtro/exibir");
+	        
+//	         Pageable primeiroResultado = new PageRequest(0, 10);
+//
+//	        produtosFiltro = produtoService.ListaProdutoMenorPreco(primeiroResultado);
+	        
+	        
+
+	        novosprodutos.addObject("produtosFiltro", filtroOfertas());
+	        novosprodutos.addObject("filtroNome", "filtroOfertasHoje");
+
+
+	        return novosprodutos;
+	    }
+	    
+	    
+	    
+	    public List<Produto> filtroOfertas(){
+	     
+	    	promocoes = getservice().findAll();
+	    	
+	    	produtosFiltro = new ArrayList<Produto>();
+	    	
+	    	for(Promocao promo : promocoes){
+	    		
+	    		if(promo.isAtivo()){
+	    			
+	    			produtosFiltro.addAll(promo.getProdutos());
+	    			
+	    		}else {
+	    			
+	    			
+	    			
+	    			
+	    		}
+	    		
+	    		
+	    		
+	    	}
+	        
+	        
+//	        novosprodutos.addObject("produtosFiltro", produtosFiltro);
+//	        novosprodutos.addObject("filtroNome", "filtroOfertasHoje");
+
+
+	        return produtosFiltro;
+	    }
+	    
+	     
 
 	@Override
 	protected PromocaoServicoImpl getservice() {

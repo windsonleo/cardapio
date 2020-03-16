@@ -58,7 +58,7 @@
     
     
     
-    <section class="content">
+    <section class="content connectedSortable">
     
 <!--     <div class="alert alert-info alert-dismissible"> -->
     
@@ -77,7 +77,7 @@
       
       
       
-       <div class="row">
+       <div class="">
        
        
        <div class="col-lg-2 col-xs-6">
@@ -158,9 +158,13 @@
         <!-- ./col -->
       </div>
        
-       
+           
+    <section class="col-md-10 connectedSortable">
+
+    
+
 			<div class="box box-primary">
-            <div class="box-header bg-black with-border"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border'">
+            <div class="box-header bg-black with-border"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border'">
                           <h3 class="box-title">Pedidos Adicionado Recentemente</h3>
 
               <div class="box-tools pull-right">
@@ -172,9 +176,12 @@
             <!-- /.box-header -->
             <div class="box-body">
               <ul class="products-list product-list-in-box" th:each="pedido : ${pedidos}">
+                  <div class="direct-chat-text">
+                 
                   <span class="product-title" th:text="|Pedido Id : ${pedido.id}|" >$1800</span>
                  <p> <span class="product-title text-center" th:utext="| Data : ${#dates.format(pedido.data,'dd/MM/yyyy hh:MM:ss')} |">data</span></p>
                 
+                </div>
                 <li class="item"  th:each="item: ${pedido.items}">
               
                   
@@ -226,20 +233,28 @@
                 </li>
 
               </ul>
+              
+              
             </div>
+            
             <!-- /.box-body -->
             <div class="box-footer text-center">
               <a href="javascript:void(0)" class="uppercase">Ver Todos os Pedidos</a>
             </div>
             <!-- /.box-footer -->
           </div>
+          
+          </section>
      
    
-  </div>
+<!--   </div> -->
   
   
 
     </section>
+    
+             <div class="clearfix"></div>
+    
     
            
   </div>

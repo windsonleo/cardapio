@@ -164,6 +164,8 @@ public class CarrinhoController  {
 	     model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
 		 model.addAttribute("mesas", mesas);
 		 model.addAttribute("garcons", garcons);
+		   	model.addAttribute("totalitens", carrinhobean.TotalItens());
+
 
 	}
 	
@@ -206,6 +208,106 @@ public class CarrinhoController  {
         
         
         ModelAndView exibircatt = new ModelAndView("redirect:/categoria/exibir?id=" +cat.getCategoria().getId() );
+        
+        Item item = new Item(cat);
+        
+        item.setQtd("01");
+        item.setTotalItem(item.CalcularTotaItem(item.getQtd()).setScale(2, RoundingMode.UP));
+        item.setSituacao(SituacaoItem.AGUARDANDO);
+        
+        carrinhobean.AddItemCarrinho(item);
+        
+        carrinhobean.getCarrinho().setTotal(carrinhobean.getCarrinho().CalcularTotal().setScale(2, RoundingMode.UP));
+        
+      System.out.println("url : " + request.getRequestURL());  
+      System.out.println("url parameters: " + request.getAttributeNames().toString());  
+        
+//        request.setAttribute("carrinho", carrinho); // Setando no escopo de requisição
+//        request.getSession().setAttribute("carrinho", carrinho); // Setando no escopo de sessão.
+    //    context.setAttribute("carrinho", carrinho); // Setando no escopo de aplicação
+
+      exibircatt.addObject("carrinho", carrinhobean.getCarrinho());
+      
+      exibircatt.addObject("sucesso", msg);
+
+      
+      model.addAttribute("carrinho", carrinhobean.getCarrinho());
+      model.addAttribute("sucesso", msg);
+
+
+        return exibircatt;
+    }
+    
+    
+    @RequestMapping(value = "/adicionarhome", method = RequestMethod.GET)
+    public ModelAndView AdicionarProdutoCarrinhoHome(HttpServletRequest request,Model model ) {
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+//        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+        
+        //this.carrinho = request.getAttribute("carrinho");
+        
+       
+        
+        ModelAndView exibircat = new ModelAndView("/public/carrinho/visualizar");
+
+        Produto cat = produtoService.findOne(idf);
+        
+        String msg = "Produto , " + cat.getNome() + " Adiccionado ao Carrinho";
+        
+        
+        ModelAndView exibircatt = new ModelAndView("redirect:/home" );
+        
+        Item item = new Item(cat);
+        
+        item.setQtd("01");
+        item.setTotalItem(item.CalcularTotaItem(item.getQtd()).setScale(2, RoundingMode.UP));
+        item.setSituacao(SituacaoItem.AGUARDANDO);
+        
+        carrinhobean.AddItemCarrinho(item);
+        
+        carrinhobean.getCarrinho().setTotal(carrinhobean.getCarrinho().CalcularTotal().setScale(2, RoundingMode.UP));
+        
+      System.out.println("url : " + request.getRequestURL());  
+      System.out.println("url parameters: " + request.getAttributeNames().toString());  
+        
+//        request.setAttribute("carrinho", carrinho); // Setando no escopo de requisição
+//        request.getSession().setAttribute("carrinho", carrinho); // Setando no escopo de sessão.
+    //    context.setAttribute("carrinho", carrinho); // Setando no escopo de aplicação
+
+      exibircatt.addObject("carrinho", carrinhobean.getCarrinho());
+      
+      exibircatt.addObject("sucesso", msg);
+
+      
+      model.addAttribute("carrinho", carrinhobean.getCarrinho());
+      model.addAttribute("sucesso", msg);
+
+
+        return exibircatt;
+    }
+    
+    
+    @RequestMapping(value = "/adicionarperfil", method = RequestMethod.GET)
+    public ModelAndView AdicionarProdutoCarrinhoPerfil(HttpServletRequest request,Model model ) {
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+//        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+        
+        //this.carrinho = request.getAttribute("carrinho");
+        
+       
+        
+        ModelAndView exibircat = new ModelAndView("/public/carrinho/visualizar");
+
+        Produto cat = produtoService.findOne(idf);
+        
+        String msg = "Produto , " + cat.getNome() + " Adiccionado ao Carrinho";
+        
+        
+        ModelAndView exibircatt = new ModelAndView("redirect:/produto/perfil?id="+ cat.getId() );
         
         Item item = new Item(cat);
         

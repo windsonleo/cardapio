@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,6 +71,16 @@ public class ProdutoCompostoServicoImpl extends AbstractEntityService<ProdutoCom
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+    public List<ProdutoComposto> ListaProdutoCompostoMenorPreco(Pageable pageable){
+    	
+//    	Pageable primeiroResultado = new PageRequest(0, 5);
+    	List<ProdutoComposto> result = dao.ListaProdutoCompostoMenorPreco(pageable);
+
+    	
+    	return result;
+    }
 
 
 }

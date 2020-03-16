@@ -1,5 +1,6 @@
 package com.tecsoluction.cardapio;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,15 @@ public class CarrinhoBean {
 	private Usuario usuarioIndica;
 	
 	private int index = 0;
+
 	
+	
+	
+	public CarrinhoBean() {
+
+	
+		carrinho = new Carrinho();
+	}
 
 
 	public void SetarCarrinhoSessao(Carrinho car){
@@ -102,7 +111,32 @@ public class CarrinhoBean {
 	
 	public void AddItemCarrinho(Item it){
 		
+		
+	if(this.carrinho.getItens().contains(it)){
+		
+		int index = carrinho.getItens().indexOf(it);
+		
+		Item item = carrinho.getItens().get(index);
+		String qtd = item.getQtd();
+		String qtd2 = it.getQtd();
+		
+		BigDecimal quant1 = new BigDecimal(qtd);
+		
+		BigDecimal quant2 = new BigDecimal(qtd2);
+		
+		quant1=quant1.add(quant2);
+		
+		item.setQtd(quant1.toString());
+		item.CalcularTotaItem(quant1.toString());
+		
+		
+	}else {
+		
 		this.carrinho.addItem(it);
+		
+	}
+		
+		
 		
 	}
 	
@@ -114,7 +148,30 @@ public class CarrinhoBean {
 	}
 	
 	
-	
+	public BigDecimal TotalItens() {
+
+		BigDecimal qtd = new BigDecimal(0);
+		
+		
+		if((this.carrinho.getItens() != null) && (!this.carrinho.getItens().isEmpty())){
+		
+		for(Item us: carrinho.getItens()){
+			
+			BigDecimal qtdaux = new BigDecimal(us.getQtd());
+			qtd = qtd.add(qtdaux);
+			
+		}
+		
+		}else {
+			
+			
+			
+			
+		}
+		
+		
+		return qtd;
+	}
 	
 	
 }

@@ -153,6 +153,8 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 		 model.addAttribute("pedidosentregue", pedidosentregue);
 		 model.addAttribute("pedidospreparacao", pedidospreparacao);
 		 model.addAttribute("pedidosprontos", pedidosprontos);
+		   	model.addAttribute("totalitens", carrinhobean.TotalItens());
+
 		 
 		 
 		 

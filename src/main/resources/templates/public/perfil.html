@@ -160,7 +160,7 @@
                 
                 <li> <a href="#"> Recomendar <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sushisenpai.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li>
                 
-                <li><a th:href="@{/carrinho/adicionar(id=${produto.id})}" rel="tooltip" title="Add para Carrinho">Adicionar ao Carrinho <span class="pull-right badge bg-green" ><i class="fa fa-cart-plus"></i></span></a></li>
+                <li><a th:href="@{/carrinho/adicionarperfil(id=${produto.id})}" rel="tooltip" title="Add para Carrinho">Adicionar ao Carrinho <span class="pull-right badge bg-green" ><i class="fa fa-cart-plus"></i></span></a></li>
            
            
 <!--                 <li><a th:href="@{/usuario/indica(id=${produto.id})}">Sugerir <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i>84</span></a></li> -->

@@ -159,13 +159,12 @@ public abstract class AbstractController<Entity> {
        return cadastroEntity;
     }
 
-//    @Transactional
+    @Transactional
     @GetMapping(value = "delete")
     public ModelAndView deletarEntity(HttpServletRequest request) {
 
         UUID idf = UUID.fromString(request.getParameter("id"));
         getservice().delete(idf);
-
         return new ModelAndView("redirect:/" + entityAlias + "/movimentacao");
     }
     

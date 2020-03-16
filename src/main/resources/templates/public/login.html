@@ -3,11 +3,25 @@
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head th:replace="fragmentos/head :: head-css">
+
+
+
+<!-- <link rel="stylesheet" media="screen" -->
+<!-- 	href="resources/static/css/normalize.css" th:href="@{/css/normalize.css}" /> -->
+<!-- <link rel="stylesheet" media="screen" -->
+<!-- 	href="resources/static/css/main.css" th:href="@{/css/main.css}" /> -->
+<!-- <link rel="stylesheet" media="screen" -->
+<!-- 	href="resources/static/css/magic.min.css" th:href="@{/css/magic.min.css}" /> -->
+
+<!-- <script th:src="@{http://www.queness.com/js/bsa2.js}" src="http://www.queness.com/js/bsa2.js" th:inline="javascript"></script> -->
+
 </head>
     <title>Login</title>
 
 <!-- 	<body id="mimin" class="dashboard form-signin-wrapper"> -->
-	<body  class="hold-transition login-page">
+	<body  class="testess login-page">
+	
+	<img th:src="@{/img/door.jpg}" src="" alt="" />
 	
 	<div id="fb-root"> </div>
 <script th:async="async" th:defer="defer"  crossorigin="anonymous"
@@ -31,8 +45,8 @@
     function renderButton() {
       gapi.signin2.render('my-signin2', {
         'scope': 'profile email',
-        'width': 320,
-        'height': 32,
+        'width': 235,
+        'height': 41,
         'longtitle': false,
         'theme': 'dark',
         'onsuccess': onSuccess,
@@ -316,6 +330,8 @@ function mostrar() {
 
 </script>
 	
+	<section class="content">
+	
 	<div class="login-box">
   <div class="login-logo">
     <a th:href="@{/home}" th:text="${configuracaoAtual.nomeempresa}">Sushi <b>Sempai</b></a>
@@ -346,7 +362,7 @@ function mostrar() {
           </div>
         </div>
         <div class="col-xs-5">
-          <input type="submit" class="btn btn-danger btn-raised btn-block btn-flat" value="Entrar"></input>
+          <input type="submit" class="btn btn-lg btn-danger" value="Entrar" style="border-color: red;"></input>
         </div>
         
       </div>
@@ -357,16 +373,16 @@ function mostrar() {
     <div id="status">
 </div>
 
-    <div class="social-auth-links text-center">
-      <p>- OU -</p>
+    <div class="col-md-3" style="margin:0px;">
+<!--       <p>- OU -</p> -->
       
-            <p  >  <div onclick="mostrar()" id="btlog"> <a href="#" class="btn btn-block btn-social btn-foursquare"><i class="fa fa-foursquare"></i> Acessar Com Login</a></div>   </p>
-      
-      
-      <p>  <div> <a th:href="@{/home}" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-user-plus"></i> Acessar Sem Cadastro</a></div>   </p>
+            <p>  <div onclick="mostrar()" id="btlog"> <a href="#" class="btn btn-lg btn-social btn-foursquare"><i class="fa fa-foursquare"></i> Acessar Com Login</a></div>   </p>
       
       
-           <p>     <div class="fb-login-button" data-width="320" data-size="large" data-button-type="login_with"
+      <p>  <div> <a th:href="@{/home}" class="btn btn-lg btn-social btn-google"><i class="fa fa-user-plus"></i> Acessar Sem Logar</a></div>   </p>
+      
+      
+           <p>     <div class="fb-login-button" data-width="235" data-size="large" data-button-type="login_with"
      data-auto-logout-link="true" data-use-continue-as="true" data-onlogin="checkLoginState()" data-scope="public_profile,email" ></div>
       
 		</p>
@@ -387,119 +403,61 @@ function mostrar() {
 
 
     <p> <a th:href="@{/esquecisenha}">Esqueci a Senha </a></p>
-    <a  th:href="@{/registro}" class="text-center">Registrar novo Usuario </a>
+<!--     <a  th:href="@{/registro}" class="text-center">Registrar novo Usuario </a> -->
 
-  </div>
-  
-<!--   <div -->
-<!--   class="fb-like" -->
-<!--   data-share="true" -->
-<!--   data-width="450" -->
-<!--   data-show-faces="true"> -->
-<!-- </div> -->
+  </div>				
+				</div>
 
-</div>
-
-			
-<!-- 	  <div class="container"> -->
-
-<!--         <form class="form-signin"  method="post" th:object="${usuario}" th:action="@{/login}" role="form"> -->
-<!--           <div class="panel periodic-login"> -->
-<!--               <span class="atomic-number">69</span> -->
-<!--               <div class="panel-body text-center"> -->
-<!--                   <h1 class="atomic-symbol">Un</h1> -->
-<!--                   <p class="atomic-mass">69.123</p> -->
-<!--                   <p class="element-name">Underground</p> -->
-
-<!--                   <i class="icons icon-arrow-down"></i> -->
-<!--                   <div class="form-group form-animate-text" style="margin-top:40px !important;"> -->
-<!--                     <input type="text" id="email" name="email"  class="form-text" required="required" /> -->
-<!--                     <span class="bar"></span> -->
-<!--                     <label>Username</label> -->
-<!--                   </div> -->
-<!--                   <div class="form-group form-animate-text" style="margin-top:40px !important;"> -->
-<!--                     <input type="password"  id="senha" name="senha" class="form-text" required="required" /> -->
-<!--                     <span class="bar"></span> -->
-<!--                     <label>Password</label> -->
-<!--                   </div> -->
-<!--                   <label class="pull-left"> -->
-<!--                   <input type="checkbox" class="icheck pull-left" name="checkbox1"/> Remember me -->
-<!--                   </label> -->
-<!--                   <input type="submit" class="btn col-md-12" value="SignIn"/> -->
-<!--               </div> -->
-<!--                 <div class="text-center" style="padding:5px;"> -->
-<!--                     <a th:href="@{/esquecisenha}">Esqueci a Senha</a> -->
-<!--                     <a th:href="@{/registro}">| Registre-se</a> -->
-<!--                 </div> -->
-<!--           </div> -->
-<!--         </form> -->
-
-<!--       </div> -->
-
-
-<!--           <div class="login" > -->
-<!-- 			<form method="post" th:object="${usuario}" th:action="@{/login}" role="form" > -->
-<!--               <div> -->
-<!-- 		    	<input type="text" id="username" name="username" class="form-control" -->
-<!-- 		           th:value="${username}" placeholder="Digite seu Usuario"/> -->
-		           
-<!-- 		      </div> -->
-<!--               <div> -->
-<!-- 		    	<input type="password" id="senha" name="senha" class="form-control" -->
-<!-- 		           th:value="${senha}" placeholder="Digite sua Senha"/> -->
-<!-- 		      </div> -->
-		      
-<!--               <div> -->
-<!-- 		   		 <button type="submit" value="login" class="btn btn-success">Entrar</button> -->
-<!--                 	<span class=""><a class="reset_pass" th:href="@{/usuario/lost}"><small>Perdeu sua Senha?</small></a></span> -->
-<!--               </div> -->
-
-
-<!--             </form> -->
-<!--           </div> -->
-        
-        
-<!--       </div> -->
-
-
-              
-<!--                <img th:unless="${usuarioAtt.foto}" th:src="@{/img/logo.png}" class="user-image" alt="User Image" /> -->
-               
-<!--                  <img th:if="${usuario.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}" class="user-image" alt="User Image" /> -->
-               
-               
- 
- 
-
-
-
-
-<!--                       <div th:replace="fragmentos/footer :: script" style="display: hidden;"> -->
-<!--       </div> -->
-      
-      
-<!--       <script> -->
-      
-
-    	  
-<!--       }); -->
-      
-      
-      
-<!--       </script> -->
+	</section>
+	
+	
+	
+	
+	
       
       
 
-                           <div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+                           <div th:replace="fragmentos/footeraux :: script" style="display:none;"></div>
+                       
+<!-- 									<script src="resources/static/js/mainn.js" -->
+<!-- 			th:src="@{/js/mainn.js}" th:inline="javascript" ></script>                        -->
+                       
+                       
                          <script  type="text/javascript">
                          $(function(){
 
                         	// document.querySelector('footer').hidden = "true";
                         	document.getElementById('cfooter').hidden = "true";
                         	document.getElementById('cfooter').style.display = "none";
+                        	
+//                         	  document.addEventListener('DOMContentLoaded', function() {
+//                         		    var elems = document.querySelectorAll('.tap-target');
+//                         		    var instances = M.TapTarget.init(elems, options);
+//                         		  });
+                        
                         
                         
                          });
+                         
+                         
+                         $('.testess').hover(function () {
+                        	 
+                       	 		 $(this).removeClass('magictime puffIn');
+
+                        	    $(this).addClass('magictime puffOut');
+                        	});
+                         
+                         $(".testess").mouseout(function(){
+                        	  $(this).removeClass('magictime puffOut');
+                        	  $(this).addClass('magictime puffIn');
+                        	  
+                        	});
+                         
+//                          $(document).ready(function(){
+//                         	    $('.tap-target').tapTarget();
+//                         	  });
+                         
+                         
                         </script>    
                            
      

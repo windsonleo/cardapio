@@ -50,7 +50,7 @@
     
     
     
-    <section class="content">
+    <section class="content connectedSortable">
     
     
     <div class="row-fluid"  th:if="${sucesso}">
@@ -78,12 +78,21 @@
         <br></br>
         
 
-    
-       <div class="row">
-       
-       
+     <section class="col-md-9 connectedSortable">
+             <div class="box box-solid">
+            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
+              <h3 class="box-title">Usuarios</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
       
-        <div class="col-md-4"  th:each="usu: ${usuarioList}" >
+        <div class="col-md-6"  th:each="usu: ${usuarioList}" >
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user-2">
             <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -263,9 +272,14 @@
    
         </div>
         
+        </div>
+        
+        
 <!--         <div class="clearfix"></div> -->
         
         </div>
+        </section>
+        
         
 <!-- <div class="clearfix"></div> -->
 
@@ -764,7 +778,7 @@
 
     </section>
     
-<!--          <div class="clearfix"></div> -->
+         <div class="clearfix"></div>
            
   </div>
 

@@ -70,7 +70,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 	
 	
 	 
-	 private Usuario usuario = new Usuario(); ;
+	 private Usuario usuario; 
 	 
 	 private String filename;
 	 
@@ -109,7 +109,7 @@ public class UsuarioController extends AbstractController<Usuario> {
     	
     
     		
-    		
+    	usuario = new Usuario(); 	
     		
     		filename="avatar_usu.jpg";
     

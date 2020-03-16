@@ -58,7 +58,7 @@
     
     
     
-    <section class="content">
+    <section class="content connectedSortable">
     
 <!--     <div class="alert alert-info alert-dismissible"> -->
     
@@ -159,11 +159,25 @@
       
       
       
-<div class="row">
+<div class="">
        
+           
+    <section class="col-md-9 connectedSortable">
        
+       			<div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">SALAO</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
       
-        <div class="col-md-4"  th:each="mesa: ${mesaList}" >
+        <div class="col-md-6"  th:each="mesa: ${mesaList}" >
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user-2">
             <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -299,6 +313,11 @@
    
         </div>
         
+        </div>
+        </div>
+        </section>
+        
+        
 <!--         <div class="clearfix"></div> -->
         
         </div>
@@ -308,6 +327,8 @@
 
 
     </section>
+    
+    <div class="clearfix"></div>
     
            
   </div>

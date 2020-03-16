@@ -73,20 +73,20 @@ public class Usuario  extends BaseEntity implements Serializable {
 		
 
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,targetEntity=Role.class)
     @JoinTable(name = "usuario_role",
             joinColumns = @JoinColumn(name = "idusuario"),
             inverseJoinColumns = @JoinColumn(name = "idrole"))
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+//    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
 	 private Set<Role> roles;
     
     
     @JsonIgnore
-    @ManyToMany(fetch=FetchType.EAGER)
+    @ManyToMany(fetch=FetchType.EAGER,targetEntity=Produto.class)
     @JoinTable(name = "usuario_indicacao",
     joinColumns = @JoinColumn(name = "idusuario"),
     inverseJoinColumns = @JoinColumn(name = "idproduto"))
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+   // @Cascade(org.hibernate.annotations.CascadeType.DELETE)
 	 private Set<Produto> indicacoes;
     
     
@@ -103,8 +103,8 @@ public class Usuario  extends BaseEntity implements Serializable {
 	    
 
 	    @JsonIgnore
-	    @OneToMany(mappedBy = "usuario", cascade = {CascadeType.REFRESH},fetch=FetchType.EAGER)
-	    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+	    @OneToMany(mappedBy = "usuario", cascade = {CascadeType.REMOVE},fetch=FetchType.EAGER)
+//	    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
 		 private Set<Atividade> atividades; 
 
     
@@ -133,6 +133,7 @@ public class Usuario  extends BaseEntity implements Serializable {
 		indicacoes = new HashSet<Produto>();
 		datacadastro = new Date();
 		atividades = new HashSet<Atividade>();
+		roles = new HashSet<Role>();
 		
 	}
 	

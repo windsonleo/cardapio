@@ -3,6 +3,7 @@ package com.tecsoluction.cardapio.dao;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,5 +24,11 @@ public interface IProdutoDAO extends JpaRepository<Produto, UUID> {
     
     @Query("SELECT p FROM Produto p where p.novo='TRUE'")
     List<Produto> findAllNew();
+    
+    @Query("SELECT p FROM Produto p ORDER BY p.avaliacao DESC")
+    List<Produto> ListaProdutoMaiorAvaliacao(Pageable pageable);
+    
+    @Query("SELECT p FROM Produto p ORDER BY p.precovenda ASC")
+    List<Produto> ListaProdutoMenorPreco(Pageable pageable);
 
 }

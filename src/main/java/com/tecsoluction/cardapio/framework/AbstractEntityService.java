@@ -3,7 +3,10 @@ package com.tecsoluction.cardapio.framework;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.tecsoluction.cardapio.entidade.Produto;
 
 
 /**
@@ -61,6 +64,7 @@ public abstract class AbstractEntityService<Entity> {
     public void delete(UUID id) {
         validateDelete(id);
         getDao().delete(id);
+//        getDao().
     }
 
     public Long count(){
@@ -72,6 +76,16 @@ public abstract class AbstractEntityService<Entity> {
     
     public abstract List<Entity> findAllNew();
     
+    
+    public void deleteInBach(List<Entity> id) {
+  //      validateDelete(id);
+//        getDao().delete(id);
+        getDao().deleteInBatch(id);
+    }
+    
+//    public abstract List<Entity> ListaProdutoMaiorAvaliacao(Pageable pageable);
+
+
 //    protected abstract String getIdEntity(Entity entity);
 
 }

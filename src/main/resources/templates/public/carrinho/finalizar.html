@@ -274,7 +274,7 @@
           <p class="lead" th:utext="|Data: ${#dates.format(hoje,'dd/MM/yyyy')}|">Amount Due 2/22/2014</p>
 
 <!--                     <div class="col-sm-10"> -->
-                      <input type="text" class="form-control timepicker" id="horapedido" name="horapedido" th:value="| Hora : ${#dates.format(carrinho.horapedido,'hh:MM:ss')} |" placeholder="Skills"/>
+                      <input type="text" class="form-control timepicker" id="horapedido" name="horapedido" th:value="|${#dates.format(carrinho.horapedido,'hh:MM:ss')}|" placeholder="Skills"/>
 <!--                     </div> -->
 <!--                   </div> -->
 

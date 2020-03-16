@@ -338,6 +338,32 @@ function onSignIn(googleUser) {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
+      
+      
+<!--       <div class=""> -->
+      
+<!--       <ul class="nav"> -->
+      
+<!--       <li> -->
+<!--       <a href="#"> <i class="fa fa-phone"> </i> -->
+<!-- 		<span class="label label-default">10</span> -->
+<!--       <small class="label text-center">81-98676-5454</small> -->
+<!--        </a> -->
+      
+<!--       </li> -->
+      
+<!--             <li> -->
+<!--       <a href="#"> <i class="fa fa-map-marker"> </i> -->
+<!-- 		<span class="label label-default">10</span> -->
+<!--       <small class="label text-center">av. criciuma nº 500</small> -->
+<!--        </a> -->
+      
+<!--       </li> -->
+      
+      
+<!--       </ul> -->
+      
+<!--       </div> -->
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
@@ -425,6 +451,23 @@ function onSignIn(googleUser) {
 <!--           </li> -->
 
 
+      <li class="dropdown user user-menu">
+      <a href="#" class="dropdown-toggle"> <i class="fa fa-phone"> </i>
+	 <span class="hidden-xs">	<span>81-98676-5454</span> </span>
+<!--       <small class="label text-center">81-98676-5454</small> -->
+       </a>
+      
+      </li>
+      
+            <li class="dropdown user user-menu">
+      <a href="#" class="dropdown-toggle"> <i class="fa fa-map-marker"> </i>
+		 <span class="hidden-xs">	<span>av. criciuma nº 500</span> </span>
+<!--       <small class="label text-center">av. criciuma nº 500</small> -->
+       </a>
+      
+      </li>
+
+
 <li>
  <a href="#" th:href="@{/configuracaoAtual.urlface}" onclick="checkLoginState()"  data-toggle="dropdown"> <i class="fa fa-facebook fa-1.5x"> </i> </a>
 
@@ -444,9 +487,11 @@ function onSignIn(googleUser) {
 </li>
 
 <li>
-<a href="#" th:href="@{/carrinho/visualizar}"> <i class="fa fa-shopping-cart"> </i>
-<span class="label label-success" th:text="|${#lists.size(carrinho.itens)}|">10</span> </a>
+<!-- <a href="#" th:href="@{/carrinho/visualizar}"> <i class="fa fa-shopping-cart"> </i> -->
+<!-- <span class="label label-success" th:text="|${#lists.size(carrinho.itens)}|">10</span> </a> -->
 
+<a href="#" th:href="@{/carrinho/visualizar}"> <i class="fa fa-shopping-cart"> </i>
+<span class="label label-success" th:text="|${totalitens}|">10</span> </a>
 
 </li>
 

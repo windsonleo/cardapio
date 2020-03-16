@@ -127,6 +127,8 @@ public class ConfiguracaoController extends AbstractController<Configuracao>    
         model.addAttribute("filenamebanner3", filenamebanner3);
         model.addAttribute("configuracao", configuracao);
         model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
+	   	model.addAttribute("totalitens", carrinhobean.TotalItens());
+
 
 
     }

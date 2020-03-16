@@ -166,7 +166,7 @@ public BigDecimal CalcularTotaItem(String qtd) {
 
 	BigDecimal qtdAuxBig = new BigDecimal(qtd).setScale(2, RoundingMode.UP);
 
-
+	setTotalItem(precoUnitario.multiply(qtdAuxBig).setScale(2, RoundingMode.UP));
     
   return precoUnitario.multiply(qtdAuxBig).setScale(2, RoundingMode.UP);
 

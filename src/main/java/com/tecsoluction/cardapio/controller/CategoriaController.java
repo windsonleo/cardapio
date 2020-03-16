@@ -112,6 +112,7 @@ public class CategoriaController extends AbstractController<Categoria> {
         model.addAttribute("categoriaListall", categorias);
 		model.addAttribute("categoria", categoria);
         model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
+	   	model.addAttribute("totalitens", carrinhobean.TotalItens());
 
 
     }

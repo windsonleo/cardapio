@@ -1,6 +1,7 @@
 package com.tecsoluction.cardapio;
 
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import com.tecsoluction.cardapio.controller.HomeController;
 import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Configuracao;
+import com.tecsoluction.cardapio.entidade.Item;
 import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.exception.CustomGenericException;
@@ -278,6 +280,8 @@ public class ContextoAplicacao {
          
          carrinhobean.SetarCarrinhoSessao(carrinho);
          
+         BigDecimal tot = carrinhobean.TotalItens();
+         
      
         model.addAttribute("usuarioAtt", usuario);
         model.addAttribute("categoriaLista", categoriaLista);
@@ -285,8 +289,9 @@ public class ContextoAplicacao {
         model.addAttribute("hoje", hoje);
         model.addAttribute("estaaberto", estaaberto);
         model.addAttribute("carrinho", carrinhobean.getCarrinho());
-//	   	 model.addAttribute("usuarioIndica", usuarioIndica);
-//	   	 model.addAttribute("produtoIndica", produtoIndica);
+	   	 model.addAttribute("totalitens", carrinhobean.TotalItens());
+	   	 
+	   	 model.addAttribute("categorias", categorias);
 //	   	 model.addAttribute("mostrar", nmostrar);
 //	   	 model.addAttribute("esconderOver", esconderOver);
 	   	
@@ -306,6 +311,9 @@ public class ContextoAplicacao {
 		
 		return usu;
 	}
+	
+	
+	
 
 	private Usuario IndicacaoUsuario(List<Usuario> usuarios2) {
 
@@ -321,6 +329,32 @@ public class ContextoAplicacao {
 		
 		
 		return null;
+	}
+	
+	
+	private BigDecimal TotalItens(Carrinho carrinho) {
+
+		BigDecimal qtd = new BigDecimal(0);
+		
+		
+		if(!carrinho.getItens().isEmpty()){
+		
+		for(Item us: carrinho.getItens()){
+			
+			BigDecimal qtdaux = new BigDecimal(us.getQtd());
+			qtd = qtd.add(qtdaux);
+			
+		}
+		
+		}else {
+			
+			
+			
+			
+		}
+		
+		
+		return qtd;
 	}
 	
 	
@@ -353,6 +387,8 @@ public class ContextoAplicacao {
 	        }
 	        
 	        model.addObject("carrinho", carrinhobean.getCarrinho()); 
+		   	 model.addObject("totalitens", carrinhobean.TotalItens());
+
 
 	    return model;
 	  }
@@ -388,6 +424,8 @@ public class ContextoAplicacao {
 	        }
 	        
 	        model.addObject("carrinho", carrinhobean.getCarrinho()); 
+		   	 model.addObject("totalitens", carrinhobean.TotalItens());
+
 
 	    return model;
 	  }
@@ -421,6 +459,8 @@ public class ContextoAplicacao {
         }
         
         model.addObject("carrinho", carrinhobean.getCarrinho()); 
+	   	 model.addObject("totalitens", carrinhobean.TotalItens());
+
 
 		return model;
 
@@ -454,6 +494,8 @@ public class ContextoAplicacao {
         }
         
         model.addObject("carrinho", carrinhobean.getCarrinho()); 
+	   	 model.addObject("totalitens", carrinhobean.TotalItens());
+
 
 		return model;
 

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -57,6 +59,8 @@ public class ProdutoController extends AbstractController<Produto> {
     private String filename="avatar2.png";
     
     private Produto produto;
+    
+    private List<Produto> produtosFiltro;
 
 
     @Autowired
@@ -92,6 +96,8 @@ public class ProdutoController extends AbstractController<Produto> {
 //        usuario = userservice.findByUsername(usuario.getUsername());
         
         produto = new Produto();
+        
+//        filename="avatar2.png";
 
         categoriaList = categoriaService.findAll();
 
@@ -121,6 +127,48 @@ public class ProdutoController extends AbstractController<Produto> {
 
         return novosprodutos;
     }
+    
+    
+    
+    
+    @RequestMapping(value = "filtroMenorPreco", method = RequestMethod.GET)
+    public ModelAndView filtroMenorPreco(HttpServletRequest request) {
+
+        // long idf = Long.parseLong(request.getParameter("idpedido"));
+        ModelAndView novosprodutos = new ModelAndView("/public/filtro/exibir");
+        
+         Pageable primeiroResultado = new PageRequest(0, 10);
+
+        produtosFiltro = produtoService.ListaProdutoMenorPreco(primeiroResultado);
+
+        novosprodutos.addObject("produtosFiltro", produtosFiltro);
+        novosprodutos.addObject("filtroNome", "Menores Preços");
+
+
+        return novosprodutos;
+    }
+    
+   
+    @RequestMapping(value = "filtroMaiorAvaliacao", method = RequestMethod.GET)
+    public ModelAndView filtroMaiorAvaliacao(HttpServletRequest request) {
+
+        // long idf = Long.parseLong(request.getParameter("idpedido"));
+    	  ModelAndView novosprodutos = new ModelAndView("/public/filtro/exibir");        
+         Pageable primeiroResultado = new PageRequest(0, 10);
+
+        produtosFiltro = produtoService.ListaProdutoMaiorAvaliacao(primeiroResultado);
+
+        
+        
+        novosprodutos.addObject("produtosFiltro", produtosFiltro);
+        novosprodutos.addObject("filtroNome", "Maiores Avaliações");
+
+
+        return novosprodutos;
+    }
+    
+    
+    
 
     @RequestMapping(value = "detalhes", method = RequestMethod.GET)
     public ModelAndView detalhesProduto(HttpServletRequest request) {

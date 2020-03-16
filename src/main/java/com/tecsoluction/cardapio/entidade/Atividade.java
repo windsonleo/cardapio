@@ -59,7 +59,7 @@ public class Atividade extends BaseEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private OrigemAtividade origem;
     
-    @ManyToOne(cascade = {CascadeType.REFRESH})
+    @ManyToOne(targetEntity=Usuario.class)
     @JoinColumn(name = "usuario_id", nullable = false)
 	 @NotNull(message="o usuario do Atividade não pode ser nulo")
     private Usuario usuario;
@@ -72,6 +72,7 @@ public class Atividade extends BaseEntity implements Serializable {
         // TODO Auto-generated constructor stub
 //        produtos = new ArrayList<Produto>();
     	 data = new Date();
+    	 usuario = new Usuario();
     }
 
 

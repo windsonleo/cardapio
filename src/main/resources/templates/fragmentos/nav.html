@@ -23,27 +23,15 @@
       <div class="user-panel">
         
 <!--         <div class="hidden-xs"> -->
-        
-                <div class="pull-left image">
-          <img th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.logo})}" class="img-circle" alt="User Image" />
-<!-- 				<img th:src="@{/img/logo.png}" class="img-circle img-md" alt="User Image"/> -->
-				
 
-        
-        		</div>
-        		
- <div class="pull-left info">
-<!--           <p > <span th:utext="${usuarioAtt.email}">Akihiko Avaron</span></p> -->
-<!--  			<p> <span>Cardápio</span></p> -->
+        <div class="pull-left image">
+          <img th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.logo})}" class="img-circle" alt="User Image" />
+        </div>
+        <div class="pull-left info">
+          <p th:text="${configuracaoAtual.nomeempresa}">Thanh Nguyen</p>
           <a href="#" th:if="${estaaberto}"><i class="fa fa-circle text-success"></i> Aberto</a>
        <a href="#" th:unless="${estaaberto}"><i class="fa fa-circle text-danger"></i> Fechado</a>
-       
-        </div>
-        		
-        		
-        		        
-
-        
+          </div>
         
         </div>
        
@@ -73,12 +61,29 @@
         <div sec:authorize="hasRole('ROLE_ADM')" class="sidebar-menu" >
        
   		<li class="header">ADMINISTRADOR</li>
+  		
+  		                         <li class="treeview">
+          <a  th:href="@{/usuario/allonline}">
+            			<i class="fa fa-circle-o text-aqua"></i>
+ <span>USUARIOS ON</span>
+            <span class="pull-right-container">
+<!-- 			<small class="label pull-right bg-green">novidades</small> -->
+			
+			</span>
+          </a>
+<!--           <ul class="treeview-menu"> -->
+<!--             <li><a th:href="@{/home}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li> -->
+<!--             <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
+<!--           </ul> -->
+        </li>
         
         <li class="treeview">
           <a th:href="@{/categoria/movimentacao}">
             <i class="fa fa-map"></i> <span>CATEGORIA</span>
             <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
+<!--               <i class="fa fa-angle-right pull-right"></i> -->
+
+		<span class="label label-primary pull-right" th:text="${#lists.size(categorias)}">4</span>
             </span>
           </a>
 
@@ -245,23 +250,103 @@
           </a>
 
         </li>
+        
+        
          
          </div>
          
-                <li class="header">CATEGORIAS</li>
-        
-                <li class="treeview">
+<!--           <div sec:authorize="hasAnyRole('ROLE_GARCON','ROLE_ADM','ROLE_SUPER')" > -->
+         
+<!--          <li class="header">GARÇON</li> -->
+
+                         <li class="treeview">
           <a th:href="@{/home}">
-            <i class="fa fa-home"  ></i> <span>INÍCIO</span>
+            			<i class="fa fa-circle-o text-aqua"></i>
+ <span>INÍCIO</span>
             <span class="pull-right-container">
-              <i class="fa fa-angle-right pull-right"></i>
-            </span>
+			<small class="label pull-right bg-green">novidades</small>
+			
+			</span>
           </a>
 <!--           <ul class="treeview-menu"> -->
 <!--             <li><a th:href="@{/home}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li> -->
 <!--             <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
 <!--           </ul> -->
         </li>
+        
+<!--                        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_GARCON')" > -->
+        
+         
+                                <li class="treeview">
+          <a th:href="@{/mesa/salao}">
+            			<i class="fa fa-circle-o text-aqua"></i>
+ 			<span>SALÃO</span>
+            <span class="pull-right-container">
+<!-- 			<small class="label pull-right bg-green">novidades</small> -->
+			
+			</span>
+          </a>
+<!--           <ul class="treeview-menu"> -->
+<!--             <li><a th:href="@{/home}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li> -->
+<!--             <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
+<!--           </ul> -->
+        </li>
+        
+<!--         </div> -->
+        
+<!--                 <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" > -->
+        
+         
+<!--          <li class="header">COZINHA</li> -->
+         
+                                <li class="treeview">
+          <a th:href="@{/pedidovenda/cozinha}">
+            			<i class="fa fa-circle-o text-aqua"></i>
+ 			<span>COZINHA</span>
+            <span class="pull-right-container">
+<!-- 			<small class="label pull-right bg-green">novidades</small> -->
+			
+			</span>
+          </a>
+<!--           <ul class="treeview-menu"> -->
+<!--             <li><a th:href="@{/home}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li> -->
+<!--             <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
+<!--           </ul> -->
+        </li>
+         
+<!--          </div> -->
+         
+<!--                <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER','ROLE_GARCON')" > -->
+               
+<!--                         <li class="header">MONITOR</li> -->
+                        
+                         <li class="treeview">
+          <a th:href="@{/pedidovenda/monitor}">
+            			<i class="fa fa-circle-o text-aqua"></i>
+ 			<span>MONITOR</span>
+            <span class="pull-right-container">
+<!-- 			<small class="label pull-right bg-green">novidades</small> -->
+			
+			</span>
+          </a>
+<!--           <ul class="treeview-menu"> -->
+<!--             <li><a th:href="@{/home}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li> -->
+<!--             <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
+<!--           </ul> -->
+        </li>
+         
+<!--          </div> -->
+               
+               
+               
+<!--          	</div> -->
+         
+         
+
+         
+                <li class="header">CARDÁPIO</li>
+        
+
          
          
          <li th:each="categoria: ${categoriaLista}" class="treeview" >
@@ -270,8 +355,15 @@
             <i class="fa fa-cutlery"  ></i> <span th:text="${categoria.nome}">Usuarios</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
+            <span class="label label-primary pull-right" th:text="${#lists.size(categoria.produtos)}">4</span>
+            
             </span>
           </a>
+          
+           <ul class="treeview-menu">
+            <li th:each="produto: ${categoria.produtos}" ><a th:href="@{/produto/perfil(id=${produto.id})}" th:text="${produto.nome}"><i th:class="fa fa-circle-o"></i> General</a></li>
+
+          </ul>
 
         </li>
          

@@ -4,9 +4,112 @@
 
 	<head th:replace="fragmentos/head :: head-css">
 	
+	
+	<style>
+			
+		*, *:before, *:after {
+			box-sizing: border-box;
+		}
+
+
+		.stacked-cards h2 {
+			text-align: center;
+			position: relative;
+			top: -20px;
+		}
+
+
+
+		.container-fuild {
+			max-width: 80%;
+			margin: 0 auto;
+		}
+
+		.container-fixed {
+			max-width: 767px;
+			margin: 0 auto;
+		}
+
+
+
+		.stacked-cards {
+			padding-top: 40px;
+			padding-bottom: 15px;
+		}
+
+		.stacked-cards-fanOut {
+			padding-bottom: 40px;
+		}
+
+		.stacked-cards-fanOut li img {
+			max-height: 200px;
+		}
+
+		.stacked-cards li {
+			height: 250px;
+		}
+
+		@media (max-width: 767px) {
+			.stacked-cards li {
+				height: 180px;
+			}
+		}
+
+		.stacked-cards li {
+			background-color: #00bcd4;
+		}
+
+		.stacked-cards li:nth-child(n) {
+			background-color: #3599db;
+		}
+
+		.stacked-cards li:nth-child(2n) {
+			background-color: #e61b77;
+		}
+
+		.stacked-cards li:nth-child(3n) {
+			background-color: #00bcd4;
+		}
+
+		.stacked-cards li:nth-child(4n) {
+			background-color: #f4b251;
+		}
+
+		.stacked-cards li:nth-child(5n) {
+			background-color: #8e4497;
+		}
+
+		.source {
+			margin: 25px auto;
+		}
+
+		.header {
+			margin: 0px auto;
+			padding: 25px 5px;
+			background-color: #fff;
+		}
+		.header img {
+			display: block;
+			margin: 0 auto;
+			max-width: 300px;
+			height: auto;
+		}
+
+		
+	</style>
 
 	
 	</head>
+	
+	
+	
+		<link rel="stylesheet" media="screen"
+	href="resources/static/css/stackedCards.css"
+	th:href="@{/css/stackedCards.css}" type="text/css" />
+	
+			<link rel="stylesheet" media="screen"
+	href="resources/static/css/highlight.css"
+	th:href="@{/css/highlight.css}" type="text/css" />
 	
 	
 							<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"
@@ -15,16 +118,119 @@
 	<script src="resources/static/js/jquery-2.2.3.min.js"
 			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script>
 			
-							<script src="resources/static/js/morris.min.js"
-			th:src="@{/js/morris.min.js}" th:inline="javascript" ></script>
-	
-
+							<script src="https://cdn.jsdelivr.net/highlight.js/9.9.0/highlight.min.js"
+			th:src="@{https://cdn.jsdelivr.net/highlight.js/9.9.0/highlight.min.js}" th:inline="javascript" ></script>
+			
+			<script th:inline="javascript">hljs.initHighlightingOnLoad();</script>
+			
+			
+			
+				<script src="resources/static/js/stackedCards.js"
+			th:src="@{/js/stackedCards.js}" th:inline="javascript" ></script>
+			
+								<script src="resources/static/js/stackedCards.min.js"
+			th:src="@{/js/stackedCards.min.js}" th:inline="javascript" ></script>
+			
+			
 		
 		<title>Cardápio</title>
+		
+		<style>
+			
+		*, *:before, *:after {
+			box-sizing: border-box;
+		}
+
+
+		.stacked-cards h2 {
+			text-align: center;
+			position: relative;
+			top: -20px;
+		}
+
+
+
+		.container-fuild {
+			max-width: 80%;
+			margin: 0 auto;
+		}
+
+		.container-fixed {
+			max-width: 767px;
+			margin: 0 auto;
+		}
+
+
+
+		.stacked-cards {
+/* 			padding-top: 40px; */
+			padding-bottom: 15px;
+		}
+
+		.stacked-cards-fanOut {
+			padding-bottom: 40px;
+		}
+
+		.stacked-cards-fanOut li img {
+			max-height: 200px;
+		}
+
+		.stacked-cards li {
+			height: 250px;
+		}
+
+		@media (max-width: 767px) {
+			.stacked-cards li {
+				height: 180px;
+			}
+		}
+
+		.stacked-cards li {
+			background-color: #00bcd4;
+		}
+
+		.stacked-cards li:nth-child(n) {
+			background-color: #3599db;
+		}
+
+		.stacked-cards li:nth-child(2n) {
+			background-color: #e61b77;
+		}
+
+		.stacked-cards li:nth-child(3n) {
+			background-color: #00bcd4;
+		}
+
+		.stacked-cards li:nth-child(4n) {
+			background-color: #f4b251;
+		}
+
+		.stacked-cards li:nth-child(5n) {
+			background-color: #8e4497;
+		}
+
+		.source {
+			margin: 25px auto;
+		}
+
+		.header {
+			margin: 0px auto;
+			padding: 25px 5px;
+			background-color: #fff;
+		}
+		.header img {
+			display: block;
+			margin: 0 auto;
+			max-width: 300px;
+			height: auto;
+		}
+
+		
+	</style>
 
 			<body  class="hold-transition skin-red sidebar-mini"   th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
 			
-			
+				
 			
 			<div class="wrapper">
 
@@ -79,7 +285,7 @@
 <!--         /.col -->
 <!--       </div> -->
 
-       <div class="row direct-chat direct-chat-msg direct-chat-primary">
+       <div class="direct-chat direct-chat-msg direct-chat-primary">
         <div th:if="${usuarioIndica}" id="notificacao" class="direct-chat-text col-md-4" >
 <!--           <div class="box box-primary box-solid"> -->
 <!--             <div class="box-header text-center"> -->
@@ -148,99 +354,24 @@
         </div>
 </div>
 
-<br></br>
-    
-       <div class="">
-       
-       <div class="row">
-       
-        <div sec:authorize="hasAnyRole('ROLE_GARCON','ROLE_ADM','ROLE_SUPER')" >
-       
-       <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="ion ion-ios-photos-outline"></i></span>
+<!-- <br></br> -->
 
-            <div class="info-box-content">
-              <span class="info-box-text">Salão</span>
-              <span class="info-box-number">90<small>%</small></span>
-<!--               <a th:href="@{/mesa/salao}">salao</a> -->
-              <a th:href="@{/mesa/salao}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
+       
+       
+         
+    <section class="col-md-8 connectedSortable">
+       
+      	 <div class="">
+          <div class="box box-solid">
+            <div class="">
+<!--               <h3 class="box-title">BANNER</h3> -->
+<!--                             <div class="box-tools pull-right"> -->
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i> -->
+<!--                 </button> -->
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button> -->
+<!--               </div> -->
               
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        
-        </div>
-        
-        
-        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" >
-        
-               <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-purple"><i class="ion ion-ios-nutrition-outline" ></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Cozinha</span>
-              <span class="info-box-number">50<small>%</small></span>
-<!--               <a th:href="@{/pedidovenda/cozinha}">cozinha</a> -->
-              <a th:href="@{/pedidovenda/cozinha}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        </div>
-        
-        
-                <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >
-        
-               <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline" ></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Usuarios</span>
-              <span class="info-box-number">50<small>%</small></span>
-<!--               <a th:href="@{/pedidovenda/cozinha}">cozinha</a> -->
-              <a th:href="@{/usuario/allonline}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        </div>
-        
-<!--         <div id="notificacao" class="col-lg-4" th:hidden="${mostrar}"> -->
-      
-      <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER','ROLE_GARCON')" >
-               <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-black"><i class="ion ion-ios-people-outline" ></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Monitor</span>
-              <span class="info-box-number">30<small>%</small></span>
-<!--               <a th:href="@{/pedidovenda/cozinha}">cozinha</a> -->
-              <a th:href="@{/pedidovenda/monitor}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-       
-       </div>
-       </div>
-       </div>
-       
-              <div class="row">
-       
-      	 <div class="col-md-12">
-          <div class="box box-solid">
-<!--             <div class="box-header with-border"> -->
-<!--               <h3 class="box-title"></h3> -->
-<!--             </div> -->
             <!-- /.box-header -->
             <div class="box-body">
               <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -292,136 +423,138 @@
         </div>
         
         </div>
-                
-                          <div class="clearfix"></div>
-                
         
-        </div>
-       
-       
-               <div class="">
+        </section>
         
-            <div class="box box-solid">
-            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border ui-sortable-handle'">
-              <h3 class="box-title">PROMOÇÕES</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
+        
             
-         <div class="row mb-24" >
-<!--          <h4 class="page_header">Oferta Diária</h4> -->
-        <div class="col-md-4" th:each="promocao: ${promocoesList}">
-            <div class="ribbon-content">
-                <div class="ribbon red"  th:class=" 'ribbon '+ ${promocao.corfaixa}"><span th:text="|${promocao.desconto} %|" >Desconto 10%</span></div>
-                
-                       <img th:if="${promocao.foto}" th:src="@{/img/promocao/{fotoc}(fotoc=${promocao.foto})}" class="img-circle img-md" alt="User Image" /> 
-                     <h4 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h4>
-                     
-           <span class="pull-left badge bg-blue" th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" ><i class="fa fa-clock"></i>31</span>    
-           
-           <br></br>
-           
-           <div class="box-footer text-center">
-                  <a href="#" class="uppercase" data-toggle="modal"  th:attr="data-target='#myPromocao'+${promocao.id}" >
-                  
-                  <i class="fa fa-arrow-circle-right"></i> Mais info</a>
-                  
-                </div>
-                
-                <br></br>
-                 
-             <div class="modal fade" th:id="'myPromocao'+${promocao.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabelPromo" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
+ 	<section class="col-md-4 connectedSortable">    
+ 	
+ 	<div class="container-fixed stacked-cards stacked-cards-fanOut">
 		
-		 
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					<i class="material-icons">clear</i>
-				</button>
-<!-- 				<h4 class="modal-title"> Detalhes</h4> -->
-			</div>
-			<div class="modal-body">
+		<div class="stacked-cards mycards">
+		<ul>
+		
 
+			<li th:each="produto: ${destaqueprodLista}">
 			
-		<div class="row">
-       
-<!--  	<h4 class="page_header">Resumo das Categorias</h4> -->
-      
-        <div class="col-md-12" >
-          <!-- Widget: user widget style 1 -->
-          <div class="box box-widget widget-user">
-            <!-- Add the bg color to the header using any of the bg-* classes -->
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i>
-                </button>
-              </div>
-            
-            <div class="widget-user-header bg-black"  th:class=" 'widget-user-header bg-'+ ${promocao.corfaixa}" style="background: url('img/promocao/promo.jpg') center center;">
-             
-                           <h3 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h3>
-              <h5 class="widget-user-desc"  th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" >Lead Developer</h5>
-             
-             </div>
-             
-              <div class="widget-user-image">
-                <img th:if="${promocao.foto}" th:src="@{/img/promocao/{fotoc}(fotoc=${promocao.foto})}" class="img-circle img-md"  alt="User Image" />
-              </div>
-          
+			 <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}"  alt="User Image" class="img-circle"/>
+			  <h4 class="" th:text="${produto.nome}">Thanh Nguyen</h4>
+			   <span class="badge bg-black text-center" th:text="${produto.precovenda}">Salão</span>
+			  
+			
+			</li>
 
-            <div class="box-footer no-padding">
-              <ul class="nav nav-stacked">
-                <li><a href="#">QTD Produtos <span class="pull-right badge bg-blue" th:text="${#lists.size(promocao.produtos)}" >31</span></a></li>
-                <li><a href="#">Desconto<span class="pull-right badge bg-aqua"  th:text="${promocao.desconto} + ' %' ">5</span></a></li>
-                <li><a href="#">Economia de até <span class="pull-right badge bg-green">R$ 12.00</span></a></li>
-                <li><a th:href="@{/promocao/perfil(id=${promocao.id})}">Perfil <span class="pull-right badge bg-red">ver</span></a></li>
-              </ul>
-            </div>
-          </div>
-          <!-- /.widget-user -->
-        </div>
-        
-<!--             <div class="clearfix"></div> -->
-        
-        </div>
-
-			                
-			                
-			
-			</div>
-			
-			
-			
-			
-			<div class="modal-footer">
-<!-- 				<button type="submit" class="btn btn-default btn-simple">Salvar</button> -->
-<!-- 				<button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Fechar</button> -->
-			</div>
-			
-		</div>
+		</ul>
 	</div>
-</div>
-
-            </div>
+ 	
+ 	</div>
+ 	
+ 	</section>   
+      
+<!--         <div class="row"> -->
+<!--           <div class="box box-solid"> -->
+<!--             <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border ui-sortable-handle'"> -->
+<!--               <h3 class="box-title">ATALHOS</h3> -->
+<!--                             <div class="box-tools pull-right"> -->
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i> -->
+<!--                 </button> -->
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button> -->
+<!--               </div> -->
+              
+<!--             </div> -->
+<!--             /.box-header -->
+<!--             <div class="box-body"> -->
        
-
+<!--         <div sec:authorize="hasAnyRole('ROLE_GARCON','ROLE_ADM','ROLE_SUPER')" > -->
        
-        </div> 
+<!--        <div class=""> -->
+<!--           <div class="info-box"> -->
+<!--             <span class="info-box-icon bg-red"><i class="ion ion-ios-photos-outline"></i></span> -->
+
+<!--             <div class="info-box-content"> -->
+<!--               <span class="info-box-text">Salão</span> -->
+<!--               <span class="info-box-number">90<small>%</small></span> -->
+<!-- <!--               <a th:href="@{/mesa/salao}">salao</a> -->
+<!--               <a th:href="@{/mesa/salao}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a> -->
+              
+<!--             </div> -->
+<!--             /.info-box-content -->
+<!--           </div> -->
+<!--           /.info-box -->
+<!--         </div> -->
         
-<!--             <div class="clearfix"></div> -->
+<!--         </div> -->
         
-        </div>
         
-        </div>
+<!--         <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" > -->
         
-        </div>
-        </div>
+<!--        <div class=""> -->
+<!--           <div class="info-box"> -->
+<!--             <span class="info-box-icon bg-purple"><i class="ion ion-ios-nutrition-outline" ></i></span> -->
+
+<!--             <div class="info-box-content"> -->
+<!--               <span class="info-box-text">Cozinha</span> -->
+<!--               <span class="info-box-number">50<small>%</small></span> -->
+<!-- <!--               <a th:href="@{/pedidovenda/cozinha}">cozinha</a> --> 
+<!--               <a th:href="@{/pedidovenda/cozinha}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a> -->
+<!--             </div> -->
+<!--             /.info-box-content -->
+<!--           </div> -->
+<!--           /.info-box -->
+<!--         </div> -->
+<!--         </div> -->
+        
+        
+<!--                 <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" > -->
+        
+<!--        <div class=""> -->
+<!--           <div class="info-box"> -->
+<!--             <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline" ></i></span> -->
+
+<!--             <div class="info-box-content"> -->
+<!--               <span class="info-box-text">Usuarios</span> -->
+<!--               <span class="info-box-number">50<small>%</small></span> -->
+<!-- <!--               <a th:href="@{/pedidovenda/cozinha}">cozinha</a> --> 
+<!--               <a th:href="@{/usuario/allonline}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a> -->
+<!--             </div> -->
+<!--             /.info-box-content -->
+<!--           </div> -->
+<!--           /.info-box -->
+<!--         </div> -->
+<!--         </div> -->
+        
+<!-- <!--         <div id="notificacao" class="col-lg-4" th:hidden="${mostrar}"> --> 
+      
+<!--       <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER','ROLE_GARCON')" > -->
+<!--        <div class=""> -->
+<!--           <div class="info-box"> -->
+<!--             <span class="info-box-icon bg-black"><i class="ion ion-ios-people-outline" ></i></span> -->
+
+<!--             <div class="info-box-content"> -->
+<!--               <span class="info-box-text">Monitor</span> -->
+<!--               <span class="info-box-number">30<small>%</small></span> -->
+<!-- <!--               <a th:href="@{/pedidovenda/cozinha}">cozinha</a> -->
+<!--               <a th:href="@{/pedidovenda/monitor}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a> -->
+<!--             </div> -->
+<!--             /.info-box-content -->
+<!--           </div> -->
+<!--           /.info-box -->
+<!--         </div> -->
+       
+<!--        </div> -->
+<!--        </div> -->
+<!--        </div> -->
+<!--        </div> -->
+<!--        </section> -->
+                
+<!--                           <div class="clearfix"></div> -->
+                
+        
+<!--         </div> -->
+       
+       
+        
         
         
 <!--          <br></br> -->
@@ -477,10 +610,17 @@
    
    
 <!--          <div class="row"> -->
-        <div class="col-md-8">
+ <section class="col-md-8 connectedSortable">
+        <div class="">
           <div class="box box-solid">
-            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border ui-sortable-handle'">
-              <h3 class="box-title">CATEGORIAS</h3>
+            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
+              <h3 class="box-title">CARDÁPIO</h3>
+                            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
+              </div>
+              
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -516,7 +656,7 @@
              
               <span class="product-description" th:utext="${produto.descricao}" >31</span>
                
-               <a th:href="@{/carrinho/adicionar(id=${produto.id})}" rel="tooltip" title="Add para Carrinho">Adicionar ao Carrinho <span class="pull-right badge bg-green" ><i class="fa fa-cart-plus"></i></span></a>
+               <a th:href="@{/carrinho/adicionarhome(id=${produto.id})}" rel="tooltip" title="Add para Carrinho">Adicionar ao Carrinho <span class="pull-right badge bg-green" ><i class="fa fa-cart-plus"></i></span></a>
                 
 
                   </div>
@@ -620,50 +760,321 @@
     
     </div>
     
-<!--     </div> -->
+    </section>
     
-     <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >
-       <div class="col-md-4">
-              <!-- USERS LIST -->
-              <div class="box">
-                <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border ui-sortable-handle'">
-                  <h4 class="box-title">USUARIOS</h4>
+    
+    
+       <section class="col-md-4 connectedSortable">
+       
+       
+               <div class="">
+        
+            <div class="box box-solid">
+            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
+              <h3 class="box-title">PROMOÇÕES</h3>
 
-                  <div class="box-tools pull-right">
-                    <span class="label label-danger" th:text=" | ${#lists.size(usuarios)} Novos Usuarios|">8 New Members</span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i>
-                    </button>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            
+         <div class="row" >
+<!--          <h4 class="page_header">Oferta Diária</h4> -->
+        <div class="col-md-12" th:each="promocao: ${promocoesList}">
+            <div class="ribbon-content">
+                <div class="ribbon red"  th:class=" 'ribbon '+ ${promocao.corfaixa}"><span th:text="|${promocao.desconto} %|" >Desconto 10%</span></div>
+                
+                       <img th:if="${promocao.foto}" th:src="@{/img/promocao/{fotoc}(fotoc=${promocao.foto})}" class="img-circle img-md" alt="User Image" /> 
+                     <h4 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h4>
+                     
+           <span class="pull-left badge bg-blue" th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" ><i class="fa fa-clock"></i>31</span>    
+           
+           <br></br>
+           
+           <div class="box-footer text-center">
+                  <a href="#" class="uppercase" data-toggle="modal"  th:attr="data-target='#myPromocao'+${promocao.id}" >
+                  
+                  <i class="fa fa-arrow-circle-right"></i> Mais info</a>
+                  
+                </div>
+                
+                <br></br>
+                 
+             <div class="modal fade" th:id="'myPromocao'+${promocao.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabelPromo" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		
+		 
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<i class="material-icons">clear</i>
+				</button>
+<!-- 				<h4 class="modal-title"> Detalhes</h4> -->
+			</div>
+			<div class="modal-body">
+
+			
+		<div class="row">
+       
+<!--  	<h4 class="page_header">Resumo das Categorias</h4> -->
+      
+        <div class="col-md-12" >
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i>
+                </button>
+              </div>
+            
+            <div class="widget-user-header bg-black"  th:class=" 'widget-user-header bg-'+ ${promocao.corfaixa}" style="background: url('img/promocao/promo.jpg') center center;">
+             
+                           <h3 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h3>
+              <h5 class="widget-user-desc"  th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" >Lead Developer</h5>
+             
+             </div>
+             
+              <div class="widget-user-image">
+                <img th:if="${promocao.foto}" th:src="@{/img/promocao/{fotoc}(fotoc=${promocao.foto})}" class="img-circle img-md"  alt="User Image" />
+              </div>
+          
+
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">QTD Produtos <span class="pull-right badge bg-blue" th:text="${#lists.size(promocao.produtos)}" >31</span></a></li>
+                <li><a href="#">Desconto<span class="pull-right badge bg-aqua"  th:text="${promocao.desconto} + ' %' ">5</span></a></li>
+                <li><a href="#">Economia de até <span class="pull-right badge bg-green">R$ 12.00</span></a></li>
+                <li><a th:href="@{/promocao/perfil(id=${promocao.id})}">Perfil <span class="pull-right badge bg-red">ver</span></a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        
+<!--             <div class="clearfix"></div> -->
+        
+        </div>
+
+			                
+			                
+			
+			</div>
+			
+			
+			
+			
+			<div class="modal-footer">
+<!-- 				<button type="submit" class="btn btn-default btn-simple">Salvar</button> -->
+<!-- 				<button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Fechar</button> -->
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+            </div>
+       
+<!--  <br></br> -->
+       
+        </div> 
+        
+            <div class="clearfix"></div>
+        
+        </div>
+        
+        <br></br>
+        
+        </div>
+        
+        </div>
+        
+        
+        </div>
+        </section>
+    
+    
+    
+    
+<!--     <div class="clearfix"></div>  -->
+<!--     </div> -->
+
+		<section class="col-md-8 connectedSortable">
+		<div class="box box-solid">
+            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
+              <h3 class="box-title">Maiores Avaliações</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+		<div class="col-md-6" th:each="produto: ${destaqueprodLista}" >
+          <div class="box box-widget widget-user" >
+            <div class="widget-user-header bg-aqua-active ui-sortable-handle"   th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard} + '-active ui-sortable-handle' ">
+              <h3 class="widget-user-username" th:text="${produto.nome}">Thanh Nguyen</h3>
+              <h5 class="widget-user-desc" th:text="${produto.descricao}">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}"  alt="User Image" class="img-circle"/>
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">3,200</h5>
+                    <span class="description-text">Curtido</span>
                   </div>
                 </div>
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header" th:utext="${#lists.size(produto.usuariosIndica)}">13,000</h5>
+                    <span class="description-text">Indicado</span>
+                  </div>
+                </div>
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header" th:text="|${produto.precovenda}|">35</h5>
+                    <span class="description-text" >Preço</span>
+                  </div>
+                </div>
+                
+                
+<!--                <div class="col-sm-3"> -->
+<!--                   <div class="description-block"> -->
+<!--                     <h5 class="description-header" th:text="|${produto.tempopreparo} min.|">35 -->
+<!--                     <span><i class="fa fa-clock"></i></span> -->
+<!--                     </h5> -->
+<!--                     <span class="description-text" >Tempo Preparo</span> -->
+<!--                   </div> -->
+<!--                 </div> -->
+                
+     
+              </div>
+              
+              
+              <div class="">
+              
+              
+								<p>
+								<ul class="rating">
+
+
+									<th:block
+										th:each="i: ${#numbers.sequence(1, 5)}">
+										<li th:if="${produto.avaliacao >= i}" class="active"><a
+											class="rstarR" href="#"> <img th:src="@{/img/star1.png}"
+												class="imgstar" />
+										</a></li>
+										<li th:unless="${produto.avaliacao >= i}"><a
+											class="rstarR" href="#"> <img th:src="@{/img/star0.png}"
+												class="imgstar" />
+										</a></li>
+									</th:block>
+								</ul>
+								</p>
+              
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
         
-                 <div class="box-body no-padding">
-                  <ul class="users-list clearfix">
-                    <li th:each="usuario : ${usuarios}">
-                      <img th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}" alt="User Image" />
-                      <a class="users-list-name" th:href="@{/usuario/perfil?id={userid}(userid=${usuario.id})}" th:utext="${usuario.nome}">Thanh Nguyen</a>
-                      <span class="users-list-date">Hoje</span>
-                    </li>
-    
-                  </ul>
-                </div>
-                <div class="box-footer text-center">
-                  <a th:href="@{usuario/movimentacao}" class="uppercase">Todos Usuarios</a>
-                </div>
+        
+        </section>
+        
+         <section class="col-md-4 connectedSortable">
+          <div class="">
+                  <div class="box box-solid">
+            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
+              <h3 class="box-title">CARDAPIO ANALÍTICO</h3>
 
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
+              </div>
             </div>
-    
-
+            <!-- /.box-header -->
+            <div class="box-body">
+        <div class="col-md-12"  th:each="categoria: ${categoriaLista}" >
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user-2 ui-sortable-handle">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i>
+                </button>
+              </div>
+            
+            <div class="widget-user-header bg-black ui-sortable-handle"  th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard} +' ui-sortable-handle'">
+             
+             <a th:href="@{/categoria/exibir(id=${categoria.id})}">
+             
+              <div class="widget-user-image">
+          <img th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.logo})}" class="img-circle" alt="User Image" />
+              </div>
+          
+              <h4 class="widget-user-username" th:text="${categoria.nome}" >Nadia Carmichael</h4>
+<!--               <h5 class="widget-user-desc" th:text="${categoria.catpai}" >Lead Developer</h5> -->
+              
+			</a>
+              
             </div>
             
-<!--             </div> -->
-<!--             </div> -->
+            <div class="clearfix"></div>
             
-       <div class="row">
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">QTD Produtos <span class="pull-right badge bg-blue" th:text="${#lists.size(categoria.produtos)}" >31</span></a></li>
+                <li><a href="#">Variacao de Preco <span class="pull-right badge bg-aqua">5</span></a></li>
+<!--                 <li><a href="#">+ Pedidos <span class="pull-right badge bg-green">12</span></a></li> -->
+<!--                 <li><a href="#">Sugestao de  <span class="pull-right badge bg-red" th:utext="${usuarioAtt.nome}" >842</span></a></li> -->
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        </div>
+        </div>
+        
+        <div class="clearfix"></div>
+        
+        </div>
+        
+        </section>
+        
+
+<!-- <div class="clearfix"></div> -->
+    
+     <div sec:authorize="hasAnyRole('ROLE_ADM','ROLE_SUPER')" >
+     
+     <section class="col-md-8 connectedSortable" >
+            
+       <div class="">
+       		<div class="box box-solid">
+            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
+              <h3 class="box-title">GRÁFICOS</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
        
-                     <div class="col-md-4 connectedSortable">
-              <div class="box box-solid bg-teal-gradient"  th:class=" 'box box-solid bg-'+ ${configuracaoAtual.corcard} +'-gradient'">
+       
+                     <div class="col-md-12">
+              <div class="box box-solid bg-teal-gradient ui-sortable-handle"  th:class=" 'box box-solid bg-'+ ${configuracaoAtual.corcard} +'-gradient ui-sortable-handle'">
             <div class="box-header ui-sortable-handle">
               <i class="fa fa-th"></i>
 
@@ -708,7 +1119,7 @@
     </div>
             
        
-                     <div class="col-md-4">
+                     <div class="col-md-6">
                  
                  
               <div class="box">
@@ -762,7 +1173,7 @@
     
 
             
-                  <div class="col-md-4">
+                  <div class="col-md-6">
             	  
             	  <div class="box">
                 <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border ui-sortable-handle'">
@@ -808,53 +1219,58 @@
             	  
             	  
             	       
-
+</div>
+</div>
             	  
      
             
             </div>
             
+            </section>
+     
+      <section class="col-md-4 connectedSortable">
+       <div class="">
+              <!-- USERS LIST -->
+              <div class="box">
+                <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border ui-sortable-handle'">
+                  <h4 class="box-title">USUARIOS</h4>
+
+                  <div class="box-tools pull-right">
+                    <span class="label label-danger" th:text=" | ${#lists.size(usuarios)} Novos Usuarios|">8 New Members</span>
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i>
+                    </button>
+                  </div>
+                </div>
+        
+                 <div class="box-body no-padding">
+                  <ul class="users-list clearfix">
+                    <li th:each="usuario : ${usuarios}">
+                      <img th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}" alt="User Image" />
+                      <a class="users-list-name" th:href="@{/usuario/perfil?id={userid}(userid=${usuario.id})}" th:utext="${usuario.nome}">Thanh Nguyen</a>
+                      <span class="users-list-date">Hoje</span>
+                    </li>
+    
+                  </ul>
+                </div>
+                <div class="box-footer text-center">
+                  <a th:href="@{usuario/movimentacao}" class="uppercase">Todos Usuarios</a>
+                </div>
+
+            </div>
+    
+
+            </div>
+            
+<!--             </div> -->
+<!--             </div> -->
+
+
+            </section>
+            
             
     
-          <div class="row">
-      
-        <div class="col-md-4"  th:each="categoria: ${categoriaLista}" >
-          <!-- Widget: user widget style 1 -->
-          <div class="box box-widget widget-user-2">
-            <!-- Add the bg color to the header using any of the bg-* classes -->
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i>
-                </button>
-              </div>
-            
-            <div class="widget-user-header bg-black ui-sortable-handle"  th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard} +' ui-sortable-handle'">
-              <div class="widget-user-image">
-          <img th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.logo})}" class="img-circle" alt="User Image" />
-              </div>
-          
-              <h4 class="widget-user-username" th:text="${categoria.nome}" >Nadia Carmichael</h4>
-<!--               <h5 class="widget-user-desc" th:text="${categoria.catpai}" >Lead Developer</h5> -->
-              
-
-              
-            </div>
-            
-            <div class="clearfix"></div>
-            
-            <div class="box-footer no-padding">
-              <ul class="nav nav-stacked">
-                <li><a href="#">QTD Produtos <span class="pull-right badge bg-blue" th:text="${#lists.size(categoria.produtos)}" >31</span></a></li>
-                <li><a href="#">Variacao de Preco <span class="pull-right badge bg-aqua">5</span></a></li>
-<!--                 <li><a href="#">+ Pedidos <span class="pull-right badge bg-green">12</span></a></li> -->
-<!--                 <li><a href="#">Sugestao de  <span class="pull-right badge bg-red" th:utext="${usuarioAtt.nome}" >842</span></a></li> -->
-              </ul>
-            </div>
-          </div>
-
-        </div>
-        <div class="clearfix"></div>
-        
-        </div>
         
      <div class="clearfix"></div>   
      
@@ -971,6 +1387,19 @@
 
 	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
 	
+								<script src="https://cdn.jsdelivr.net/highlight.js/9.9.0/highlight.min.js"
+			th:src="@{https://cdn.jsdelivr.net/highlight.js/9.9.0/highlight.min.js}" th:inline="javascript" ></script>
+			
+			<script th:inline="javascript">hljs.initHighlightingOnLoad();</script>
+			
+			
+			
+				<script src="resources/static/js/stackedCards.js"
+			th:src="@{/js/stackedCards.js}" th:inline="javascript" ></script>
+			
+								<script src="resources/static/js/stackedCards.min.js"
+			th:src="@{/js/stackedCards.min.js}" th:inline="javascript" ></script>
+	
 	<script type="text/javascript">
 $(function(){
     $("#notificacao").fadeIn(1000, function(){
@@ -1074,9 +1503,25 @@ $(function(){
   });
   
   
+  
   /*]]>*/
   
   </script>
+  
+  	<script type="text/javascript">
+	
+		
+		var stackedCard = new stackedCards({
+		 	selector: '.mycards',
+		 	layout: "slide",
+		 	transformOrigin: "center",
+		});
+
+		stackedCard.init();
+		
+		
+		
+	</script>
   
   
 <!--   <script type="text/javascript"> -->

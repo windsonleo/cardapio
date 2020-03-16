@@ -40,7 +40,7 @@
 				
 				</nav>
 				
-					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					<div th:replace="fragmentos/navaux :: nav-side"> </div>
 				
   <div class="content-wrapper">
     <section class="content-header">
@@ -75,15 +75,17 @@
               
 <!--       </div> -->
 
+ <section class="col-md-5 connectedSortable">
+
  <div class="row">
       
 
       
 
        
-       		<div class="col-md-5">
+       		<div class="col-md-12">
 			<div class="box box-primary">
-            <div class="box-header bg-black with-border"  th:class=" 'box-header bg-'+ ${configuracaoAtual.corcard} + ' with-border'">
+            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
              <i class="fa fa-television"></i>
              <h3 class="box-title">PROGRESSO</h3>
 
@@ -96,11 +98,13 @@
             <!-- /.box-header -->
             <div class="box-body">
               <ul class="products-list product-list-in-box" th:each="pedido : ${pedidos}">
+                <div class="direct-chat-text">
                   <span class="product-title" th:text="|Pedido Id : ${pedido.id}|" >$1800</span>
                 <p>  <span class="product-title text-center" th:utext="| Data : ${#dates.format(pedido.data,'dd/MM/yyyy')} |">data</span>
                 
                 <span class="product-title" th:utext="| Hora : ${#dates.format(pedido.horapedido,'hh:MM:ss')} |">data</span>
                  </p>
+                 </div>
                   
 <!--                   </span> -->
                 
@@ -109,7 +113,7 @@
                   
                   
                   <div class="product-img">
-                    <img th:src="@{/img/produto/{fotoc}(fotoc=${item.key.foto})}" alt="Product Image">
+                    <img th:src="@{/img/produto/{fotoc}(fotoc=${item.key.foto})}" alt="Product Image" class="img-circle">
                   </div>
                   <div class="product-info">
                   
@@ -189,9 +193,20 @@
   
   </div>
   
-        <div class="col-md-5">
+  </div>
+  
+  </section>
+  
+      
+    <section class="col-md-5 connectedSortable">
+
+    
+       <div class="row">
+       
+       		<div class="box box-solid">
+        <div class="col-md-12">
         			<div class="box box-primary">
-            <div class="box-header bg-green with-border">
+            <div class="box-header bg-green with-border ui-sortable-handle">
              <i class="fa fa-television"></i>
              <h3 class="box-title">PRONTOS</h3>
 
@@ -224,8 +239,18 @@
 
   </div>
   
+  </div>
+  
+  </section>
+  
+  
+  
+
 
     </section>
+    
+             <div class="clearfix"></div>
+    
     
            
   </div>

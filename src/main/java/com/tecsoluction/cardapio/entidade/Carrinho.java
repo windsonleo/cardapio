@@ -71,7 +71,7 @@ public class Carrinho extends BaseEntity implements Serializable {
 
     public Carrinho() {
         // TODO Auto-generated constructor stub
-    //    itens = new ArrayList<Item>();
+        itens = new ArrayList<Item>();
     	
     	Date dat = new Date();
     	horapedido = dat;

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,5 +78,24 @@ public class ProdutoServicoImpl extends AbstractEntityService<Produto> {
 		return dao.findAllNew();
 	}
 
+	
+    public List<Produto> ListaProdutoMaiorAvaliacao(Pageable pageable){
+    	
+//    	Pageable primeiroResultado = new PageRequest(0, 5);
+    	List<Produto> result = dao.ListaProdutoMaiorAvaliacao(pageable);
+
+    	
+    	return result;
+    }
+    
+    
+    public List<Produto> ListaProdutoMenorPreco(Pageable pageable){
+    	
+//    	Pageable primeiroResultado = new PageRequest(0, 5);
+    	List<Produto> result = dao.ListaProdutoMenorPreco(pageable);
+
+    	
+    	return result;
+    }
 
 }

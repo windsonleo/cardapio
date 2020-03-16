@@ -101,6 +101,8 @@ public class GarconController extends AbstractController<Garcon> {
 		 model.addAttribute("garcon", garcon);
 		 model.addAttribute("filename", filename);
 	        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
+		   	model.addAttribute("totalitens", carrinhobean.TotalItens());
+
 
 		// model.addAttribute("usuarioList", usuarioList);
 

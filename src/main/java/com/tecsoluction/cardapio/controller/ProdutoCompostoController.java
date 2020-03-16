@@ -154,6 +154,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		model.addAttribute("produto", produto);
 		model.addAttribute("items", items);
 		
+		
 
 		
 

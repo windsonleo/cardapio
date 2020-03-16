@@ -129,6 +129,8 @@ public class MesaController extends AbstractController<Mesa> {
 		 model.addAttribute("itensentregue", itensentregue);
 		 model.addAttribute("itenspreparacao", itenspreparacao);
 		 model.addAttribute("itensprontos", itensprontos);
+		   	model.addAttribute("totalitens", carrinhobean.TotalItens());
+
 
 	}
 	
