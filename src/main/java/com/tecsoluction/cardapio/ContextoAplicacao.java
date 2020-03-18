@@ -550,6 +550,7 @@ public class ContextoAplicacao {
 			if((cat.getProdutos().size() > 0) && (!cat.getNome().equals(insumo))){
 				
 				
+				cat.CalcularMenorMaiorPreco();
 				validas.add(cat);
 				
 				

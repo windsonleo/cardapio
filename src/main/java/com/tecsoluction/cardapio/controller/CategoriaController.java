@@ -123,6 +123,7 @@ public class CategoriaController extends AbstractController<Categoria> {
     public ModelAndView ExibirCategoria(HttpServletRequest request, Model model) {
 
         UUID idf = UUID.fromString(request.getParameter("id"));
+              
 
 //        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
         
@@ -137,8 +138,11 @@ public class CategoriaController extends AbstractController<Categoria> {
         	carrinho = new Carrinho();
         	UUID uuid = UUID.randomUUID();
  			carrinho.setId(uuid);
+ 			 carrinhobean.SetarCarrinhoSessao(carrinho);
       
             }else {
+            	
+            	carrinho = carrinhobean.getCarrinho();
             	
 //            	UUID uuid = UUID.randomUUID();
 //     			carrinho.setId(uuid);

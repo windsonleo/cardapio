@@ -2,6 +2,8 @@ package com.tecsoluction.cardapio.entidade;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -51,6 +54,13 @@ public class Categoria extends BaseEntity implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "categoria", cascade = {CascadeType.REFRESH},fetch=FetchType.EAGER)
     private List<Produto> produtos;
+    
+    
+    @Transient
+    private BigDecimal menorPreco;
+    
+    @Transient
+    private BigDecimal maiorPreco;
 
 
     //CONSTRUTOR PADRAO
@@ -77,6 +87,48 @@ public class Categoria extends BaseEntity implements Serializable {
 //    	this.ativo = ativo;
 //    }
 
+    
+    public void CalcularMenorMaiorPreco(){
+    	
+    	BigDecimal menorPrecoauxnew = new BigDecimal("0.00").setScale(2, RoundingMode.UP);
+    	BigDecimal	maiorPrecoaux = new BigDecimal("0.00").setScale(2, RoundingMode.UP);
+    	BigDecimal	Precoaux = new BigDecimal("0.00").setScale(2, RoundingMode.UP);
+
+    	
+    	for(Produto prd : getProdutos()){
+    		
+    		
+    		Precoaux = prd.getPrecovenda();
+    		
+    		if(Precoaux.compareTo(maiorPrecoaux) ==1  ){
+    			
+    			maiorPrecoaux = Precoaux;
+    			
+    			
+    		}
+    		else if(Precoaux.compareTo(menorPrecoauxnew) ==1 ){
+        			
+        			System.out.println("valor2 é maior");
+        			
+        		}else {
+        			       			
+        			menorPrecoauxnew = Precoaux;
+        			
+        			
+        		}
+    			
+    			
+    		}
+    	
+    	maiorPreco = maiorPrecoaux;
+    	menorPreco = menorPrecoauxnew;
+    		
+    		
+    		
+    		
+    	}
+    	
+    	
 
     @Override
     public String toString() {

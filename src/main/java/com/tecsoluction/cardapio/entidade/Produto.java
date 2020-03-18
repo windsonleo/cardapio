@@ -103,8 +103,8 @@ public class Produto extends BaseEntity implements Serializable {
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Integer> notas = new ArrayList<Integer>();
     
-    @ManyToMany(mappedBy="indicacoes")
-    private Set<Usuario> usuariosIndica;
+    @ManyToMany(mappedBy="indicacoes",fetch=FetchType.EAGER,targetEntity=Usuario.class)
+    private Set<Usuario> usuariosIndica= new HashSet<Usuario>();
 
 
     public Produto(UUID id, String foto, String nome, String codebar, String descricao,
@@ -125,6 +125,7 @@ public class Produto extends BaseEntity implements Serializable {
         this.novo = novo;
         this.avaliacao = avalia;
         this.tempopreparo = temp;
+//        usuariosIndica = new HashSet<Usuario>();
         
         
     }
@@ -132,7 +133,7 @@ public class Produto extends BaseEntity implements Serializable {
     public Produto() {
         super();
         
-        
+//        usuariosIndica 
 
     }
     

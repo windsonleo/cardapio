@@ -170,7 +170,7 @@ public class Usuario  extends BaseEntity implements Serializable {
 	    
 		@Override
 		public String toString() {
-			return email;
+			return nome;
 		}
 	
 	

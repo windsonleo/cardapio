@@ -103,6 +103,7 @@ public class HomeController {
     
     private List<Produto> destaqueprodLista = new ArrayList<Produto>();
 
+    private List<Produto> indicaprodLista = new ArrayList<Produto>();
     
     private GerenciadorCategorias gerenciacat;
     
@@ -202,6 +203,8 @@ public class HomeController {
 	         carrinhobean.SetarProdutosIndicaSessao();
 	         
 	         destaqueprodLista = ProdutoService.ListaProdutoMaiorAvaliacao(primeiroResultado);
+	         
+	         indicaprodLista = carrinhobean.getProdutosIndica();
 	        
 //
 //	        model.addAttribute("atividades", atividades);
@@ -214,6 +217,9 @@ public class HomeController {
 	        model.addAttribute("filename", filename);
 	        model.addAttribute("carrinho", carrinhobean.getCarrinho());
 		   	model.addAttribute("totalitens", carrinhobean.TotalItens());
+		   	
+		   	model.addAttribute("indicaprodLista", indicaprodLista);
+
 
 	        
 	        model.addAttribute("usuarioIndica", carrinhobean.PegarUsuarioIndicaSessao());  
@@ -284,6 +290,9 @@ public class HomeController {
     	
 		return categoriasfilhos;
 	}
+    
+    
+    
     
     
     

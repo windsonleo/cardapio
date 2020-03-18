@@ -286,7 +286,7 @@ public class ProdutoController extends AbstractController<Produto> {
     }
     
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public ModelAndView ExibirCategoria(HttpServletRequest request) {
+    public ModelAndView ExibirCategoria(HttpServletRequest request,Model model) {
 
         UUID idf = UUID.fromString(request.getParameter("id"));
 
