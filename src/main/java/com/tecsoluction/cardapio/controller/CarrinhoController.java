@@ -207,7 +207,7 @@ public class CarrinhoController  {
         String msg = "Produto , " + cat.getNome() + " Adiccionado ao Carrinho";
         
         
-        ModelAndView exibircatt = new ModelAndView("redirect:/categoria/exibir?id=" +cat.getCategoria().getId() );
+        ModelAndView exibircatt = new ModelAndView("redirect:/categoria/exibir?id=" +cat.getCategoria().getId());
         
         Item item = new Item(cat);
         
@@ -220,7 +220,7 @@ public class CarrinhoController  {
         carrinhobean.getCarrinho().setTotal(carrinhobean.getCarrinho().CalcularTotal().setScale(2, RoundingMode.UP));
         
       System.out.println("url : " + request.getRequestURL());  
-      System.out.println("url parameters: " + request.getAttributeNames().toString());  
+      System.out.println("url parameters: " + request.getAttributeNames());  
         
 //        request.setAttribute("carrinho", carrinho); // Setando no escopo de requisição
 //        request.getSession().setAttribute("carrinho", carrinho); // Setando no escopo de sessão.
@@ -320,7 +320,7 @@ public class CarrinhoController  {
         carrinhobean.getCarrinho().setTotal(carrinhobean.getCarrinho().CalcularTotal().setScale(2, RoundingMode.UP));
         
       System.out.println("url : " + request.getRequestURL());  
-      System.out.println("url parameters: " + request.getAttributeNames().toString());  
+      System.out.println("url parameters: " + request.getAttributeNames());  
         
 //        request.setAttribute("carrinho", carrinho); // Setando no escopo de requisição
 //        request.getSession().setAttribute("carrinho", carrinho); // Setando no escopo de sessão.

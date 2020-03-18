@@ -256,6 +256,33 @@
     
     <section class="content connectedSortable">
     
+     <div class="row-fluid"  th:if="${sucesso}">
+    
+    <div class="alert alert-success alert-dismissible" >
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i></button>
+                <h4><i class="icon fa fa-check"></i> Sucesso</h4>
+               <p th:text="${sucesso}"> Success alert preview. This alert is dismissable.</p>
+              </div>
+              
+              
+              </div>
+              
+              
+              
+              <div class="row-fluid"  th:if="${erro}">
+                  <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <i class="fa fa-times" style="color:#fff;"></i></button>
+                <h4><i class="icon fa fa-check"></i> Erro </h4>
+               <p th:text="${erro}"> Erro alert preview. This alert is dismissable.</p>
+              </div>
+              
+              </div>
+    
+   
+        
+        
+        <br></br>
+    
 <!--     <div id="fotho" class="img-circle"></div> -->
     
 <!--     <div id="status"></div> -->
@@ -285,74 +312,88 @@
 <!--         /.col -->
 <!--       </div> -->
 
-       <div class="direct-chat direct-chat-msg direct-chat-primary">
-        <div th:if="${usuarioIndica}" id="notificacao" class="direct-chat-text col-md-4" >
-<!--           <div class="box box-primary box-solid"> -->
-<!--             <div class="box-header text-center"> -->
-              <h4 class="direct-chat-timestamp" th:text="${usuarioIndica.nome}" >Indicação</h4>
+<!--        <div class="direct-chat direct-chat-msg direct-chat-primary"> -->
+<!--         <div th:if="${usuarioIndica}" id="notificacao" class="direct-chat-text col-md-4" > -->
 
-<!-- 				<div class="box-tools pull-right"> -->
-<!-- 					<button type="button" class="btn btn-box-tool" -->
-<!-- 						data-widget="remove"> -->
-<!-- 						<i class="fa fa-times" style="color: #fff;"></i> -->
-<!-- 					</button> -->
-<!-- 				</div> -->
+<!--               <h4 class="direct-chat-timestamp" th:text="${usuarioIndica.nome}" >Indicação</h4> -->
 
-<!-- <div class="widget-user-image"> -->
-			<img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" src="" class="direct-chat-img img-md" alt="User Image" /> 
-          <img th:unless="${usuarioIndica.foto}" th:src="@{/img/usuario/avatar_uso.jpg}" src="" class="direct-chat-img img-md" alt="User Image" /> 
-<!--          </div> -->
+
+<!-- 			<img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" src="" class="direct-chat-img img-md" alt="User Image" />  -->
+<!--           <img th:unless="${usuarioIndica.foto}" th:src="@{/img/usuario/avatar_uso.jpg}" src="" class="direct-chat-img img-md" alt="User Image" />  -->
       
          
          
-           <h5  class="direct-chat-timestamp text-center"  >Indica</h5>
-<!--            <h5 th:unless="${usuarioIndica.nome}"  class="widget-user-username" th:text="${usuarioAtt.nome}" >Nadia Carmichael</h5> -->
-           
-<!--             </div> -->
-<!--             <div class="box-body text-center"> -->
+<!--            <h5  class="direct-chat-timestamp text-center"  >Indica</h5> -->
+
+<!--           <img th:if="${produtoIndica.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produtoIndica.foto})}" src="" class="direct-chat-img img-md pull-right" alt="User Image" />  -->
+<!--  		<img th:unless="${produtoIndica.foto}" th:src="@{/img/produto/vazio.jpg}" class="direct-chat-img img-md pull-right" src=""  alt="User Image" />  -->
+ 			
+<!--  			<h4 th:if="${produtoIndica.nome}" class="direct-chat-name text-center" th:text="${produtoIndica.nome}" >Nadia Carmichael</h4> -->
+<!--  			 <h4 th:unless="${produtoIndica.nome}" class="direct-chat-name text-center" >Nadia Carmichael</h4> -->
+ 			
+<!--  			<a th:if="${produtoIndica.id}" th:href="@{/produto/perfil(id=${produtoIndica.id})}" href="#" class="pull-right"> Clique Para Ver</a> -->
+<!--  			<a th:unless="${produtoIndica.id}" href="#" class="pull-right"> Clique Para Ver</a> -->
+
+
+<!--             <div id="overlayy" class="overlay" > -->
             
-<!--             <h6 class="widget-user-username" >Indicação</h6> -->
-
-<!-- 			<h6 th:if="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioIndica.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6> -->
-<!-- 			<h6 th:unless="${usuarioIndica.nome}" class="widget-user-username" th:text="|O  ${usuarioAtt.nome} ,Indicou Esse Produto|" >Nadia Carmichael</h6> -->
-
-          <img th:if="${produtoIndica.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produtoIndica.foto})}" src="" class="direct-chat-img img-md pull-right" alt="User Image" /> 
- 		<img th:unless="${produtoIndica.foto}" th:src="@{/img/produto/vazio.jpg}" class="direct-chat-img img-md pull-right" src=""  alt="User Image" /> 
- 			
- 			<h4 th:if="${produtoIndica.nome}" class="direct-chat-name text-center" th:text="${produtoIndica.nome}" >Nadia Carmichael</h4>
- 			 <h4 th:unless="${produtoIndica.nome}" class="direct-chat-name text-center" >Nadia Carmichael</h4>
- 			
- 			<a th:if="${produtoIndica.id}" th:href="@{/produto/perfil(id=${produtoIndica.id})}" href="#" class="pull-right"> Clique Para Ver</a>
- 			<a th:unless="${produtoIndica.id}" href="#" class="pull-right"> Clique Para Ver</a>
-
+<!--               <i class="fa fa-refresh fa-spin"></i> -->
 <!--             </div> -->
-            <!-- /.box-body -->
-            <!-- Loading (remove the following to stop the loading)-->
-<!--             <div id="overlayy" class="overlay" th:hidden="${esconderOver}" > -->
-            <div id="overlayy" class="overlay" >
+
+
+          
+<!--         </div> -->
+<!-- </div> -->
+
+<!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;"  > -->
+  <!-- Position it -->
+<!--   <div style="position: absolute; top: 0; right: 0;"> -->
+
+<section th:if="${usuarioIndica}" class="col-md-12 direct-chat direct-chat-primary">
+
+<div class="col-md-6">
+
+
+</div>
+
+<div role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000" class="toast direct-chat-msg right direct-chat-primary col-md-6" data-autohide="true" >
+  <div class="toast-header">
+    <img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" class="direct-chat-img img-md" alt="User Image">
+<!--     <strong class="mr-auto"  th:text="| ${usuarioIndica.nome} ,|">Indicação</strong> -->
+<!--     <small class="direct-chat-name">INDICA : </small> -->
+<!--     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"> -->
+<!--       <span aria-hidden="true">&times;</span> -->
+<!--     </button> -->
+
+
+  </div>
+  <div class="toast-body direct-chat-text">
+            <img th:if="${produtoIndica.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produtoIndica.foto})}" src="img-circle" class="img-circle img-md" alt="User Image" /> 
+ 		<img th:unless="${produtoIndica.foto}" th:src="@{/img/produto/vazio.jpg}" class="img-circle" src=""  alt="User Image" /> 
+ 			
+ 			<h4 th:if="${produtoIndica.nome}" class="" th:text="${produtoIndica.nome}" >Nadia Carmichael</h4>
+ 			 <h4 th:unless="${produtoIndica.nome}" class="" >Nadia Carmichael</h4>
+ 			
+ 			<a th:if="${produtoIndica.id}" th:href="@{/produto/perfil(id=${produtoIndica.id})}" href="#" class=""> Clique Para Ver</a>
+ 			<a th:unless="${produtoIndica.id}" href="#" class=""> Clique Para Ver</a>
+ 			
+ 			 <div id="overlayy" class="overlay" >
             
               <i class="fa fa-refresh fa-spin"></i>
             </div>
-            <!-- end loading -->
-<!--           </div> -->
-          <!-- /.box -->
-<!--           	<script type="text/javascript"> -->
-<!-- // $(function(){ -->
-<!-- //     $("#notificacao").fadeIn(1000, function(){ -->
-<!-- //         window.setTimeout(function(){ -->
-<!-- //         	   $('#overlayy').show(); -->
-<!-- //         	$('#notificacao').fadeOut(); -->
-         
-<!-- //         }, 7000); -->
-        
-<!-- //         $('#overlayy').hide(); -->
-<!-- //     }); -->
-<!-- // }); -->
 
-<!-- </script>  -->
-          
-        </div>
+  
+  </div>
 </div>
+
+
+</section>
+
+
+<!-- </div> -->
+<!-- </div> -->
+
+
 
 <!-- <br></br> -->
 
@@ -440,7 +481,7 @@
 			
 			 <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}"  alt="User Image" class="img-circle"/>
 			  <h4 class="" th:text="${produto.nome}">Thanh Nguyen</h4>
-			   <span class="badge bg-black text-center" th:text="${produto.precovenda}">Salão</span>
+			   <span class="badge bg-black" th:text="|R$: ${produto.precovenda}|">Salão</span>
 			  
 			
 			</li>
@@ -694,7 +735,7 @@
                 </div>
                 <div class="col-sm-3 border-right">
                   <div class="description-block">
-                    <h5 class="description-header" th:utext="${#lists.size(produto.usuariosIndica)}">13,000</h5>
+                    <h5 class="description-header" th:if="${produto.usuariosIndica}" th:utext="${#lists.size(produto.usuariosIndica)}">13,000</h5>
                     <span class="description-text">Indicado</span>
                   </div>
                 </div>
@@ -882,7 +923,7 @@
        
         </div> 
         
-            <div class="clearfix"></div>
+<!--             <div class="clearfix"></div> -->
         
         </div>
         
@@ -928,13 +969,13 @@
               <div class="row">
                 <div class="col-sm-4 border-right">
                   <div class="description-block">
-                    <h5 class="description-header">3,200</h5>
-                    <span class="description-text">Curtido</span>
+                    <h5 class="description-header" th:if="${produto.notas}" th:utext="${#lists.size(produto.notas)}" >3,200</h5>
+                    <span class="description-text">Avaliações</span>
                   </div>
                 </div>
                 <div class="col-sm-4 border-right">
                   <div class="description-block">
-                    <h5 class="description-header" th:utext="${#lists.size(produto.usuariosIndica)}">13,000</h5>
+                    <h5 class="description-header" th:if="${produto.usuariosIndica}" th:utext="${#lists.size(produto.usuariosIndica)}">13,000</h5>
                     <span class="description-text">Indicado</span>
                   </div>
                 </div>
@@ -1033,8 +1074,8 @@
             
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-                <li><a href="#">QTD Produtos <span class="pull-right badge bg-blue" th:text="${#lists.size(categoria.produtos)}" >31</span></a></li>
-                <li><a href="#">Variacao de Preco <span class="pull-right badge bg-aqua">5</span></a></li>
+                <li><a href="#">QTD Produtos <span class="pull-right badge bg-orange" th:text="${#lists.size(categoria.produtos)}" >31</span></a></li>
+                <li><a href="#">Preços<span class="pull-right badge bg-purple" th:text="| De: R$= ${categoria.menorPreco} até ${categoria.maiorPreco}">5</span></a></li>
 <!--                 <li><a href="#">+ Pedidos <span class="pull-right badge bg-green">12</span></a></li> -->
 <!--                 <li><a href="#">Sugestao de  <span class="pull-right badge bg-red" th:utext="${usuarioAtt.nome}" >842</span></a></li> -->
               </ul>
@@ -1045,7 +1086,7 @@
         </div>
         </div>
         
-        <div class="clearfix"></div>
+<!--         <div class="clearfix"></div> -->
         
         </div>
         
@@ -1270,14 +1311,121 @@
             </section>
             
             
+
+            
+            
     
         
-     <div class="clearfix"></div>   
+<!--      <div class="clearfix"></div>    -->
      
      </div>
      
+                 	<section class="col-md-8 connectedSortable">
+		<div class="box box-solid">
+            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
+              <h3 class="box-title">Maiores Indicações</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+		<div class="col-md-6" th:each="produto: ${indicaprodLista}" >
+          <div class="box box-widget widget-user" >
+            <div class="widget-user-header bg-aqua-active ui-sortable-handle"   th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard} + '-active ui-sortable-handle' ">
+              <h3 class="widget-user-username" th:text="${produto.nome}">Thanh Nguyen</h3>
+              <h5 class="widget-user-desc" th:text="${produto.descricao}">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}"  alt="User Image" class="img-circle"/>
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header" th:if="${produto.notas}" th:utext="${#lists.size(produto.notas)}">3,200</h5>
+                    <span class="description-text">Avaliações</span>
+                  </div>
+                </div>
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header" th:if="${produto.usuariosIndica}" th:utext="${#lists.size(produto.usuariosIndica)}">13,000</h5>
+                    <span class="description-text">Indicações</span>
+                  </div>
+                </div>
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header" th:text="|${produto.precovenda}|">35</h5>
+                    <span class="description-text" >Preço</span>
+                  </div>
+                </div>
+                
+                
+<!--                <div class="col-sm-3"> -->
+<!--                   <div class="description-block"> -->
+<!--                     <h5 class="description-header" th:text="|${produto.tempopreparo} min.|">35 -->
+<!--                     <span><i class="fa fa-clock"></i></span> -->
+<!--                     </h5> -->
+<!--                     <span class="description-text" >Tempo Preparo</span> -->
+<!--                   </div> -->
+<!--                 </div> -->
+                
      
-   <div class="clearfix"></div>  
+              </div>
+              
+              
+              <div class="">
+              
+              
+								<p>
+								<ul class="rating">
+
+
+									<th:block
+										th:each="i: ${#numbers.sequence(1, 5)}">
+										<li th:if="${produto.avaliacao >= i}" class="active"><a
+											class="rstarR" href="#"> <img th:src="@{/img/star1.png}"
+												class="imgstar" />
+										</a></li>
+										<li th:unless="${produto.avaliacao >= i}"><a
+											class="rstarR" href="#"> <img th:src="@{/img/star0.png}"
+												class="imgstar" />
+										</a></li>
+									</th:block>
+								</ul>
+								</p>
+              
+              </div>
+              
+              
+<!--               <div class=""> -->
+              
+<!--               <p th:text="${produto.usuariosIndica}">sasasa -->
+             
+<!--               <span> -->
+<!--               xaxaxaa -->
+              
+<!--               </span> -->
+              
+<!--               </p> -->
+              
+              
+<!--               </div> -->
+              
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+        
+        
+        </section>
+     
+     
+<!--    <div class="clearfix"></div>   -->
    
 <!--    <div class="row"> -->
 <!-- <div class="demo"> -->
@@ -1364,16 +1512,19 @@
 </section>
 
 
+ <div class="clearfix"></div>
+
 </div>
 
 
     
 
 
- <div class="clearfix"></div>
+
  
  
 
+ 	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
  
     
     	</div> 
@@ -1385,7 +1536,6 @@
     
 
 
-	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
 	
 								<script src="https://cdn.jsdelivr.net/highlight.js/9.9.0/highlight.min.js"
 			th:src="@{https://cdn.jsdelivr.net/highlight.js/9.9.0/highlight.min.js}" th:inline="javascript" ></script>
@@ -1402,10 +1552,10 @@
 	
 	<script type="text/javascript">
 $(function(){
-    $("#notificacao").fadeIn(1000, function(){
+    $(".toast").fadeIn(1000, function(){
         window.setTimeout(function(){
         	   $('#overlayy').show();
-        	$('#notificacao').fadeOut();
+        	$('.toast').fadeOut();
          
         }, 7000);
         
@@ -1518,6 +1668,8 @@ $(function(){
 		});
 
 		stackedCard.init();
+		
+		$('.toast').toast(option);
 		
 		
 		

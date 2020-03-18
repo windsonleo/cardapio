@@ -53,12 +53,12 @@
     <section class="content connectedSortable">
     
     
-    <div class="row-fluid"  th:if="${sucesso}">
+        <div class="row-fluid"  th:if="${sucesso}">
     
-    <div class="alert alert-success alert-dismissible" th:text="${sucesso}">
+    <div class="alert alert-success alert-dismissible" >
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i></button>
                 <h4><i class="icon fa fa-check"></i> Sucesso</h4>
-                Success alert preview. This alert is dismissable.
+               <p th:text="${sucesso}"> Success alert preview. This alert is dismissable.</p>
               </div>
               
               
@@ -67,10 +67,10 @@
               
               
               <div class="row-fluid"  th:if="${erro}">
-                  <div class="alert alert-danger alert-dismissible" th:text="${erro}">
+                  <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <i class="fa fa-times" style="color:#fff;"></i></button>
                 <h4><i class="icon fa fa-check"></i> Erro </h4>
-                Success alert preview. This alert is dismissable.
+               <p th:text="${erro}"> Erro alert preview. This alert is dismissable.</p>
               </div>
               
               </div>
@@ -955,7 +955,7 @@
 
     </section>
     
-         <div class="clearfix"></div>
+<!--          <div class="clearfix"></div> -->
            
   </div>
 
@@ -963,6 +963,9 @@
 	
 	    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
 			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
+				 	
+				 	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>   
+			
 			
 	
 		</div>	
@@ -1153,7 +1156,6 @@ for (var i = 0; i < x.length; i++) {
 
 </script>
 	    
-	 	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>   
 </body>
 			
 			
