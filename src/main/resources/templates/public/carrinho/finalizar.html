@@ -139,23 +139,29 @@
       <div class="row invoice-info">
         <div class="col-sm-3 invoice-col">
           De
-          <address>
-            <strong th:text="${usuarioAtt.nome}" >Admin, Inc.</strong><br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
-            Phone: (804) 123-5432<br>
-            Email: info@almasaeedstudio.com
+          <address >
+          
+           <strong>
+            <th:block th:utext="${configuracaoAtual.nomeempresa}"/>
+            
+            
+            </strong><br>
+          
+           <th:block th:utext="${configuracaoAtual.endereco}"/><br>
+           
+            
+            <span th:text="${configuracaoAtual.telefone}">Phone: (804) 123-5432</span><br>
+
           </address>
         </div>
         <!-- /.col -->
         <div class="col-sm-3 invoice-col">
           Para
-          <address>
-            <strong  th:text="${configuracaoAtual.nomeempresa}">John Doe</strong><br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
-            Phone: (555) 539-1037<br>
-            Email: john.doe@example.com
+          <address >
+           <strong th:text="${usuarioAtt.nome}">John Doe</strong><br>
+          <th:block th:utext="${usuarioAtt.email}"/>
+           
+
           </address>
         </div>
         <!-- /.col -->
@@ -171,41 +177,22 @@
         
           <div class="col-sm-4 invoice-col">
 <!--           <b  >Mesa</b> -->
-          
-                                              <select id="mesas" name="mesas" class="form-control">
-                                        <optgroup label="Tipos de Categoria Pai">
-                                                
-                                             	<option th:each="mesa: ${mesas}" th:value="${mesa.id}" > Mesa: 
-                                             	
-                                             		<span th:utext="${mesa.numero}">Nenhuma Regra
-														Cadastrada </span>
-                                             	
-                                             	</option>
-					           				      	
-				           				   		
 
+                        <p class="lead">Formas de Pagamento:</p>
+          <img th:src="@{/img/credit/visa.png}" alt="Visa"/>
+          <img th:src="@{/img/credit/mastercard.png}" alt="Mastercard"/>
+          <img th:src="@{/img/credit/american-express.png}" alt="American Express"/>
+          <img th:src="@{/img/credit/paypal2.png}" alt="Paypal"/>
 
-                                        </optgroup>
-                                    </select>
-          
-<!--           <br> -->
-<!--           <b >Garcon</b> -->
-          
-                                                        <select id="garcon" name="garcon" class="form-control">
-                                        <optgroup label="Tipos de Categoria Pai">
-                                                
-                                             	<option th:each="garcon: ${garcons}" th:value="${garcon.id}" > Garçon: 
-                                             	
-                                             		<span th:utext="${garcon.nome}">Nenhuma Regra
-														Cadastrada </span>
-                                             	
-                                             	</option>
-					           				      	
-				           				   		
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+     Algumas Oberservações sobres as Formas de Pagamento. Algumas Oberservações sobres as Formas de Pagamento.
+     Algumas Oberservações sobres as Formas de Pagamento. Algumas Oberservações sobres as Formas de Pagamento.
+     
+     
+          </p>             
+                                    
+                                    
 
-
-                                        </optgroup>
-                                    </select>
           
           
 <!--           <br> -->
@@ -256,29 +243,89 @@
       <div class="row">
         <!-- accepted payments column -->
         <div class="col-xs-6">
-          <p class="lead">Formas de Pagamento:</p>
-          <img th:src="@{/img/credit/visa.png}" alt="Visa"/>
-          <img th:src="@{/img/credit/mastercard.png}" alt="Mastercard"/>
-          <img th:src="@{/img/credit/american-express.png}" alt="American Express"/>
-          <img th:src="@{/img/credit/paypal2.png}" alt="Paypal"/>
+        
+       <select id="origempedido" name="origempedido" class="form-control select2">
+                                        <optgroup label="Tipos de Origem">
+                                                
+                                           <option th:value="${carrinho.origempedido}"
+													th:selected="selected"  th:text="${carrinho.origempedido}">origempedido
+													Não Tem Nenhuma origempedido</option>
+                                             
+                                             
+                                             
+                                             	<option th:each="origempedido: ${origempedidos}" th:value="${origempedido}" > Origem: 
+                                             	
+                                             		<span th:text="${origempedido}">Nenhuma origempedido
+														Cadastrada </span>
+                                             	
+                                             	</option>
+					           				      	
+				           				   		
 
-          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-     Algumas Oberservações sobres as Formas de Pagamento. Algumas Oberservações sobres as Formas de Pagamento.
-     Algumas Oberservações sobres as Formas de Pagamento. Algumas Oberservações sobres as Formas de Pagamento.
-     
-     
-          </p>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-6">
-          <p class="lead" th:utext="|Data: ${#dates.format(hoje,'dd/MM/yyyy')}|">Amount Due 2/22/2014</p>
+
+                                        </optgroup>
+                                    </select>
+          
+                                              <select id="mesa" name="mesa" class="form-control select2">
+                                        <optgroup label="Tipos de Mesa">
+                                        
+                                        
+                                        			<option th:value="${carrinho.mesa.id}"
+													th:selected="selected" th:text="${carrinho.mesa}">Mesa
+													Não Tem Nenhuma mesa</option>
+                                                
+                                             	<option th:each="mesa: ${mesas}" th:value="${mesa.id}" > Mesa: 
+                                             	
+                                             		<span th:text="${mesa.numero}">Nenhuma Mesa
+														Cadastrada </span>
+                                             	
+                                             	</option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+          
+<!--           <br> -->
+<!--           <b >Garcon</b> -->
+          
+                                                        <select id="garcon" name="garcon" class="form-control select2">
+                                        <optgroup label="Tipos de garcon">
+                                                
+                                           <option
+													th:selected="selected" th:text="${carrinho.garcon.nome}" th:value="${carrinho.garcon.id}">garcon
+													Não Tem Nenhuma garcon</option>
+                                             
+                                             
+                                             
+                                             	<option th:each="garcon: ${garcons}" th:value="${garcon.id}" > Garçon: 
+                                             	
+                                             		<span th:utext="${garcon.nome}">Nenhuma Garçon
+														Cadastrada </span>
+                                             	
+                                             	</option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+                                    
+                                              <p class="form-control datepicker" th:utext="|Data: ${#dates.format(hoje,'dd/MM/yyyy')}|">Amount Due 2/22/2014</p>
 
 <!--                     <div class="col-sm-10"> -->
                       <input type="text" class="form-control timepicker" id="horapedido" name="horapedido" th:value="|${#dates.format(carrinho.horapedido,'hh:MM:ss')}|" placeholder="Skills"/>
-<!--                     </div> -->
-<!--                   </div> -->
+        
+        
+        
 
-          <div class="table-responsive">
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+
+
+          <div class="table-responsive" style="margin-top: 25px;">
             <table class="table">
               <tr>
                 <th style="width:50%">Subtotal:</th>
@@ -318,13 +365,16 @@
     <!-- /.content -->
     <div class="clearfix"></div>
   </div>
-           
-  </div>
-
-	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+  
+  
+  	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
 	
 	    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
 			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
+           
+  </div>
+
+
 			
 			
 			
@@ -338,10 +388,39 @@
 
 function finalizaAgora(id) {
 	
-	var txt = $("#carrinho_"+id);
+// 	var txt = $("#carrinho_"+id);
 	
-    $.post("finalizaCarrinho", {'id' : id}, function(resposta) {
-        $("#carrinho_"+id).html("Finalizado com Sucesso");
+// 	var carrinho = new Object();
+	
+// 			carrinho.garcon = $("#garcon option:selected").val();
+// 			carrinho.mesa=$("#mesa option:selected").val();
+// 			carrinho.origempedido=$("#origempedido option:selected").val();
+	
+//     $.post("/cardapio/carrinho/finalizaCarrinho", {'id' : id,'idgarcon' : carrinho.garcon ,'idmesa' : carrinho.mesa ,
+//     	'idorigem' : carrinho.origempedido}, function(resposta) {
+    
+//        $("#carrinho_"+id).html("Finalizado com Sucesso");
+//         txt.focus();
+//         var txtt = $("#carrinho_"+id).focus();
+
+//         window.location.replace("http://sushisenpai.herokuapp.com/home");
+        
+//         window.location.replace("http://localhost:8082/cardapio/home");
+
+//     });
+    
+    
+  
+    var garcon = $("#garcon option:selected").val();
+    var mesa=$("#mesa option:selected").val();
+    var origempedido=$("#origempedido option:selected").val();
+
+    $.post("/carrinho/finalizaCarrinho", {id: id , idgarcon : garcon ,idmesa : mesa ,
+    	idorigem : origempedido}, function(resposta) {
+
+       $("#carrinho_"+id).html("Finalizado com Sucesso");
+       
+       
 //         txt.focus();
 //         var txtt = $("#carrinho_"+id).focus();
 
@@ -350,7 +429,15 @@ function finalizaAgora(id) {
 //         window.location.replace("http://localhost:8082/cardapio/home");
 
     });
-}
+    
+    
+    
+};
+
+
+
+
+
 
  
 </script>

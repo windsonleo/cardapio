@@ -92,7 +92,7 @@ public class ContextoAplicacao {
 	 
 	 private Produto produtoIndica = new Produto();
 	 
-	 private Carrinho  carrinho = new Carrinho();
+	 private Carrinho  carrinho;
 
 	 
 	 @Autowired
@@ -172,6 +172,8 @@ public class ContextoAplicacao {
 			configuracaoAtual.setUrlinsta("https://www.instagram.com");
 			configuracaoAtual.setHoraabertura(dati);
 			configuracaoAtual.setHorafechamento(datf);
+			configuracaoAtual.setEndereco("Av.Dois Irmão 547");
+			configuracaoAtual.setTelefone("81-9981-7766");
 
 			
 			
@@ -228,12 +230,12 @@ public class ContextoAplicacao {
          	UUID uuid = UUID.randomUUID();
   			carrinho.setId(uuid);
   			
-//  			carrinhobean.SetarCarrinhoSessao(carrinho);
+  			carrinhobean.SetarCarrinhoSessao(carrinho);
          	
        
          }else {
         	 
-         	carrinho = carrinhobean.getCarrinho();
+         //	carrinho = carrinhobean.getCarrinho();
          // 	UUID uuid = UUID.randomUUID();
    		//	carrinho.setId(uuid);
 //   			carrinhobean.SetarCarrinhoSessao(carrinho);
@@ -278,9 +280,9 @@ public class ContextoAplicacao {
          
          
          
-         carrinhobean.SetarCarrinhoSessao(carrinho);
+       //  carrinhobean.SetarCarrinhoSessao(carrinho);
          
-         BigDecimal tot = carrinhobean.TotalItens();
+      //   BigDecimal tot = carrinhobean.TotalItens();
          
      
         model.addAttribute("usuarioAtt", usuario);
@@ -376,13 +378,15 @@ public class ContextoAplicacao {
 	        	carrinho = new Carrinho();
 	        	UUID uuid = UUID.randomUUID();
 	 			carrinho.setId(uuid);
+	  			carrinhobean.SetarCarrinhoSessao(carrinho);
+
 	        	
 	       
 	        }else {
 	        	
 	        	
-	        	UUID uuid = UUID.randomUUID();
-	 			carrinho.setId(uuid);	
+//	        	UUID uuid = UUID.randomUUID();
+//	 			carrinho.setId(uuid);	
 	        	
 	        }
 	        
@@ -413,13 +417,15 @@ public class ContextoAplicacao {
 	        	carrinho = new Carrinho();
 	        	UUID uuid = UUID.randomUUID();
 	 			carrinho.setId(uuid);
+	  			carrinhobean.SetarCarrinhoSessao(carrinho);
+
 	        	
 	       
 	        }else {
 	        	
 	        	
-	        	UUID uuid = UUID.randomUUID();
-	 			carrinho.setId(uuid);	
+//	        	UUID uuid = UUID.randomUUID();
+//	 			carrinho.setId(uuid);	
 	        	
 	        }
 	        
@@ -448,13 +454,14 @@ public class ContextoAplicacao {
         	carrinho = new Carrinho();
         	UUID uuid = UUID.randomUUID();
  			carrinho.setId(uuid);
-        	
+  			carrinhobean.SetarCarrinhoSessao(carrinho);
+
        
         }else {
         	
         	
-        	UUID uuid = UUID.randomUUID();
- 			carrinho.setId(uuid);	
+//        	UUID uuid = UUID.randomUUID();
+// 			carrinho.setId(uuid);	
         	
         }
         
@@ -483,13 +490,14 @@ public class ContextoAplicacao {
         	carrinho = new Carrinho();
         	UUID uuid = UUID.randomUUID();
  			carrinho.setId(uuid);
-        	
+  			carrinhobean.SetarCarrinhoSessao(carrinho);
+	
        
         }else {
         	
-        	
-        	UUID uuid = UUID.randomUUID();
- 			carrinho.setId(uuid);	
+//        	
+//        	UUID uuid = UUID.randomUUID();
+// 			carrinho.setId(uuid);	
         	
         }
         
