@@ -92,7 +92,7 @@ public class Mesa extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return numero.toUpperCase();
+        return numero;
     }
     
     

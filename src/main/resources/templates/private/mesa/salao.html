@@ -156,7 +156,61 @@
 <!--         ./col -->
 <!--       </div> -->
 
-      
+           				<div class="row-fluid" th:if="${sucesso}">
+
+					<div class="alert alert-success">
+						<div class="container-fluid">
+							<div class="alert-icon">
+								<i class="material-icons">check</i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true"><i class="material-icons">clear</i></span>
+							</button>
+							<b>Mensagem:</b> <span th:utext="${sucesso}"> </span>
+							
+<!-- 							 <span -->
+<!-- 								class="btn btn-sm btn-warning"><a -->
+<!-- 								th:href="@{/usuario/cadastro}"><i></i>Novo</a></span> <span -->
+<!-- 								class="btn btn-sm btn-warning"><a -->
+<!-- 								th:href="@{/usuario/editar(id=${usuario.id})}"><i></i>Editar</a></span> -->
+
+						</div>
+
+
+					</div>
+
+
+
+				</div>
+
+				<div class="row-fluid" th:if="${erro}">
+
+					<div class="alert alert-danger">
+						<div class="container-fluid">
+							<div class="alert-icon">
+								<i class="material-icons">error</i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true"><i class="material-icons">clear</i></span>
+							</button>
+							<b>Mensagem:</b> <span th:utext="${erro}"></span> 
+<!-- 							<span -->
+<!-- 								class="btn btn-sm btn-warning"> -->
+<!-- 								<a -->
+<!-- 								th:href="@{/usuario/cadastro}"><i></i>Novo</a></span> <span -->
+<!-- 								class="btn btn-sm btn-warning"><a -->
+<!-- 								th:href="@{/usuario/editar(id=${usuario.id})}"><i></i>Editar</a></span> -->
+
+						</div>
+
+
+					</div>
+
+
+
+				</div>
       
       
 <div class="">
@@ -206,8 +260,8 @@
             
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-                <li><a href="#"  rel="tooltip" title="Quantidade do Produto">Pedidos  <span class="pull-right badge bg-blue" >31</span></a></li>
-                <li><a href="#"  rel="tooltip" title="Preço do Produto">Total <span class="pull-right badge bg-aqua" >5</span></a></li>
+                <li><a href="#"  rel="tooltip" title="Quantidade do Pedidos">Pedidos  <span class="pull-right badge bg-blue" th:text="${#lists.size(mesa.pedidos)}">31</span></a></li>
+                <li><a href="#"  rel="tooltip" title="Preço do Produto">Total <span class="pull-right badge bg-aqua" th:text="|R$= ${mesa.total}|" >5</span></a></li>
                 
 <!--                 <li><a href="#">Curtir <span class="pull-right badge bg-green"><i class="fa fa-thumbs-up">12</i></span></a></li> -->
 <!--                 <li><a href="#"> Curtir  <span class="pull-right badge bg-green"> <div class="fb-like pull-right" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li> -->
@@ -216,11 +270,14 @@
            
                            <li><a th:href="@{/mesa/perfil(id=${mesa.id})}"  rel="tooltip" title="Visualizar Perfil do Mesa">Perfil <span class="pull-right badge bg-purple" ><i class="fa fa-building-o"></i></span></a></li>
            
-                <li><a th:href="@{/pedidovenda/adicionar(id=${mesa.id})}" rel="tooltip" title="Indicar para Cliente">Adicionar Pedido <span class="pull-right badge bg-green" ><i class="fa fa-hand-o-right"></i></span></a></li>
-                <li><a th:href="@{/pedidovenda/adicionar(id=${mesa.id})}" rel="tooltip" title="Add para Carrinho">Fechar Mesa <span class="pull-right badge bg-green" ><i class="fa fa-cart-plus"></i></span></a></li>
+                <li><a th:href="@{/mesa/adicionarpedido(id=${mesa.id})}" rel="tooltip" title="Indicar para Cliente">Adicionar Pedido <span class="pull-right badge bg-navy" ><i class="fa fa-hand-o-right"></i></span></a></li>
+               
+                <li><a th:href="@{/mesa/abrir(id=${mesa.id})}" rel="tooltip" title="Abrir mesa">Abrir Mesa <span class="pull-right badge bg-green" ><i class="fa fa-cart-plus"></i></span></a></li>
+               
+                <li><a th:href="@{/mesa/fechar(id=${mesa.id})}" rel="tooltip" title="fechar mesa">Fechar Mesa <span class="pull-right badge bg-red" ><i class="fa fa-cart-plus"></i></span></a></li>
              
              
-              <li><a href="#" data-toggle="modal" class="product-title" th:attr="data-target='#myAtividade' + ${mesa.id}" >Operações Mesa <span class="pull-right badge bg-red" ><i class="fa fa-info-circle"></i></span></a></li>
+              <li><a href="#" data-toggle="modal" class="product-title" th:attr="data-target='#myAtividade' + ${mesa.id}" >Operações Mesa <span class="pull-right badge bg-orange" ><i class="fa fa-info-circle"></i></span></a></li>
               </ul>
             </div>
             

@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -20,6 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tecsoluction.cardapio.framework.BaseEntity;
+import com.tecsoluction.cardapio.util.OrigemPedido;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -64,6 +67,10 @@ public class Carrinho extends BaseEntity implements Serializable {
     @DateTimeFormat(pattern ="HH:mm:ss")
     @NotNull(message="o hora do pedido não pode ser nulo")
 	private Date horapedido;
+    
+    @Transient
+    @Enumerated(EnumType.STRING)
+    private OrigemPedido origempedido;
     
     
     

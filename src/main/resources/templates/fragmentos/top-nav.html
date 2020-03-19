@@ -453,7 +453,7 @@ function onSignIn(googleUser) {
 
       <li class="dropdown user user-menu">
       <a href="#" class="dropdown-toggle"> <i class="fa fa-phone"> </i>
-	 <span class="hidden-xs">	<span>81-98676-5454</span> </span>
+	 <span class="hidden-xs">	<span th:text="${configuracaoAtual.telefone}">81-98676-5454</span> </span>
 <!--       <small class="label text-center">81-98676-5454</small> -->
        </a>
       
@@ -461,7 +461,7 @@ function onSignIn(googleUser) {
       
             <li class="dropdown user user-menu">
       <a href="#" class="dropdown-toggle"> <i class="fa fa-map-marker"> </i>
-		 <span class="hidden-xs">	<span>av. criciuma nº 500</span> </span>
+		 <span class="hidden-xs">	<span th:text="${configuracaoAtual.endereco}" >av. criciuma nº 500</span> </span>
 <!--       <small class="label text-center">av. criciuma nº 500</small> -->
        </a>
       

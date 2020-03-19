@@ -111,7 +111,7 @@ public class HomeController {
 
 	private String filename="avatar_usu.jpg";
 	
-	 private Carrinho carrinho = new Carrinho();
+	 private Carrinho carrinho;
 	 
 	 private int indexUsuario = 0;
 	 

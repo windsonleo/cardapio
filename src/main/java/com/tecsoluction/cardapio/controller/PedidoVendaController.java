@@ -1,5 +1,6 @@
 package com.tecsoluction.cardapio.controller;
 
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -162,6 +163,61 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 
 	}
 	
+	
+	
+	
+//	 @RequestMapping(value = "/adicionarpedidomesa", method = RequestMethod.GET)
+//    public ModelAndView AdicionarPedidoMesa(HttpServletRequest request,Model model ) {
+//
+//        UUID idf = UUID.fromString(request.getParameter("id"));
+//
+////        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+//        
+//        //this.carrinho = request.getAttribute("carrinho");
+//        
+//       
+//        
+////        ModelAndView exibircat = new ModelAndView("/public/carrinho/visualizar");
+//        
+//        Mesa mesa = m
+//
+//        Produto cat = produtoService.findOne(idf);
+//        
+//        String msg = "Produto , " + cat.getNome() + " Adiccionado ao Carrinho";
+//        
+//        
+//        ModelAndView exibircatt = new ModelAndView("redirect:/categoria/exibir?id=" +cat.getCategoria().getId());
+//        
+//        Item item = new Item(cat);
+//        
+//        item.setQtd("01");
+//        item.setTotalItem(item.CalcularTotaItem(item.getQtd()).setScale(2, RoundingMode.UP));
+//        item.setSituacao(SituacaoItem.AGUARDANDO);
+//        
+//        carrinhobean.AddItemCarrinho(item);
+//        
+//        carrinhobean.getCarrinho().setTotal(carrinhobean.getCarrinho().CalcularTotal().setScale(2, RoundingMode.UP));
+//        
+//      System.out.println("url : " + request.getRequestURL());  
+//      System.out.println("url parameters: " + request.getAttributeNames());  
+//        
+////        request.setAttribute("carrinho", carrinho); // Setando no escopo de requisição
+////        request.getSession().setAttribute("carrinho", carrinho); // Setando no escopo de sessão.
+//    //    context.setAttribute("carrinho", carrinho); // Setando no escopo de aplicação
+//
+//      exibircatt.addObject("carrinho", carrinhobean.getCarrinho());
+//      
+//      exibircatt.addObject("sucesso", msg);
+//
+//      
+//      model.addAttribute("carrinho", carrinhobean.getCarrinho());
+//      model.addAttribute("sucesso", msg);
+//
+//
+//        return exibircatt;
+//    }
+	
+	
     @RequestMapping(value = "/cozinha", method = RequestMethod.GET)
     public ModelAndView ExibirCozinha(HttpServletRequest request) {
 
@@ -177,11 +233,11 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         	carrinho = new Carrinho();
         	UUID uuid = UUID.randomUUID();
  			carrinho.setId(uuid);
-      
-            }else {
-            	
-//            	UUID uuid = UUID.randomUUID();
-//     			carrinho.setId(uuid);
+ 			 carrinhobean.SetarCarrinhoSessao(carrinho);
+ 		      
+        }else {
+        	
+        	carrinho = carrinhobean.getCarrinho();
             	
             	
             }
@@ -209,11 +265,11 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         	carrinho = new Carrinho();
         	UUID uuid = UUID.randomUUID();
  			carrinho.setId(uuid);
-      
-            }else {
-            	
-//            	UUID uuid = UUID.randomUUID();
-//     			carrinho.setId(uuid);
+ 			 carrinhobean.SetarCarrinhoSessao(carrinho);
+ 		      
+        }else {
+        	
+        	carrinho = carrinhobean.getCarrinho();
             	
             	
             }

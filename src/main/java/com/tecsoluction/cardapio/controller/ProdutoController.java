@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tecsoluction.cardapio.CarrinhoBean;
+import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.framework.AbstractController;
@@ -51,6 +53,11 @@ public class ProdutoController extends AbstractController<Produto> {
     private final CategoriaServicoImpl categoriaService;
 
     private List<Produto> produtoList;
+
+//    @Autowired
+//	 private CarrinhoBean carrinhobean;
+//    
+//	private Carrinho carrinho;
 
 
 
@@ -103,6 +110,36 @@ public class ProdutoController extends AbstractController<Produto> {
 
 
         produtoList = getservice().findAll();
+        
+//        if(carrinho == null){
+//        	carrinho = new Carrinho();
+//        	UUID uuid = UUID.randomUUID();
+// 			carrinho.setId(uuid);
+////            model.addAttribute("carrinho", carrinho); 
+// 			carrinhobean.SetarCarrinhoSessao(carrinho);
+//
+//            }else {
+//            	
+//            	
+////            	if(carrinho.getId()==null){
+////            		
+////            		carrinho = carrinhobean.getCarrinho();
+////		        	UUID uuid = UUID.randomUUID();
+////		 			carrinho.setId(uuid);	
+////		 			carrinhobean.SetarCarrinhoSessao(carrinho);
+////            		
+////            	}else {
+////            		
+////            		
+////            		
+////            		
+////            	}
+//            	            	
+//            	
+//            }
+        
+        
+        
 
 //        model.addAttribute("usuarioAtt", usuario);
         model.addAttribute("produtosList", produtoList);
@@ -110,7 +147,8 @@ public class ProdutoController extends AbstractController<Produto> {
         model.addAttribute("produto", produto);
         model.addAttribute("umList", umList);
         model.addAttribute("filename", filename);
-        
+//	     model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
+
         
 
     }

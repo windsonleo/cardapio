@@ -342,6 +342,66 @@
         
         </div>
         
+         <section class="col-md-8 connectedSortable pull-right">
+          <div class="">
+                  <div class="box box-solid">
+            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
+              <h3 class="box-title">CARDAPIO ANALÍTICO</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+        <div class="col-md-12"  th:each="categoria: ${categoriaLista}" >
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user-2 ui-sortable-handle">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i>
+                </button>
+              </div>
+            
+            <div class="widget-user-header bg-black ui-sortable-handle"  th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard} +' ui-sortable-handle'">
+             
+             <a th:href="@{/categoria/exibir(id=${categoria.id})}">
+             
+              <div class="widget-user-image">
+          <img th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.logo})}" class="img-circle" alt="User Image" />
+              </div>
+          
+              <h4 class="widget-user-username" th:text="${categoria.nome}" >Nadia Carmichael</h4>
+<!--               <h5 class="widget-user-desc" th:text="${categoria.catpai}" >Lead Developer</h5> -->
+              
+			</a>
+              
+            </div>
+            
+            <div class="clearfix"></div>
+            
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">QTD Produtos <span class="pull-right badge bg-orange" th:text="${#lists.size(categoria.produtos)}" >31</span></a></li>
+                <li><a href="#">Preços<span class="pull-right badge bg-purple" th:text="| De: R$= ${categoria.menorPreco} até ${categoria.maiorPreco}">5</span></a></li>
+<!--                 <li><a href="#">+ Pedidos <span class="pull-right badge bg-green">12</span></a></li> -->
+<!--                 <li><a href="#">Sugestao de  <span class="pull-right badge bg-red" th:utext="${usuarioAtt.nome}" >842</span></a></li> -->
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        </div>
+        </div>
+        
+<!--         <div class="clearfix"></div> -->
+        
+        </div>
+        
+        </section>
+        
 <!-- <div class="clearfix"></div> -->
 
 <!--     <section class="content"> -->
@@ -839,7 +899,7 @@
 
     </section>
     
-<!--          <div class="clearfix"></div> -->
+         <div class="clearfix"></div>
            
   </div>
 

@@ -49,11 +49,11 @@ public class ConfiguracaoController extends AbstractController<Configuracao>    
 	 private String filenamebanner3="vazio.jpg";
 	 
 //	    private Carrinho carrinho = new Carrinho();
-	    
-	    
-		 @Autowired
-		 private CarrinhoBean carrinhobean;
-	 
+//	    
+//	    
+//		 @Autowired
+//		 private CarrinhoBean carrinhobean;
+//	 
 //	       
 //	 @Autowired
 //    private
@@ -126,8 +126,8 @@ public class ConfiguracaoController extends AbstractController<Configuracao>    
         model.addAttribute("filenamebanner2", filenamebanner2);
         model.addAttribute("filenamebanner3", filenamebanner3);
         model.addAttribute("configuracao", configuracao);
-        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
-	   	model.addAttribute("totalitens", carrinhobean.TotalItens());
+//        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
+//	   	model.addAttribute("totalitens", carrinhobean.TotalItens());
 
 
 

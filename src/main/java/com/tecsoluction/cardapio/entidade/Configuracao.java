@@ -97,6 +97,17 @@ public class Configuracao  extends BaseEntity implements Serializable {
 	 @NotBlank(message="o corcard do Configuracao não pode ser branco")
     private String corcard;
     
+    @Column(name = "endereco",nullable = true)
+//	 @NotNull(message="o endereco do Configuracao não pode ser nulo")
+//	 @NotBlank(message="o endereco do Configuracao não pode ser branco")
+    private String endereco;
+    
+    
+    @Column(name = "telefone",nullable = true)
+//	 @NotNull(message="o telefone do Configuracao não pode ser nulo")
+//	 @NotBlank(message="o telefone do Configuracao não pode ser branco")
+    private String telefone;
+    
     
   
     

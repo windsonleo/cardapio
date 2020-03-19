@@ -101,6 +101,8 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/carrinho/visualizar**").permitAll()
 				.antMatchers("/carrinho/finalizar**").permitAll()
 				.antMatchers("/carrinho/finalizaCarrinho**").permitAll()
+				.antMatchers("/carrinho/finalizaCarrinho").permitAll()
+
 				.antMatchers("/carrinho/cancelar**").permitAll()
 				.antMatchers("/carrinho/deleteitem**").permitAll()
 				.antMatchers("/pedidovenda/id**").permitAll()

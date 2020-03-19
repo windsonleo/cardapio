@@ -23,7 +23,7 @@ import lombok.Setter;
 public class CarrinhoBean {
 	
 	
-	private Carrinho carrinho;
+	private Carrinho carrinho = new Carrinho();
 	
 	private List<Usuario> usuariosIndica;
 	
@@ -41,7 +41,8 @@ public class CarrinhoBean {
 	public CarrinhoBean() {
 
 	
-		carrinho = new Carrinho();
+	//	carrinho = new Carrinho();
+	
 	}
 
 

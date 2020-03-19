@@ -111,6 +111,11 @@
 	href="resources/static/css/highlight.css"
 	th:href="@{/css/highlight.css}" type="text/css" />
 	
+		
+<!-- 			<link rel="stylesheet" media="screen" -->
+<!-- 	href="resources/static/css/stylebanner.css" -->
+<!-- 	th:href="@{/css/stylebanner.css}" type="text/css" /> -->
+	
 	
 							<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"
 			th:src="@{https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js}" th:inline="javascript" ></script>
@@ -130,6 +135,9 @@
 			
 								<script src="resources/static/js/stackedCards.min.js"
 			th:src="@{/js/stackedCards.min.js}" th:inline="javascript" ></script>
+			
+<!-- 											<script src="resources/static/js/scriptbanner.js" -->
+<!-- 			th:src="@{/js/scriptbanner.js}" th:inline="javascript" ></script> -->
 			
 			
 		
@@ -224,6 +232,8 @@
 			max-width: 300px;
 			height: auto;
 		}
+		
+	
 
 		
 	</style>
@@ -349,38 +359,108 @@
   <!-- Position it -->
 <!--   <div style="position: absolute; top: 0; right: 0;"> -->
 
+<!-- <section class="box" > -->
+
+
+<!-- <div class="ticket"> -->
+<!--   <div class="datas"> -->
+<!--     <a class="link"> -->
+<!--       <div class="ribbonn"> -->
+<!--         <div class="labell">LIMITED</div> -->
+<!--       </div> -->
+<!--       <div class="spam">TOMORROWLAND</div> -->
+<!--       <strong>10'</strong> -->
+<!--       <em>Green PASS</em> -->
+<!--     </a> -->
+<!--   </div> -->
+<!--   <a class="button">ORDER NOW!</a> -->
+<!-- </div> -->
+<!-- <div class="ticket-in"> -->
+<!--   <div class="contento"> -->
+<!--     <div class="pass"> -->
+<!--       <h1>Dreamville Limited</h1> -->
+<!--     </div> -->
+<!--     <div class="spam">PREMIUM</div> -->
+<!--     <em>2015</em> -->
+<!--   </div> -->
+<!-- </div> -->
+
+<!-- <div class="ticket"> -->
+<!--   <div class="datas"> -->
+<!--     <a class="link"> -->
+<!--       <div class="ribbon"> -->
+<!--         <div class="label">LIMITED</div> -->
+<!--       </div> -->
+<!--       <span>TOMORROWLAND</span> -->
+<!--       <strong>10'</strong> -->
+<!--       <em>Green PASS</em> -->
+<!--     </a> -->
+<!--   </div> -->
+<!--   <a class="button">ORDER NOW!</a> -->
+<!-- </div> -->
+<!-- <div class="ticket-in"> -->
+<!--   <div class="content"> -->
+<!--     <div class="pass"> -->
+<!--       <h1>Dreamville Limited</h1> -->
+<!--     </div> -->
+<!--     <span>PREMIUM</span> -->
+<!--     <em>2015</em> -->
+<!--   </div> -->
+<!-- </div> -->
+
+<!-- </section> -->
+
+
+
 <section th:if="${usuarioIndica}" class="col-md-12 direct-chat direct-chat-primary">
 
 <div class="col-md-6">
 
 
+
+
 </div>
 
 <div role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000" class="toast direct-chat-msg right direct-chat-primary col-md-6" data-autohide="true" >
-  <div class="toast-header">
+  <div class="direct-chat-info">
     <img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" class="direct-chat-img img-md" alt="User Image">
-<!--     <strong class="mr-auto"  th:text="| ${usuarioIndica.nome} ,|">Indicação</strong> -->
+<!--     <div class="direct-chat-info"> -->
+    
+    <span class="direct-chat-timestamp"  th:text="| ${hoje}|">Indicação</span>
+    <span class="direct-chat-name pull-right"  th:text="| ${usuarioIndica.nome}|">Indicação</span>
+    
+    
 <!--     <small class="direct-chat-name">INDICA : </small> -->
 <!--     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"> -->
 <!--       <span aria-hidden="true">&times;</span> -->
 <!--     </button> -->
 
+<!-- </div> -->
 
   </div>
-  <div class="toast-body direct-chat-text">
+  <div class="toast-body direct-chat-text" style="margin-right: 70px;">
             <img th:if="${produtoIndica.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produtoIndica.foto})}" src="img-circle" class="img-circle img-md" alt="User Image" /> 
  		<img th:unless="${produtoIndica.foto}" th:src="@{/img/produto/vazio.jpg}" class="img-circle" src=""  alt="User Image" /> 
  			
- 			<h4 th:if="${produtoIndica.nome}" class="" th:text="${produtoIndica.nome}" >Nadia Carmichael</h4>
- 			 <h4 th:unless="${produtoIndica.nome}" class="" >Nadia Carmichael</h4>
+ 			<h4 th:if="${produtoIndica.nome}" class="text-center" th:text="${produtoIndica.nome}" >Nadia Carmichael</h4>
+ 			 <h4 th:unless="${produtoIndica.nome}" class="text-center" >Nadia Carmichael</h4>
  			
- 			<a th:if="${produtoIndica.id}" th:href="@{/produto/perfil(id=${produtoIndica.id})}" href="#" class=""> Clique Para Ver</a>
- 			<a th:unless="${produtoIndica.id}" href="#" class=""> Clique Para Ver</a>
- 			
- 			 <div id="overlayy" class="overlay" >
+ 			 <div id="overlayy" class="overlay text-center" >
             
               <i class="fa fa-refresh fa-spin"></i>
             </div>
+ 			
+ 			
+<!--  			<a href="#" class="small-box-footer"> -->
+<!--               More info <i class="fa fa-arrow-circle-right"></i> -->
+<!--             </a> -->
+ 			
+ 			<p class="text-muted text-center"><a th:if="${produtoIndica.id}" th:href="@{/produto/perfil(id=${produtoIndica.id})}" href="#" class="text-orange text-center"> Clique Para Ver
+ 			
+ 			</a></p>
+ 			<p class="text-center"><a th:unless="${produtoIndica.id}" href="#" class=""> Clique Para Ver</a></p>
+ 			
+
 
   
   </div>
@@ -1549,10 +1629,13 @@
 			
 								<script src="resources/static/js/stackedCards.min.js"
 			th:src="@{/js/stackedCards.min.js}" th:inline="javascript" ></script>
+			
+
+			
 	
 	<script type="text/javascript">
 $(function(){
-    $(".toast").fadeIn(1000, function(){
+    $(".toast").fadeIn(2000, function(){
         window.setTimeout(function(){
         	   $('#overlayy').show();
         	$('.toast').fadeOut();
@@ -1669,9 +1752,13 @@ $(function(){
 
 		stackedCard.init();
 		
+		
+		$('.ticket').click(function(){
+			  $('.ticket-in').toggleClass('active');
+			});
+		
 		$('.toast').toast(option);
-		
-		
+
 		
 	</script>
   

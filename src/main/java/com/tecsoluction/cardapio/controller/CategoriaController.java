@@ -51,9 +51,9 @@ public class CategoriaController extends AbstractController<Categoria> {
 	    private Categoria categoria;
 	    
 	    
-	    private Carrinho carrinho = new Carrinho();
+//	    private Carrinho carrinho;
 	    
-	    
+//	    
 		 @Autowired
 		 private CarrinhoBean carrinhobean;
 		 
@@ -101,6 +101,8 @@ public class CategoriaController extends AbstractController<Categoria> {
 //        	carrinho = new Carrinho();
 //        	UUID uuid = UUID.randomUUID();
 // 			carrinho.setId(uuid);
+// 			carrinhobean.SetarCarrinhoSessao(carrinho);
+//
 //            }else {
 //            	
 ////            	UUID uuid = UUID.randomUUID();
@@ -134,25 +136,25 @@ public class CategoriaController extends AbstractController<Categoria> {
         exibircat.addObject("categoria", cat);
      
         
-        if(carrinho == null){
-        	carrinho = new Carrinho();
-        	UUID uuid = UUID.randomUUID();
- 			carrinho.setId(uuid);
- 			 carrinhobean.SetarCarrinhoSessao(carrinho);
-      
-            }else {
-            	
-            	carrinho = carrinhobean.getCarrinho();
-            	
-//            	UUID uuid = UUID.randomUUID();
-//     			carrinho.setId(uuid);
-            	
-            	
-            }
-        
+//        if(carrinho == null){
+//        	carrinho = new Carrinho();
+//        	UUID uuid = UUID.randomUUID();
+// 			carrinho.setId(uuid);
+// 			 carrinhobean.SetarCarrinhoSessao(carrinho);
+//      
+//            }else {
+//            	
+////            	carrinho = carrinhobean.getCarrinho();
+//            	
+////            	UUID uuid = UUID.randomUUID();
+////     			carrinho.setId(uuid);
+//            	
+//            	
+//            }
+//        
         exibircat.addObject("carrinho", carrinhobean.getCarrinho());
-        
-        model.addAttribute("carrinho", carrinhobean.getCarrinho());
+//        
+//        model.addAttribute("carrinho", carrinhobean.getCarrinho());
 
         return exibircat;
     }

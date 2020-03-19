@@ -64,7 +64,7 @@ public class Garcon extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return nome.toUpperCase();
+        return nome;
     }
 
 }
