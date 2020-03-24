@@ -68,6 +68,9 @@ public class ProdutoController extends AbstractController<Produto> {
     private Produto produto;
     
     private List<Produto> produtosFiltro;
+    
+	 @Autowired
+	 private CarrinhoBean carrinhobean;
 
 
     @Autowired
@@ -148,7 +151,8 @@ public class ProdutoController extends AbstractController<Produto> {
         model.addAttribute("umList", umList);
         model.addAttribute("filename", filename);
 //	     model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
-
+//        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
+//	   	model.addAttribute("totalitens", carrinhobean.TotalItens());
         
 
     }
@@ -324,7 +328,7 @@ public class ProdutoController extends AbstractController<Produto> {
     }
     
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public ModelAndView ExibirCategoria(HttpServletRequest request,Model model) {
+    public ModelAndView ExibirCategoria(HttpServletRequest request) {
 
         UUID idf = UUID.fromString(request.getParameter("id"));
 
@@ -335,6 +339,10 @@ public class ProdutoController extends AbstractController<Produto> {
         Produto cat = getservice().findOne(idf);
 
         exibircat.addObject("produto", cat);
+        exibircat.addObject("carrinho", carrinhobean.getCarrinho());
+
+
+//      model.addAttribut
 
         return exibircat;
     }  

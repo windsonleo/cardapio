@@ -183,7 +183,8 @@ public class HomeController {
 		            	
 //		            	UUID uuid = UUID.randomUUID();
 //			 			carrinho.setId(uuid);
-		            	
+		            	//carrinho=carrinhobean.getCarrinho();
+
 		            }
 		        
 		     //   carrinhobean.SetarCarrinhoSessao(carrinho);
@@ -570,43 +571,47 @@ public class HomeController {
     }
     
     
-    @RequestMapping(value = "/logout",method = RequestMethod.GET )
-    public ModelAndView logout(Mode model, HttpServletRequest request,HttpServletResponse response,HttpSession session){
-      
-		logger.info("Welcome LOGOUT  HOME Controller !" + model);
-
-    	
-  //  	request.getSession(true).invalidate();
+//    @RequestMapping(value = "/logout",method = RequestMethod.GET )
+//    public ModelAndView logout(Mode model, HttpServletRequest request,HttpServletResponse response,HttpSession session){
+//      
+//		logger.info("Welcome LOGOUT  HOME Controller !" + model);
+//
+//    	
+//  //  	request.getSession(true).invalidate();
+////        ModelAndView home = new ModelAndView("/public/home");
+//        
+////       Object obj = context.getAttribute("usuarioAtt");
+////       
+////       System.out.println("objeeto usuario" + obj.toString());
+////       
+////       logger.debug("objeeto usuario : " + obj.toString());
+//      
+//       usuario = new Usuario();
+//       usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+//       usuario = usuarioService.findByEmail(usuario.getEmail());
+//       
+//       usuario.setOnline(false);
+//       
+//       usuarioService.edit(usuario);
+//
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        
+//        if (authentication != null){
+//        	
+//            new SecurityContextLogoutHandler().logout(request, response, authentication);
+//        
+//        System.out.println("logout user page shown--------------------");
+//       
+//        }
+//        
+//        
 //        ModelAndView home = new ModelAndView("/public/home");
-        
-//       Object obj = context.getAttribute("usuarioAtt");
+//        
+//        
+//
 //       
-//       System.out.println("objeeto usuario" + obj.toString());
-//       
-//       logger.debug("objeeto usuario : " + obj.toString());
-      
-       usuario = new Usuario();
-       usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-       usuario = usuarioService.findByEmail(usuario.getEmail());
-       
-       usuario.setOnline(false);
-       
-       usuarioService.edit(usuario);
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        
-        if (authentication != null)
-            new SecurityContextLogoutHandler().logout(request, response, authentication);
-        
-        System.out.println("logout user page shown--------------------");
-        
-        ModelAndView home = new ModelAndView("/public/home");
-        
-        session.invalidate();
-
-       
-        return home;       
-   }
+//        return home;       
+//   }
     
     
     @RequestMapping(value = "/logoutsucess",method = RequestMethod.GET )

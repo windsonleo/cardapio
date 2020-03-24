@@ -45,6 +45,9 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler im
         	
         	if(authentication.isAuthenticated()){
         		
+           	 System.out.println("usuario desconectado" + authentication.getName());
+
+        		
         		 usuario.setEmail(authentication.getName());
      	        usuario = usuarioService.findByEmail(usuario.getEmail());
      	        
@@ -78,6 +81,9 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler im
         }
         
         usuarioService.edit(usuario);
+        
+      //	 System.out.println("usuario desconectado apos" + authentication.getName());
+
         
         response.sendRedirect(refererUrl);
         

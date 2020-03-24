@@ -18,7 +18,7 @@
 		
 		<title>Perfil</title>
 
-			<body  class="hold-transition skin-red sidebar-mini" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
+			<body  class="hold-transition skin-red layout-top-nav" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' layout-top-nav'">
 			
 			<div id="fb-root"> </div>
 <script th:async="async" th:defer="defer"  crossorigin="anonymous"
@@ -36,13 +36,16 @@
 			
 			<div class="wrapper">
 
-	   			  <nav th:replace="fragmentos/top-nav :: nav">
+	   			  <nav th:replace="fragmentos/top-navauxhome :: nav">
 				
 				</nav>
 				
-					<div th:replace="fragmentos/nav :: nav-side"> </div>
+<!-- 					<div th:replace="fragmentos/nav :: nav-side"> </div> -->
 				
   <div class="content-wrapper">
+  
+        <div class="container">
+  
     <section class="content-header">
       <h1>
 <!--         Início -->
@@ -910,6 +913,8 @@
 			
 	
 		</div>	
+		
+		</div>
 		
 <!-- 		     <div class="clearfix"></div> -->
 		

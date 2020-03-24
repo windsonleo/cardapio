@@ -27,14 +27,25 @@ import com.tecsoluction.cardapio.controller.HomeController;
 import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Configuracao;
+import com.tecsoluction.cardapio.entidade.Garcon;
 import com.tecsoluction.cardapio.entidade.Item;
+import com.tecsoluction.cardapio.entidade.Mesa;
+import com.tecsoluction.cardapio.entidade.PedidoVenda;
 import com.tecsoluction.cardapio.entidade.Produto;
+import com.tecsoluction.cardapio.entidade.ProdutoComposto;
+import com.tecsoluction.cardapio.entidade.Promocao;
+import com.tecsoluction.cardapio.entidade.Restaurante;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.exception.CustomGenericException;
 import com.tecsoluction.cardapio.exception.LoggingAccessDeniedHandler;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
 import com.tecsoluction.cardapio.servico.ConfiguracaoServicoImpl;
+import com.tecsoluction.cardapio.servico.GarconServicoImpl;
+import com.tecsoluction.cardapio.servico.MesaServicoImpl;
+import com.tecsoluction.cardapio.servico.PedidoVendaServicoImpl;
+import com.tecsoluction.cardapio.servico.ProdutoCompostoServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
+import com.tecsoluction.cardapio.servico.PromocaoServicoImpl;
 import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 
 import javassist.NotFoundException;
@@ -49,28 +60,62 @@ import javassist.NotFoundException;
 @ControllerAdvice
 public class ContextoAplicacao {
 	
-	 @Autowired
-	 private
-	 UsuarioServicoImpl userService;
+
 	 
 	 private static final Logger logger = LoggerFactory.getLogger(ContextoAplicacao.class);
 	 
 	 @Autowired
+	 private UsuarioServicoImpl userService;
+	 
+	 @Autowired
 	    private CategoriaServicoImpl categoriaService;
-	 
-	 private List<Categoria> categoriaLista ;
-	 
-	 private Configuracao configuracaoAtual; 
-	 
-	 
-	 private List<Configuracao> configuracaoLista ;
-	 
 	 
 	 @Autowired
 	  private ConfiguracaoServicoImpl ConfiguracaoService;
 	 
 	 @Autowired
 	  private ProdutoServicoImpl produtoService;
+	 
+	 @Autowired
+	  private ProdutoCompostoServicoImpl produtoCompostoService;
+	 
+	 @Autowired
+	  private PromocaoServicoImpl promocaoService;
+	 
+	 @Autowired
+	private  PedidoVendaServicoImpl PedidoVendaService;
+	 
+	 @Autowired
+	private  MesaServicoImpl mesaService;
+	 
+		
+	 @Autowired
+	private  GarconServicoImpl GarconService;
+	 
+	 
+	 private List<Garcon> GarconLista ;
+	 
+	 private List<Mesa> MesaLista ;
+
+	 private List<PedidoVenda> PedidoVendaLista ;
+
+	 private List<Promocao> PromocaoLista ;
+
+	 private List<ProdutoComposto> ProdutoCompostoLista ;
+	 
+	 private List<Produto> ProdutoLista ;
+
+	 
+	 
+	 
+	 private List<Categoria> categoriaLista ;
+	 
+	 private Configuracao configuracaoAtual; 
+	 	 
+	 private List<Configuracao> configuracaoLista ;
+	 
+	 
+
 
 	 private Usuario usuario;
 	 
@@ -93,10 +138,20 @@ public class ContextoAplicacao {
 	 private Produto produtoIndica = new Produto();
 	 
 	 private Carrinho  carrinho;
+	 
+	 private int totalmsg;
+
+	private	List<Categoria> categorias = new ArrayList<Categoria>();
 
 	 
 	 @Autowired
 	 private CarrinhoBean carrinhobean;
+	 
+	 @Autowired
+	 private RestauranteBean restaurantebean;
+	 
+	 private Restaurante restaurante;
+
 	 
 	 
 	 private Timer timer;
@@ -125,60 +180,61 @@ public class ContextoAplicacao {
 		
         //inicio de ususario logado
 		
-		List<Categoria> categorias = new ArrayList<Categoria>();
 		
-		categorias = categoriaService.findAll();
+//		categorias = categoriaService.findAll();
+//		
+//		categoriaLista = CategoriasComProduto(categorias);
 		
-		categoriaLista = CategoriasComProduto(categorias);
-		Long qtdRegistroConfiuracao = ConfiguracaoService.count();
 		
-		if(qtdRegistroConfiuracao != null && qtdRegistroConfiuracao > 0 ){
-			
-			
-			configuracaoLista = ConfiguracaoService.PegarConfiguracaoAtualLista();
-			
-			configuracaoAtual = configuracaoLista.get(0);
-			
-		}else {
-			
-			
-			configuracaoAtual = ConfiguracaoService.PegarConfiguracaoAtual();
-			
-		}
-		
-		if(configuracaoAtual == null){
-			
-			Date dati = new Date();
-			dati.setHours(18);
-			dati.setMinutes(00);
-			
-			Date datf = new Date();
-			datf.setHours(23);
-			datf.setMinutes(00);
-			
-			configuracaoAtual = new Configuracao();
-			
-			configuracaoAtual.setAtivo(true);
-			configuracaoAtual.setBanner1("banner.png");
-			configuracaoAtual.setBanner2("banner.png");
-			configuracaoAtual.setBanner3("banner.png");
-			configuracaoAtual.setCorcard("blue");
-			configuracaoAtual.setCormenu("blue");
-			configuracaoAtual.setCortopo("blue");
-			configuracaoAtual.setLogo("logo.png");
-			configuracaoAtual.setNomeempresa("Teste");
-			configuracaoAtual.setUrlface("https://www.facebook.com");
-			configuracaoAtual.setUrlgmail("https://www.gmail.com");
-			configuracaoAtual.setUrlinsta("https://www.instagram.com");
-			configuracaoAtual.setHoraabertura(dati);
-			configuracaoAtual.setHorafechamento(datf);
-			configuracaoAtual.setEndereco("Av.Dois Irmão 547");
-			configuracaoAtual.setTelefone("81-9981-7766");
-
-			
-			
-			
-		}
+//		Long qtdRegistroConfiuracao = ConfiguracaoService.count();
+//		
+//		if(qtdRegistroConfiuracao != null && qtdRegistroConfiuracao > 0 ){
+//			
+//			
+//			configuracaoLista = ConfiguracaoService.PegarConfiguracaoAtualLista();
+//			
+//			configuracaoAtual = configuracaoLista.get(0);
+//			
+//		}else {
+//			
+//			
+//			configuracaoAtual = ConfiguracaoService.PegarConfiguracaoAtual();
+//			
+//		}
+//		
+//		if(configuracaoAtual == null){
+//			
+//			Date dati = new Date();
+//			dati.setHours(18);
+//			dati.setMinutes(00);
+//			
+//			Date datf = new Date();
+//			datf.setHours(23);
+//			datf.setMinutes(00);
+//			
+//			configuracaoAtual = new Configuracao();
+//			
+//			configuracaoAtual.setAtivo(true);
+//			configuracaoAtual.setBanner1("banner.png");
+//			configuracaoAtual.setBanner2("banner.png");
+//			configuracaoAtual.setBanner3("banner.png");
+//			configuracaoAtual.setCorcard("blue");
+//			configuracaoAtual.setCormenu("blue");
+//			configuracaoAtual.setCortopo("blue");
+//			configuracaoAtual.setLogo("logo.png");
+//			configuracaoAtual.setNomeempresa("Teste");
+//			configuracaoAtual.setUrlface("https://www.facebook.com");
+//			configuracaoAtual.setUrlgmail("https://www.gmail.com");
+//			configuracaoAtual.setUrlinsta("https://www.instagram.com");
+//			configuracaoAtual.setHoraabertura(dati);
+//			configuracaoAtual.setHorafechamento(datf);
+//			configuracaoAtual.setEndereco("Av.Dois Irmão 547");
+//			configuracaoAtual.setTelefone("81-9981-7766");
+//
+//			
+//			
+//			
+//		}
 		
 		
 //		if(timer == null && primeiroacesso){
@@ -193,57 +249,136 @@ public class ContextoAplicacao {
 //			
 //		}
         
-         usuario = new Usuario();
-        usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        usuario = userService.findByEmail(usuario.getEmail());
-  
-        //verifica se há usuario cadastrado
-        if(usuario == null) {
-        	
-        model.addAttribute("mensagem", "Carregado Usuario Cliente");
+//         usuario = new Usuario();
+//        usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+//        usuario = userService.findByEmail(usuario.getEmail());
+//  
+//        //verifica se há usuario cadastrado
+//        if(usuario == null) {
+//        	
+//        model.addAttribute("mensagem", "Carregado Usuario Cliente");
+//        
+//        usuario = new Usuario();
+//        UUID idf = UUID.fromString("4b71a569-c0bd-41a2-bffe-35e39e1a875a");
+//        usuario = userService.findOne(idf);
+//        usuario.setDataultimoAcesso(new Date());	
+//        usuario.setOnline(true);
+//        	
+//        } else {
+//        	
+//        	usuario.setOnline(true);
+//        	usuario.setDataultimoAcesso(new Date());
+//    	
+//	        model.addAttribute("mensagem", "Bem-Vindo " + usuario.getEmail());
+//
+//        
+//        }
         
-        usuario = new Usuario();
-        UUID idf = UUID.fromString("4b71a569-c0bd-41a2-bffe-35e39e1a875a");
-        usuario = userService.findOne(idf);
-        usuario.setDataultimoAcesso(new Date());	
-        usuario.setOnline(true);
-        	
-        } else {
-        	
-        	usuario.setOnline(true);
-        	usuario.setDataultimoAcesso(new Date());
-    	
-	        model.addAttribute("mensagem", "Bem-Vindo " + usuario.getEmail());
-
-        
-        }
-        
-         hoje = new Date();
+//         hoje = new Date();
+//         
+//         estaaberto = VerificaHorarioFechamento(configuracaoAtual);
          
-         estaaberto = VerificaHorarioFechamento(configuracaoAtual);
+//         if(carrinhobean.getCarrinho() == null){
+//	        	carrinho = new Carrinho();
+//	        	UUID uuid = UUID.randomUUID();
+//	 			carrinho.setId(uuid);
+//	 			//carrinhobean.SetarCarrinhoSessao(carrinho);
+//	          //  model.addAttribute("carrinho", carrinho); 
+//	            }else {
+//	            	
+////	            	UUID uuid = UUID.randomUUID();
+////		 			carrinho.setId(uuid);
+//	            	
+//	            	carrinho=carrinhobean.getCarrinho();
+//	            	
+//	            }
          
-         
-         
-         if(carrinho == null){
-         	
-         	carrinho = new Carrinho();
-         	UUID uuid = UUID.randomUUID();
-  			carrinho.setId(uuid);
-  			
-  			carrinhobean.SetarCarrinhoSessao(carrinho);
-         	
-       
-         }else {
-        	 
-         //	carrinho = carrinhobean.getCarrinho();
-         // 	UUID uuid = UUID.randomUUID();
-   		//	carrinho.setId(uuid);
+//         if(carrinho == null){
+//         	
+//         	carrinho = new Carrinho();
+//         	UUID uuid = UUID.randomUUID();
+//  			carrinho.setId(uuid);
+//  			
+//  			carrinhobean.SetarCarrinhoSessao(carrinho);
+//         	
+//       
+//         }else {
+//        	 
+//         //	carrinho = carrinhobean.getCarrinho();
+//         // 	UUID uuid = UUID.randomUUID();
+//   		//	carrinho.setId(uuid);
+//        //	 carrinho = carrinhobean.getCarrinho();
 //   			carrinhobean.SetarCarrinhoSessao(carrinho);
-         	
-         	
-         }
+//   			
+//   			
+//         	
+//         	
+//         }
          
          
+         
+         
+         if(restaurante == null){
+          	
+        	 restaurante = new Restaurante();
+          	UUID uuid = UUID.randomUUID();
+          	restaurante.setId(uuid);
+          	
+          	PegarListagemDasEntidades();
+          	ValidarEntidades();
+          	AdicionarAoRestaurante();
+   			
+          	restaurantebean.SetarRestauranteSessao(restaurante);
+          	
+        
+          }else {
+         	 
+        	  	
+        		ValidarEntidades();
+            	restaurantebean.SetarRestauranteSessao(restaurante);
+    			
+    			
+          	
+          	
+          }
+         
+         
+         
+         
+//         if((carrinhobean.getCarrinho() == null)&&(carrinho == null)){
+//	        	carrinho = new Carrinho();
+//	        	UUID uuid = UUID.randomUUID();
+//	 			carrinho.setId(uuid);
+//	 			carrinhobean.SetarCarrinhoSessao(carrinho);
+//	          //  model.addAttribute("carrinho", carrinho); 
+//	            }else if((carrinhobean.getCarrinho() == null)&&(carrinho != null)) {
+//	            	
+////	            	UUID uuid = UUID.randomUUID();
+////		 			carrinho.setId(uuid);
+//	            	
+//	            	//carrinho = carrinhobean.getCarrinho();
+//	            	
+//	            }
+//         
+//				else if((carrinhobean.getCarrinho() != null)&&(carrinho != null)) {
+//					            	
+//				//	            	UUID uuid = UUID.randomUUID();
+//				//		 			carrinho.setId(uuid);
+//					            	
+//					            //	carrinho = carrinhobean.getCarrinho();
+//					            	
+//					            }
+//         
+//				else if((carrinhobean.getCarrinho() != null)&&(carrinho == null)) {
+//	            	
+//				//	            	UUID uuid = UUID.randomUUID();
+//				//		 			carrinho.setId(uuid);
+//					            	
+//					            	carrinho = carrinhobean.getCarrinho();
+//					            	
+//					            }
+         
+       //  carrinhobean.SetarCarrinhoSessao(carrinho);
          
          
 //         if(!nmostrar && acessoubanco){
@@ -292,13 +427,189 @@ public class ContextoAplicacao {
         model.addAttribute("estaaberto", estaaberto);
         model.addAttribute("carrinho", carrinhobean.getCarrinho());
 	   	 model.addAttribute("totalitens", carrinhobean.TotalItens());
+	   	 model.addAttribute("totalmsg", usuario.getMensagens().size());
+
 	   	 
 	   	 model.addAttribute("categorias", categorias);
-//	   	 model.addAttribute("mostrar", nmostrar);
+	   	 model.addAttribute("usuarios", userService.findAll());
 //	   	 model.addAttribute("esconderOver", esconderOver);
 	   	
      
         
+	}
+
+	private void ValidarEntidades() {
+
+		ValidarConfiguracao();
+		
+		ValidaUsuario();
+		
+		ValidaCarrinho();
+		
+		
+	}
+
+	private void AdicionarAoRestaurante() {
+
+		restaurante.setCategorias(categorias);
+		restaurante.setGarcons(GarconLista);
+		restaurante.setMesas(MesaLista);
+		
+		restaurante.setPedidosvendas(PedidoVendaLista);
+		
+		restaurante.setProdutos(ProdutoLista);
+		restaurante.setProdutoscompostos(ProdutoCompostoLista);
+		restaurante.setPromocoes(PromocaoLista);
+		restaurante.setUsuarios(usuarios);
+		
+		
+		
+		
+	}
+
+	private void PegarListagemDasEntidades() {
+		
+		categorias = categoriaService.findAll();
+		
+		categoriaLista = CategoriasComProduto(categorias);
+
+		ProdutoCompostoLista = produtoCompostoService.findAll();
+		
+		ProdutoLista = produtoService.findAll();
+		
+		PromocaoLista = promocaoService.findAll();
+		
+		MesaLista = mesaService.findAll();
+		
+		PedidoVendaLista = PedidoVendaService.findAll();
+		
+		GarconLista =GarconService.findAll();
+		
+		usuarios = userService.findAll();
+		
+
+		
+		
+	}
+
+	private void ValidaCarrinho() {
+		
+		
+         if(carrinho == null){
+         	
+         	carrinho = new Carrinho();
+         	UUID uuid = UUID.randomUUID();
+  			carrinho.setId(uuid);
+  			
+  			carrinhobean.SetarCarrinhoSessao(carrinho);
+         	
+       
+         }else {
+        	 
+         //	carrinho = carrinhobean.getCarrinho();
+         // 	UUID uuid = UUID.randomUUID();
+   		//	carrinho.setId(uuid);
+        //	 carrinho = carrinhobean.getCarrinho();
+   			carrinhobean.SetarCarrinhoSessao(carrinho);
+   			
+   			
+         	
+         	
+         }
+
+		
+		
+	}
+
+	private void ValidaUsuario() {
+
+		
+		
+		usuario = new Usuario();
+        usuario.setEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        usuario = userService.findByEmail(usuario.getEmail());
+  
+        //verifica se há usuario cadastrado
+        if(usuario == null) {
+        	
+     //   model.addAttribute("mensagem", "Carregado Usuario Cliente");
+        
+        usuario = new Usuario();
+        UUID idf = UUID.fromString("4b71a569-c0bd-41a2-bffe-35e39e1a875a");
+        usuario = userService.findOne(idf);
+        usuario.setDataultimoAcesso(new Date());	
+        usuario.setOnline(true);
+        	
+        } else {
+        	
+        	usuario.setOnline(true);
+        	usuario.setDataultimoAcesso(new Date());
+    	
+	   //     model.addAttribute("mensagem", "Bem-Vindo " + usuario.getEmail());
+
+        
+        }
+	}
+
+	private void ValidarConfiguracao() {
+		
+		Long qtdRegistroConfiuracao = ConfiguracaoService.count();
+		
+		if(qtdRegistroConfiuracao != null && qtdRegistroConfiuracao > 0 ){
+			
+			
+			configuracaoLista = ConfiguracaoService.PegarConfiguracaoAtualLista();
+			
+			configuracaoAtual = configuracaoLista.get(0);
+			
+		}else {
+			
+			
+			configuracaoAtual = ConfiguracaoService.PegarConfiguracaoAtual();
+			
+		}	
+		
+		
+if(configuracaoAtual == null){
+			
+			Date dati = new Date();
+			dati.setHours(18);
+			dati.setMinutes(00);
+			
+			Date datf = new Date();
+			datf.setHours(23);
+			datf.setMinutes(00);
+			
+			configuracaoAtual = new Configuracao();
+			
+			configuracaoAtual.setAtivo(true);
+			configuracaoAtual.setBanner1("banner.png");
+			configuracaoAtual.setBanner2("banner.png");
+			configuracaoAtual.setBanner3("banner.png");
+			configuracaoAtual.setCorcard("blue");
+			configuracaoAtual.setCormenu("blue");
+			configuracaoAtual.setCortopo("blue");
+			configuracaoAtual.setLogo("logo.png");
+			configuracaoAtual.setNomeempresa("Teste");
+			configuracaoAtual.setUrlface("https://www.facebook.com");
+			configuracaoAtual.setUrlgmail("https://www.gmail.com");
+			configuracaoAtual.setUrlinsta("https://www.instagram.com");
+			configuracaoAtual.setHoraabertura(dati);
+			configuracaoAtual.setHorafechamento(datf);
+			configuracaoAtual.setEndereco("Av.Dois Irmão 547");
+			configuracaoAtual.setTelefone("81-9981-7766");
+
+			
+			
+			
+		}
+
+
+		hoje = new Date();
+		
+		estaaberto = VerificaHorarioFechamento(configuracaoAtual);
+	
+	
 	}
 
 	private Usuario PegarIndicacao() {

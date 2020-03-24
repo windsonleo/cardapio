@@ -10,19 +10,22 @@
 		
 		<title>Perfil</title>
 
-			<body  class="hold-transition skin-red sidebar-mini"  th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
+			<body  class="hold-transition skin-red layout-top-nav"  th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' layout-top-nav' ">
 			
 			<div class="wrapper">
 
-	   			  <nav th:replace="fragmentos/top-nav :: nav">
+	   			  <nav th:replace="fragmentos/top-navauxhome :: nav">
 				
 				</nav>
 				
-					<div th:replace="fragmentos/nav :: nav-side"> </div>
+<!-- 					<div th:replace="fragmentos/nav :: nav-side"> </div> -->
 				
 		  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+          <div class="container">
+    
+    
     <section class="content-header">
       <h1>
         Perfil
@@ -126,13 +129,13 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
 <!--               <li class="active"><a href="#activity" data-toggle="tab">Evolucao</a></li> -->
-              <li class="active"><a href="#timeline" data-toggle="tab">Linha do Tempo</a></li>
-              <li><a href="#settings" data-toggle="tab">Configuracao</a></li>
+              <li ><a href="#timeline" data-toggle="tab">Linha do Tempo</a></li>
+              <li class="active"><a href="#settings" data-toggle="tab">Mensagens</a></li>
             </ul>
             <div class="tab-content">
 
               <!-- /.tab-pane -->
-              <div class="tab-pane active" id="timeline">
+              <div class="tab-pane" id="timeline">
                 <!-- The timeline -->
                 <ul class="timeline timeline-inverse">
                   <!-- timeline time label -->
@@ -260,58 +263,53 @@
               </div>
               <!-- /.tab-pane -->
 
-              <div class="tab-pane" id="settings">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" placeholder="Name" />
-                    </div>
+              <div class="tab-pane active" id="settings">
+                <div class="post direct-chat-messages">
+                
+                <div th:each="mensagem,itemStat : ${usuario.mensagens}" class="direct-chat  direct-chat-msg  direct-chat-msg right direct-chat-msg primary">
+                  <div class="user-block">
+                    <img class="direct-chat-img img-md" th:src="@{/img/usuario/{fotoc}(fotoc=${mensagem.usuario.foto})}" alt="user image"/>
+                        <span class="username"> 
+                          <a href="#" th:utext="${mensagem.usuario.email}" >Jonathan Burke Jr.</a>
+                          <a th:href="@{/usuario/removeMensagem(idmensagem=${itemStat.index}, id=${usuario.id})}" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+<!--                           <a th:href="@{/usuario/removeMensagem(idmensagem=${mensagem.idusu}, id=${usuario.id})}" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a> -->
+                        </span>
+                    <span class="description" th:utext="${mensagem.data}">Shared publicly - 7:30 PM today</span>
                   </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email" />
-                    </div>
+                  <!-- /.user-block -->
+                  <p th:utext="${mensagem.descricao}" class="direct-chat-text" >
+                    Lorem ipsum represents a long-held tradition for designers,
+                    typographers and the like. Some people hate it and argue for
+                    its demise, but others ignore the hate as they create awesome
+                    tools to help create filler text for everyone from bacon lovers
+                    to Charlie Sheen fans.
+                  </p>
+                  
                   </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+                  
+<!--                   <ul class="list-inline"> -->
+<!--                     <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li> -->
+<!--                     <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a> -->
+<!--                     </li> -->
+<!--                     <li class="pull-right"> -->
+<!--                       <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments -->
+<!--                         (5)</a></li> -->
+<!--                   </ul> -->
 
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Name" />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
-                    <div class="col-sm-10">
-                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills" />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" /> I agree to the <a href="#">terms and conditions</a>
-                        </label>
+                     <form class="form-horizontal" th:method="post" th:action="@{/usuario/addmensagem(id=${usuario.id})}" th:object="${mensagem}" ModelAttribute="mensagem" >
+                  
+                    <div class="form-group margin-bottom-none">
+                      <div class="col-sm-9">
+                        <input id="descricao" name="descricao" class="form-control input-sm"  th:value="${mensagem.descricao}" />
+                      </div>
+                      <div class="col-sm-3">
+                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Enviar</button>
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
-                  </div>
-                </form>
+                  </form>
+                  
+                  
+                </div>                  
               </div>
               <!-- /.tab-pane -->
             </div>
@@ -323,6 +321,7 @@
       </div>
          			
 	</section>
+		             <div class="clearfix"></div>
 				
 				
 	</div>
@@ -330,6 +329,8 @@
 				
 	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
 				
+</div>
+
 </div>
 				
 </body>

@@ -18,7 +18,7 @@
 		
 		<title>Salão</title>
 
-			<body  class="hold-transition skin-red sidebar-mini" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
+			<body  class="hold-transition skin-red sidebar-mini" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini sidebar-collapse' ">
 			
 <!-- 			<div id="fb-root"> </div> -->
 <!-- <script th:async="async" th:defer="defer"  crossorigin="anonymous" -->
@@ -244,17 +244,70 @@
               </div>
             
             
-            <div class="widget-user-header bg-black" th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard}">
+<!--             <div th:switch="${mesa.status}" th:remove = "tag"> -->
+            
+            <th:block>
+               <div th:if="${mesa.status==T(com.tecsoluction.cardapio.util.StatusMesa).ABERTA}" class="widget-user-header bg-green">
+               
+                             <div class="widget-user-image">
+             <img th:src="@{/img/mesa/{fotoc}(fotoc=${mesaimg})}" class="img-circle" alt="User Image" />
+              </div>
+          
+              <h5 class="widget-user-username text-center" th:text="${mesa.numero}" >Nadia Carmichael</h5>
+              <h6 class="widget-user-desc text-center" th:text="${mesa.status}" >Lead Developer</h6>
+               </div>
+             <div th:if="${mesa.status==T(com.tecsoluction.cardapio.util.StatusMesa).FECHADA}" class="widget-user-header bg-red">        
+              
+                            <div class="widget-user-image">
+             <img th:src="@{/img/mesa/{fotoc}(fotoc=${mesaimg})}" class="img-circle" alt="User Image" />
+              </div>
+          
+              <h5 class="widget-user-username text-center" th:text="${mesa.numero}" >Nadia Carmichael</h5>
+              <h6 class="widget-user-desc text-center" th:text="${mesa.status}" >Lead Developer</h6>
+              </div>
+              <div th:if="${mesa.status==T(com.tecsoluction.cardapio.util.StatusMesa).DISPONIVEL}" class="widget-user-header bg-grey">
+                          <div class="widget-user-image">
+             <img th:src="@{/img/mesa/{fotoc}(fotoc=${mesaimg})}" class="img-circle" alt="User Image" />
+              </div>
+          
+              <h5 class="widget-user-username text-center" th:text="${mesa.numero}" >Nadia Carmichael</h5>
+              <h6 class="widget-user-desc text-center" th:text="${mesa.status}" >Lead Developer</h6>
+            
+            </div>
+			 <div th:if="${mesa.status==T(com.tecsoluction.cardapio.util.StatusMesa).INDISPONIVEL}" class="widget-user-header bg-orange">
+              
+                            <div class="widget-user-image">
+             <img th:src="@{/img/mesa/{fotoc}(fotoc=${mesaimg})}" class="img-circle" alt="User Image" />
+              </div>
+          
+              <h5 class="widget-user-username text-center" th:text="${mesa.numero}" >Nadia Carmichael</h5>
+              <h6 class="widget-user-desc text-center" th:text="${mesa.status}" >Lead Developer</h6>
+              
+              </div>
+              <div th:if="${mesa.status==T(com.tecsoluction.cardapio.util.StatusMesa).RESERVADA}" class="widget-user-header bg-purple">
+<!--            </th:block> -->
+<!--            </div> -->
+            
+<!--             </th:block> -->
+
               <div class="widget-user-image">
              <img th:src="@{/img/mesa/{fotoc}(fotoc=${mesaimg})}" class="img-circle" alt="User Image" />
               </div>
           
               <h5 class="widget-user-username text-center" th:text="${mesa.numero}" >Nadia Carmichael</h5>
               <h6 class="widget-user-desc text-center" th:text="${mesa.status}" >Lead Developer</h6>
+            
+            </div>
+         
+              
+            
+
+<!--             </div> -->
 
               
-              
-            </div>
+              </th:block>
+
+
             
             <div class="clearfix"></div>
             
@@ -372,6 +425,9 @@
         
         </div>
         </div>
+<!--          </th:block> -->
+<!--         </div> -->
+        
         </section>
         
         

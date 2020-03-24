@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,16 +22,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.cardapio.CarrinhoBean;
+import com.tecsoluction.cardapio.RestauranteBean;
 import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Garcon;
 import com.tecsoluction.cardapio.entidade.Item;
 import com.tecsoluction.cardapio.entidade.Mesa;
 import com.tecsoluction.cardapio.entidade.PedidoVenda;
 import com.tecsoluction.cardapio.entidade.Produto;
+import com.tecsoluction.cardapio.entidade.Usuario;
+import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
 import com.tecsoluction.cardapio.servico.GarconServicoImpl;
 import com.tecsoluction.cardapio.servico.MesaServicoImpl;
 import com.tecsoluction.cardapio.servico.PedidoVendaServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
+import com.tecsoluction.cardapio.util.GerenciadorCategorias;
 import com.tecsoluction.cardapio.util.OrigemPedido;
 import com.tecsoluction.cardapio.util.SituacaoItem;
 
@@ -62,6 +68,9 @@ public class CarrinhoController  {
 		 @Autowired
 		    private  MesaServicoImpl mesaService;
 		 
+			@Autowired
+			private  CategoriaServicoImpl CategoriaService;
+		 
 		 
 		 private List<Mesa> mesas;
 		 
@@ -73,8 +82,17 @@ public class CarrinhoController  {
 		 
 		 private OrigemPedido [] origempedidos;
 		 
-		
-	 
+		 @Autowired
+		 private RestauranteBean restaurantebean;
+		 
+		 private Pageable primeiroResultado = new PageRequest(0, 5);
+		 
+		    private GerenciadorCategorias gerenciacat;
+		    
+		    private List<Usuario> usuarios = new ArrayList<Usuario>();
+
+			 private int indexUsuario = 0;
+
 	 
 //	 @Autowired
 //	private final UsuarioServicoImpl userService;
@@ -228,7 +246,7 @@ public class CarrinhoController  {
         
         Item item = new Item(cat);
         
-        item.setQtd("01");
+        item.setQtd("1");
         item.setTotalItem(item.CalcularTotaItem(item.getQtd()).setScale(2, RoundingMode.UP));
         item.setSituacao(SituacaoItem.AGUARDANDO);
         
@@ -248,8 +266,8 @@ public class CarrinhoController  {
       exibircatt.addObject("sucesso", msg);
 
       
-      model.addAttribute("carrinho", carrinhobean.getCarrinho());
-      model.addAttribute("sucesso", msg);
+//      model.addAttribute("carrinho", carrinhobean.getCarrinho());
+//      model.addAttribute("sucesso", msg);
 
 
         return exibircatt;
@@ -267,18 +285,99 @@ public class CarrinhoController  {
         
        
         
-        ModelAndView exibircat = new ModelAndView("/public/carrinho/visualizar");
+        ModelAndView exibircat = new ModelAndView("/public/home");
 
         Produto cat = produtoService.findOne(idf);
         
         String msg = "Produto , " + cat.getNome() + " Adiccionado ao Carrinho";
         
         
-        ModelAndView exibircatt = new ModelAndView("redirect:/home" );
+//        ModelAndView exibircatt = new ModelAndView("redirect:/home" );
         
         Item item = new Item(cat);
         
-        item.setQtd("01");
+        item.setQtd("1");
+        item.setTotalItem(item.CalcularTotaItem(item.getQtd()).setScale(2, RoundingMode.UP));
+        item.setSituacao(SituacaoItem.AGUARDANDO);
+        
+        carrinhobean.AddItemCarrinho(item);
+        
+        carrinhobean.getCarrinho().setTotal(carrinhobean.getCarrinho().CalcularTotal().setScale(2, RoundingMode.UP));
+       
+        
+      System.out.println("url : " + request.getRequestURL());  
+      System.out.println("url parameters: " + request.getAttributeNames().toString());  
+        
+//        request.setAttribute("carrinho", carrinho); // Setando no escopo de requisição
+//        request.getSession().setAttribute("carrinho", carrinho); // Setando no escopo de sessão.
+    //    context.setAttribute("carrinho", carrinho); // Setando no escopo de aplicação
+      
+     
+      
+     
+      
+      gerenciacat = new GerenciadorCategorias(restaurantebean.getRestaurante().getCategorias());
+      
+      Usuario us =   PegarIndicacao();
+      
+      carrinhobean.SetarProdutosIndicaSessao();
+      
+    //  destaqueprodLista = ProdutoService.ListaProdutoMaiorAvaliacao(primeiroResultado);
+      
+     // indicaprodLista = carrinhobean.getProdutosIndica();
+
+      exibircat.addObject("carrinho", carrinhobean.getCarrinho());
+      exibircat.addObject("totalitens", carrinhobean.TotalItens());
+      exibircat.addObject("promocoesList", restaurantebean.getRestaurante().getPromocoes());
+      exibircat.addObject("categoriaListall", restaurantebean.getRestaurante().getCategorias());
+      exibircat.addObject("usuarioIndica", carrinhobean.PegarUsuarioIndicaSessao());  
+//      
+      exibircat.addObject("produtoIndica", carrinhobean.PegarProdutoIndicaSessao());  
+
+      exibircat.addObject("destaqueprodLista",produtoService.ListaProdutoMaiorAvaliacao(primeiroResultado));
+
+      exibircat.addObject("indicaprodLista", carrinhobean.getProdutosIndica());
+      
+      exibircat.addObject("categoriaListpai", CategoriaService.getCategoriaPai());
+
+
+      
+      exibircat.addObject("sucesso", msg);
+
+      
+//      model.addAttribute("carrinho", carrinhobean.getCarrinho());
+//      model.addAttribute("sucesso", msg);
+
+
+        return exibircat;
+    }
+    
+    
+    
+    
+    @RequestMapping(value = "/adicionarpedidorapido", method = RequestMethod.GET)
+    public ModelAndView AdicionarProdutoCarrinhoPed(HttpServletRequest request,Model model ) {
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+//        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+        
+        //this.carrinho = request.getAttribute("carrinho");
+        
+       
+        
+        ModelAndView exibircat = new ModelAndView("/private/pedidovenda/pedidorapido");
+
+        Produto cat = produtoService.findOne(idf);
+        
+        String msg = "Produto , " + cat.getNome() + " Adiccionado ao Carrinho";
+        
+        
+        ModelAndView exibircatt = new ModelAndView("/private/pedidovenda/pedidorapido");
+        
+        Item item = new Item(cat);
+        
+        item.setQtd("1");
         item.setTotalItem(item.CalcularTotaItem(item.getQtd()).setScale(2, RoundingMode.UP));
         item.setSituacao(SituacaoItem.AGUARDANDO);
         
@@ -287,7 +386,7 @@ public class CarrinhoController  {
         carrinhobean.getCarrinho().setTotal(carrinhobean.getCarrinho().CalcularTotal().setScale(2, RoundingMode.UP));
         
       System.out.println("url : " + request.getRequestURL());  
-      System.out.println("url parameters: " + request.getAttributeNames().toString());  
+      System.out.println("url parameters: " + request.getAttributeNames());  
         
 //        request.setAttribute("carrinho", carrinho); // Setando no escopo de requisição
 //        request.getSession().setAttribute("carrinho", carrinho); // Setando no escopo de sessão.
@@ -296,15 +395,17 @@ public class CarrinhoController  {
       exibircatt.addObject("carrinho", carrinhobean.getCarrinho());
       
       exibircatt.addObject("sucesso", msg);
+      
+      exibircatt.addObject("totalitens", carrinhobean.TotalItens());
+
 
       
-      model.addAttribute("carrinho", carrinhobean.getCarrinho());
-      model.addAttribute("sucesso", msg);
+//      model.addAttribute("carrinho", carrinhobean.getCarrinho());
+//      model.addAttribute("sucesso", msg);
 
 
         return exibircatt;
     }
-    
     
     @RequestMapping(value = "/adicionarperfil", method = RequestMethod.GET)
     public ModelAndView AdicionarProdutoCarrinhoPerfil(HttpServletRequest request,Model model ) {
@@ -328,7 +429,7 @@ public class CarrinhoController  {
         
         Item item = new Item(cat);
         
-        item.setQtd("01");
+        item.setQtd("1");
         item.setTotalItem(item.CalcularTotaItem(item.getQtd()).setScale(2, RoundingMode.UP));
         item.setSituacao(SituacaoItem.AGUARDANDO);
         
@@ -348,8 +449,8 @@ public class CarrinhoController  {
       exibircatt.addObject("sucesso", msg);
 
       
-      model.addAttribute("carrinho", carrinhobean.getCarrinho());
-      model.addAttribute("sucesso", msg);
+//      model.addAttribute("carrinho", carrinhobean.getCarrinho());
+//      model.addAttribute("sucesso", msg);
 
 
         return exibircatt;
@@ -463,7 +564,79 @@ public class CarrinhoController  {
        
         
         
-        model.addAttribute("carrinho", carrinhobean.getCarrinho());
+//        model.addAttribute("carrinho", carrinhobean.getCarrinho());
+
+        exibircat.addObject("carrinho", carrinhobean.getCarrinho());
+        
+        exibircat.addObject("origempedidos", origempedidos);
+        
+        
+       // return new ModelAndView("redirect:/carrinho/finalizar") ;
+        
+        return exibircat;
+    }
+    
+    
+    
+    
+    
+    
+    @RequestMapping(value = "/deleteitempedrapido", method = RequestMethod.GET)
+    public ModelAndView DeletarItemPedrAPIDO(HttpServletRequest request,Model model) {
+    	
+    	List<Item> itensaux = new ArrayList<Item>();
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+//        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+        
+        ModelAndView exibircat = new ModelAndView("/private/pedidovenda/pedidorapido");
+
+        Produto cat = produtoService.findOne(idf);
+//        
+     //   Item item = new Item(cat,"01");
+        
+   //     itensaux = carrinho.getItens();
+//        
+//        this.carrinho.removeItem(item);
+        
+   //     carrinho.getItens().remove(item);
+        
+        for (Item key : carrinhobean.getCarrinho().getItens()) {
+        	
+        	if(key.getId().equals(cat.getId())){
+        		        		
+        	//	key.setSituacao(SituacaoItem.EM_EXECUCAO);
+        		
+        	//	carrinho.removeItem(key);
+        		
+        		itensaux.add(key);
+        		
+        	}else {
+        		
+        		
+        		
+        	}	
+        	
+        }
+        
+//        carrinho.getItens().clear();
+//        carrinho.setItens(itensaux);
+        
+        carrinhobean.getCarrinho().getItens().removeAll(itensaux);
+        
+        
+        
+        
+        carrinhobean.getCarrinho().setSubtotal(carrinhobean.getCarrinho().CalcularTotal().setScale(2, RoundingMode.UP));
+        carrinhobean.getCarrinho().setTotal(carrinhobean.getCarrinho().CalcularTotal().setScale(2, RoundingMode.UP));
+        carrinhobean.getCarrinho().setQtd(new BigDecimal(carrinhobean.getCarrinho().getItens().size()).setScale(2, RoundingMode.UP));
+
+        origempedidos = OrigemPedido.values();
+       
+        
+        
+//        model.addAttribute("carrinho", carrinhobean.getCarrinho());
 
         exibircat.addObject("carrinho", carrinhobean.getCarrinho());
         
@@ -539,12 +712,14 @@ public class CarrinhoController  {
        
        List<PedidoVenda> pedidos = pedidovendaService.findAll();
        
-       Carrinho carrinhoo = new Carrinho();
+//       Carrinho carrinhoo = new Carrinho();
+//       
+//	   	UUID uuid = UUID.randomUUID();
+//	   	carrinhoo.setId(uuid);	
+//       
+//       carrinhobean.SetarCarrinhoSessao(carrinhoo);
        
-	   	UUID uuid = UUID.randomUUID();
-	   	carrinhoo.setId(uuid);	
-       
-       carrinhobean.SetarCarrinhoSessao(carrinhoo);
+       carrinhobean.getCarrinho().getItens().clear();
        
 //       String resp = "<p>Sucesso</p>";
         
@@ -564,6 +739,7 @@ public class CarrinhoController  {
 //       model.addAttribute("carrinho", carrinhobean.getCarrinho());
 //       model.addAttribute("sucesso", sucesso);
 
+//        return   new ModelAndView("redirect:/home") ;
         return exibircat;
     }
     
@@ -575,18 +751,95 @@ public class CarrinhoController  {
         ModelAndView exibircat = new ModelAndView("redirect:/home");
 
 
-       Carrinho carrinhoo = new Carrinho();
-       
-	   	UUID uuid = UUID.randomUUID();
-	   	carrinhoo.setId(uuid);	
-       
-       carrinhobean.SetarCarrinhoSessao(carrinhoo);
+//       Carrinho carrinhoo = new Carrinho();
+//       
+//	   	UUID uuid = UUID.randomUUID();
+//	   	carrinhoo.setId(uuid);	
+//       
+//       carrinhobean.SetarCarrinhoSessao(carrinhoo);
+        
+        carrinhobean.getCarrinho().getItens().clear();
        
         exibircat.addObject("carrinho", carrinhobean.getCarrinho());
         
-       model.addAttribute("carrinho", carrinhobean.getCarrinho());
+     //  model.addAttribute("carrinho", carrinhobean.getCarrinho());
 
         return exibircat;
     }
+    
+	private Usuario PegarIndicacao() {
+		// TODO Auto-generated method stub
+		
+	    Usuario usu = null;
+        usuarios = restaurantebean.getRestaurante().getUsuarios();
+        
+        carrinhobean.SetarUsuariosIndicaSessao(restaurantebean.getRestaurante().getUsuarios());
+        
+        int index = usuarios.size();
+        
+      //  acessoubanco = true;
+        
+        if(indexUsuario <  index){
+        
+        usu = IndicacaoUsuario(usuarios);
+       
+        
+        }else {
+        	
+        	indexUsuario = 0;	
+        	
+        	 usu = IndicacaoUsuario(usuarios);
+        	
+        }
+        
+		
+		return usu;
+	}
+	
+	  private Usuario IndicacaoUsuario(List<Usuario> usuarios2) {
+
+//			for(Usuario us: usuarios2){
+	    	
+	    	
+	    	Usuario us = usuarios2.get(indexUsuario);
+				
+				if(!us.getIndicacoes().isEmpty()){
+					
+					carrinhobean.SetarUsuarioIndicaSessao(us);
+					
+					 indexUsuario++;
+					 		
+					 
+					return us;
+				}else {
+					
+					
+					
+					
+					indexUsuario++;
+					PegarIndicacao();
+					
+//					Usuario uss = usuarios2.get(indexUsuario);
+//					
+//					if(!uss.getIndicacoes().isEmpty()){
+//						
+//						carrinhobean.SetarUsuarioIndicaSessao(uss);
+//						
+//						 indexUsuario++;
+//						 		
+//						 
+//						return uss;
+//					}else {
+//						
+//						 indexUsuario++;
+//						IndicacaoUsuario(usuarios2);
+//					}
+					
+					return null;
+				}
+				
+//			}
+
+		}
 
 }

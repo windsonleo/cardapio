@@ -2,6 +2,7 @@ package com.tecsoluction.cardapio.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -24,9 +25,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.tecsoluction.cardapio.entidade.Atividade;
 import com.tecsoluction.cardapio.entidade.Categoria;
+import com.tecsoluction.cardapio.entidade.Mensagem;
 import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.entidade.Role;
 import com.tecsoluction.cardapio.entidade.Usuario;
@@ -101,6 +102,14 @@ public class UsuarioController extends AbstractController<Usuario> {
     @ModelAttribute
     public void addAttributes(Model model) {
 
+    	if(usuario == null){
+    		
+    		usuario = new Usuario(); 	
+
+    		
+    	}
+
+    	
     	logger.info("Welcome add atribute Usuario Controller !" + usuario);
 
     	
@@ -109,7 +118,6 @@ public class UsuarioController extends AbstractController<Usuario> {
     	
     
     		
-    	usuario = new Usuario(); 	
     		
     		filename="avatar_usu.jpg";
     
@@ -132,15 +140,24 @@ public class UsuarioController extends AbstractController<Usuario> {
     }
     
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public ModelAndView profileUsuario(HttpServletRequest request) {
+    public ModelAndView profileUsuario(HttpServletRequest request,Model model) {
 
         UUID idf = UUID.fromString(request.getParameter("id"));
 
         ModelAndView profileusuario = new ModelAndView("/private/usuario/perfil");
 
         Usuario usuario = getservice().findOne(idf);
+        
+//    	Mensagem evolucao = new Mensagem();
+        
+    	  Date datanow = new Date();
 
         profileusuario.addObject("usuario", usuario);
+        
+        profileusuario.addObject("datanow", datanow);
+
+        profileusuario.addObject("mensagem", new Mensagem());
+
 
         return profileusuario;
     }
@@ -325,7 +342,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 
      //   exibircat.addObject("categoria", cat);
 
-        return new ModelAndView("forward:/categoria/exibir?id="+ cate.getId()).addObject("sucesso", sucesso);
+        return new ModelAndView("redirect:/categoria/exibir?id="+ cate.getId()).addObject("sucesso", sucesso);
     } 
     
     
@@ -408,6 +425,127 @@ public class UsuarioController extends AbstractController<Usuario> {
 
         return login;
     }
+    
+    
+    @RequestMapping(value = "/addmensagem", method = RequestMethod.POST)
+    public ModelAndView AddEvolucaoPaciente(HttpServletRequest request,Model model) {
+
+    	String sucesso = "Msg Enviada Com Sucesso !";
+
+    	
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+       // ModelAndView profilepaciente = new ModelAndView("/private/usuario/perfil");
+        
+    //    ModelAndView profilepaciente = new ModelAndView("forward:/usuario/perfil?id=" + this.usuario.getId()).addObject("sucesso", sucesso);
+
+
+        this.usuario = getservice().findOne(idf);
+        
+	   	 Usuario usuario;
+	 	
+	   	 String mail =SecurityContextHolder.getContext().getAuthentication().getName();
+	        
+	   	 usuario = getservice().findByEmail(mail);
+        
+	   	Mensagem evolucao = new Mensagem(usuario);
+	   	UUID uuid = UUID.randomUUID();
+	   	evolucao.setId(uuid);
+        evolucao.setUsuario(usuario);
+        evolucao.setData(new Date());
+        evolucao.setDescricao(request.getParameter("descricao"));
+        
+        this.usuario.addMensagem(evolucao);
+        
+	   	Mensagem evolucaoo = new Mensagem(usuario);
+
+	   	UUID uuid2 = UUID.randomUUID();
+	   	evolucaoo.setId(uuid2);
+        evolucaoo.setUsuario(usuario);
+        evolucaoo.setData(new Date());
+        evolucaoo.setDescricao(request.getParameter("descricao"));
+        
+        usuario.addMensagem(evolucaoo);
+        
+        getservice().edit(this.usuario);
+        getservice().edit(usuario);
+        
+//        ModelAndView profilepaciente = new ModelAndView("forward:/usuario/perfil?id=" + this.usuario.getId()).addObject("sucesso", sucesso);
+
+        
+        Date datanow = new Date();
+
+//        profilepaciente.addObject("usuario", this.usuario);
+//        profilepaciente.addObject("datanow", datanow);
+//        profilepaciente.addObject("mensagem", new Mensagem());
+        
+        model.addAttribute("usuario", this.usuario);
+        model.addAttribute("mensagem", new Mensagem());
+
+//        model.addAttribute("mensagem", new Mensagem());
+
+        model.addAttribute("sucesso", sucesso);
+
+
+//        return profilepaciente;
+        
+       return new ModelAndView("redirect:/usuario/perfil?id="+this.usuario.getId());
+
+    }
+    
+    
+    @RequestMapping(value = "/removeMensagem", method = RequestMethod.GET)
+    public ModelAndView rEMOVEEvolucaoPaciente(HttpServletRequest request,Model model) {
+
+    	
+    	String sucesso = "msg removida Com Sucesso !";
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+    	
+    	String idff = request.getParameter("idmensagem");
+
+
+        this.usuario = getservice().findOne(idf);
+        
+	   	 Usuario usuario;
+	 	
+	   	 String mail =SecurityContextHolder.getContext().getAuthentication().getName();
+	        
+	   	 usuario = getservice().findByEmail(mail);
+//        
+//        Evolucao evolucao = new Evolucao();
+//        
+//        evolucao.setUsuario(usuario);
+//        evolucao.setData(new Date());
+//        evolucao.setDescricao(request.getParameter("descricao"));
+	   	 
+//	   	 usuario.getMensagens().
+        
+        int index = Integer.valueOf(idff);
+        
+        usuario.removeMensagem(index);
+        
+        this.usuario.removeMensagem(index);
+        
+        logger.info("Welcome Remove Evolucao Paciente Controller index: !" + idff);
+        
+        getservice().edit(this.usuario);
+        getservice().edit(usuario);
+        
+        
+        
+        Date datanow = new Date();
+
+//        profilepaciente.addObject("paciente", paciente);
+//        profilepaciente.addObject("datanow", datanow);
+//        profilepaciente.addObject("evolucao", new Evolucao());
+
+//        return new ModelAndView("redirect:/usuario/perfil?id=" + this.usuario.getId());
+        
+       return new ModelAndView("redirect:/usuario/perfil?id=" + this.usuario.getId()).addObject("sucesso", sucesso);
+
+    }
+    
     
 
 	@Override

@@ -41,7 +41,7 @@ public class Garcon extends BaseEntity implements Serializable {
     private String foto;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "garcon",fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "garcon",fetch=FetchType.LAZY)
     private List<PedidoVenda> pedidos;
     
     @OneToOne

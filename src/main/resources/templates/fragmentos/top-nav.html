@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
@@ -11,7 +12,7 @@
 
 
 
-	<body  class="hold-transition skin-black sidebar-mini"   th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
+	<body  class="hold-transition skin-black sidebar-mini"   th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini sidebar-collapse' ">
 	
 		<div id="fb-root"> </div>
 <script th:async="async" th:defer="defer"  crossorigin="anonymous"
@@ -451,6 +452,8 @@ function onSignIn(googleUser) {
 <!--           </li> -->
 
 
+
+
       <li class="dropdown user user-menu">
       <a href="#" class="dropdown-toggle"> <i class="fa fa-phone"> </i>
 	 <span class="hidden-xs">	<span th:text="${configuracaoAtual.telefone}">81-98676-5454</span> </span>
@@ -469,7 +472,7 @@ function onSignIn(googleUser) {
 
 
 <li>
- <a href="#" th:href="@{/configuracaoAtual.urlface}" onclick="checkLoginState()"  data-toggle="dropdown"> <i class="fa fa-facebook fa-1.5x"> </i> </a>
+ <a href="#" th:href="@{/configuracaoAtual.urlface}" data-onlogin="checkLoginState()"  data-toggle="dropdown"> <i class="fa fa-facebook fa-1.5x"> </i> </a>
 
 
 </li>
@@ -494,6 +497,40 @@ function onSignIn(googleUser) {
 <span class="label label-success" th:text="|${totalitens}|">10</span> </a>
 
 </li>
+
+		          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-comments"></i>
+              <span class="label label-warning" th:text="${totalmsg}">4</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header" th:text="|Voce Possui , ${totalmsg} Mensagens|">You have 4 messages</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                <th:block th:each="msg: ${usuarioAtt.mensagens}">
+                  <li ><!-- start message -->
+                    <a th:href="@{/usuario/perfil?id={userid}(userid=${msg.idusu})}">
+                      <div class="pull-left">
+                    <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${msg.usuario.foto})}" alt="user image"/>
+                      </div>
+                      <h4 th:utext="${msg.usuario.nome}">
+                        Support Team
+                        <small th:utext="${msg.data}"><i class="fa fa-clock-o"></i> 5 mins</small>
+                      </h4>
+                      <p th:text="${msg.descricao}">Why not buy a new awesome theme?</p>
+                    </a>
+                  </li>
+                  
+                  </th:block>
+                  
+                  <!-- end message -->
+                
+                </ul>
+              </li>
+              <li class="footer"><a th:href="@{/usuario/perfil?id={userid}(userid=${usuarioAtt.id})}">Toodas Mensagens</a></li>
+            </ul>
+          </li>
 
 
 

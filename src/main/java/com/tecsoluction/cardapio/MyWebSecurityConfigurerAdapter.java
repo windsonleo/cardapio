@@ -84,6 +84,11 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/produto/filtroMenorPreco**").permitAll()
 				.antMatchers("/promocao/filtroOfertasHoje**").permitAll()
 				.antMatchers("/produto/filtroMaiorAvaliacao**").permitAll()
+				
+				.antMatchers("/produto/filtroMenorPreco").permitAll()
+				.antMatchers("/promocao/filtroOfertasHoje").permitAll()
+				.antMatchers("/produto/filtroMaiorAvaliacao").permitAll()
+				
 				.antMatchers("/promocao/perfil**").permitAll()
 				.antMatchers("/usuario/autenticar**").permitAll()
 				.antMatchers("/usuario/lock**").permitAll()

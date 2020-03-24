@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
@@ -28,6 +30,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tecsoluction.cardapio.framework.BaseEntity;
 
 import lombok.Getter;
@@ -105,7 +108,13 @@ public class Usuario  extends BaseEntity implements Serializable {
 	    @JsonIgnore
 	    @OneToMany(mappedBy = "usuario", cascade = {CascadeType.REMOVE},fetch=FetchType.EAGER)
 //	    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-		 private Set<Atividade> atividades; 
+		 private Set<Atividade> atividades;
+	    
+	    
+	    @ElementCollection(fetch=FetchType.EAGER)
+	    @CollectionTable(name = "mensagem_usuario", joinColumns = @JoinColumn(name = "id"))
+//	    @JsonManagedReference
+	    private List<Mensagem> mensagens;
 
     
 //    @JsonIgnore
@@ -163,6 +172,26 @@ public class Usuario  extends BaseEntity implements Serializable {
     public void removeAtividade(Atividade not){
     	
     	this.getAtividades().remove(not);
+    	
+    }
+    
+    
+    
+    public void addMensagem(Mensagem item){
+    	
+    	
+    	this.getMensagens().add(item);
+    	
+    	
+    	
+    }
+    
+    
+    public void removeMensagem(int index){
+    	
+    	
+    	this.getMensagens().remove(index);
+	
     	
     }
 	

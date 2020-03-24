@@ -154,7 +154,7 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 		 model.addAttribute("pedidosentregue", pedidosentregue);
 		 model.addAttribute("pedidospreparacao", pedidospreparacao);
 		 model.addAttribute("pedidosprontos", pedidosprontos);
-		   	model.addAttribute("totalitens", carrinhobean.TotalItens());
+		 model.addAttribute("totalitens", carrinhobean.TotalItens());
 
 		 
 		 
@@ -385,6 +385,30 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         exibircat.addObject("itens", itenscancelados);
         
         exibircat.addObject("pedidos", pedidoscancelados);
+
+
+        return exibircat;
+    }
+
+    
+    
+    @RequestMapping(value = "/pedidorapido", method = RequestMethod.GET)
+    public ModelAndView ExibirPedidorapido(HttpServletRequest request) {
+
+//        UUID idf = UUID.fromString(request.getParameter("id"));
+
+//        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+        
+        ModelAndView exibircat = new ModelAndView("/private/pedidovenda/pedidorapido");
+
+//        pedidos = getservice().findAllByStatusIsOrderByDataAsc(StatusPedido.CANCELADO);
+//
+//        exibircat.addObject("pedidos", pedidos);
+        
+//        
+//        exibircat.addObject("itens", itenscancelados);
+//        
+//        exibircat.addObject("pedidos", pedidoscancelados);
 
 
         return exibircat;
