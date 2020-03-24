@@ -390,7 +390,7 @@ public class HomeController {
        
     	logger.info("Welcome HOMEE /! The client locale is {}.", locale);
 
-        ModelAndView home = new ModelAndView("/public/home");
+        ModelAndView home = new ModelAndView("/public/loginnew");
         
 //        home.addObject("usuario", new Usuario());
 
@@ -1072,6 +1072,17 @@ private String FormatadorData(Date data){
     	logger.info("Welcome ajuda ! The client locale is {}.", locale);
 
         ModelAndView home = new ModelAndView("/public/ajuda");
+
+
+        return home;
+    }
+    
+    @RequestMapping(value = "/loginnew", method = RequestMethod.GET)
+    public ModelAndView Ajudaa(Locale locale, Model model) {
+       
+    	logger.info("Welcome login new ! The client locale is {}.", locale);
+
+        ModelAndView home = new ModelAndView("/public/loginnew");
 
 
         return home;
