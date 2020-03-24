@@ -633,7 +633,7 @@
                 </div>
                 
                  <div class="box-footer text-center" th:unless="${itemStat.index > 3 }">
-                  <a href="#" class="uppercase" >
+                  <a th:href="@{/carrinho/adicionarhome(id=${produto.id})}" rel="tooltip" title="Add para Carrinho" class="uppercase" >
                   
                   <i class="fa fa-arrow-circle-right"></i> Add Carrinho</a>
                   
@@ -831,10 +831,18 @@
 
 			<li th:each="produto: ${destaqueprodLista}">
 			
-			 <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}"  alt="User Image" class="img-circle"/>
+			 <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}"  alt="User Image" class="img-circle img-lg"/>
 			  <h4 th:text="${produto.nome}">Thanh Nguyen</h4>
-			   <span class="badge bg-black" th:text="|R$: ${produto.precovenda}|">Salão</span>
-			  
+			  <h4 th:text="${produto.descricao}">Thanh Nguyen</h4>
+			   <span class="badge bg-black" th:text="|  R$:  ${produto.precovenda}|">Salão</span>
+			   
+			   
+			   <div class="box-footer text-center">
+                  <a th:href="@{/carrinho/adicionarhome(id=${produto.id})}" rel="tooltip" title="Add para Carrinho" class="uppercase" >
+                  
+                  <i class="fa fa-arrow-circle-right"></i> Add Carrinho</a>
+                  
+                </div>
 			
 			</li>
 

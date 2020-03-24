@@ -124,7 +124,7 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         	carrinho = new Carrinho();
         	UUID uuid = UUID.randomUUID();
  			carrinho.setId(uuid);
-      
+ 			carrinhobean.SetarCarrinhoSessao(carrinho);
             }else {
             	
 //            	UUID uuid = UUID.randomUUID();
