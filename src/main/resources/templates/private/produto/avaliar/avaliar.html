@@ -80,6 +80,29 @@
               
       </div>
       </div>
+      
+      
+       <div class="col-md-4"  th:if="${sucesso}" >
+    
+    <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i></button>
+                <h4><i class="icon fa fa-check"></i> Sucesso</h4>
+               <p th:text="${sucesso}"> Success alert preview. This alert is dismissable.</p>
+              </div>
+              
+              
+              </div>
+              
+              
+              
+              <div class="col-md-4"  th:if="${erro}">
+                  <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <i class="fa fa-times" style="color:#fff;"></i></button>
+                <h4><i class="icon fa fa-check"></i> Erro </h4>
+               <p th:text="${erro}"> Erro alert preview. This alert is dismissable.</p>
+              </div>
+              
+              </div>
     
 <!--     <div class="alert alert-info alert-dismissible"> -->
     
@@ -211,7 +234,7 @@
 						
 						<input type="text"  id="nota" name="nota" hidden="false" value="4"/>
               
-               </form>
+               				</form>
               <p class="text-muted" th:text="${produto.descricao}">
                 B.S. in Computer Science from the University of Tennessee at Knoxville
               </p>

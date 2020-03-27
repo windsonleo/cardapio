@@ -61,6 +61,10 @@ public class Categoria extends BaseEntity implements Serializable {
     
     @Transient
     private BigDecimal maiorPreco;
+    
+    
+    @Column(name = "foto")
+    private String foto;
 
 
     //CONSTRUTOR PADRAO

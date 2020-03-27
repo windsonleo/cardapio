@@ -53,9 +53,9 @@
     <section class="content connectedSortable">
     
     
-    <div class="row-fluid"  th:if="${sucesso}">
+    <div class="col-md-4"  th:if="${sucesso}">
     
-    <div class="alert alert-success alert-dismissible" th:text="${sucesso}">
+    <div class="alert alert-success alert-dismissible" th:text="${sucesso}" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i></button>
                 <h4><i class="icon fa fa-check"></i> Sucesso</h4>
                 Success alert preview. This alert is dismissable.
@@ -66,11 +66,11 @@
               
               
               
-              <div class="row-fluid"  th:if="${erro}">
-                  <div class="alert alert-danger alert-dismissible" th:text="${erro}">
+              <div class="col-md-4"  th:if="${erro}" >
+                  <div class="alert alert-danger alert-dismissible" th:text="${erro}" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <i class="fa fa-times" style="color:#fff;"></i></button>
                 <h4><i class="icon fa fa-check"></i> Erro </h4>
-                Success alert preview. This alert is dismissable.
+                 alert preview. This alert is dismissable.
               </div>
               
               </div>
@@ -85,12 +85,12 @@
        
        		<div class="box box-solid">
             <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
-              <h3 class="box-title">PRODUTOS</h3>
+              <h3 class="box-title" th:text="| PRODUTOS  ${filtroNome} |">PRODUTOS</h3>
 
               <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" ></i>
                 </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" ></i></button>
               </div>
             </div>
             <!-- /.box-header -->
@@ -797,6 +797,23 @@
 		
 <!-- 		     <div class="clearfix"></div> -->
 		
+		
+		 <script type="text/javascript">
+ 
+ 
+ $('.alert').alert();
+ 
+ $('.alert').fadeIn('slow', function(){
+     $('.alert').delay(2000).fadeOut(); 
+ 
+//      demo.showNotification('top','center','${erros}');
+//      demo.showNotification('top','center','${mensagem}');
+  
+  });
+ 
+ 
+ 
+ </script>
 		
 <script type="text/javascript">
 

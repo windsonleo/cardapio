@@ -87,5 +87,9 @@ public abstract class AbstractEntityService<Entity> {
 
 
 //    protected abstract String getIdEntity(Entity entity);
+    
+    
+    
+    
 
 }

@@ -1,5 +1,6 @@
 package com.tecsoluction.cardapio.servico;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,7 +44,9 @@ public class PedidoVendaServicoImpl extends AbstractEntityService<PedidoVenda> {
         return dao.getAllPedidoPorMesa(idmesa);
     }
 
-    public List<PedidoVenda> getAllPedidoPorData(String dataini) {
+    public List<PedidoVenda> getAllPedidoPorData(Date dataini) {
+    	
+//    	Date dt = new Date(dataini);
 
         return dao.getAllPedidoPorData(dataini);
     }

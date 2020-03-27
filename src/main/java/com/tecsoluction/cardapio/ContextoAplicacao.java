@@ -334,7 +334,10 @@ public class ContextoAplicacao {
           }else {
          	 
         	  	
-        		ValidarEntidades();
+
+            	PegarListagemDasEntidades();
+            	ValidarEntidades();
+            	AdicionarAoRestaurante();
             	restaurantebean.SetarRestauranteSessao(restaurante);
     			
     			

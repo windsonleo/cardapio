@@ -175,11 +175,15 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <ul class="products-list product-list-in-box" th:each="pedido : ${pedidos}">
+              <ul th:if="${pedidoshoje}" class="products-list product-list-in-box" th:each="pedido : ${pedidoshoje}">
                 
                  <div class="direct-chat-text">                
                             <span class="product-title" th:text="|Pedido Id : ${pedido.id}|" >$1800</span>
-                 <p> <span class="product-title text-center" th:utext="| Data : ${#dates.format(pedido.data,'dd/MM/yyyy hh:MM:ss')} |">data</span></p>
+                 <p> <span class="product-title text-center" th:text="| Data : ${#dates.format(pedido.data,'dd/MM/yyyy')} |">data</span>
+                 
+                    <span class="product-title" th:text="| Hora : ${#dates.format(pedido.horapedido,'HH:mm:ss:mmm')} |">data</span>
+                 
+                 </p>
                 
                 </div>
                 <li class="item"  th:each="item: ${pedido.items}">
@@ -233,6 +237,69 @@
                 </li>
 
               </ul>
+              
+              
+               <ul th:if="${itens}" class="products-list product-list-in-box">
+                
+
+                <li class="item" th:each="item: ${itens}" >
+              
+              <div class="direct-chat-text" >                
+              <span class="product-title" th:text="|Item Id : ${item.id}|" >$1800</span>
+<!--                  <p> <span class="product-title text-center" th:utext="| Data : ${#dates.format(pedido.data,'dd/MM/yyyy hh:MM:ss')} |">data</span></p> -->
+                
+                </div>
+                  
+                  <div class="product-img">
+                    <img th:src="@{/img/produto/{fotoc}(fotoc=${item.foto})}" alt="Product Image">
+                  </div>
+                  <div class="product-info">
+                  
+<!--                       <div class="btn-group pull-right"> -->
+<!--                        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" > -->
+<!--                         <a th:href="@{/pedidovenda/item/mudarpronto(id=${item.id},idped=${pedido.id})}" class="btn  btn-block bg-aqua btn-flat btn-sm"><span >PRONTO</span></a> -->
+<!--                         <a th:href="@{/pedidovenda/item/mudarpreparacao(id=${item.id},idped=${pedido.id})}" class="btn  btn-block bg-yellow btn-flat btn-sm"><span>PREPARAR</span></a> -->
+<!--                      </div> -->
+<!--                       <div sec:authorize="hasAnyRole('ROLE_GARCON','ROLE_ADM','ROLE_SUPER')" > -->
+<!--                        <a th:href="@{/pedidovenda/item/mudarcancelar(id=${item.id},idped=${pedido.id})}" class="btn btn-block bg-red btn-flat btn-sm "><span >CANCELAR</span></a> -->
+<!--                         <a th:href="@{/pedidovenda/item/mudarentregar(id=${item.id},idped=${pedido.id})}" class="btn  btn-block bg-green btn-flat btn-sm"><span>ENTREGAR</span></a> -->
+<!--                       </div>  -->
+                                          
+<!--                       </div>  -->
+                  
+                    <a href="javascript:void(0)" class="product-title" th:text="${item.nome}">Samsung TV
+                      </a>
+
+<!--                        <span class="label bg-purple" th:text="${item.key.situacao}">$1800</span> -->
+                        <span class="product-description" th:text="${item.descricao}">
+                          Samsung 32" 1080p 60Hz LED Smart HDTV.
+                        </span>
+                        
+                         <span class="label bg-green" th:text="|QTD: ${item.qtd}|">
+                          Samsung 32" 1080p 60Hz LED Smart HDTV.
+                        </span>
+                        
+                           <span class="label bg-purple" th:text="${item.situacao}">$1800</span>
+        			
+<!--                        <div class="btn-group pull-right"> -->
+<!--                        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" > -->
+<!--                         <a th:href="@{/pedidovenda/item/mudarpronto(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-aqua btn-flat"><span >PRONTO</span></a> -->
+<!--                         <a th:href="@{/pedidovenda/item/mudarpreparacao(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-yellow btn-flat"><span>PREPARAR</span></a> -->
+<!--                      </div> -->
+<!--                       <div sec:authorize="hasAnyRole('ROLE_GARCON','ROLE_ADM','ROLE_SUPER')" > -->
+<!--                        <a th:href="@{/pedidovenda/item/mudarcancelar(id=${item.key.id},idped=${pedido.id})}" class="btn btn-block bg-red btn-flat"><span >CANCELAR</span></a> -->
+<!--                         <a th:href="@{/pedidovenda/item/mudarentregar(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-green btn-flat"><span>ENTREGAR</span></a> -->
+<!--                       </div>  -->
+                                          
+<!--                       </div>  -->
+                      
+                  </div>
+                </li>
+
+              </ul>
+              
+              
+              
             </div>
             <!-- /.box-body -->
             <div class="box-footer text-center">

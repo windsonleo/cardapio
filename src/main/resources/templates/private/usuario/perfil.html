@@ -10,20 +10,20 @@
 		
 		<title>Perfil</title>
 
-			<body  class="hold-transition skin-red layout-top-nav"  th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' layout-top-nav' ">
+			<body  class="hold-transition skin-red sidebar-collapse sidebar-mini"  th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-collapse sidebar-mini' ">
 			
 			<div class="wrapper">
 
-	   			  <nav th:replace="fragmentos/top-navauxhome :: nav">
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
 				
 				</nav>
 				
-<!-- 					<div th:replace="fragmentos/nav :: nav-side"> </div> -->
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
 				
 		  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-          <div class="container">
+<!--           <div class="container"> -->
     
     
     <section class="content-header">
@@ -129,13 +129,13 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
 <!--               <li class="active"><a href="#activity" data-toggle="tab">Evolucao</a></li> -->
-              <li ><a href="#timeline" data-toggle="tab">Linha do Tempo</a></li>
-              <li class="active"><a href="#settings" data-toggle="tab">Mensagens</a></li>
+              <li class="active"><a href="#timeline" data-toggle="tab">Linha do Tempo</a></li>
+              <li ><a href="#settings" data-toggle="tab">Mensagens</a></li>
             </ul>
             <div class="tab-content">
 
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="timeline">
+              <div class="tab-pane active" id="timeline">
                 <!-- The timeline -->
                 <ul class="timeline timeline-inverse">
                   <!-- timeline time label -->
@@ -263,21 +263,21 @@
               </div>
               <!-- /.tab-pane -->
 
-              <div class="tab-pane active" id="settings">
+              <div class="tab-pane" id="settings">
                 <div class="post direct-chat-messages">
                 
-                <div th:each="mensagem,itemStat : ${usuario.mensagens}" class="direct-chat  direct-chat-msg  direct-chat-msg right direct-chat-msg primary">
+                <div th:each="mensagemm,itemStat : ${usuario.mensagens}" class="direct-chat  direct-chat-msg  direct-chat-msg right direct-chat-msg primary">
                   <div class="user-block">
-                    <img class="direct-chat-img img-md" th:src="@{/img/usuario/{fotoc}(fotoc=${mensagem.usuario.foto})}" alt="user image"/>
+                    <img class="direct-chat-img img-md" th:src="@{/img/usuario/{fotoc}(fotoc=${mensagemm.usuario.foto})}" alt="user image"/>
                         <span class="username"> 
-                          <a href="#" th:utext="${mensagem.usuario.email}" >Jonathan Burke Jr.</a>
+                          <a href="#" th:utext="${mensagemm.usuario.email}" >Jonathan Burke Jr.</a>
                           <a th:href="@{/usuario/removeMensagem(idmensagem=${itemStat.index}, id=${usuario.id})}" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
 <!--                           <a th:href="@{/usuario/removeMensagem(idmensagem=${mensagem.idusu}, id=${usuario.id})}" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a> -->
                         </span>
-                    <span class="description" th:utext="${mensagem.data}">Shared publicly - 7:30 PM today</span>
+                    <span class="description" th:utext="${mensagemm.data}">Shared publicly - 7:30 PM today</span>
                   </div>
                   <!-- /.user-block -->
-                  <p th:utext="${mensagem.descricao}" class="direct-chat-text" >
+                  <p th:utext="${mensagemm.descricao}" class="direct-chat-text" >
                     Lorem ipsum represents a long-held tradition for designers,
                     typographers and the like. Some people hate it and argue for
                     its demise, but others ignore the hate as they create awesome
@@ -331,7 +331,7 @@
 				
 </div>
 
-</div>
+<!-- </div> -->
 				
 </body>
 

@@ -5,6 +5,8 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.cardapio.entidade.Categoria;
@@ -27,6 +30,10 @@ import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
 @Controller
 @RequestMapping(value = "cardapio/")
 public class CardapioController   {
+	
+	
+    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
 	 @Autowired
 	private 
 	CategoriaServicoImpl categoriaService;
@@ -114,6 +121,38 @@ public class CardapioController   {
 	public ModelAndView CardapioP(Locale locale, Model model,HttpServletRequest request) {
 		
 		ModelAndView cardapio = new ModelAndView("cardapionew");
+		
+		return cardapio;
+	}
+	
+	
+	@RequestMapping(value = "cardapio", method = RequestMethod.GET)
+	public ModelAndView CardapioPr(@RequestParam(value = "erro", required = false) String error, 
+	@RequestParam(value = "id", required = false) String id,@RequestParam(value = "sucesso", required = false) String sucesso,
+	Locale locale, Model model) {
+
+    	logger.info("Welcome cardapio /cardapio! The client locale is {}.", locale);
+
+		ModelAndView cardapio = new ModelAndView("public/cardapio");
+		
+		  String mensagem ="";
+	        
+	        if(error != null && error !=""){
+	        	 mensagem = error + "erros";
+	        	 cardapio.addObject("erro", mensagem);
+	        	
+	        }else if(sucesso != null && sucesso !=""){
+	        	
+	       	 mensagem = sucesso + "sucesso";
+	       	cardapio.addObject("sucesso", mensagem);
+	        	
+	        }else if(id != null && id !=""){
+	        	
+	       	 mensagem =  "sucesso"+id;
+	       	cardapio.addObject("sucesso", mensagem);
+	        	
+	        }
+		
 		
 		return cardapio;
 	}

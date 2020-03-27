@@ -359,7 +359,7 @@ public class MesaController extends AbstractController<Mesa> {
 
 //        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
         
-        ModelAndView exibircat = new ModelAndView("/private/mesa/salao");
+        ModelAndView exibircat = new ModelAndView("redirect:/mesa/salao");
      
         Mesa mesa = getservice().findOne(idf);
         

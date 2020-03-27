@@ -1,106 +1,43 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-
-<head>
-
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	<meta name = "google-signin-client_id" content ="939690779425-hmpguptee5si7ff1lpbnloj8nbgjilo2.apps.googleusercontent.com">
-
-
-<link rel="icon" href="resources/static/img/logo.png"
-	th:href="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.logo})}" />
-	
-	<link rel="stylesheet" media="screen"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"
-	th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css}" type="text/css" />
-
-<link rel="stylesheet" media="screen"
-	href="resources/static/css/bootstrap2.min.css" th:href="@{/css/bootstrap2.min.css}" />
-	
-	<link rel="stylesheet" media="screen"
-	href="resources/static/css/plugin.css" th:href="@{/css/plugin.css}" />
-	
-	 <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-<link rel="stylesheet" media="screen"
-	href="resources/static/css/product.css" th:href="@{/css/product.css}" />
-
-
-<!-- <link rel="stylesheet" media="screen" -->
-<!-- 	href="resources/static/css/normalize.css" th:href="@{/css/normalize.css}" /> -->
-<!-- <link rel="stylesheet" media="screen" -->
-<!-- 	href="resources/static/css/main.css" th:href="@{/css/main.css}" /> -->
-<!-- <link rel="stylesheet" media="screen" -->
-<!-- 	href="resources/static/css/magic.min.css" th:href="@{/css/magic.min.css}" /> -->
-
-<!-- <script th:src="@{http://www.queness.com/js/bsa2.js}" src="http://www.queness.com/js/bsa2.js" th:inline="javascript"></script> -->
-
-</head>
-
-
-    <title>Login</title>
-
-<!-- 	<body id="mimin" class="dashboard form-signin-wrapper"> -->
-	<body>
-	
-<!-- 	<img th:src="@{/img/door.jpg}" src="" alt="" /> -->
-	
-	<div id="fb-root"> </div>
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cardapio</title>
+		<meta name="description" content="Cardapio" />
+		<meta name="keywords" content="Cardapio" />
+		<meta name="author" content="windson" />
+		<link rel="shortcut icon" th:href="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.logo})}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/teste/normalize.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/teste/demo.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/teste/component.css}" />
+		
+		<link rel="stylesheet" media="screen"
+	href="resources/static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+		
+		<script th:src="@{/js/teste/modernizr.custom.js}"></script>
+<!-- 		<script type="text/javascript"> -->
+<!-- // var _gaq = _gaq || []; -->
+<!-- // _gaq.push(['_setAccount', 'UA-7243260-2']); -->
+<!-- // _gaq.push(['_trackPageview']); -->
+<!-- // (function() { -->
+<!-- // var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; -->
+<!-- // ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; -->
+<!-- // var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); -->
+<!-- // })(); -->
+<!-- </script> -->
+	</head>
+	<body class="demo-1" style="background:#c0f40854;">
+		<div id="fb-root"> </div>
 <script th:async="async" th:defer="defer"  crossorigin="anonymous"
  th:src="@{https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513}"
  src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513">
  
  </script>
  
- 
- <script th:src="@{https://apis.google.com/js/platform.js?onload=renderButton}" src="https://apis.google.com/js/platform.js?onload=renderButton" th:async="async" th:defer="defer" ></script>
-	
-	       <script>
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-      onSignIn(googleUser);
-      
-    }
-    function onFailure(error) {
-      console.log(error);
-    }
-    function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width': 200,
-        'height': 28,
-        'longtitle': false,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
-    }
-  </script>
-	
-	
-	
-	
-	
-	<script>
+ <script>
 	
 	
 	 var accessToken = null;
@@ -207,7 +144,6 @@
 	      document.getElementById('fotho').innerHTML =
 	      '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
 	      
-// 	      Gerarnumero();
 
 			gerarSenha();
 	     
@@ -292,32 +228,7 @@
 	    
 	    }
 	    
-// 	    function loginFacebook() {
-// 	    	  FB.login(function(response) {
-// 	    	    if (response.authResponse) {
-// 	    	    	checkLoginState();
-// 	    	    }       
-// 	    	  }, {scope: 'email,name,id' });
-// 	    	}
-	    
-	    
-// 	    function Gerarnumero() {
-	    	
-// 		var senha0 = Math.floor(Math.random() * 10);
-// 		var senha1 = Math.floor(Math.random() * 10);
-// 		var senha2 = Math.floor(Math.random() * 10);
-// 		var senha3 = Math.floor(Math.random() * 10);
-// 		var senha4 = Math.floor(Math.random() * 10);
-// 		var senha5 = Math.floor(Math.random() * 10);
-		
-// 		senhas = senha0 +senha1+senha2+senha3+senha4+senha5;
-		
-	    		   
-// 	   console.log("senha:" , senhas);
-	    		   
-	    	
-	    
-// 	    }
+
 	    
 	   	 function gerarSenha(){
 	   		 
@@ -345,20 +256,20 @@
 
 <script type="text/javascript">
 
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
+// function onSignIn(googleUser) {
+//   var profile = googleUser.getBasicProfile();
+//   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+//   console.log('Name: ' + profile.getName());
+//   console.log('Image URL: ' + profile.getImageUrl());
+//   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+// }
 
 
 function mostrar() {
 
 	document.getElementById('formlog').style.display = "block";
 // 	document.getElementById('btlog').hidden = "true";
-	document.getElementById('conteudo').style.display = "block";
+	document.getElementById('conteudoo').style.display = "block";
 
 	
 	
@@ -368,90 +279,73 @@ function mostrar() {
 	
 
 </script>
-
-<nav class="site-header sticky-top py-1">
-  <div class="container d-flex flex-column flex-md-row justify-content-between">
-    <a class="py-2" href="#" aria-label="Product">
-<!--       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24" focusable="false"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg> -->
-     <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.logo})}" width="36px;" height="24px;" src="" alt="" />
-    <span th:text="${configuracaoAtual.nomeempresa}"></span> 
+ 
+		<main>
+			<header class="codrops-header">
+				<h1 th:text="${configuracaoAtual.nomeempresa}" >Isometric Grids</h1>
+				<p>Cardápio &amp; Digital  &amp; Online.<p>
+<!-- 				<p><a class="btn bg-purple margin" th:href="@{/home}">Entrar</a><p> -->
+				
+<!-- 				<p th:text="${configuracaoAtual.endereco}">Decorative &amp; interactive isometric &amp; 3D grids.<p> -->
+<!-- 				<nav class="codrops-demos"> -->
+<!-- 					<a class="current-demo" th:href="@{index.html}">Scrollable grid</a> -->
+<!-- 					<a th:href="@{index2.html}">Static grid</a> -->
+<!-- 				</nav> -->
+<!-- 				<div class="codrops-links"> -->
+<!-- 					<a class="codrops-icon codrops-icon--prev" th:href="@{http://tympanus.net/Development/DistortedButtonEffects/}" title="Previous Demo"><span>Previous Demo</span></a> -->
+<!-- 					<a class="codrops-icon codrops-icon--drop" th:href="@{http://tympanus.net/codrops/?p=27094}" title="Back to the article"><span>Back to the Codrops article</span></a> -->
+<!-- 				</div> -->
+				<button class="button-menu" onclick="mostrar();">
+					<svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 67.75 43.63"><rect width="67.75" height="8.38"/><rect x="4.15" y="17.63" width="59.45" height="8.38" /><rect y="35.25" width="67.75" height="8.38"/></svg>
+				</button>
+				
+				
+				
+				
+			</header>
+			
+			
+			  <div class="row col-md-8" style="margin-top:5%;margin-left:45%; z-index:1001;">
     
-    </a>
+    <div class="col-md-6"  th:if="${sucesso}">
     
-       <a href="#" th:if="${estaaberto}" class="py-2 d-none d-md-inline-block"><i class="fa fa-circle text-success"></i> Aberto</a>
-       <a href="#" th:unless="${estaaberto}" class="py-2 d-none d-md-inline-block"><i class="fa fa-circle text-danger"></i> Fechado</a>
-       
-       
-             <a href="#" class="py-2 d-none d-md-inline-block"> <i class="fa fa-phone"> </i>
-	 <span class="hidden-xs">	<span th:text="${configuracaoAtual.telefone}">81-98676-5454</span> </span>
-<!--       <small class="label text-center">81-98676-5454</small> -->
-       </a>
-      
-     
-            <a href="#" class="py-2 d-none d-md-inline-block"> <i class="fa fa-map-marker"> </i>
-		 <span class="hidden-xs">	<span th:text="${configuracaoAtual.endereco}" >av. criciuma nº 500</span> </span>
-<!--       <small class="label text-center">av. criciuma nº 500</small> -->
-       </a>
-       
-<!--             <span class="socialShare"> -->
-<!-- <!--      <span class="socialShare"></span> --> 
-<!--      </span> -->
-       
-       
-<!--     <a class="py-2 d-none d-md-inline-block" href="#">Tour</a> -->
-<!--     <a class="py-2 d-none d-md-inline-block" href="#">Product</a> -->
-<!--     <a class="py-2 d-none d-md-inline-block" href="#">Features</a> -->
-<!--     <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a> -->
-<!--     <a class="py-2 d-none d-md-inline-block" href="#">Support</a> -->
-<!--     <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a> -->
-<!--     <a class="py-2 d-none d-md-inline-block" href="#">Cart</a> -->
-  </div>
-</nav>
-
-
-
-	
-	
-	
-	
-	<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-  <div class="col-md-5 p-lg-5 mx-auto my-5">
-    <h1 class="display-4 font-weight-normal" th:text="${configuracaoAtual.nomeempresa}" >Punny headline</h1>
-    <p class="lead font-weight-normal">alguma coisa.</p>
-    <a class="btn btn-outline-secondary" th:href="@{/home}"  >Cardapio</a>
-     <a class="btn btn-outline-secondary" href="#" id="mostrar" data-toggle="modal"  data-target="#logmodal">Logar</a>
-<!--      <span class="socialShare"> -->
-<!--      <span class="socialShare"></span> -->
-<!--      </span> -->
-     
-     <div class="modal fade" id="logmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelPromo" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header" style="background-color: black;">
-              <h4 class="modal-title text-center" style="color:white; margin-left:38%;">Autenticação</h4>
-                <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                
+    <div class="alert alert-success alert-dismissible" >
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i></button>
+                <h4><i class="icon fa fa-check"></i> Sucesso</h4>
+               <p th:text="${sucesso}"> Success alert preview. This alert is dismissable.</p>
               </div>
               
-<!--           <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.logo})}" src="" alt="" class="img-circle" /> -->
               
-              <div class="modal-body">
-            
-            <section id="conteudo">
+              </div>
+              
+              
+              
+              <div class="col-md-6"  th:if="${erro}">
+                  <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <i class="fa fa-times" style="color:#fff;"></i></button>
+                <h4><i class="icon fa fa-check"></i> Erro </h4>
+               <p th:text="${erro}"> Erro alert preview. This alert is dismissable.</p>
+              </div>
+              
+              </div>
+              
+              </div>
+			
+			
+			 <div id="conteudoo" style="display: none; margin-top:4%;margin-left:50%; z-index:1000;" class="col-md-5">
 	
-	<div class="login-box">
+	<div id="formlog" class="login-box"  style="display: none;">
 <!--   <div class="login-logo"> -->
 <!--     <a th:href="@{/home}" th:text="${configuracaoAtual.nomeempresa}">Sushi <b>Sempai</b></a> -->
 
 <!--   </div> -->
   <div class="login-box-body">
-    <p class="login-box-msg">Acesse para Iniciar sua Sessao</p>
+<!--     <p class="login-box-msg">Acesse para Iniciar sua Sessao</p> -->
     
         <div id="fotho" class="img-circle"></div>
 
 
-<div id="formlog" class="col-md-12">
+<div  class="col-md-8">
     <form id="loggin" method="post" th:object="${usuario}" th:action="@{/login}" role="form">
       <div class="form-group has-feedback">
         <input type="text" id="email" name="email"  class="form-control" placeholder="Email"/>
@@ -462,7 +356,7 @@ function mostrar() {
         <i class="glyphicon glyphicon-lock form-control-feedback"></i>
       </div>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
 <!--           <div class="checkbox"> -->
 <!--             <label> -->
 <!--               <input type="checkbox" /> Lembrar Me -->
@@ -478,10 +372,13 @@ function mostrar() {
           
           
         </div>
-        <div class="col-md-9">
+        <div class="col-md-12">
          
          
-          <input type="submit" class="btn btn-md btn-success pull-right" value="Entrar"></input>
+          			<input type="submit" class="btn btn-md btn-success pull-right" value="Entrar"></input>
+          
+                      <div class="fb-login-button" data-width="100" data-size="small" data-button-type="login_with"
+     					data-auto-logout-link="true" data-use-continue-as="true" data-onlogin="checkLoginState()" data-scope="public_profile,email" ></div>
         
 <!--                       <div class="fb-login-button" data-width="200" data-size="medium" data-button-type="login_with" -->
 <!--      					data-auto-logout-link="true" data-use-continue-as="true" data-onlogin="checkLoginState()" data-scope="public_profile,email" ></div> -->
@@ -522,227 +419,931 @@ function mostrar() {
   </div>				
 <!-- 				</div> -->
 
-	</section>
-            
-              </div>
-              
-              
-              <div class="modal-footer">
-                <button type="button" class="btn btn-md btn-danger pull-right" data-dismiss="modal">Fechar</button>
-                      <div class="fb-login-button" data-width="200" data-size="medium" data-button-type="login_with"
-     					data-auto-logout-link="true" data-use-continue-as="true" data-onlogin="checkLoginState()" data-scope="public_profile,email" ></div>
-
-      				<div id="my-signin2"></div>
-
-<!--                 <button type="button" class="btn btn-primary">Save changes</button> -->
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-    
-  </div>
-  <div class="product-device shadow-sm d-none d-md-block">
-  <img th:src="@{/img/door.jpg}" src="" alt="" />
-  </div>
-  <div class="product-device product-device-2 shadow-sm d-none d-md-block">
-  
-<!--     <img th:src="@{/img/door.jpg}" src="" alt="" /> -->
-  </div>
-</div>
-
-<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-  <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-    <div class="my-3 py-3">
-      <h2 class="display-5">Chef</h2>
-      <p class="lead">Fabricio Barbosa.</p>
-    </div>
-    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
-      <img th:src="@{/img/chef.jpg}" src="" alt="" />
-    </div>
-  </div>
-  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-    <div class="my-3 p-3">
-      <h2 class="display-5">Especialidades</h2>
-      <p class="lead">And an even wittier subheading.</p>
-    </div>
-    <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
-          <img th:src="@{/img/esp.jpg}" src="" alt="" />
-    
-    
-    </div>
-  </div>
-</div>
-
-<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-    <div class="my-3 p-3">
-      <h2 class="display-5">Delivery</h2>
-      <p class="lead">And an even wittier subheading.</p>
-    </div>
-    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
-    
-          <img th:src="@{/img/del.gif}" src="" alt="" />
-    
-    </div>
-  </div>
-  <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-    <div class="my-3 py-3">
-      <h2 class="display-5">Qualidade</h2>
-      <p class="lead">And an even wittier subheading.</p>
-    </div>
-    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
-     <img th:src="@{/img/qual.jpg}" src="" alt="" />
-    </div>
-  </div>
-</div>
-
-<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-    <div class="my-3 p-3">
-      <h2 class="display-5">Cardapio Online</h2>
-      <p class="lead">And an even wittier subheading.</p>
-    </div>
-    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
-         <img th:src="@{/img/cardd.jpg}" src="" alt="" />
-    
-    </div>
-  </div>
-  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-    <div class="my-3 py-3">
-      <h2 class="display-5">Preços Imbativeis</h2>
-      <p class="lead">And an even wittier subheading.</p>
-    </div>
-    <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
-         <img th:src="@{/img/prec.png}" src="" alt="" />
-    
-    </div>
-  </div>
-</div>
-
-<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-    <div class="my-3 p-3">
-      <h2 class="display-5">Menu</h2>
-      <p class="lead">And an even wittier subheading.</p>
-    </div>
-    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
-    
-         <img th:src="@{/img/bbb.jpg}" src="" alt="" />
-    
-    
-    </div>
-  
-  
-  </div>
-  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-    <div class="my-3 py-3">
-      <h2 class="display-5">Another headline</h2>
-      <p class="lead">And an even wittier subheading.</p>
-    </div>
-    <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-  </div>
-</div>
-	
-	
-                            <footer class="container py-5">
-  <div class="row">
-    <div class="col-12 col-md">
-     <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.logo})}" src="" alt="" width="36px;" height="24px;" />
-      <small class="d-block mb-3 text-muted" th:text="${hoje}"> &copy; 2017-{{ site.time | date: "%Y" }}</small>
-    </div>
-<!--     <div class="col-6 col-md"> -->
-<!--       <h5>Features</h5> -->
-<!--       <ul class="list-unstyled text-small"> -->
-<!--         <li><a class="text-muted" href="#">Cool stuff</a></li> -->
-<!--         <li><a class="text-muted" href="#">Random feature</a></li> -->
-<!--         <li><a class="text-muted" href="#">Team feature</a></li> -->
-<!--         <li><a class="text-muted" href="#">Stuff for developers</a></li> -->
-<!--         <li><a class="text-muted" href="#">Another one</a></li> -->
-<!--         <li><a class="text-muted" href="#">Last time</a></li> -->
-<!--       </ul> -->
-<!--     </div> -->
-<!--     <div class="col-6 col-md"> -->
-<!--       <h5>Resources</h5> -->
-<!--       <ul class="list-unstyled text-small"> -->
-<!--         <li><a class="text-muted" href="#">Resource</a></li> -->
-<!--         <li><a class="text-muted" href="#">Resource name</a></li> -->
-<!--         <li><a class="text-muted" href="#">Another resource</a></li> -->
-<!--         <li><a class="text-muted" href="#">Final resource</a></li> -->
-<!--       </ul> -->
-<!--     </div> -->
-<!--     <div class="col-6 col-md"> -->
-<!--       <h5>Resources</h5> -->
-<!--       <ul class="list-unstyled text-small"> -->
-<!--         <li><a class="text-muted" href="#">Business</a></li> -->
-<!--         <li><a class="text-muted" href="#">Education</a></li> -->
-<!--         <li><a class="text-muted" href="#">Government</a></li> -->
-<!--         <li><a class="text-muted" href="#">Gaming</a></li> -->
-<!--       </ul> -->
-<!--     </div> -->
-<!--     <div class="col-6 col-md"> -->
-<!--       <h5>About</h5> -->
-<!--       <ul class="list-unstyled text-small"> -->
-<!--         <li><a class="text-muted" href="#">Team</a></li> -->
-<!--         <li><a class="text-muted" href="#">Locations</a></li> -->
-<!--         <li><a class="text-muted" href="#">Privacy</a></li> -->
-<!--         <li><a class="text-muted" href="#">Terms</a></li> -->
-<!--       </ul> -->
-<!--     </div> -->
-  </div>
-</footer>  
-      
-
-<!--                            <div th:replace="fragmentos/footeraux :: script" style="display:none;"></div> -->
-                   
-                  
-                   
-                   														<script src="resources/static/js/jquery-3.4.1.slim.min.js"
-			th:src="@{/js/jquery-3.4.1.slim.min.js}" th:inline="javascript" ></script>
-                       
-                       
-      <script>window.jQuery || document.write('<script src="/cardapio/js/jquery.slim.min.js"><\/script>')</script>
-                       
-                 <script src="resources/static/js/bootstrap.bundle.min.js"
-			th:src="@{/js/bootstrap.bundle.min.js}" th:inline="javascript" ></script>
+	</div>
 			
 			
-   <script src="resources/static/js/plugin.js"
-			th:src="@{/js/plugin.js}" th:inline="javascript" ></script>   
-                        
+			
+			<div class="isolayer isolayer--scroll1 isolayer--shadow">
+				<ul class="grid grid--effect-flip">
+					
+					<li class="grid__item" th:each="categoria: ${categoriaLista}">
+						<a class="grid__link"  th:href="@{/categoria/exibir(id=${categoria.id})}">
+							<img class="grid__img layer" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="Canvas Dummy" th:each="produto: ${categoria.produtos}" />
+							<img class="grid__img layer" th:src="@{/img/categoria/{fotoc}(fotoc=${categoria.foto})}" alt="Canvas Dummy" />
+							
+							<span class="grid__title" th:text="${categoria.nome}">Forefathers</span>
+						</a>
+					</li>
+					
+															<li class="grid__item" th:each="categoria: ${categoriaLista}">
+						<a class="grid__link"  th:href="@{/categoria/exibir(id=${categoria.id})}">
+							<img class="grid__img layer" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="Canvas Dummy" th:each="produto: ${categoria.produtos}" />
+							<img class="grid__img layer" th:src="@{/img/categoria/{fotoc}(fotoc=${categoria.foto})}" alt="Canvas Dummy" />
+							
+							<span class="grid__title" th:text="${categoria.nome}">Forefathers</span>
+						</a>
+					</li>
+					
+					
+						<li class="grid__item" th:each="categoria: ${categoriaLista}">
+						<a class="grid__link"  th:href="@{/categoria/exibir(id=${categoria.id})}">
+							<img class="grid__img layer" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="Canvas Dummy" th:each="produto: ${categoria.produtos}" />
+							<img class="grid__img layer" th:src="@{/img/categoria/{fotoc}(fotoc=${categoria.foto})}" alt="Canvas Dummy" />
+							
+							<span class="grid__title" th:text="${categoria.nome}">Forefathers</span>
+						</a>
+					</li>
+					
+										<li class="grid__item" th:each="categoria: ${categoriaLista}">
+						<a class="grid__link"  th:href="@{/categoria/exibir(id=${categoria.id})}">
+							<img class="grid__img layer" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="Canvas Dummy" th:each="produto: ${categoria.produtos}" />
+							<img class="grid__img layer" th:src="@{/img/categoria/{fotoc}(fotoc=${categoria.foto})}" alt="Canvas Dummy" />
+							
+							<span class="grid__title" th:text="${categoria.nome}">Forefathers</span>
+						</a>
+					</li>
+					
+										<li class="grid__item" th:each="categoria: ${categoriaLista}">
+						<a class="grid__link"  th:href="@{/categoria/exibir(id=${categoria.id})}">
+							<img class="grid__img layer" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="Canvas Dummy" th:each="produto: ${categoria.produtos}" />
+							<img class="grid__img layer" th:src="@{/img/categoria/{fotoc}(fotoc=${categoria.foto})}" alt="Canvas Dummy" />
+							
+							<span class="grid__title" th:text="${categoria.nome}">Forefathers</span>
+						</a>
+					</li>
+					
+										<li class="grid__item" th:each="categoria: ${categoriaLista}">
+						<a class="grid__link"  th:href="@{/categoria/exibir(id=${categoria.id})}">
+							<img class="grid__img layer" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="Canvas Dummy" th:each="produto: ${categoria.produtos}" />
+							<img class="grid__img layer" th:src="@{/img/categoria/{fotoc}(fotoc=${categoria.foto})}" alt="Canvas Dummy" />
+							
+							<span class="grid__title" th:text="${categoria.nome}">Forefathers</span>
+						</a>
+					</li>
+					
+										<li class="grid__item" th:each="categoria: ${categoriaLista}">
+						<a class="grid__link"  th:href="@{/categoria/exibir(id=${categoria.id})}">
+							<img class="grid__img layer" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="Canvas Dummy" th:each="produto: ${categoria.produtos}" />
+							<img class="grid__img layer" th:src="@{/img/categoria/{fotoc}(fotoc=${categoria.foto})}" alt="Canvas Dummy" />
+							
+							<span class="grid__title" th:text="${categoria.nome}">Forefathers</span>
+						</a>
+					</li>
+					
+										<li class="grid__item" th:each="categoria: ${categoriaLista}">
+						<a class="grid__link"  th:href="@{/categoria/exibir(id=${categoria.id})}">
+							<img class="grid__img layer" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="Canvas Dummy" th:each="produto: ${categoria.produtos}" />
+							<img class="grid__img layer" th:src="@{/img/categoria/{fotoc}(fotoc=${categoria.foto})}" alt="Canvas Dummy" />
+							
+							<span class="grid__title" th:text="${categoria.nome}">Forefathers</span>
+						</a>
+					</li>
+					
+										<li class="grid__item" th:each="categoria: ${categoriaLista}">
+						<a class="grid__link"  th:href="@{/categoria/exibir(id=${categoria.id})}">
+							<img class="grid__img layer" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="Canvas Dummy" th:each="produto: ${categoria.produtos}" />
+							<img class="grid__img layer" th:src="@{/img/categoria/{fotoc}(fotoc=${categoria.foto})}" alt="Canvas Dummy" />
+							
+							<span class="grid__title" th:text="${categoria.nome}">Forefathers</span>
+						</a>
+					</li>
+					
+										<li class="grid__item" th:each="categoria: ${categoriaLista}">
+							<a class="grid__link"  th:href="@{/categoria/exibir(id=${categoria.id})}">
+							<img class="grid__img layer" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="Canvas Dummy" th:each="produto: ${categoria.produtos}" />
+							<img class="grid__img layer" th:src="@{/img/categoria/{fotoc}(fotoc=${categoria.foto})}" alt="Canvas Dummy" />
+							
+							<span class="grid__title" th:text="${categoria.nome}">Forefathers</span>
+						</a>
+					</li>
+					
+										<li class="grid__item" th:each="categoria: ${categoriaLista}">
+						<a class="grid__link"  th:href="@{/categoria/exibir(id=${categoria.id})}">
+							<img class="grid__img layer" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" alt="Canvas Dummy" th:each="produto: ${categoria.produtos}" />
+							<img class="grid__img layer" th:src="@{/img/categoria/{fotoc}(fotoc=${categoria.foto})}" alt="Canvas Dummy" />
+							
+							<span class="grid__title" th:text="${categoria.nome}">Forefathers</span>
+						</a>
+					</li>
+					
+					
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_1.jpg}" alt="021" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3.jpg}" alt="03" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_2.jpg}" alt="042" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_1.jpg}" alt="011" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2.jpg}" alt="02" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_1.jpg}" alt="031" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4.jpg}" alt="04" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_2.jpg}" alt="012" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_2.jpg}" alt="022" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_2.jpg}" alt="032" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_3.jpg}" alt="013" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_1.jpg}" alt="041" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1.jpg}" alt="01" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_1.jpg}" alt="021" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3.jpg}" alt="03" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_2.jpg}" alt="042" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_1.jpg}" alt="011" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2.jpg}" alt="02" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_1.jpg}" alt="031" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4.jpg}" alt="04" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_2.jpg}" alt="012" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_2.jpg}" alt="022" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_2.jpg}" alt="032" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_3.jpg}" alt="013" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_1.jpg}" alt="041" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1.jpg}" alt="01" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_1.jpg}" alt="021" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3.jpg}" alt="03" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_2.jpg}" alt="042" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_1.jpg}" alt="011" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2.jpg}" alt="02" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_1.jpg}" alt="031" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4.jpg}" alt="04" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_2.jpg}" alt="012" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_2.jpg}" alt="022" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_2.jpg}" alt="032" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_3.jpg}" alt="013" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_1.jpg}" alt="041" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1.jpg}" alt="01" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_1.jpg}" alt="021" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3.jpg}" alt="03" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_2.jpg}" alt="042" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_1.jpg}" alt="011" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2.jpg}" alt="02" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_1.jpg}" alt="031" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4.jpg}" alt="04" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_2.jpg}" alt="012" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_2.jpg}" alt="022" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_2.jpg}" alt="032" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_3.jpg}" alt="013" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_1.jpg}" alt="041" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1.jpg}" alt="01" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_1.jpg}" alt="021" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3.jpg}" alt="03" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_2.jpg}" alt="042" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_1.jpg}" alt="011" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2.jpg}" alt="02" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_1.jpg}" alt="031" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4.jpg}" alt="04" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_2.jpg}" alt="012" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_2.jpg}" alt="022" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_2.jpg}" alt="032" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_3.jpg}" alt="013" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_1.jpg}" alt="041" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1.jpg}" alt="01" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_1.jpg}" alt="021" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3.jpg}" alt="03" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_2.jpg}" alt="042" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_1.jpg}" alt="011" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2.jpg}" alt="02" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_1.jpg}" alt="031" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4.jpg}" alt="04" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_2.jpg}" alt="012" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_2.jpg}" alt="022" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_2.jpg}" alt="032" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_3.jpg}" alt="013" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_1.jpg}" alt="041" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_2.jpg}" alt="032" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_3.jpg}" alt="013" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_1.jpg}" alt="041" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1.jpg}" alt="01" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_1.jpg}" alt="021" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3.jpg}" alt="03" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_2.jpg}" alt="042" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_1.jpg}" alt="011" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2.jpg}" alt="02" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_1.jpg}" alt="031" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4.jpg}" alt="04" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_2.jpg}" alt="012" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/JulienLavallee}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/2_2.jpg}" alt="022" /> -->
+<!-- 							<span class="grid__title">Julien Lavallee</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/creativemints}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/3_2.jpg}" alt="032" /> -->
+<!-- 							<span class="grid__title">Mike | Creative Mints</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/forefathers}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/1_3.jpg}" alt="013" /> -->
+<!-- 							<span class="grid__title">Forefathers</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="grid__item"> -->
+<!-- 						<a class="grid__link" th:href="@{https://dribbble.com/Radium}"> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/canvas.png}" alt="Canvas Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/wireframe.png}" alt="Wireframe Dummy" /> -->
+<!-- 							<img class="grid__img layer" th:src="@{/img/teste/Dribbble1/4_1.jpg}" alt="041" /> -->
+<!-- 							<span class="grid__title">Cosmin Capitanu</span> -->
+<!-- 						</a> -->
+<!-- 					</li> -->
+				</ul>
+			</div>
+		</main>
+		<a class="pater" th:href="@{/home}">
+			<h2 class="pater__title" aria-label="PageCloud"><img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.logo})}" alt="Logo"/></h2>
+			<p class="pater__desc">lalalalalalalalalalallalalalalalalalalalalalalalallalalalalalalalallalalalalalalalalallalalalalala!</p>
+		</a>
+				<script src="resources/static/js/jquery-2.2.3.min.js"
+			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script>
+			
+		<script th:src="@{/js/teste/imagesloaded.pkgd.min.js}"></script>
+		<script th:src="@{/js/teste/masonry.pkgd.min.js}"></script>
+		<script th:src="@{/js/teste/dynamics.min.js}"></script>
+		<script th:src="@{/js/teste/classie.js}"></script>
+		<script th:src="@{/js/teste/animOnScroll.js}"></script>
+		<script th:src="@{/js/teste/main.js}"></script>
+		
+		
+		<script>
+		(function() {
+			function getRandomInt(min, max) {
+				return Math.floor(Math.random() * (max - min + 1)) + min;
+			}
 
-    <script  type="text/javascript">
+			[].slice.call(document.querySelectorAll('.isolayer')).forEach(function(el) {
+				new IsoGrid(el, {
+					type : 'scrollable',
+					transform : 'translateX(-15vw) translateY(275px) rotateX(45deg) rotateZ(45deg)',
+					stackItemsAnimation : {
+						properties : function(pos) {
+							return {
+								translateZ: (pos+1) * 50,
+								rotateZ: getRandomInt(-3, 3)
+							};
+						},
+						options : function(pos, itemstotal) {
+							return {
+								type: dynamics.bezier,
+								duration: 500,
+								points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}],
+// 								delay: (itemstotal-pos-1)*40
+							};
+						}
+					},
+					onGridLoaded : function() {
+						classie.add(document.body, 'grid-loaded');
+					}
+				});
+			});
+		})();
+		
 
-                         
-                         $(document).ready(function(){
-						
-                        	 var url = 'https://tutorialzine.com/2014/08/cool-share-jquery-plugin/';
-
-                        	 var options = {
-
-                        	     twitter: {
-                        	         text: 'Check out this awesome jQuery Social Buttons Plugin! ',
-                        	         via: 'Tutorialzine'
-                        	     },
-
-                        	     facebook : true,
-                        	     googlePlus : true
-                        	 };
-
-                        	 $('.socialShare').shareButtons(url, options);
-                         
-                         
-                         
-                         });
-                         
-                         
-                        </script>                           
-     
-      
-  </body>
-  
-
-
-
+		
+		</script>
+		
+		<script type="text/javascript">
+		
+		  $(function () {
+			  
+			  
+			     $('.alert').fadeIn('slow', function(){
+			         $('.alert').delay(4000).fadeOut(); 
+			     
+//			          demo.showNotification('top','center','${erros}');
+//			          demo.showNotification('top','center','${mensagem}');
+			      
+			      });
+			  
+		  });
+		
+		
+		</script>
+		
+		
+	</body>
 </html>

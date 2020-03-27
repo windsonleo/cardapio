@@ -1,5 +1,6 @@
 package com.tecsoluction.cardapio.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +20,7 @@ public interface IPedidoVendaDAO extends JpaRepository<PedidoVenda, UUID> {
     List<PedidoVenda> getAllPedidoPorMesa(@Param("mesa") UUID idmesa);
 
     @Query("SELECT p FROM PedidoVenda p where p.data=:dataini")
-    List<PedidoVenda> getAllPedidoPorData(@Param("dataini") String dataini);
+    List<PedidoVenda> getAllPedidoPorData(@Param("dataini") Date dataini);
 
     @Query("SELECT p FROM PedidoVenda p where p.origempedido='INTERNET' OR p.origempedido='TELEVENDAS'")
     List<PedidoVenda> getAllPedidoDelivery();

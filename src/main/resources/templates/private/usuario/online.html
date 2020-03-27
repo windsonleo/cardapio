@@ -53,9 +53,9 @@
     <section class="content connectedSortable">
     
     
-     <div class="row-fluid"  th:if="${sucesso}">
+     <div class="col-md-4"  th:if="${sucesso}">
     
-    <div class="alert alert-success alert-dismissible" >
+    <div class="alert alert-success alert-dismissible" role="alert" >
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i></button>
                 <h4><i class="icon fa fa-check"></i> Sucesso</h4>
                <p th:text="${sucesso}"> Success alert preview. This alert is dismissable.</p>
@@ -66,8 +66,8 @@
               
               
               
-              <div class="row-fluid"  th:if="${erro}">
-                  <div class="alert alert-danger alert-dismissible">
+              <div class="col-md-4"  th:if="${erro}">
+                  <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <i class="fa fa-times" style="color:#fff;"></i></button>
                 <h4><i class="icon fa fa-check"></i> Erro </h4>
                <p th:text="${erro}"> Erro alert preview. This alert is dismissable.</p>
@@ -169,7 +169,6 @@
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
                 <li><a href="#"  rel="tooltip" title="Ultimo Acesso">Ultimo Acesso  <span class="pull-right badge bg-blue" th:utext="${#dates.format(usu.dataultimoAcesso,'dd/MM/yyyy hh:MM:ss')}" >31</span></a></li>
-                <li><a href="#"  rel="tooltip" title="Permissão">Permissão <span class="pull-right badge bg-maroon" th:text="${usu.roles}" >5</span></a></li>
                 
 <!--                 <li><a href="#">Curtir <span class="pull-right badge bg-green"><i class="fa fa-thumbs-up">12</i></span></a></li> -->
 <!--                 <li><a href="#"> Curtir  <span class="pull-right badge bg-green"> <div class="fb-like pull-right" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div></span></a> </li> -->
@@ -177,6 +176,7 @@
 <!--                 <li> <a href="#"> Recomendar <span class="pull-right badge bg-green"> <div class="fb-like pull-right" th:attr="data-href='http://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li> -->
            
                  <li><a th:href="@{/usuario/perfil(id=${usu.id})}"  rel="tooltip" title="Visualizar Perfil do Produto">Perfil <span class="pull-right badge bg-purple" ><i class="fa fa-building-o"></i></span></a></li>
+                  <li><a href="#"  rel="tooltip" title="Permissão">Permissão <span class="pull-right badge bg-maroon" th:text="${usu.roles}" >5</span></a></li>
            
 <!--                 <li><a th:href="@{/usuario/indica(id=${produto.id})}" rel="tooltip" title="Indicar para Cliente">Indicar <span class="pull-right badge bg-green" ><i class="fa fa-hand-o-right"></i></span></a></li> -->
 <!--                 <li><a th:href="@{/carrinho/adicionar(id=${produto.id})}" rel="tooltip" title="Add para Carrinho">Adicionar ao Carrinho <span class="pull-right badge bg-green" ><i class="fa fa-cart-plus"></i></span></a></li> -->
@@ -796,7 +796,20 @@
 <!-- 		     <div class="clearfix"></div> -->
 		
 		
+		
+		
 <script type="text/javascript">
+
+
+$('.alert').alert();
+
+$('.alert').fadeIn('slow', function(){
+    $('.alert').delay(3000).fadeOut(); 
+
+//     demo.showNotification('top','center','${erros}');
+//     demo.showNotification('top','center','${mensagem}');
+ 
+ });
 
 // $(document).ready(function(){
 //    $(".avaliacao").mouseover(function(event){

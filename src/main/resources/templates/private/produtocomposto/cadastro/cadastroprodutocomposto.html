@@ -242,7 +242,37 @@
                             </div>						
 								
 
-                            
+                    <div class="form-group label-floating ">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-folder"></i>
+								</div>
+
+								<select id="modopreparo" name="modopreparo" class="form-control select2">
+									<optgroup label="Escolha o tipO modopreparo">
+
+										<option th:value="${produtocomposto.modopreparo}" th:selected="selected"
+											th:utext="${produtocomposto.modopreparo}"></option>
+
+
+										<option th:each="tipoterapia: ${umListModo}"
+											th:value="${tipoterapia}">
+											
+											
+											
+												<span th:utext="${tipoterapia}" >Nenhum Modo Cadastrado </span> 
+											
+											</option>
+
+
+
+
+									</optgroup>
+								</select>
+
+
+							</div>
+						</div>        
                             
 							
 							<div class="form-group label-floating ">
@@ -251,7 +281,7 @@
                     <i class="fa fa-folder"></i>
                   </div>
 
-                                    <select id="un_medida" name="un_medida" class="form-control">
+                                    <select id="un_medida" name="un_medida" class="form-control select2">
                                         <optgroup label="Escolha o tipO un_medida">
 
                                             <option th:value="${produtocomposto.un_medida}" th:selected="selected"
@@ -286,7 +316,7 @@
                     <i class="fa fa-folder"></i>
                   </div>
 
-                                    <select id="categoria" name="categoria" class="form-control">
+                                    <select id="categoria" name="categoria" class="form-control select2">
                                         <optgroup label="Escolha A categoria">
 
                                             <option th:each="cat: ${produtocomposto.categoria}" th:selected="selected"

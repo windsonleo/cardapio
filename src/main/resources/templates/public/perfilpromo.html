@@ -18,7 +18,7 @@
 		
 		<title>Perfil</title>
 
-			<body  class="hold-transition skin-red layout-top-nav" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' layout-top-nav' ">
+			<body  class="hold-transition skin-red sidebar-collapse sidebar-mini" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-collapse sidebar-mini' ">
 			
 			<div id="fb-root"> </div>
 <script th:async="async" th:defer="defer"  crossorigin="anonymous"
@@ -36,11 +36,11 @@
 			
 			<div class="wrapper">
 
-	   			  <nav th:replace="fragmentos/top-navauxhome :: nav">
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
 				
 				</nav>
 				
-<!-- 					<div th:replace="fragmentos/nav :: nav-side"> </div> -->
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
 				
   <div class="content-wrapper">
   
@@ -84,8 +84,8 @@
              <img th:if="${promocao.foto}" th:src="@{/img/promocao/{fotoc}(fotoc=${promocao.foto})}" class="img-circle" alt="User Image" />
               </div>
           
-              <h5 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h5>
-              <h6 class="widget-user-desc" th:text="|${promocao.descricao} |" >Lead Developer</h6>
+              <h5 class="widget-user-username text-center" th:text="${promocao.nome}" >Nadia Carmichael</h5>
+              <h6 class="widget-user-desc text-center" th:text="|${promocao.descricao} |" >Lead Developer</h6>
 <!--               <ul class="rating"> -->
               
               

@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,7 @@ import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.framework.AbstractEditor;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
+import com.tecsoluction.cardapio.util.ModoPreparo;
 import com.tecsoluction.cardapio.util.UnidadeMedida;
 
 @Controller
@@ -100,6 +102,9 @@ public class ProdutoController extends AbstractController<Produto> {
 
 
         UnidadeMedida[] umList = UnidadeMedida.values();
+        
+        ModoPreparo[] umListModo = ModoPreparo.values();
+
 
 //        Usuario usuario = new Usuario();
 //        usuario.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -150,6 +155,11 @@ public class ProdutoController extends AbstractController<Produto> {
         model.addAttribute("produto", produto);
         model.addAttribute("umList", umList);
         model.addAttribute("filename", filename);
+        model.addAttribute("umListModo", umListModo);
+
+        
+        
+        
 //	     model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
 //        model.addAttribute("carrinho", carrinhobean.getCarrinho()); 
 //	   	model.addAttribute("totalitens", carrinhobean.TotalItens());
@@ -328,15 +338,37 @@ public class ProdutoController extends AbstractController<Produto> {
     }
     
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public ModelAndView ExibirCategoria(HttpServletRequest request) {
+    public ModelAndView ExibirCategoria(HttpServletRequest request, @RequestParam(value = "erro", required = false) String error, 
+    		@RequestParam(value = "id", required = false) String id,@RequestParam(value = "sucesso", required = false) String sucesso,
+    		Locale locale, Model model) {
+        
 
         UUID idf = UUID.fromString(request.getParameter("id"));
+        Produto cat = getservice().findOne(idf);
 
 //        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
         
         ModelAndView exibircat = new ModelAndView("/public/perfil");
+        
+		  String mensagem ="";
+	        
+	        if(error != null && error !=""){
+	        	 mensagem = error + "erros";
+	        	 exibircat.addObject("erro", mensagem);
+	        	
+	        }else if(sucesso != null && sucesso !=""){
+	        	
+	       	 mensagem = sucesso + "sucesso";
+	       	exibircat.addObject("sucesso", mensagem);
+	        	
+	        }else if(id != null && id !=""){
+	        	
+//	       	 mensagem =  "sucesso"+id;
+//	       	exibircat.addObject("sucesso", mensagem);
+	        	
+	        }
 
-        Produto cat = getservice().findOne(idf);
+      
 
         exibircat.addObject("produto", cat);
         exibircat.addObject("carrinho", carrinhobean.getCarrinho());
@@ -349,17 +381,32 @@ public class ProdutoController extends AbstractController<Produto> {
     
     
     @RequestMapping(value = "/avaliar", method = RequestMethod.GET)
-    public ModelAndView AvaliarProduto(HttpServletRequest request, Model model) {
+    public ModelAndView AvaliarProduto(HttpServletRequest request, Model model,@RequestParam(value = "erro", required = false) String error, 
+    		@RequestParam(value = "id", required = false) String id,@RequestParam(value = "sucesso", required = false) String sucesso,
+    		Locale locale) {
 
-        UUID idf = UUID.fromString(request.getParameter("id"));
+        ModelAndView exibircat = new ModelAndView("/private/produto/avaliar/avaliar");
+     
+        String msg = ";";
+        
+        if(sucesso!=null && sucesso != ""){
+        	
+        	exibircat.addObject("sucesso", sucesso);
+        	
+        }
+        if(id !=null && id != ""){
+        	
+            UUID idf = UUID.fromString(request.getParameter("id"));
+            Produto cat = getservice().findOne(idf);
+            exibircat.addObject("produto", cat);
+
+        	
+        }
 
 //        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
         
-        ModelAndView exibircat = new ModelAndView("/private/produto/avaliar/avaliar");
 
-        Produto cat = getservice().findOne(idf);
 
-        exibircat.addObject("produto", cat);
 
         return exibircat;
     }  
@@ -371,6 +418,8 @@ public class ProdutoController extends AbstractController<Produto> {
     	
     	
     	String mensagem = "Avaliado com Sucesso!";
+    	
+    	String sucesso = "Avaliado com Sucesso!";
 
       List<Integer> notas = new ArrayList<Integer>();
     	
@@ -420,7 +469,7 @@ public class ProdutoController extends AbstractController<Produto> {
         
         
 
-        return new ModelAndView("redirect:/categoria/exibir?id=" + cat.getCategoria().getId());
+        return new ModelAndView("redirect:/produto/avaliar?id=" + cat.getId()).addObject("sucesso", sucesso);
     }  
     
 

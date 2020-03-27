@@ -12,7 +12,7 @@
 
 
 
-	<body  class="hold-transition skin-black sidebar-mini"   th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini sidebar-collapse' ">
+	<body  class="hold-transition skin-black sidebar-collapse sidebar-mini"   th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-collapse sidebar-mini' ">
 	
 		<div id="fb-root"> </div>
 <script th:async="async" th:defer="defer"  crossorigin="anonymous"
@@ -325,12 +325,28 @@ function onSignIn(googleUser) {
     <!-- Logo -->
     <a th:href="@{/home}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">S<b>S</b></span>
+<!--       <span class="logo-mini">S<b>S</b></span> -->
+ <span class="logo-mini"> <img th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.logo})}" class="img-circle" alt="User Image" width="50px;" height="38px;" /> </span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg" th:text="${configuracaoAtual.nomeempresa}">Sushi <b> Sempai</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
+    
+<!--     <div class="navbar-header"> -->
+        
+<!--                   <a th:href="@{/home}" class="navbar-brand" th:text="${configuracaoAtual.nomeempresa}">Material<b>Admin</b>LTE</a> -->
+          
+<!--               <a th:href="@{/home}" class="logo"> -->
+<!--       mini logo for sidebar mini 50x50 pixels -->
+<!--       <span class="logo-mini">S<b>S</b></span> -->
+<!--       logo for regular state and mobile devices -->
+<!--       <span class="logo-lg" th:text="${configuracaoAtual.nomeempresa}">Sushi <b> Sempai</b></span> -->
+<!--     </a> -->
+<!--         </div> -->
+    
+    
+    
       <!-- Sidebar toggle button-->
      
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -454,40 +470,40 @@ function onSignIn(googleUser) {
 
 
 
-      <li class="dropdown user user-menu">
-      <a href="#" class="dropdown-toggle"> <i class="fa fa-phone"> </i>
-	 <span class="hidden-xs">	<span th:text="${configuracaoAtual.telefone}">81-98676-5454</span> </span>
-<!--       <small class="label text-center">81-98676-5454</small> -->
-       </a>
+<!--       <li class="dropdown user user-menu"> -->
+<!--       <a href="#" class="dropdown-toggle"> <i class="fa fa-phone"> </i> -->
+<!-- 	 <span class="hidden-xs">	<span th:text="${configuracaoAtual.telefone}">81-98676-5454</span> </span> -->
+<!-- <!--       <small class="label text-center">81-98676-5454</small> --> 
+<!--        </a> -->
       
-      </li>
+<!--       </li> -->
       
-            <li class="dropdown user user-menu">
-      <a href="#" class="dropdown-toggle"> <i class="fa fa-map-marker"> </i>
-		 <span class="hidden-xs">	<span th:text="${configuracaoAtual.endereco}" >av. criciuma nº 500</span> </span>
-<!--       <small class="label text-center">av. criciuma nº 500</small> -->
-       </a>
+<!--             <li class="dropdown user user-menu"> -->
+<!--       <a href="#" class="dropdown-toggle"> <i class="fa fa-map-marker"> </i> -->
+<!-- 		 <span class="hidden-xs">	<span th:text="${configuracaoAtual.endereco}" >av. criciuma nº 500</span> </span> -->
+<!-- <!--       <small class="label text-center">av. criciuma nº 500</small> --> 
+<!--        </a> -->
       
-      </li>
+<!--       </li> -->
 
 
-<li>
- <a href="#" th:href="@{/configuracaoAtual.urlface}" data-onlogin="checkLoginState()"  data-toggle="dropdown"> <i class="fa fa-facebook fa-1.5x"> </i> </a>
+<!-- <li> -->
+<!--  <a href="#" th:href="@{/configuracaoAtual.urlface}" data-onlogin="checkLoginState()"  data-toggle="dropdown"> <i class="fa fa-facebook fa-1.5x"> </i> </a> -->
 
 
-</li>
+<!-- </li> -->
 
-<li>
-<a href="#" th:href="@{configuracaoAtual.urlinsta}" data-toggle="dropdown"> <i class="fa fa-instagram fa-1x"> </i> </a>
+<!-- <li> -->
+<!-- <a href="#" th:href="@{configuracaoAtual.urlinsta}" data-toggle="dropdown"> <i class="fa fa-instagram fa-1x"> </i> </a> -->
 
 
-</li>
+<!-- </li> -->
 
-<li>
- <a id="my-signin2" href="#" th:href="@{configuracaoAtual.urlgmail}" onclick="renderButton()" data-toggle="dropdown"> <i class="fa fa-google"> </i></a>
-<!-- <div id="my-signin2"></div>  -->
+<!-- <li> -->
+<!--  <a id="my-signin2" href="#" th:href="@{configuracaoAtual.urlgmail}" onclick="renderButton()" data-toggle="dropdown"> <i class="fa fa-google"> </i></a> -->
+<!-- <!-- <div id="my-signin2"></div>  -->
 
-</li>
+<!-- </li> -->
 
 <li>
 <!-- <a href="#" th:href="@{/carrinho/visualizar}"> <i class="fa fa-shopping-cart"> </i> -->
@@ -516,7 +532,7 @@ function onSignIn(googleUser) {
                       </div>
                       <h4 th:utext="${msg.usuario.nome}">
                         Support Team
-                        <small th:utext="${msg.data}"><i class="fa fa-clock-o"></i> 5 mins</small>
+                        <small th:text="${msg.data}"><i class="fa fa-clock-o"></i> 5 mins</small>
                       </h4>
                       <p th:text="${msg.descricao}">Why not buy a new awesome theme?</p>
                     </a>
@@ -579,12 +595,17 @@ function onSignIn(googleUser) {
               <!-- Menu Body -->
               <li class="user-body">
                 <div class="row">
-                  <div class="col-xs-4 text-center">
+                  <div class="col-xs-3 text-center">
 <!--                     <a href="#">Atendimentos</a> -->
                   </div>
-<!--                   <div class="col-xs-4 text-center"> -->
-<!--                     <a th:href="@{/usuario/lock}">LOCK</a> -->
-<!--                   </div> -->
+                  
+                  <div class="col-xs-6 text-center">
+                    <a class="btn btn-info btn-flat" href="#">MEUS PEDIDOS</a>
+                  </div>
+                  
+                  <div class="col-xs-3 text-center">
+<!--                     <a href="#">Atendimentos</a> -->
+                  </div>
 <!--                   <div class="col-xs-4 text-center"> -->
 <!--                     <a th:href="@{/login}">LOGIN</a> -->
 <!--                   </div> -->

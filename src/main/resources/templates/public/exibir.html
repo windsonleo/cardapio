@@ -12,7 +12,7 @@
 		
 		<title>Cardápio</title>
 
-			<body  class="hold-transition skin-red layout-top-nav" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' layout-top-nav' ">
+			<body  class="hold-transition skin-red sidebar-collapse sidebar-mini" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-collapse sidebar-mini' ">
 			
 			<div id="fb-root"> </div>
 <script th:async="async" th:defer="defer"  crossorigin="anonymous"
@@ -30,11 +30,11 @@
 			
 			<div class="wrapper">
 
-	   			  <nav th:replace="fragmentos/top-navauxhome :: nav">
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
 				
 				</nav>
 				
-<!-- 					<div th:replace="fragmentos/nav :: nav-side"> </div> -->
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
 				
   <div class="content-wrapper">
   
@@ -58,7 +58,7 @@
     
         <div class="row-fluid"  th:if="${sucesso}">
     
-    <div class="alert alert-success alert-dismissible" >
+    <div class="alert alert-success alert-dismissible" role="alert" >
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i></button>
                 <h4><i class="icon fa fa-check"></i> Sucesso</h4>
                <p th:text="${sucesso}"> Success alert preview. This alert is dismissable.</p>
@@ -70,7 +70,7 @@
               
               
               <div class="row-fluid"  th:if="${erro}">
-                  <div class="alert alert-danger alert-dismissible">
+                  <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <i class="fa fa-times" style="color:#fff;"></i></button>
                 <h4><i class="icon fa fa-check"></i> Erro </h4>
                <p th:text="${erro}"> Erro alert preview. This alert is dismissable.</p>
@@ -161,9 +161,9 @@
              <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}" class="img-circle" alt="User Image" />
               </div>
           
-              <h5 class="widget-user-username" th:text="${produto.nome}" >Nadia Carmichael</h5>
-              <h6 class="widget-user-desc" th:text="${produto.descricao}" >Lead Developer</h6>
-              <ul class="rating">
+              <h5 class="widget-user-username text-center" th:text="${produto.nome}" >Nadia Carmichael</h5>
+              <h6 class="widget-user-desc text-center" th:text="${produto.descricao}" >Lead Developer</h6>
+              <ul class="rating text-center">
               
               
               <th:block th:each="i: ${#numbers.sequence(1,5)}">
@@ -232,7 +232,7 @@
               </ul>
             </div>
             
-               <div class="modal fade" th:id=" 'myAtividade'+ ${produto.codebar}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+               <div class="modal" th:id=" 'myAtividade'+ ${produto.codebar}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 		
@@ -249,8 +249,8 @@
 		<div class="col-md-12">
           <div class="box box-widget widget-user">
             <div class="widget-user-header bg-aqua-active"  th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard} + '-active'"> 
-              <h4 class="widget-user-username" th:text="${produto.nome}">Thanh Nguyen</h4>
-              <h5 class="widget-user-desc" th:text="${produto.descricao}">Founder &amp; CEO</h5>
+              <h4 class="widget-user-username text-center" th:text="${produto.nome}">Thanh Nguyen</h4>
+              <h5 class="widget-user-desc text-center" th:text="${produto.descricao}">Founder &amp; CEO</h5>
             </div>
             <div class="widget-user-image">
               <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}"  alt="User Image" class="img-circle"/>
@@ -372,7 +372,7 @@
                 
                 <br></br>
                  
-             <div class="modal fade" th:id="'myPromocao'+${promocao.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabelPromo" aria-hidden="true">
+             <div class="modal" th:id="'myPromocao'+${promocao.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabelPromo" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 		
@@ -401,8 +401,8 @@
             
             <div class="widget-user-header bg-black"  th:class=" 'widget-user-header bg-'+ ${promocao.corfaixa}" style="background: url('img/promocao/promo.jpg') center center;">
              
-                           <h3 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h3>
-              <h5 class="widget-user-desc"  th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" >Lead Developer</h5>
+                           <h3 class="widget-user-username text-center" th:text="${promocao.nome}" >Nadia Carmichael</h3>
+              <h5 class="widget-user-desc text-center"  th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" >Lead Developer</h5>
              
              </div>
              
@@ -492,7 +492,7 @@
           <img th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.logo})}" class="img-circle" alt="User Image" />
               </div>
           
-              <h4 class="widget-user-username" th:text="${categoria.nome}" >Nadia Carmichael</h4>
+              <h4 class="widget-user-username text-center" th:text="${categoria.nome}" >Nadia Carmichael</h4>
 <!--               <h5 class="widget-user-desc" th:text="${categoria.catpai}" >Lead Developer</h5> -->
               
 			</a>
@@ -1041,6 +1041,18 @@
 		
 		
 <script type="text/javascript">
+
+$('.alert').alert();
+
+$('.alert').fadeIn('slow', function(){
+    $('.alert').delay(3000).fadeOut(); 
+
+//     demo.showNotification('top','center','${erros}');
+//     demo.showNotification('top','center','${mensagem}');
+ 
+ });
+
+
 
 // $(document).ready(function(){
 //    $(".avaliacao").mouseover(function(event){

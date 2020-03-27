@@ -356,13 +356,34 @@ public class HomeController {
 
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView Home(Locale locale, Model model) {
+    public ModelAndView Home(@RequestParam(value = "erro", required = false) String error, 
+    		@RequestParam(value = "id", required = false) String id,@RequestParam(value = "sucesso", required = false) String sucesso,
+    		Locale locale, Model model) {
        
     	
     	
     	logger.info("Welcome Home /home! The client locale is {}.", locale);
 
         ModelAndView home = new ModelAndView("/public/home");
+        
+        
+        String mensagem ="";
+        
+        if(error != null && error !=""){
+        	 mensagem = error + "erros";
+        	 home.addObject("erro", mensagem);
+        	
+        }else if(sucesso != null && sucesso !=""){
+        	
+       	 mensagem = sucesso + "sucesso";
+       	 home.addObject("sucesso", mensagem);
+        	
+        }else if(id != null && id !=""){
+        	
+       	 mensagem =  "sucesso"+id;
+       	 home.addObject("sucesso", mensagem);
+        	
+        }
         
         
 //         Atividade atividade = new Atividade();
@@ -385,36 +406,61 @@ public class HomeController {
         return home;
     }
     
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView Homem(Locale locale, Model model) {
-       
-    	logger.info("Welcome HOMEE /! The client locale is {}.", locale);
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView Homem(@RequestParam(value = "error", required = false) String error,Model model) {
+		
+    	logger.info("Welcome Home /home! The client locale is {}.");
 
-        ModelAndView home = new ModelAndView("/public/loginnew");
-        
-//        home.addObject("usuario", new Usuario());
+		
+		ModelAndView home = new ModelAndView("/public/home");
+		
+		
+//		String errorMessge = null;
+//		
+//		if(error != null) {
+//			errorMessge = "Usuario or Senha is Invalidos !!";
+//	        home.addObject("erro", errorMessge);
+//
+//		}
+//		home.addObject("usuario", usuario);
 
 
-        return home;
-    }
+		return home;
+
+
+	}
+
+	
     
     
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView Login(Locale locale, Model model) {
+    public ModelAndView Login(@RequestParam(value = "error", required = false) String error,Model model) {
       
-    	logger.info("Welcome login! The client locale is {}.", locale);
+    	logger.info("Welcome login! The client locale is {}.");
 
 
         ModelAndView login = new ModelAndView("/public/login");
         
-        
-        
-        login.addObject("usuario", usuario);
+        String errorMessge = null;
+		
+		if(error != null) {
+			errorMessge = "Usuario or Senha is Invalidos !!";
+			login.addObject("erro", errorMessge);
+			//login.addObject("usuario", usuario);
 
+		}
 
+		login.addObject("usuario", usuario);
+
+		
         return login;
     }
+    
+
+    
+    
+    
     
     @RequestMapping(value = "/card", method = RequestMethod.GET)
     public ModelAndView card(Locale locale, Model model) {

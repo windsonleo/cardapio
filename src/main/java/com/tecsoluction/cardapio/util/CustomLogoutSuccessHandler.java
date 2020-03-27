@@ -14,6 +14,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
+import com.tecsoluction.cardapio.CarrinhoBean;
+import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.servico.UsuarioServicoImpl;
 
@@ -23,6 +25,13 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler im
 	private  UsuarioServicoImpl usuarioService;
 	
 	private Usuario  usuario ;
+	
+	 @Autowired
+	 private CarrinhoBean carrinhobean;
+	 
+	 private Carrinho carrinho = new Carrinho();
+
+
 
     public CustomLogoutSuccessHandler() {
         super();
@@ -53,12 +62,15 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler im
      	        
      	        
      	        usuario.setOnline(false);
+     	        
+     	       
         		
         		
         	}else{
         		
         		
         		
+        	
         	}
 
         	
@@ -82,10 +94,17 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler im
         
         usuarioService.edit(usuario);
         
+        UUID uuid = UUID.randomUUID();
+			carrinho.setId(uuid);
+	        
+	        carrinhobean.SetarCarrinhoSessao(carrinho);
+        
       //	 System.out.println("usuario desconectado apos" + authentication.getName());
 
         
-        response.sendRedirect(refererUrl);
+//        response.sendRedirect(refererUrl);
+        
+        
         
        
 

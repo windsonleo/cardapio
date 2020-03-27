@@ -2,8 +2,10 @@ package com.tecsoluction.cardapio.controller;
 
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.cardapio.CarrinhoBean;
@@ -30,6 +33,7 @@ import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.framework.AbstractEditor;
 import com.tecsoluction.cardapio.servico.PedidoVendaServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
+import com.tecsoluction.cardapio.util.OrigemPedido;
 import com.tecsoluction.cardapio.util.SituacaoItem;
 
 
@@ -79,6 +83,9 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 	 private List<PedidoVenda> pedidosaguardando;
 	 
 	 private List<PedidoVenda> pedidosprontos;
+	 
+	 private List<PedidoVenda> pedidoshoje;
+	 private OrigemPedido [] origempedidos;
 
 
 	@Autowired
@@ -102,6 +109,7 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 		
 		
 		logger.info("Welcome add atribute PedidoVenda Controller !" + model);
+        origempedidos = OrigemPedido.values();
 
 
 		// List<Role> roleList = rdao.getAll();
@@ -117,10 +125,20 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 		// model.addAttribute("roleList", roleList);
         pedidos = getservice().findAll();
 
+        
+        Date hoje = new Date();
+        
+//        hoje.;
+        
+        pedidoshoje = getservice().getAllPedidoPorData(hoje);
+        
+        
+		logger.info("Pedido hoje !" + pedidoshoje);
+ 
 		
 	//	 model.addAttribute("pedidovendaList", pedidos);
         
-        if(carrinho == null){
+        if(carrinhobean.getCarrinho() == null){
         	carrinho = new Carrinho();
         	UUID uuid = UUID.randomUUID();
  			carrinho.setId(uuid);
@@ -136,7 +154,7 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         
     	 
     	
-        	OrganizarStatusItem(pedidos); 
+        	OrganizarStatusItem(pedidoshoje); 
     	 
     	
         
@@ -155,8 +173,10 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 		 model.addAttribute("pedidospreparacao", pedidospreparacao);
 		 model.addAttribute("pedidosprontos", pedidosprontos);
 		 model.addAttribute("totalitens", carrinhobean.TotalItens());
+		 model.addAttribute("pedidoshoje", pedidoshoje);
 
-		 
+		 model.addAttribute("origempedidos", origempedidos);
+
 		 
 		 
 		 
@@ -227,8 +247,12 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         
         ModelAndView exibircat = new ModelAndView("/private/pedidovenda/cozinha");
 
-        pedidos = getservice().findAll();
+        pedidoshoje = getservice().getAllPedidoPorData(new Date());
         
+      	
+      	OrganizarStatusItem(pedidoshoje);  
+      	
+      	
         if(carrinho == null){
         	carrinho = new Carrinho();
         	UUID uuid = UUID.randomUUID();
@@ -244,7 +268,7 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         
         
         exibircat.addObject("carrinho", carrinhobean.getCarrinho());
-        exibircat.addObject("pedidos", pedidos);
+        exibircat.addObject("pedidoshoje", pedidoshoje);
 
         return exibircat;
     }
@@ -259,8 +283,14 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         
         ModelAndView exibircat = new ModelAndView("/private/pedidovenda/monitor");
 
-        pedidos = getservice().findAll();
+        pedidoshoje = getservice().getAllPedidoPorData(new Date());
         
+        
+        
+      	
+      	OrganizarStatusItem(pedidoshoje);  
+      	
+      	
         if(carrinho == null){
         	carrinho = new Carrinho();
         	UUID uuid = UUID.randomUUID();
@@ -275,8 +305,14 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
             }
         
         
+        List<PedidoVenda> pedmonitor= new ArrayList<PedidoVenda>();
+        
+        pedmonitor.addAll(pedidospreparacao);
+        pedmonitor.addAll(pedidosaguardando);
+        
+        
         exibircat.addObject("carrinho", carrinhobean.getCarrinho());
-        exibircat.addObject("pedidos", pedidos);
+        exibircat.addObject("pedidoshoje", pedmonitor);
 
         return exibircat;
     }
@@ -290,6 +326,15 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 //        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
         
         ModelAndView exibircat = new ModelAndView("/private/pedidovenda/itensPorStatus");
+        
+        
+        
+        pedidoshoje = getservice().getAllPedidoPorData(new Date());
+        
+
+          	 
+          	
+              	OrganizarStatusItem(pedidoshoje); 
 
 //        pedidos = getservice().findAllByStatusIsOrderByDataAsc(StatusPedido.PRONTO);
 //
@@ -297,7 +342,7 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         
         exibircat.addObject("itens", itensprontos);
         
-        exibircat.addObject("pedidos", pedidosprontos);
+        exibircat.addObject("pedidoshoje", pedidosprontos);
 
         
         
@@ -319,8 +364,15 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 
      //   exibircat.addObject("pedidos", pedidos);
         
+        pedidoshoje = getservice().getAllPedidoPorData(new Date());
+        
+
+     	 
+      	
+      	OrganizarStatusItem(pedidoshoje); 
+        
         exibircat.addObject("itens", itensentregue);
-        exibircat.addObject("pedidos", pedidosentregue);
+        exibircat.addObject("pedidoshoje", pedidosentregue);
 
 
         return exibircat;
@@ -335,12 +387,19 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 //        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
         
         ModelAndView exibircat = new ModelAndView("/private/pedidovenda/itensPorStatus");
+        
+        pedidoshoje = getservice().getAllPedidoPorData(new Date());
+        
+
+     	 
+      	
+      	OrganizarStatusItem(pedidoshoje); 
 
       //  pedidos = getservice().findAllByStatusIsOrderByDataAsc(StatusPedido.PENDENTE);
 
         exibircat.addObject("itens", itenspreparacao);
         
-        exibircat.addObject("pedidos", pedidospreparacao);
+        exibircat.addObject("pedidoshoje", pedidospreparacao);
 
 
         return exibircat;
@@ -359,10 +418,17 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 //        pedidos = getservice().findAllByStatusIsOrderByDataAsc(StatusPedido.PENDENTE);
 //
 //        exibircat.addObject("pedidos", pedidos);
+        pedidoshoje = getservice().getAllPedidoPorData(new Date());
+        
+
+     	 
+      	
+      	OrganizarStatusItem(pedidoshoje); 
+      	
         
         exibircat.addObject("itens", itensaguardando);
 
-        exibircat.addObject("pedidos", pedidosaguardando);
+        exibircat.addObject("pedidoshoje", pedidosaguardando);
 
         return exibircat;
     }
@@ -381,10 +447,17 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 //
 //        exibircat.addObject("pedidos", pedidos);
         
+        pedidoshoje = getservice().getAllPedidoPorData(new Date());
+        
+
+     	 
+      	
+      	OrganizarStatusItem(pedidoshoje); 
+        
         
         exibircat.addObject("itens", itenscancelados);
         
-        exibircat.addObject("pedidos", pedidoscancelados);
+        exibircat.addObject("pedidoshoje", pedidoscancelados);
 
 
         return exibircat;
@@ -393,13 +466,33 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
     
     
     @RequestMapping(value = "/pedidorapido", method = RequestMethod.GET)
-    public ModelAndView ExibirPedidorapido(HttpServletRequest request) {
+    public ModelAndView ExibirPedidorapido(@RequestParam(value = "erro", required = false) String error, 
+    		@RequestParam(value = "id", required = false) String id,@RequestParam(value = "sucesso", required = false) String sucesso,
+    		Locale locale, Model model) {
 
 //        UUID idf = UUID.fromString(request.getParameter("id"));
 
 //        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
         
         ModelAndView exibircat = new ModelAndView("/private/pedidovenda/pedidorapido");
+        
+        String mensagem ="";
+        
+        if(error != null && error !=""){
+        	 mensagem = error + "erros";
+        	 exibircat.addObject("erro", mensagem);
+        	
+        }else if(sucesso != null && sucesso !=""){
+        	
+       	 mensagem = sucesso + "sucesso";
+       	exibircat.addObject("sucesso", mensagem);
+        	
+        }else if(id != null && id !=""){
+        	
+       	 mensagem =  "sucesso"+id;
+       	exibircat.addObject("sucesso", mensagem);
+        	
+        }
 
 //        pedidos = getservice().findAllByStatusIsOrderByDataAsc(StatusPedido.CANCELADO);
 //
@@ -427,7 +520,7 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 
 //        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
         
-        ModelAndView exibircat = new ModelAndView("/private/pedidovenda/cozinha");
+        ModelAndView exibircat = new ModelAndView("redirect:/pedidovenda/cozinha");
 
 //        pedidos = getservice().findAllByStatusIsOrderByDataAsc(StatusPedido.CANCELADO);
         
@@ -477,10 +570,19 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         pv.setItems(itensaux);
 
         pv= getservice().save(pv);
+      
+        pedidoshoje = getservice().getAllPedidoPorData(new Date());
         
-        pedidos = getservice().findAll();
 
-        exibircat.addObject("pedidos", pedidos);
+     	 
+      	
+      	OrganizarStatusItem(pedidoshoje); 
+        
+        
+        
+//        pedidoshoje = getservice().findAll();
+
+        exibircat.addObject("pedidoshoje", pedidoshoje);
         
         
 
@@ -503,7 +605,7 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 
 //        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
         
-        ModelAndView exibircat = new ModelAndView("/private/pedidovenda/cozinha");
+        ModelAndView exibircat = new ModelAndView("redirect:/pedidovenda/cozinha");
 
 //        pedidos = getservice().findAllByStatusIsOrderByDataAsc(StatusPedido.CANCELADO);
         
@@ -554,9 +656,14 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 
         pv= getservice().save(pv);
         
-        pedidos = getservice().findAll();
+ pedidoshoje = getservice().getAllPedidoPorData(new Date());
+        
 
-        exibircat.addObject("pedidos", pedidos);
+     	 
+      	
+      	OrganizarStatusItem(pedidoshoje); 
+
+        exibircat.addObject("pedidoshoje", pedidoshoje);
         
         
 
@@ -585,7 +692,7 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 
 //        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
         
-        ModelAndView exibircat = new ModelAndView("/private/pedidovenda/cozinha");
+        ModelAndView exibircat = new ModelAndView("redirect:/pedidovenda/cozinha");
 
 //        pedidos = getservice().findAllByStatusIsOrderByDataAsc(StatusPedido.CANCELADO);
         
@@ -635,9 +742,14 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 
         getservice().save(pv);
         
-        pedidos = getservice().findAll();
+ pedidoshoje = getservice().getAllPedidoPorData(new Date());
+        
 
-        exibircat.addObject("pedidos", pedidos);
+     	 
+      	
+      	OrganizarStatusItem(pedidoshoje); 
+
+        exibircat.addObject("pedidoshoje", pedidoshoje);
 
         return exibircat;
     }  
@@ -661,7 +773,7 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 
 //        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
         
-        ModelAndView exibircat = new ModelAndView("/private/pedidovenda/cozinha");
+        ModelAndView exibircat = new ModelAndView("redirect:/pedidovenda/cozinha");
 
 //        pedidos = getservice().findAllByStatusIsOrderByDataAsc(StatusPedido.CANCELADO);
         
@@ -711,9 +823,13 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 
         getservice().save(pv);
         
-        pedidos = getservice().findAll();
+ pedidoshoje = getservice().getAllPedidoPorData(new Date());
+        
 
-        exibircat.addObject("pedidos", pedidos);
+     	 
+      	
+      	OrganizarStatusItem(pedidoshoje); 
+        exibircat.addObject("pedidoshoje", pedidoshoje);
 
         return exibircat;
     }  
@@ -744,31 +860,117 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
     			if(it.getSituacao().equals(SituacaoItem.AGUARDANDO)){
     				
     				itensaguardando.add(it);
-    				pedidosaguardando.add(pv);
+    				if (pedidosaguardando.contains(pv)){
+    					
+    					
+    				}else {
+    				
+    				//	boolean todos = false;
+    					
+    					if(VerificaTodosItens(pv,SituacaoItem.AGUARDANDO)){
+    						
+    						pedidosaguardando.add(pv);
+    						
+    					}
+    					
+    					
+    					
+    				}
     				
     			}
     			else if (it.getSituacao().equals(SituacaoItem.CANCELADO)){
     				
     				itenscancelados.add(it);
-    				pedidoscancelados.add(pv);
+    				
+    				if (pedidoscancelados.contains(pv)){
+    					
+    					
+    				}else {
+    				
+    				//	boolean todos = false;
+    					
+    					if(VerificaTodosItens(pv,SituacaoItem.CANCELADO)){
+    						
+    						pedidoscancelados.add(pv);
+    						
+    					}
+    					
+    					
+    					
+    				}
     			}
     			
     			else if (it.getSituacao().equals(SituacaoItem.EM_EXECUCAO)){
     				
     				itenspreparacao.add(it);
-    				pedidospreparacao.add(pv);
+    				//pedidospreparacao.add(pv);
+    				
+    				if (pedidospreparacao.contains(pv)){
+    					
+    					
+    				}else {
+    				
+    				//	boolean todos = false;
+    					
+    					if(VerificaTodosItens(pv,SituacaoItem.EM_EXECUCAO)){
+    						
+    						pedidospreparacao.add(pv);
+    						
+    					}
+    					
+    					
+    					
+    				}
+    				
     				
     			}
     			else if (it.getSituacao().equals(SituacaoItem.ENTREGUE)){
     				
     				itensentregue.add(it);
-    				pedidosentregue.add(pv);
+    				//pedidosentregue.add(pv);
+    				
+    				if (pedidosentregue.contains(pv)){
+    					
+    					
+    				}else {
+    				
+    				//	boolean todos = false;
+    					
+    					if(VerificaTodosItens(pv,SituacaoItem.ENTREGUE)){
+    						
+    						pedidosentregue.add(pv);
+    						
+    					}
+    					
+    					
+    					
+    				}
+    				
     				
     			}else {
     				
     				
     				itensprontos.add(it);
-    				pedidosprontos.add(pv);
+    			//	pedidosprontos.add(pv);
+    				
+    				if (pedidosprontos.contains(pv)){
+    					
+    					
+    				}else {
+    				
+    				//	boolean todos = false;
+    					
+    					if(VerificaTodosItens(pv,SituacaoItem.PRONTO)){
+    						
+    						pedidosprontos.add(pv);
+    						
+    					}
+    					
+    					
+    					
+    				}
+    				
+    				
     				
     			}
     			
@@ -780,6 +982,40 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
     	
     	
     }
+    
+    private boolean VerificaTodosItens(PedidoVenda pv2,SituacaoItem st) {
+    
+    boolean todos = false;
+    	
+   	 int qtditempedido = pv2.getItems().size();
+   	 
+   	 int qtditempronto= 0;
+   	 
+   	 SituacaoItem situacaopronto = st;
+   	 
+
+        for (Item key : pv2.getItems().keySet()) {
+          	
+          	
+          	if(key.getSituacao().equals(situacaopronto)){
+          		
+          		qtditempronto = qtditempronto +1;
+          		
+          	}
+          	
+          	if(qtditempedido == qtditempronto){
+          		
+          		todos = true;
+          		
+          	}
+          	
+
+          }
+        
+        
+        return todos;
+		
+	}
     
     
 	@Override

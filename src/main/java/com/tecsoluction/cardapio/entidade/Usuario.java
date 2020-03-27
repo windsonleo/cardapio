@@ -111,7 +111,7 @@ public class Usuario  extends BaseEntity implements Serializable {
 		 private Set<Atividade> atividades;
 	    
 	    
-	    @ElementCollection(fetch=FetchType.EAGER)
+	    @ElementCollection(fetch=FetchType.EAGER,targetClass=Mensagem.class)
 	    @CollectionTable(name = "mensagem_usuario", joinColumns = @JoinColumn(name = "id"))
 //	    @JsonManagedReference
 	    private List<Mensagem> mensagens;

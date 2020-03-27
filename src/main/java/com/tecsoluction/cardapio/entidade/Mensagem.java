@@ -43,8 +43,11 @@ public class Mensagem implements Serializable {
     private Date data;
 
 //    @ManyToOne(targetEntity=Usuario.class)
+    
+    //destino
     private Usuario usuario;
     
+    //origem
     private UUID idusu;
     
     

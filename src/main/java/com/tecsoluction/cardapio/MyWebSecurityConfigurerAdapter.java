@@ -36,7 +36,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 	private DataSourceConf dataSource;
 	
 	  @Autowired
-	    private LoggingAccessDeniedHandler accessDeniedHandler;
+	 private LoggingAccessDeniedHandler accessDeniedHandler;
 	
 	
 	@Override
@@ -80,10 +80,16 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/bootstrap/**").permitAll()
 				.antMatchers("/categoria/exibir**").permitAll()
 				.antMatchers("/usuario/perfil**").permitAll()
+				.antMatchers("/usuario/perfil").permitAll()
+				
+				.antMatchers("/usuario/addmensagem**").permitAll()
+				.antMatchers("/usuario/addmensagem").permitAll()
 				.antMatchers("/produto/perfil**").permitAll()
 				.antMatchers("/produto/filtroMenorPreco**").permitAll()
 				.antMatchers("/promocao/filtroOfertasHoje**").permitAll()
 				.antMatchers("/produto/filtroMaiorAvaliacao**").permitAll()
+				.antMatchers("/cardapio/cardapio").permitAll()
+				.antMatchers("/promocao/ofertas").permitAll()
 				
 				.antMatchers("/produto/filtroMenorPreco").permitAll()
 				.antMatchers("/promocao/filtroOfertasHoje").permitAll()
@@ -116,7 +122,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/pedidovenda/**").permitAll()
 				.antMatchers("/home").permitAll()
 				.antMatchers("/logout").permitAll()
-				.antMatchers("/loginnew").permitAll()
+				.antMatchers("/login").permitAll()
 				.antMatchers("/logoutsucess").permitAll()				
 				.antMatchers("https://connect.facebook.net").permitAll()	
 				.antMatchers("https://apis.google.com/js/platform.js").permitAll()
@@ -126,7 +132,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/private/**").hasAnyRole("ADM","SUPER").anyRequest().authenticated()
 				.and()
 				.csrf().disable().formLogin()
-				.loginPage("/loginnew").failureUrl("/erro")
+				.loginPage("/login").failureUrl("/login?error=true")
 				.defaultSuccessUrl("/home")
 				.usernameParameter("email")
 				.passwordParameter("senha").and()
@@ -135,7 +141,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
                 .logout()
                 .logoutUrl("/logout")
                 .deleteCookies("JSESSIONID")
-                .logoutSuccessHandler(logoutSuccessHandler()).logoutSuccessUrl("/loginnew")
+                .logoutSuccessHandler(logoutSuccessHandler()).logoutSuccessUrl("/login")
 //			    .and().logout()
 //				.and().logout().logoutUrl("/cardapio_logout").permitAll()
 //				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -238,4 +244,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
     public LogoutSuccessHandler logoutSuccessHandler() {
         return new CustomLogoutSuccessHandler();
     }
+    
+    
+    
 }

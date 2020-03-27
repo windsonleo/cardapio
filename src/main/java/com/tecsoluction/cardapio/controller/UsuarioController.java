@@ -140,11 +140,33 @@ public class UsuarioController extends AbstractController<Usuario> {
     }
     
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public ModelAndView profileUsuario(HttpServletRequest request,Model model) {
+    public ModelAndView profileUsuario(HttpServletRequest request,Model model,@RequestParam(value = "erro", required = false) String error, 
+    		@RequestParam(value = "id", required = false) String id,@RequestParam(value = "sucesso", required = false) String sucesso,
+    		Locale locale) {
+    	
+        ModelAndView profileusuario = new ModelAndView("/private/usuario/perfil");
+
+		  String mensagem ="";
+	        
+	        if(error != null && error !=""){
+	        	 mensagem = error + "erros";
+	        	 profileusuario.addObject("erro", mensagem);
+	        	
+	        }else if(sucesso != null && sucesso !=""){
+	        	
+	       	 mensagem = sucesso + "sucesso";
+	       	profileusuario.addObject("sucesso", mensagem);
+	        	
+	        }else if(id != null && id !=""){
+	        	
+	       	 mensagem =  "sucesso"+id;
+	       //	cardapio.addObject("sucesso", mensagem);
+	        	
+	        }
+    	
 
         UUID idf = UUID.fromString(request.getParameter("id"));
 
-        ModelAndView profileusuario = new ModelAndView("/private/usuario/perfil");
 
         Usuario usuario = getservice().findOne(idf);
         
@@ -454,21 +476,22 @@ public class UsuarioController extends AbstractController<Usuario> {
         evolucao.setUsuario(usuario);
         evolucao.setData(new Date());
         evolucao.setDescricao(request.getParameter("descricao"));
+        evolucao.setIdusu(usuario.getId());
         
         this.usuario.addMensagem(evolucao);
         
-	   	Mensagem evolucaoo = new Mensagem(usuario);
+//	   	Mensagem evolucaoo = new Mensagem(usuario);
 
-	   	UUID uuid2 = UUID.randomUUID();
-	   	evolucaoo.setId(uuid2);
-        evolucaoo.setUsuario(usuario);
-        evolucaoo.setData(new Date());
-        evolucaoo.setDescricao(request.getParameter("descricao"));
-        
-        usuario.addMensagem(evolucaoo);
+//	   	UUID uuid2 = UUID.randomUUID();
+//	   	evolucaoo.setId(uuid2);
+//        evolucaoo.setUsuario(usuario);
+//        evolucaoo.setData(new Date());
+//        evolucaoo.setDescricao(request.getParameter("descricao"));
+//        
+//        usuario.addMensagem(evolucaoo);
         
         getservice().edit(this.usuario);
-        getservice().edit(usuario);
+//        getservice().edit(usuario);
         
 //        ModelAndView profilepaciente = new ModelAndView("forward:/usuario/perfil?id=" + this.usuario.getId()).addObject("sucesso", sucesso);
 
@@ -479,17 +502,17 @@ public class UsuarioController extends AbstractController<Usuario> {
 //        profilepaciente.addObject("datanow", datanow);
 //        profilepaciente.addObject("mensagem", new Mensagem());
         
-        model.addAttribute("usuario", this.usuario);
-        model.addAttribute("mensagem", new Mensagem());
+//        model.addAttribute("usuario", this.usuario);
+//        model.addAttribute("mensagem", new Mensagem());
 
 //        model.addAttribute("mensagem", new Mensagem());
 
-        model.addAttribute("sucesso", sucesso);
+  //      model.addAttribute("sucesso", sucesso);
 
 
 //        return profilepaciente;
         
-       return new ModelAndView("redirect:/usuario/perfil?id="+this.usuario.getId());
+       return new ModelAndView("redirect:/usuario/perfil?id="+this.usuario.getId()).addObject("sucesso", sucesso);
 
     }
     
@@ -523,14 +546,14 @@ public class UsuarioController extends AbstractController<Usuario> {
         
         int index = Integer.valueOf(idff);
         
-        usuario.removeMensagem(index);
+//        usuario.removeMensagem(index);
         
         this.usuario.removeMensagem(index);
         
         logger.info("Welcome Remove Evolucao Paciente Controller index: !" + idff);
         
         getservice().edit(this.usuario);
-        getservice().edit(usuario);
+//        getservice().edit(usuario);
         
         
         

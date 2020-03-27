@@ -30,6 +30,7 @@ import org.hibernate.mapping.Value;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.tecsoluction.cardapio.framework.BaseEntity;
+import com.tecsoluction.cardapio.util.ModoPreparo;
 import com.tecsoluction.cardapio.util.UnidadeMedida;
 
 import lombok.Getter;
@@ -105,11 +106,14 @@ public class Produto extends BaseEntity implements Serializable {
     
     @ManyToMany(mappedBy="indicacoes",fetch=FetchType.EAGER,targetEntity=Usuario.class)
     private Set<Usuario> usuariosIndica= new HashSet<Usuario>();
+   
+    @Enumerated(EnumType.STRING)
+    private ModoPreparo modopreparo;
 
 
     public Produto(UUID id, String foto, String nome, String codebar, String descricao,
                    UnidadeMedida un, BigDecimal precocusto, BigDecimal precovenda,
-                   Categoria cat, boolean ativo, boolean esugestao,boolean novo,int avalia,int temp) {
+                   Categoria cat, boolean ativo, boolean esugestao,boolean novo,int avalia,int temp,ModoPreparo mod) {
         super();
         this.id = id;
         this.foto = foto;
@@ -125,6 +129,7 @@ public class Produto extends BaseEntity implements Serializable {
         this.novo = novo;
         this.avaliacao = avalia;
         this.tempopreparo = temp;
+        this.modopreparo = mod;
 //        usuariosIndica = new HashSet<Usuario>();
         
         

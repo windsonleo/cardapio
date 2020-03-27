@@ -35,6 +35,7 @@ import com.tecsoluction.cardapio.framework.AbstractEditor;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoCompostoServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
+import com.tecsoluction.cardapio.util.ModoPreparo;
 import com.tecsoluction.cardapio.util.UnidadeMedida;
 
 
@@ -108,7 +109,8 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		List<Categoria> categoriaList = categoriaService.findAll();
 		produtoList = getservice().findAll();
 		prodList = produtoService.findAll();
-		
+        ModoPreparo[] umListModo = ModoPreparo.values();
+
 //		if(produtocomposto == null) {
 //			
 //			produtocomposto = new ProdutoComposto();
@@ -153,7 +155,8 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		model.addAttribute("filename", filename);
 		model.addAttribute("produto", produto);
 		model.addAttribute("items", items);
-		
+        model.addAttribute("umListModo", umListModo);
+
 		
 
 		

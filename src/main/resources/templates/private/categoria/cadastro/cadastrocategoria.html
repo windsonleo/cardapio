@@ -42,7 +42,7 @@
 				
 		<div class="row-fluid" th:if="${sucesso}">
 					
-			<div class="alert alert-success">
+			<div class="alert alert-success alert-dismissible" role="alert">
 				<div class="container-fluid">
 					<div class="alert-icon">
 						<i class="material-icons">check</i>
@@ -72,7 +72,7 @@
 					
 			<div class="row-fluid" th:if="${erro}">
 					
-			<div class="alert alert-danger">
+			<div class="alert alert-danger alert-dismissible" role="alert">
 				<div class="container-fluid">
 					<div class="alert-icon">
 						<i class="material-icons">error</i>
@@ -99,6 +99,81 @@
 
 
 <!-- inicio do conteudo  -->
+
+				<div class="col-md-4">
+					<!--                       <div class="panel form-element-padding"> -->
+					<!--                         <div class="panel-heading"> -->
+					<!--                          <h4>Cadastro de Produto</h4> -->
+					<!--                         </div> -->
+					<div class="panel-body">
+
+						<form th:action="@{/categoria/salvarfotocategoria}"
+							th:object="${categoria}" ModelAttribute="categoria"
+							enctype="multipart/form-data" method="post">
+
+							<!-- Widget: user widget style 1 -->
+							<div class="box box-widget widget-user">
+								<!-- Add the bg color to the header using any of the bg-* classes -->
+								<div class="widget-user-header bg-aqua-active">
+									<h3 class="widget-user-username" th:text="${categoria.nome}">Thanh
+										Nguyen</h3>
+									<h5 class="widget-user-desc" th:text="${categoria.catpai}">Founder
+										&amp; CEO</h5>
+								</div>
+
+
+
+								<div class="widget-user-image" th:if="${categoria.foto}">
+									<img class="img-circle"
+										th:src="@{/img/categoria/{fotoc}(fotoc=${categoria.foto})}"
+										alt="User Avatar usu if" />
+								</div>
+
+								<div class="widget-user-image" th:unless="${categoria.foto}">
+									<img class="img-circle"
+										th:src="@{/img/categoria/{fotoc}(fotoc=${filename})}"
+										alt="User Avatar usu unless" />
+								</div>
+
+
+								<div class="box-footer">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="description-block">
+
+												<div class="form-group">
+													<label for="file">File input</label> <input type="text"
+														readonly="" class="form-control" th:value="${filename}"
+														th:placeholder="${filename}" /> <input type="file"
+														id="file" multiple="multiple" name="file" />
+
+													<!--                   <p class="help-block">Example block-level help text here.</p> -->
+												</div>
+
+												<!--                     <h5 class="description-header"> -->
+												<button type="submit"
+													class="btn btn-primary btn-raised btn-block">
+													Add foto
+													<div class="ripple-container"></div>
+												</button>
+
+												<!--                     </h5> -->
+
+												<!--                     <span class="description-text"><i class="fa fa-photo"></i></span> -->
+											</div>
+											<!-- /.description-block -->
+										</div>
+										<!-- /.col -->
+									</div>
+									<!-- /.row -->
+								</div>
+							</div>
+							<!-- /.widget-user -->
+
+						</form>
+					</div>
+				</div>
+
 
  <div class="col-md-7 panel">
 		 <div class="col-md-7">
@@ -173,6 +248,24 @@
                             </div>
                             </div>
                             
+                            						<div class="form-group label-floating ">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-photo"></i>
+								</div>
+								<input th:unless="${categoria.foto}" autocomplete="off" id="foto"
+									class="form-control" name="foto" type="text"
+									th:value="${filename}" placeholder="Foto" readonly="readonly"> </input>
+									
+									 <input
+									th:if="${categoria.foto}" autocomplete="off" id="foto"
+									class="form-control" name="foto" type="text"
+									th:value="${categoria.foto}" placeholder="Foto" readonly="readonly"> </input>
+
+
+							</div>
+						</div>
+                            
                             
                             <div class="form-actions">
                                 <input type="submit" th:value="${acao}" class="btn btn-success"> </input>
@@ -221,6 +314,18 @@
 	        showInputs: false
 	      });
    
+	    
+	    
+	    $('.alert').alert();
+	     
+	     $('.alert').fadeIn('slow', function(){
+	         $('.alert').delay(2000).fadeOut(); 
+	     
+//	          demo.showNotification('top','center','${erros}');
+//	          demo.showNotification('top','center','${mensagem}');
+	      
+	      });
+	    
     
     });
 	

@@ -6,7 +6,7 @@
 		
 		</head>
 
-				<body  class="hold-transition skin-black layout-top-nav"   th:class="'hold-transition skin-'+ ${configuracaoAtual.cortopo} + 'layout-top-nav' ">
+				<body  class="hold-transition skin-black sidebar-collapse sidebar-mini"   th:class="'hold-transition skin-'+ ${configuracaoAtual.cortopo} + 'sidebar-collapse sidebar-mini' ">
 
 
 <div th:fragment="script">
@@ -271,8 +271,48 @@
 		<script src="resources/static/js/jquery-2.2.3.min.js"
 			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script>
 			
+<!-- 					<script src="resources/static/js/jquery.min.js"  -->
+<!-- 			th:src="@{/js/jquery.min.js}" th:inline="javascript" ></script> -->
+			
+			
 					
-		
+				<script src="resources/static/js/owl.carousel.min.js"
+			th:src="@{/js/owl.carousel.min.js}" th:inline="javascript" type="text/javascript"></script>
+			
+			
+<!-- 			<script type="text/javascript"> -->
+			
+			
+<!-- // 		     $('.owl-carousel').owlCarousel({ -->
+<!-- // // 		    	 items:2,    -->
+<!-- // 		    	 loop:false, -->
+<!-- // 		    	    margin:10, -->
+<!-- // // 		    	    responsiveClass:true, -->
+<!-- // 		    	    responsive:{ -->
+<!-- // 		    	        0:{ -->
+<!-- // 		    	            items:2, -->
+<!-- // // 		    	            nav:true -->
+<!-- // 		    	        }, -->
+<!-- // 		    	        600:{ -->
+<!-- // 		    	            items:3, -->
+<!-- // // 		    	            nav:false -->
+<!-- // 		    	        }, -->
+<!-- // 		    	        1000:{ -->
+<!-- // 		    	            items:4, -->
+<!-- // // 		    	            nav:true, -->
+<!-- // // 		    	            loop:false -->
+<!-- // 		    	        } -->
+<!-- // 		    	    }, -->
+		    	    
+<!-- // 				    URLhashListener:true, -->
+<!-- // 			        autoplayHoverPause:true, -->
+<!-- // // 			        startPosition: 'URLHash', -->
+<!-- // 			        callbacks: true, -->
+<!-- // 			        center:true -->
+<!-- // 		    	}); -->
+			
+<!-- 			</script> -->
+			
 			
 			
 			
@@ -520,6 +560,7 @@ $(function(){
 //          }
 //      });
     
+    $('.alert').alert();
      
      $('.alert').fadeIn('slow', function(){
          $('.alert').delay(2000).fadeOut(); 
@@ -529,7 +570,8 @@ $(function(){
       
       });
      
-     
+
+
      
   });
   

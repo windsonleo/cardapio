@@ -158,7 +158,7 @@
 
            				<div class="row-fluid" th:if="${sucesso}">
 
-					<div class="alert alert-success">
+					<div class="alert alert-success alert-dismissible" role="alert">
 						<div class="container-fluid">
 							<div class="alert-icon">
 								<i class="material-icons">check</i>
@@ -186,7 +186,7 @@
 
 				<div class="row-fluid" th:if="${erro}">
 
-					<div class="alert alert-danger">
+					<div class="alert alert-danger alert-dismissible" role="alert">
 						<div class="container-fluid">
 							<div class="alert-icon">
 								<i class="material-icons">error</i>
@@ -237,9 +237,9 @@
             <!-- Add the bg color to the header using any of the bg-* classes -->
             
                           <div class="box-tools pull-right">
-                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i>
+                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
                 </button>
               </div>
             
@@ -334,7 +334,7 @@
               </ul>
             </div>
             
-               <div class="modal fade" th:id=" 'myAtividade'+ ${mesa.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+               <div class="modal" th:id=" 'myAtividade'+ ${mesa.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 		
@@ -457,6 +457,25 @@
 		
 
 <!-- 	<div th:replace="fragmentos/footer :: script" style="display: none;"></div>	     -->
+
+
+ <script type="text/javascript">
+ 
+ 
+ $('.alert').alert();
+ 
+ $('.alert').fadeIn('slow', function(){
+     $('.alert').delay(2000).fadeOut(); 
+ 
+//      demo.showNotification('top','center','${erros}');
+//      demo.showNotification('top','center','${mensagem}');
+  
+  });
+ 
+ 
+ 
+ </script>
+
 	    
 </body>
 			

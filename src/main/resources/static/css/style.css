@@ -1,3 +1,104 @@
+#categorias .item{
+  margin: 3px;
+}
+
+
+#categorias .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#produtoscategoria .item{
+  margin: 3px;
+}
+
+
+#produtoscategoria .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+#promocoes .item{
+  margin: 3px;
+}
+
+
+#promocoes .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#produtopromocoes .item{
+  margin: 3px;
+}
+
+
+#produtopromocoes .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+
+
+
+/* .carrocat { */
+	
+	
+	
+/* 	} */
+	
+/* 	.carrocat img { */
+	
+/* 		-webkit-background-size: cover; */
+/*   -moz-background-size: cover; */
+/*   -o-background-size: cover; */
+/*   background-size: cover; */
+	
+/* 	} */
+	
+/* 		.carrocatsel { */
+	
+/* 		-webkit-background-size: cover; */
+/*   -moz-background-size: cover; */
+/*   -o-background-size: cover; */
+/*   background-size: cover; */
+/*   border-color: black; */
+	
+/* 	} */
+	
+	
+/* 	.carrocatit{ */
+	
+	
+/* 	} */
+	
+	
+/* 	.carrocatit img { */
+/* 	-webkit-background-size: cover; */
+/*   -moz-background-size: cover; */
+/*   -o-background-size: cover; */
+/*   background-size: cover; */
+	
+/* 	}	 */
+	
+/* 		.carrocatitsel { */
+/* 	-webkit-background-size: cover; */
+/*   -moz-background-size: cover; */
+/*   -o-background-size: cover; */
+/*   background-size: cover; */
+/*     border-color: black; */
+  
+	
+/* 	}	 */
+
+
+
 .limpar{
 	
 /* clear: left;	 */

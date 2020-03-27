@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.tecsoluction.cardapio.util.ModoPreparo;
 import com.tecsoluction.cardapio.util.SituacaoItem;
 import com.tecsoluction.cardapio.util.UnidadeMedida;
 
@@ -75,7 +76,10 @@ public  class Item implements Serializable, Comparable<Item>{
     private String qtd;
     
     private int tempopreparo = 0;
-
+    
+    
+    @Enumerated(EnumType.STRING)
+    private ModoPreparo modopreparo;
 
 
     public Item() {
@@ -98,6 +102,7 @@ public  class Item implements Serializable, Comparable<Item>{
         this.un_medida = produto.getUn_medida();
         this.foto = produto.getFoto();
         this.tempopreparo = produto.getTempopreparo();
+        this.modopreparo = produto.getModopreparo();
   //      this.situacao = SituacaoItem.AGUARDANDO;
 
         
@@ -116,6 +121,7 @@ public  class Item implements Serializable, Comparable<Item>{
         this.foto = produto.getFoto();
         this.qtd = qtd;
         this.tempopreparo = produto.getTempopreparo();
+        this.modopreparo = produto.getModopreparo();
 
      //   this.situacao = SituacaoItem.AGUARDANDO;
 

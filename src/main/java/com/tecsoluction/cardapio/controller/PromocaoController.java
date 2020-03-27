@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
 
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tecsoluction.cardapio.RestauranteBean;
 import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.entidade.Promocao;
 import com.tecsoluction.cardapio.framework.AbstractController;
@@ -74,7 +76,8 @@ public class PromocaoController extends AbstractController<Promocao> {
 	    private List<Produto> produtosFiltro;
 
 
-	    
+		 @Autowired
+		 private RestauranteBean restaurantebean; 
 	    
 	    
 
@@ -135,6 +138,11 @@ public class PromocaoController extends AbstractController<Promocao> {
 		 model.addAttribute("filename", filename);
 		 model.addAttribute("produtoss", produtoss);
 		 model.addAttribute("prodpromo", prodpromo);
+		 model.addAttribute("promocaoList", getservice().findAll());
+
+		 
+		 
+		 
 		 
 		 
 
@@ -354,7 +362,7 @@ public class PromocaoController extends AbstractController<Promocao> {
 	        
 
 	        novosprodutos.addObject("produtosFiltro", filtroOfertas());
-	        novosprodutos.addObject("filtroNome", "filtroOfertasHoje");
+	        novosprodutos.addObject("filtroNome", "Ofertas de Hoje");
 
 
 	        return novosprodutos;
@@ -393,7 +401,42 @@ public class PromocaoController extends AbstractController<Promocao> {
 	        return produtosFiltro;
 	    }
 	    
-	     
+		@RequestMapping(value = "ofertas", method = RequestMethod.GET)
+		public ModelAndView CardapioPr(HttpServletRequest request,@RequestParam(value = "erro", required = false) String error, 
+	    		@RequestParam(value = "id", required = false) String id,@RequestParam(value = "sucesso", required = false) String sucesso,
+	    		Locale locale, Model model) {
+	       
+			
+		
+			
+			ModelAndView cardapio = new ModelAndView("/public/ofertas");
+			
+			  String mensagem ="";
+		        
+		        if(error != null && error !=""){
+		        	 mensagem = error + "erros";
+		        	 cardapio.addObject("erro", mensagem);
+		        	
+		        }else if(sucesso != null && sucesso !=""){
+		        	
+		       	 mensagem = sucesso + "sucesso";
+		       	cardapio.addObject("sucesso", mensagem);
+		        	
+		        }else if(id != null && id !=""){
+		        	
+		       	 mensagem =  "sucesso"+id;
+		       	cardapio.addObject("sucesso", mensagem);
+		        	
+		        }
+			
+			
+			return cardapio;
+		
+			
+		
+		
+		
+		}     
 
 	@Override
 	protected PromocaoServicoImpl getservice() {
