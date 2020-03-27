@@ -1,0 +1,480 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Cadastro Endereco</title>
+
+<body  class="hold-transition skin-blue sidebar-mini">
+
+    
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+					
+					
+					  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+       Endereco
+        <small>Cadastro</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Endereco</a></li>
+        <li class="active"><a href="#">Cadastro</a></li>
+<!--         <li class="active">Blank page</li> -->
+      </ol>
+    </section>
+				
+				
+				<div class="content">
+				
+				 <div class="col-md-7 panel">
+		 <div class="col-md-7">
+				
+				            <form class="form-horizonta" th:method="post" th:action="@{/endereco/addendereco(id=${paciente.id})}" th:object="${endereco}" ModelAttribute="endereco" >
+ 
+                           <div class="control-group">
+
+                                    <div class="controls">
+
+
+                                        <div class="input-prepend">
+                                            <span class="add-on">Id</span> <input id="id" 
+                                                                                  class="form-control" name="id"
+                                                                                  type="text"
+                                                                                  th:value="${endereco.id}"
+                                                                                  placeholder="Digite o Id"
+                                                                                  readonly="readonly"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                    <div class="control-group">
+
+                                        <div class="controls">
+
+                                            <div class="input-prepend">
+                                                <span class="add-on">Cep</span>
+                                                <input id="cep" class="form-control" name="cep"
+                                                       type="text" th:value="${endereco.cep}"
+                                                       placeholder="Digite o Cep" onblur="pesquisacep(this.value);"/>
+
+                                            </div>
+                                        </div>
+                                    </div>                                
+
+                                <div class="control-group">
+
+                                    <div class="controls">
+
+                                        <div class="input-prepend">
+                                            <span class="add-on">Logradouro</span> <input id="logradouro"
+                                                                                          class="form-control"
+                                                                                          name="logradouro" type="text"
+                                                                                          th:value="${endereco.logradouro}"
+                                                                                          placeholder="Digite o Logradouro"/>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <div class="controls">
+
+                                            <div class="input-prepend">
+                                                <span class="add-on">N</span> <input id="numero"
+                                                                                      class="form-control"
+                                                                                      name="numero" type="text"
+                                                                                      th:value="${endereco.numero}"
+                                                                                      placeholder="Numero"/>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <div class="controls">
+
+                                            <div class="input-prepend">
+                                                <span class="add-on">Bairro</span>
+                                                <input id="bairro"
+                                                       class="form-control" name="bairro" type="text"
+                                                       th:value="${endereco.bairro}"
+                                                       placeholder="Digite o Bairro"/>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="control-group">
+
+                                        <div class="controls">
+                                            <div class="input-prepend">
+                                                <span class="add-on">Cidade</span>
+                                                <input id="cidade" class="form-control" name="cidade"
+                                                       type="text" th:value="${endereco.cidade}"
+                                                       placeholder="Digite a Cidade"/>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="control-group">
+
+                                        <div class="controls">
+
+                                            <div class="input-prepend">
+                                                <span class="add-on">UF</span>
+                                                <input id="uf" class="form-control" name="uf" type="text"
+                                                       th:value="${endereco.uf}" placeholder="Digite a UF"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="control-group">
+
+                                        <div class="controls">
+
+                                            <div class="input-prepend">
+                                                <span class="add-on">P.Ref</span>
+                                                <input id="pontoreferencia" class="form-control"
+                                                       name="pontoreferencia" type="text"
+                                                       th:value="${endereco.pontoreferencia}"
+                                                       placeholder="Digite o Ponto de Referencia"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <div class="controls">
+
+                                            <div class="input-prepend">
+                                                <span class="add-on">Compl.</span>
+                                                <input id="complemento" class="form-control"
+                                                       name="complemento" type="text"
+                                                       th:value="${endereco.complemento}"
+                                                       placeholder="Digite o Complemneto"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <div class="controls">
+
+                                            <div class="input-prepend">
+                                                <span class="add-on">Ibge</span>
+                                                <input id="ibge" name="ibge"
+                                                       class="form-control" type="text" value=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <div class="controls">
+
+                                            <div class="input-prepend">
+                                                <span class="add-on">Paciente</span>
+                                                <input id="paciente" name="paciente"
+                                                       class="form-control" type="text" th:value="${paciente.id}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                                                        <div class="control-group">
+
+                                        <div class="controls">
+
+                                            <div class="input-prepend">
+                                                <span class="add-on">Latitude</span>
+                                                <input id="latitude" name="latitude"
+                                                       class="form-control" type="text" th:value="${endereco.latitude}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                                                        <div class="control-group">
+
+                                        <div class="controls">
+
+                                            <div class="input-prepend">
+                                                <span class="add-on">Longetude</span>
+                                                <input id="longetude" name="longetude"
+                                                       class="form-control" type="text" th:value="${endereco.longetude}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                
+                                
+                                             <div class="form-actions">
+                <input type="submit" th:value="${acao}" class="btn btn-success"/>
+              </div>
+              
+            </form>
+            
+            </div>
+            
+            </div>
+				
+			
+			
+		<div class="col-md-4" style="margin:5px;">
+        
+        <form th:action="@{/paciente/salvarfotopaciente}" ModelAttribute="paciente"  enctype="multipart/form-data"  method="post">
+        
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua">
+              <h3 class="widget-user-username" th:text="${paciente.nome}">Nome do Paciente</h3>
+              <h5 class="widget-user-desc" th:text="${paciente.tipoterapia}">Tipo &amp; TERAPIA</h5>
+            </div>
+            
+            
+            <div class="widget-user-image" th:if="${filename}">
+              <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${filename})}" alt="User Avatar file"/>
+            </div>
+            
+<!--                         <div class="widget-user-image" th:unless="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/avatar2.png}" alt="User Avatar file unles"/> -->
+<!--             </div> -->
+            
+            
+            
+                       <div class="widget-user-image" th:if="${paciente.foto}">
+              <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}" alt="User Avatar pac"/>
+            </div>
+            
+                                   <div class="widget-user-image" th:unless="${paciente.foto}">
+              <img class="img-circle" th:src="@{/img/paciente/avatar2.png}" alt="User Avatar pac unlesss"/>
+            </div>
+            
+            
+            <div id="maper"></div> 
+            
+            
+            
+            <div class="box-footer">
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="description-block">
+<!--                     <div class="form-group"> -->
+<!--                   <label for="file">Escolha a Foto</label> -->
+<!--                   <input type="text" readonly="" class="form-control" th:value="${filename}" th:placeholder="${filename}" /> -->
+<!--                   <input type="file" id="file" multiple="multiple" name="file" /> -->
+
+<!--                   <p class="help-block">Example block-level help text here.</p> -->
+<!--                 </div> -->
+<!--                     <h5 class="description-header" th:unless="${paciente.id}"> -->
+                    
+<!-- 	                    <button class="btn btn-block btn-primary btn-sm" type="submit">Add foto -->
+<!-- 		                    <div class="ripple-container"> -->
+		                    
+<!-- 		                    </div> -->
+<!-- 	                    </button> -->
+                    
+<!--                     </h5> -->
+                    
+<!--                                         <h5 class="description-header" th:if="${paciente.id}"> -->
+                    
+<!-- 	                    <button class="btn btn-block btn-primary disabled" type="submit">Add foto -->
+<!-- 		                    <div class="ripple-container"> -->
+		                    
+<!-- 		                    </div> -->
+<!-- 	                    </button> -->
+                    
+<!--                     </h5> -->
+                    
+                    
+                    
+                    
+                    
+                    <span class="description-text"><i class="fa fa-photo"></i></span>
+                  </div>
+                  
+                                    <div class="description-block">
+
+                                    
+                    <h5 class="description-header" th:if="${endereco.id}">
+                    <a class="btn btn-block btn-primary btn-sm"  th:href="@{/endereco/getLatLong(id=${endereco.id},idpaciente=${paciente.id})}">Pegar Latitude
+                    <div class="ripple-container"></div>
+                    </a>
+                    
+                    </h5>
+                    
+                    
+                    <h5 class="description-header" th:unless="${endereco.id}"><a class="btn btn-block btn-primary disabled" th:href="@{/endereco/getLatLong(id=${endereco.id})}">Pegar Latitude
+                    <div class="ripple-container"></div>
+                    </a>
+                    
+                    </h5>
+                    
+                    
+                    <span class="description-text"><i class="fa fa-map"></i></span>
+                  </div>
+                  
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+          
+          </form>
+        </div>	
+            
+            
+
+</div>
+
+</div>
+
+</div>
+	
+
+<!-- </div> -->
+
+<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+
+
+    <!-- Adicionando Javascript -->
+    <script type="text/javascript">
+
+
+        //alert("entrou now template");
+
+        function limpa_formulario_cep() {
+            //Limpa valores do formul�rio de cep.
+            document.getElementById('logradouro').value = ("");
+            document.getElementById('bairro').value = ("");
+            document.getElementById('cidade').value = ("");
+            document.getElementById('uf').value = ("");
+            document.getElementById('ibge').value = ("");
+        }
+
+        function meu_callback(conteudo) {
+            if (!("erro" in conteudo)) {
+                //Atualiza os campos com os valores.
+                document.getElementById('logradouro').value = (conteudo.logradouro);
+                document.getElementById('bairro').value = (conteudo.bairro);
+                document.getElementById('cidade').value = (conteudo.localidade);
+                document.getElementById('uf').value = (conteudo.uf);
+                document.getElementById('ibge').value = (conteudo.ibge);
+                
+//                 pesquisaLatLong(conteudo.logradouro,conteudo.bairro,conteudo.uf);
+
+
+            } //end if.
+
+
+            else {
+                //CEP n�o Encontrado.
+                limpa_formulario_cep();
+                alert("CEP nao encontrado.");
+            }
+        }
+
+
+        function pesquisacep(valor) {
+
+            //Nova vari�vel "cep" somente com d�gitos.
+            var cep = valor.replace(/\D/g, '');
+
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+
+                //Express�o regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+
+                //Valida o formato do CEP.
+                if (validacep.test(cep)) {
+
+                    //Preenche os campos com "..." enquanto consulta webservice.
+                    document.getElementById('logradouro').value = "...";
+                    document.getElementById('bairro').value = "...";
+                    document.getElementById('cidade').value = "...";
+                    document.getElementById('uf').value = "...";
+                    document.getElementById('ibge').value = "...";
+
+                    //Cria um elemento javascript.
+                    var script = document.createElement('script');
+
+                    //Sincroniza com o callback.
+                    script.src = '//viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+                    //Insere script no documento e carrega o conte�do.
+                    document.body.appendChild(script);
+
+                } //end if.
+                else {
+                    //cep é inválido.
+                    limpa_formulario_cep();
+                    alert("Formato de CEP invalido.");
+                }
+            } //end if.
+            else {
+                //cep sem valor, limpa formul�rio.
+                limpa_formulario_cep();
+            }
+        }
+        
+        
+        
+        function pesquisaLatLong(logradouro,cidade,estado) {
+        	
+        	
+        	 var script = document.createElement('script');
+
+             //Sincroniza com o callback.
+             script.src = 'http://maps.googleapis.com/maps/api/geocode/json?' + logradouro +","+ cidade +"," +estado;
+             
+             http://maps.googleapis.com/maps/api/geocode/json?address=Via+do+conhecimento,km1,+Pato+Branco,PR
+            		 
+            	 alert("lograduro:" + logradouro + "cidade:" + cidade + "estado:" + estado );
+        	
+        	
+        }
+
+
+    </script>
+    
+
+
+			
+</body>
+			
+			
+</html>
+

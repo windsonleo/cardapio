@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragmentos/head :: head-css">
+</head>
+    <title>LockScreean</title>
+
+<!-- 	<body id="mimin" class="dashboard form-signin-wrapper"> -->
+	<body  class="hold-transition login-page">
+	<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else {
+      // The person is not logged into your app or we are unable to tell.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+        appId      : '309386789890740',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v3.1'
+    });
+
+    // Now that we've initialized the JavaScript SDK, we call 
+    // FB.getLoginStatus().  This function gets the state of the
+    // person visiting this page and can return one of three states to
+    // the callback you provide.  They can be:
+    //
+    // 1. Logged into your app ('connected')
+    // 2. Logged into Facebook, but not your app ('not_authorized')
+    // 3. Not logged into Facebook and can't tell if they are logged into
+    //    your app or not.
+    //
+    // These three cases are handled in the callback function.
+
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me',{fields: 'name, email'}, function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!'
+        + 'email : ' +  response.email + "!" ;
+    });
+  }
+</script>
+
+
+	
+<!-- 	<div class="login-box"> -->
+<!--   <div class="login-logo"> -->
+<!--     <a href="#">Sushi <b>Sempai</b></a> -->
+<!--   </div> -->
+<!--   <div class="login-box-body"> -->
+<!--     <p class="login-box-msg">Acesse para Iniciar sua Sessao</p> -->
+
+<!--     <form method="post" th:object="${usuario}" th:action="@{/login}" role="form"> -->
+<!--       <div class="form-group has-feedback"> -->
+<!--         <input type="text" id="email" name="email"  class="form-control" placeholder="Email"/> -->
+<!--         <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
+<!--       </div> -->
+<!--       <div class="form-group has-feedback"> -->
+<!--         <input type="password"  id="senha" name="senha" class="form-control" placeholder="Password" /> -->
+<!--         <i class="glyphicon glyphicon-lock form-control-feedback"></i> -->
+<!--       </div> -->
+<!--       <div class="row"> -->
+<!--         <div class="col-xs-7"> -->
+<!--           <div class="checkbox"> -->
+<!--             <label> -->
+<!--               <input type="checkbox" /> Lembrar Me -->
+<!--             </label> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         <div class="col-xs-5"> -->
+<!--           <input type="submit" class="btn btn-primary btn-raised btn-block btn-flat"></input> -->
+<!--         </div> -->
+<!--         /.col -->
+<!--       </div> -->
+<!--     </form> -->
+    
+<!--     <div id="status"> -->
+<!-- </div> -->
+
+<!--     <div class="social-auth-links text-center"> -->
+<!--       <p>- OU -</p> -->
+<!--       <a href="#" onclick="checkLoginState();" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Acesse Usando o -->
+<!--         Facebook </a> -->
+<!--       <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Acesse Usando o Google+ </a> -->
+      
+      
+<!--               <fb:login-button  -->
+<!--   scope="public_profile,email" -->
+<!--   onlogin="checkLoginState();"> -->
+<!-- </fb:login-button>   -->
+
+<!--     </div> -->
+
+<!--     <p> <a th:href="@{/esquecisenha}">Esqueci a Senha </a></p> -->
+<!--     <a  th:href="@{/usuario/cadastro/}" class="text-center">Registrar novo Usuario </a> -->
+
+<!--   </div> -->
+<!-- </div> -->
+
+			
+<!-- 	  <div class="container"> -->
+
+<!--         <form class="form-signin"  method="post" th:object="${usuario}" th:action="@{/login}" role="form"> -->
+<!--           <div class="panel periodic-login"> -->
+<!--               <span class="atomic-number">69</span> -->
+<!--               <div class="panel-body text-center"> -->
+<!--                   <h1 class="atomic-symbol">Un</h1> -->
+<!--                   <p class="atomic-mass">69.123</p> -->
+<!--                   <p class="element-name">Underground</p> -->
+
+<!--                   <i class="icons icon-arrow-down"></i> -->
+<!--                   <div class="form-group form-animate-text" style="margin-top:40px !important;"> -->
+<!--                     <input type="text" id="email" name="email"  class="form-text" required="required" /> -->
+<!--                     <span class="bar"></span> -->
+<!--                     <label>Username</label> -->
+<!--                   </div> -->
+<!--                   <div class="form-group form-animate-text" style="margin-top:40px !important;"> -->
+<!--                     <input type="password"  id="senha" name="senha" class="form-text" required="required" /> -->
+<!--                     <span class="bar"></span> -->
+<!--                     <label>Password</label> -->
+<!--                   </div> -->
+<!--                   <label class="pull-left"> -->
+<!--                   <input type="checkbox" class="icheck pull-left" name="checkbox1"/> Remember me -->
+<!--                   </label> -->
+<!--                   <input type="submit" class="btn col-md-12" value="SignIn"/> -->
+<!--               </div> -->
+<!--                 <div class="text-center" style="padding:5px;"> -->
+<!--                     <a th:href="@{/esquecisenha}">Esqueci a Senha</a> -->
+<!--                     <a th:href="@{/registro}">| Registre-se</a> -->
+<!--                 </div> -->
+<!--           </div> -->
+<!--         </form> -->
+
+<!--       </div> -->
+
+
+<!--           <div class="login" > -->
+<!-- 			<form method="post" th:object="${usuario}" th:action="@{/login}" role="form" > -->
+<!--               <div> -->
+<!-- 		    	<input type="text" id="username" name="username" class="form-control" -->
+<!-- 		           th:value="${username}" placeholder="Digite seu Usuario"/> -->
+		           
+<!-- 		      </div> -->
+<!--               <div> -->
+<!-- 		    	<input type="password" id="senha" name="senha" class="form-control" -->
+<!-- 		           th:value="${senha}" placeholder="Digite sua Senha"/> -->
+<!-- 		      </div> -->
+		      
+<!--               <div> -->
+<!-- 		   		 <button type="submit" value="login" class="btn btn-success">Entrar</button> -->
+<!--                 	<span class=""><a class="reset_pass" th:href="@{/usuario/lost}"><small>Perdeu sua Senha?</small></a></span> -->
+<!--               </div> -->
+
+
+<!--             </form> -->
+<!--           </div> -->
+        
+        
+<!--       </div> -->
+
+
+<body class="hold-transition lockscreen">
+<!-- Automatic element centering -->
+<div class="lockscreen-wrapper">
+  <div class="lockscreen-logo">
+    <a th:href="@{/usuario/lock}" th:text="${configuracaoAtual.nomeempresa}" >Material<b>Admin</b>LTE</a>
+  </div>
+  <!-- User name -->
+  <div class="lockscreen-name text-center"  th:utext="${usuarioAtt.nome}" >John Doe</div>
+<!--   <div class="lockscreen-name" th:if="${usuario.nome}" th:utext="${usuario.nome}" >John Doe</div> -->
+
+  <!-- START LOCK SCREEN ITEM -->
+  <div class="lockscreen-item">
+    <!-- lockscreen image -->
+    <div class="lockscreen-image">
+       			<img th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioAtt.foto})}" class="user-image" alt="User Image" />
+              
+<!--                <img th:unless="${usuarioAtt.foto}" th:src="@{/img/logo.png}" class="user-image" alt="User Image" /> -->
+               
+<!--                  <img th:if="${usuario.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}" class="user-image" alt="User Image" /> -->
+               
+               
+    </div>
+    <!-- /.lockscreen-image -->
+
+    <!-- lockscreen credentials (contains the form) -->
+<!--     <form class="lockscreen-credentials" method="post"  th:object="${usuario}" th:action="@{/login}" role="form" > -->
+<!--       <div class="input-group"> -->
+      
+<!--         <input type="text" class="form-control" placeholder="email" th:value="${usuario.email}" id="email" name="email"/> -->
+
+<!-- 		<input th:if="${usuario.email}" class="form-control" type="password" th:value="${usuario.senha}" id="senha" name="senha" />  -->
+
+
+<!--         <div class="input-group-btn"> -->
+<!--           <button type="button" class="btn"><i class="fa fa-arrow-right text-muted"></i></button> -->
+<!--         </div> -->
+        
+        
+        
+<!--       </div> -->
+<!--     </form> -->
+    
+        <form class="lockscreen-credentials" method="post"  th:object="${usuario}" th:action="@{/usuario/unlock}" role="form" >
+      <div class="input-group">
+      
+        <input type="text" class="form-control" placeholder="senha"  id="senha" name="senha"/>
+
+<!-- 		<input th:if="${usuario.email}" class="form-control" placeholder="senha" th:value=${usuario.senha} id="senha" name="senha" />  -->
+
+
+        <div class="input-group-btn">
+          <button type="submit" class="btn"><i class="fa fa-arrow-right text-muted"></i></button>
+        </div>
+        
+        
+        
+      </div>
+    </form>
+    
+    <!-- /.lockscreen credentials -->
+
+  </div>
+  <!-- /.lockscreen-item -->
+  <div class="help-block text-center">
+    Entre com sua Senha para Voltar a Sessão
+  </div>
+  <div class="text-center">
+    <a th:href="@{/login}" >Ou Acesse com outro Usuario</a>
+  </div>
+  <div class="lockscreen-footer text-center">
+    Copyright &copy; 2014-2016 <b><a href="http://almsaeedstudio.com" class="text-black">Tecsoluction</a></b><br></br>
+    All rights reserved
+  </div>
+</div>
+<!-- /.center -->
+
+<!-- <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script> -->
+<!-- Bootstrap 3.3.6 --> 
+<!-- <script src="../../bootstrap/js/bootstrap.min.js"></script> -->
+<!-- <script src="../../dist/js/material.min.js"></script> -->
+<!-- <script src="../../dist/js/ripples.min.js"></script> -->
+<!-- <script> -->
+<!-- </script> -->
+</body>
+
+
+
+
+                      <div th:replace="fragmentos/footeraux :: script">
+      </div>
+      
+      
+
+      
+  </body>
+  
+
+
+
+</html>

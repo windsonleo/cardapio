@@ -1,0 +1,748 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name = "google-signin-client_id" content ="939690779425-hmpguptee5si7ff1lpbnloj8nbgjilo2.apps.googleusercontent.com">
+
+
+<link rel="icon" href="resources/static/img/logo.png"
+	th:href="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.logo})}" />
+	
+	<link rel="stylesheet" media="screen"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"
+	th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css}" type="text/css" />
+
+<link rel="stylesheet" media="screen"
+	href="resources/static/css/bootstrap2.min.css" th:href="@{/css/bootstrap2.min.css}" />
+	
+	<link rel="stylesheet" media="screen"
+	href="resources/static/css/plugin.css" th:href="@{/css/plugin.css}" />
+	
+	 <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+<link rel="stylesheet" media="screen"
+	href="resources/static/css/product.css" th:href="@{/css/product.css}" />
+
+
+<!-- <link rel="stylesheet" media="screen" -->
+<!-- 	href="resources/static/css/normalize.css" th:href="@{/css/normalize.css}" /> -->
+<!-- <link rel="stylesheet" media="screen" -->
+<!-- 	href="resources/static/css/main.css" th:href="@{/css/main.css}" /> -->
+<!-- <link rel="stylesheet" media="screen" -->
+<!-- 	href="resources/static/css/magic.min.css" th:href="@{/css/magic.min.css}" /> -->
+
+<!-- <script th:src="@{http://www.queness.com/js/bsa2.js}" src="http://www.queness.com/js/bsa2.js" th:inline="javascript"></script> -->
+
+</head>
+
+
+    <title>Login</title>
+
+<!-- 	<body id="mimin" class="dashboard form-signin-wrapper"> -->
+	<body>
+	
+<!-- 	<img th:src="@{/img/door.jpg}" src="" alt="" /> -->
+	
+	<div id="fb-root"> </div>
+<script th:async="async" th:defer="defer"  crossorigin="anonymous"
+ th:src="@{https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513}"
+ src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513">
+ 
+ </script>
+ 
+ 
+ <script th:src="@{https://apis.google.com/js/platform.js?onload=renderButton}" src="https://apis.google.com/js/platform.js?onload=renderButton" th:async="async" th:defer="defer" ></script>
+	
+	       <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      onSignIn(googleUser);
+      
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 200,
+        'height': 28,
+        'longtitle': false,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+	
+	
+	
+	
+	
+	<script>
+	
+	
+	 var accessToken = null;
+	 
+	 var senhas =null;
+	 
+	 var senhas2 =null;
+	
+	// This is called with the results from from FB.getLoginStatus().
+	  function statusChangeCallback(response) {
+	    console.log('statusChangeCallback');
+	    console.log(response);
+	    // The response object is returned with a status field that lets the
+	    // app know the current login status of the person.
+	    // Full docs on the response object can be found in the documentation
+	    // for FB.getLoginStatus().
+	    if (response.status === 'connected') {
+	      // Logged into your app and Facebook.
+// 	         UsuarioConectado2();
+	      accessToken = response.authResponse.accessToken;
+		    console.log(accessToken);
+
+	      UsuarioConectado();
+	      
+	    } else {
+	      // The person is not logged into your app or we are unable to tell.
+	      
+// 	      loginFacebook();
+	      document.getElementById('status').innerHTML = 'Por Favor Entre ' +
+	        'no Cardapio.';
+	    }
+	  }
+
+	  // This function is called when someone finishes with the Login
+	  // Button.  See the onlogin handler attached to it in the sample
+	  // code below.
+	  function checkLoginState() {
+	    FB.getLoginStatus(function(response) {
+	      statusChangeCallback(response);
+	    });
+	  }
+
+  
+	  window.fbAsyncInit = function() {
+		    FB.init({
+		        appId      : '1047331868960513',
+		        cookie     : true,
+		        xfbml      : true,
+		        version    : 'v5.0'
+		    });
+		    
+		    FB.AppEvents.logPageView();   
+	  
+
+	    // Now that we've initialized the JavaScript SDK, we call 
+	    // FB.getLoginStatus().  This function gets the state of the
+	    // person visiting this page and can return one of three states to
+	    // the callback you provide.  They can be:
+	    //
+	    // 1. Logged into your app ('connected')
+	    // 2. Logged into Facebook, but not your app ('not_authorized')
+	    // 3. Not logged into Facebook and can't tell if they are logged into
+	    //    your app or not.
+	    //
+	    // These three cases are handled in the callback function.
+
+	    FB.getLoginStatus(function(response) {
+	    	
+	        accessToken = response.authResponse.accessToken;
+		    console.log('2' + accessToken);
+	      statusChangeCallback(response);
+	    },true);
+
+	  };
+
+	  // Load the SDK asynchronously
+	  (function(d, s, id) {
+	    var js, fjs = d.getElementsByTagName(s)[0];
+	    if (d.getElementById(id)) return;
+	    js = d.createElement(s); js.id = id;
+	    js.src = "https://connect.facebook.net/pt_BR/sdk.js";
+	    fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));
+
+	  // Here we run a very simple test of the Graph API after login is
+	  // successful.  See statusChangeCallback() for when this call is made.
+	  function UsuarioConectado() {
+		  
+// 		  UsuarioConectado2();
+		  
+	    console.log('Welcome!  Fetching your information.... ');
+	    FB.api('/me',{ access_token : accessToken },{fields:'name,email'}, function(response) {
+		
+//	 	FB.api('/me',function(response) {
+	      console.log('Successful login for: ' + response.name);
+	      console.log('email2:' + response.email);
+
+	      document.getElementById('status').innerHTML =
+	        'Thanks for logging in, ' + response.name + '!'
+	        + 'email : ' +  response.email + '!' +
+//	          'imagem : ' + response.picture + '!' + 
+	      'id : ' + response.id + '!' ;
+	      
+	      document.getElementById('fotho').innerHTML =
+	      '<img src="https://graph.facebook.com/' + response.id + '/picture" alt="' + response.id + '" />';
+	      
+// 	      Gerarnumero();
+
+			gerarSenha();
+	     
+			var senhaa = senhas2;
+	      
+	      var nomee = response.name ;
+	      
+	      var mmail =  response.email;
+	      
+// 	      var emailo = 'eu@hotgmail.com';
+	      
+	      var fotoo = 'https://graph.facebook.com/' + response.id + '/picture';
+	      
+	      var fbid =  response.id;
+	      
+	      console.log("foto:" + fotoo);
+
+	      
+// 	      document.getElementById('email').value = response.email;
+// 			document.getElementById('email').value = mmail;
+	    	  
+// 	      document.getElementById('senha').value = senhaa;
+	      
+//	       document.getElementById('loggin').submit();
+
+	//var text = '{"nome":"'+ nomee  + '","email":"' + mmail+'","foto":"'+fotoo+'","senha":"'+ senhaa + '"}';
+
+
+	var text = [nomee, mmail,fotoo,senhaa,fbid];
+
+	var result = {nome:text[0],email:text[1],foto:text[2],senha:text[3],facebookid:text[4]};
+
+
+	// console.log("text:" + text);
+	// var objeto = JSON.parse(text);
+
+
+	var json = JSON.stringify(result);
+
+	console.log("json:" + json);
+
+			$.ajax({
+				type: "POST",
+				contentType: "application/json",
+				url: "/usuario/salvarFacebook",
+//					url: "/evento/salvar/",
+				data: json, // convert array to JSON
+				dataType: 'json',
+				cache: false,
+				timeout: 100000,
+				success: function (data) {
+
+					console.log("SUCCESS : ", data);
+						alert("Usuario retorno : " + data['nome']);
+						
+						
+						document.getElementById('email').value = data['email'];
+				    	  
+					      document.getElementById('senha').value = data['senha'];	
+					      
+					      document.getElementById('loggin').submit();
+						
+						
+				//	window.location.reload();
+				
+// 					document.getElementById('loggin').submit();
+
+				},
+				error: function (e) {
+
+					console.log("ERROR : ", e);
+
+				}
+			});
+			
+			
+			
+//	 		document.getElementById('loggin').submit();
+		
+	      
+	    });
+	    
+	    }
+	    
+// 	    function loginFacebook() {
+// 	    	  FB.login(function(response) {
+// 	    	    if (response.authResponse) {
+// 	    	    	checkLoginState();
+// 	    	    }       
+// 	    	  }, {scope: 'email,name,id' });
+// 	    	}
+	    
+	    
+// 	    function Gerarnumero() {
+	    	
+// 		var senha0 = Math.floor(Math.random() * 10);
+// 		var senha1 = Math.floor(Math.random() * 10);
+// 		var senha2 = Math.floor(Math.random() * 10);
+// 		var senha3 = Math.floor(Math.random() * 10);
+// 		var senha4 = Math.floor(Math.random() * 10);
+// 		var senha5 = Math.floor(Math.random() * 10);
+		
+// 		senhas = senha0 +senha1+senha2+senha3+senha4+senha5;
+		
+	    		   
+// 	   console.log("senha:" , senhas);
+	    		   
+	    	
+	    
+// 	    }
+	    
+	   	 function gerarSenha(){
+	   		 
+	  		var senha0 = Math.floor(Math.random() * 10);
+	  		var senha1 = Math.floor(Math.random() * 10);
+	  		var senha2 = Math.floor(Math.random() * 10);
+	  		var senha3 = Math.floor(Math.random() * 10);
+	  		var senha4 = Math.floor(Math.random() * 10);
+	  		var senha5 = Math.floor(Math.random() * 10);
+	 		
+	  		senhas = senha0 , senha1, senha2, senha3,senha4,senha5;
+	 		
+	 	    		   
+	  	   console.log("senha:" , senhas); 
+	  	   
+	  	   
+	  	   senhas2 = Math.random().toString(36).substring(6);
+	   		 
+	  	 console.log("senhas2:" , senhas2); 
+	   		 
+	   	 }
+	   	 
+  
+</script>
+
+<script type="text/javascript">
+
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+
+
+function mostrar() {
+
+	document.getElementById('formlog').style.display = "block";
+// 	document.getElementById('btlog').hidden = "true";
+	document.getElementById('conteudo').style.display = "block";
+
+	
+	
+	}
+	
+	
+	
+
+</script>
+
+<nav class="site-header sticky-top py-1">
+  <div class="container d-flex flex-column flex-md-row justify-content-between">
+    <a class="py-2" href="#" aria-label="Product">
+<!--       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24" focusable="false"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg> -->
+     <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.logo})}" width="36px;" height="24px;" src="" alt="" />
+    <span th:text="${configuracaoAtual.nomeempresa}"></span> 
+    
+    </a>
+    
+       <a href="#" th:if="${estaaberto}" class="py-2 d-none d-md-inline-block"><i class="fa fa-circle text-success"></i> Aberto</a>
+       <a href="#" th:unless="${estaaberto}" class="py-2 d-none d-md-inline-block"><i class="fa fa-circle text-danger"></i> Fechado</a>
+       
+       
+             <a href="#" class="py-2 d-none d-md-inline-block"> <i class="fa fa-phone"> </i>
+	 <span class="hidden-xs">	<span th:text="${configuracaoAtual.telefone}">81-98676-5454</span> </span>
+<!--       <small class="label text-center">81-98676-5454</small> -->
+       </a>
+      
+     
+            <a href="#" class="py-2 d-none d-md-inline-block"> <i class="fa fa-map-marker"> </i>
+		 <span class="hidden-xs">	<span th:text="${configuracaoAtual.endereco}" >av. criciuma nº 500</span> </span>
+<!--       <small class="label text-center">av. criciuma nº 500</small> -->
+       </a>
+       
+<!--             <span class="socialShare"> -->
+<!-- <!--      <span class="socialShare"></span> --> 
+<!--      </span> -->
+       
+       
+<!--     <a class="py-2 d-none d-md-inline-block" href="#">Tour</a> -->
+<!--     <a class="py-2 d-none d-md-inline-block" href="#">Product</a> -->
+<!--     <a class="py-2 d-none d-md-inline-block" href="#">Features</a> -->
+<!--     <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a> -->
+<!--     <a class="py-2 d-none d-md-inline-block" href="#">Support</a> -->
+<!--     <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a> -->
+<!--     <a class="py-2 d-none d-md-inline-block" href="#">Cart</a> -->
+  </div>
+</nav>
+
+
+
+	
+	
+	
+	
+	<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-4 font-weight-normal" th:text="${configuracaoAtual.nomeempresa}" >Punny headline</h1>
+    <p class="lead font-weight-normal">alguma coisa.</p>
+    <a class="btn btn-outline-secondary" th:href="@{/home}"  >Cardapio</a>
+     <a class="btn btn-outline-secondary" href="#" id="mostrar" data-toggle="modal"  data-target="#logmodal">Logar</a>
+<!--      <span class="socialShare"> -->
+<!--      <span class="socialShare"></span> -->
+<!--      </span> -->
+     
+     <div class="modal fade" id="logmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelPromo" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color: black;">
+              <h4 class="modal-title text-center" style="color:white; margin-left:38%;">Autenticação</h4>
+                <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                
+              </div>
+              
+<!--           <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.logo})}" src="" alt="" class="img-circle" /> -->
+              
+              <div class="modal-body">
+            
+            <section id="conteudo">
+	
+	<div class="login-box">
+<!--   <div class="login-logo"> -->
+<!--     <a th:href="@{/home}" th:text="${configuracaoAtual.nomeempresa}">Sushi <b>Sempai</b></a> -->
+
+<!--   </div> -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Acesse para Iniciar sua Sessao</p>
+    
+        <div id="fotho" class="img-circle"></div>
+
+
+<div id="formlog" class="col-md-12">
+    <form id="loggin" method="post" th:object="${usuario}" th:action="@{/login}" role="form">
+      <div class="form-group has-feedback">
+        <input type="text" id="email" name="email"  class="form-control" placeholder="Email"/>
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password"  id="senha" name="senha" class="form-control" placeholder="Password" />
+        <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+<!--           <div class="checkbox"> -->
+<!--             <label> -->
+<!--               <input type="checkbox" /> Lembrar Me -->
+<!--             </label> -->
+<!--           </div> -->
+          
+          
+          <div class="checkbox">
+                  <label>
+                    <input type="checkbox"><span class="checkbox-material"><span class="check"></span></span> Lembrar
+                  </label>
+                </div>
+          
+          
+        </div>
+        <div class="col-md-9">
+         
+         
+          <input type="submit" class="btn btn-md btn-success pull-right" value="Entrar"></input>
+        
+<!--                       <div class="fb-login-button" data-width="200" data-size="medium" data-button-type="login_with" -->
+<!--      					data-auto-logout-link="true" data-use-continue-as="true" data-onlogin="checkLoginState()" data-scope="public_profile,email" ></div> -->
+      
+<!--       				<div id="my-signin2"></div> -->
+      
+	
+        
+        </div>
+        
+      </div>
+    </form>
+   
+    </div>
+    
+    <div id="status">
+</div>
+
+<!--     <div class="col-md-3" style="margin:0px;"> -->
+<!--        <p>- OU -</p>  -->
+      
+<!--             <p>  <div onclick="mostrar()" id="btlog"> <a href="#" class="btn btn-lg btn-social btn-foursquare"><i class="fa fa-foursquare"></i> Acessar Com Login</a></div>   </p> -->
+      
+      
+<!--       <p>  <div> <a th:href="@{/home}" class="btn btn-lg btn-social btn-google"><i class="fa fa-user-plus"></i> Acessar Sem Logar</a></div>   </p> -->
+      
+      
+
+  
+
+    </div>
+    
+
+
+<!--     <p> <a th:href="@{/esquecisenha}">Esqueci a Senha </a></p> -->
+<!--      <a  th:href="@{/registro}" class="text-center">Registrar novo Usuario </a>  -->
+
+  </div>				
+<!-- 				</div> -->
+
+	</section>
+            
+              </div>
+              
+              
+              <div class="modal-footer">
+                <button type="button" class="btn btn-md btn-danger pull-right" data-dismiss="modal">Fechar</button>
+                      <div class="fb-login-button" data-width="200" data-size="medium" data-button-type="login_with"
+     					data-auto-logout-link="true" data-use-continue-as="true" data-onlogin="checkLoginState()" data-scope="public_profile,email" ></div>
+
+      				<div id="my-signin2"></div>
+
+<!--                 <button type="button" class="btn btn-primary">Save changes</button> -->
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+    
+  </div>
+  <div class="product-device shadow-sm d-none d-md-block">
+  <img th:src="@{/img/door.jpg}" src="" alt="" />
+  </div>
+  <div class="product-device product-device-2 shadow-sm d-none d-md-block">
+  
+<!--     <img th:src="@{/img/door.jpg}" src="" alt="" /> -->
+  </div>
+</div>
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+  <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+    <div class="my-3 py-3">
+      <h2 class="display-5">Chef</h2>
+      <p class="lead">Fabricio Barbosa.</p>
+    </div>
+    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+      <img th:src="@{/img/chef.jpg}" src="" alt="" />
+    </div>
+  </div>
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">Especialidades</h2>
+      <p class="lead">And an even wittier subheading.</p>
+    </div>
+    <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+          <img th:src="@{/img/esp.jpg}" src="" alt="" />
+    
+    
+    </div>
+  </div>
+</div>
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">Delivery</h2>
+      <p class="lead">And an even wittier subheading.</p>
+    </div>
+    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+    
+          <img th:src="@{/img/del.gif}" src="" alt="" />
+    
+    </div>
+  </div>
+  <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+    <div class="my-3 py-3">
+      <h2 class="display-5">Qualidade</h2>
+      <p class="lead">And an even wittier subheading.</p>
+    </div>
+    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+     <img th:src="@{/img/qual.jpg}" src="" alt="" />
+    </div>
+  </div>
+</div>
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">Cardapio Online</h2>
+      <p class="lead">And an even wittier subheading.</p>
+    </div>
+    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+         <img th:src="@{/img/cardd.jpg}" src="" alt="" />
+    
+    </div>
+  </div>
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="my-3 py-3">
+      <h2 class="display-5">Preços Imbativeis</h2>
+      <p class="lead">And an even wittier subheading.</p>
+    </div>
+    <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+         <img th:src="@{/img/prec.png}" src="" alt="" />
+    
+    </div>
+  </div>
+</div>
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">Menu</h2>
+      <p class="lead">And an even wittier subheading.</p>
+    </div>
+    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+    
+         <img th:src="@{/img/bbb.jpg}" src="" alt="" />
+    
+    
+    </div>
+  
+  
+  </div>
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="my-3 py-3">
+      <h2 class="display-5">Another headline</h2>
+      <p class="lead">And an even wittier subheading.</p>
+    </div>
+    <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+  </div>
+</div>
+	
+	
+                            <footer class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md">
+     <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.logo})}" src="" alt="" width="36px;" height="24px;" />
+      <small class="d-block mb-3 text-muted" th:text="${hoje}"> &copy; 2017-{{ site.time | date: "%Y" }}</small>
+    </div>
+<!--     <div class="col-6 col-md"> -->
+<!--       <h5>Features</h5> -->
+<!--       <ul class="list-unstyled text-small"> -->
+<!--         <li><a class="text-muted" href="#">Cool stuff</a></li> -->
+<!--         <li><a class="text-muted" href="#">Random feature</a></li> -->
+<!--         <li><a class="text-muted" href="#">Team feature</a></li> -->
+<!--         <li><a class="text-muted" href="#">Stuff for developers</a></li> -->
+<!--         <li><a class="text-muted" href="#">Another one</a></li> -->
+<!--         <li><a class="text-muted" href="#">Last time</a></li> -->
+<!--       </ul> -->
+<!--     </div> -->
+<!--     <div class="col-6 col-md"> -->
+<!--       <h5>Resources</h5> -->
+<!--       <ul class="list-unstyled text-small"> -->
+<!--         <li><a class="text-muted" href="#">Resource</a></li> -->
+<!--         <li><a class="text-muted" href="#">Resource name</a></li> -->
+<!--         <li><a class="text-muted" href="#">Another resource</a></li> -->
+<!--         <li><a class="text-muted" href="#">Final resource</a></li> -->
+<!--       </ul> -->
+<!--     </div> -->
+<!--     <div class="col-6 col-md"> -->
+<!--       <h5>Resources</h5> -->
+<!--       <ul class="list-unstyled text-small"> -->
+<!--         <li><a class="text-muted" href="#">Business</a></li> -->
+<!--         <li><a class="text-muted" href="#">Education</a></li> -->
+<!--         <li><a class="text-muted" href="#">Government</a></li> -->
+<!--         <li><a class="text-muted" href="#">Gaming</a></li> -->
+<!--       </ul> -->
+<!--     </div> -->
+<!--     <div class="col-6 col-md"> -->
+<!--       <h5>About</h5> -->
+<!--       <ul class="list-unstyled text-small"> -->
+<!--         <li><a class="text-muted" href="#">Team</a></li> -->
+<!--         <li><a class="text-muted" href="#">Locations</a></li> -->
+<!--         <li><a class="text-muted" href="#">Privacy</a></li> -->
+<!--         <li><a class="text-muted" href="#">Terms</a></li> -->
+<!--       </ul> -->
+<!--     </div> -->
+  </div>
+</footer>  
+      
+
+<!--                            <div th:replace="fragmentos/footeraux :: script" style="display:none;"></div> -->
+                   
+                  
+                   
+                   														<script src="resources/static/js/jquery-3.4.1.slim.min.js"
+			th:src="@{/js/jquery-3.4.1.slim.min.js}" th:inline="javascript" ></script>
+                       
+                       
+      <script>window.jQuery || document.write('<script src="/cardapio/js/jquery.slim.min.js"><\/script>')</script>
+                       
+                 <script src="resources/static/js/bootstrap.bundle.min.js"
+			th:src="@{/js/bootstrap.bundle.min.js}" th:inline="javascript" ></script>
+			
+			
+   <script src="resources/static/js/plugin.js"
+			th:src="@{/js/plugin.js}" th:inline="javascript" ></script>   
+                        
+
+    <script  type="text/javascript">
+
+                         
+                         $(document).ready(function(){
+						
+                        	 var url = 'https://tutorialzine.com/2014/08/cool-share-jquery-plugin/';
+
+                        	 var options = {
+
+                        	     twitter: {
+                        	         text: 'Check out this awesome jQuery Social Buttons Plugin! ',
+                        	         via: 'Tutorialzine'
+                        	     },
+
+                        	     facebook : true,
+                        	     googlePlus : true
+                        	 };
+
+                        	 $('.socialShare').shareButtons(url, options);
+                         
+                         
+                         
+                         });
+                         
+                         
+                        </script>                           
+     
+      
+  </body>
+  
+
+
+
+</html>
