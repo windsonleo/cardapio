@@ -44,10 +44,7 @@
 				
   <div class="content-wrapper">
     <section class="content-header">
-      <h1>
-<!--         Início -->
-        Salão <small  th:text="${configuracaoAtual.nomeempresa}"> nome</small>
-      </h1>
+
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"  ></i> Cardapio</a> </li>
         <li> <i class="fa fa-dashboard"  >Salão</i></li>
@@ -212,11 +209,9 @@
 
 				</div>
       
-      
-<div class="">
-       
+             
            
-    <section class="col-md-9 connectedSortable">
+    <section class="col-lg-12 col-xs-12 col-md-12 connectedSortable">
        
        			<div class="box box-primary">
             <div class="box-header with-border">
@@ -231,7 +226,7 @@
             <!-- /.box-header -->
             <div class="box-body">
       
-        <div class="col-md-6"  th:each="mesa: ${mesaList}" >
+        <div class="col-lg-4 col-xs-12 col-md-6"  th:each="mesa: ${mesaList}" >
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user-2">
             <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -323,7 +318,7 @@
            
                            <li><a th:href="@{/mesa/perfil(id=${mesa.id})}"  rel="tooltip" title="Visualizar Perfil do Mesa">Perfil <span class="pull-right badge bg-purple" ><i class="fa fa-building-o"></i></span></a></li>
            
-                <li><a th:href="@{/mesa/adicionarpedido(id=${mesa.id})}" rel="tooltip" title="Indicar para Cliente">Adicionar Pedido <span class="pull-right badge bg-navy" ><i class="fa fa-hand-o-right"></i></span></a></li>
+                <li><a th:href="@{/mesa/adicionarpedido(id=${mesa.id})}" rel="tooltip" title="Indicar para Cliente">Add Pedido <span class="pull-right badge bg-navy" ><i class="fa fa-hand-o-right"></i></span></a></li>
                
                 <li><a th:href="@{/mesa/abrir(id=${mesa.id})}" rel="tooltip" title="Abrir mesa">Abrir Mesa <span class="pull-right badge bg-green" ><i class="fa fa-cart-plus"></i></span></a></li>
                
@@ -430,10 +425,6 @@
         
         </section>
         
-        
-<!--         <div class="clearfix"></div> -->
-        
-        </div>
        
        
                 

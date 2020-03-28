@@ -43,18 +43,15 @@
 					<div th:replace="fragmentos/nav :: nav-side"> </div>
 				
   <div class="content-wrapper">
-    <section class="content-header">
-      <h1>
-<!--         Início -->
-        Ofertas <small  th:text="${configuracaoAtual.nomeempresa}"> nome</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"  ></i> Cardapio</a> </li>
-        <li> <i class="fa fa-dashboard"  >Ofertas</i></li>
+<!--     <section class="content-header"> -->
+
+<!--       <ol class="breadcrumb"> -->
+<!--         <li><a href="#"><i class="fa fa-dashboard"  ></i> Cardapio</a> </li> -->
+<!--         <li> <i class="fa fa-dashboard"  >Ofertas</i></li> -->
         
-          <li class="active" th:text="${configuracaoAtual.nomeempresa}"> Perfil</li>
-      </ol>
-    </section>
+<!--           <li class="active" th:text="${configuracaoAtual.nomeempresa}"> Perfil</li> -->
+<!--       </ol> -->
+<!--     </section> -->
     
     
     
@@ -213,7 +210,6 @@
 				</div>
       
       
-<div class="">
        
            
     <section class="col-md-12 connectedSortable">
@@ -231,7 +227,6 @@
             <!-- /.box-header -->
             <div class="box-body">
       
-			<div class="">
 			
 			<div id="promocoes" class="owl-carousel owl-theme">
 			
@@ -245,7 +240,7 @@
 
 			</a>
 			<div class="box-footer text-center">
-			<h3  th:text="${promo.nome}" class="text-center"></h3>
+			<h5  th:text="${promo.nome}" class="text-center"></h5>
 		<a th:href="@{/promocao/perfil(id=${promo.id})}" class="text-center"> <span class="badge bg-black">Detalhes</span></a>
 			
 			
@@ -256,24 +251,8 @@
 			
 			</div>
 			
-			</div>
+		
 			
-			
-			<div class="box box-primary">
-            <div class="box-header with-border text-center">
-<!--               <h3 class="box-title">Produtos</h3> -->
-
-<!--               <div class="box-tools pull-right"> -->
-<!--                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> -->
-<!--                 </button> -->
-<!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
-<!--               </div> -->
-            </div>
-<!--             /.box-header -->
-            <div class="box-body">
-			
-			
-			<div class="">
 			
 			<div id="produtopromocoes" class="owl-carousel owl-theme">
 			
@@ -321,17 +300,17 @@
    
    
    
-        </div>
+<!--         </div> -->
         
-        </div>
-        </div>
+<!--         </div> -->
+<!--         </div> -->
         
     
         </section>
         
         
         
-        </div>
+<!--         </div> -->
        
        
                 
@@ -380,7 +359,7 @@
 // 			    nav:true,
 			    responsive:{
 			        0:{
-			          items:1
+			          items:2
 			        },
 			        600:{
 			          items:3
@@ -434,10 +413,10 @@
 // 			    nav:true,
 			    responsive:{
 			        0:{
-			          items:4
+			          items:3
 			        },
 			        600:{
-			          items:7
+			          items:5
 			        },
 			        1000:{
 			          items:10

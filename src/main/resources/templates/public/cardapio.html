@@ -43,18 +43,15 @@
 					<div th:replace="fragmentos/nav :: nav-side"> </div>
 				
   <div class="content-wrapper">
-    <section class="content-header">
-      <h1>
-<!--         Início -->
-        Cardapio <small  th:text="${configuracaoAtual.nomeempresa}"> nome</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"  ></i> Cardapio</a> </li>
-        <li> <i class="fa fa-dashboard"  >Cardapio</i></li>
+<!--     <section class="content-header"> -->
+
+<!--       <ol class="breadcrumb"> -->
+<!--         <li><a href="#"><i class="fa fa-dashboard"  ></i> Cardapio</a> </li> -->
+<!--         <li> <i class="fa fa-dashboard"  >Cardapio</i></li> -->
         
-          <li class="active" th:text="${configuracaoAtual.nomeempresa}"> Perfil</li>
-      </ol>
-    </section>
+<!--           <li class="active" th:text="${configuracaoAtual.nomeempresa}"> Perfil</li> -->
+<!--       </ol> -->
+<!--     </section> -->
     
     
     
@@ -230,7 +227,6 @@
 <!--             /.box-header -->
             <div class="box-body">
       
-			<div class="">
 			
 			<div id="categorias" class="owl-carousel owl-theme">
 			
@@ -263,27 +259,7 @@
 			
 			</div>
 			
-			</div>
-			
-			
-			<div class="box box-primary">
-            <div class="box-header with-border text-center">
-<!--               <h3 class="box-title">Produtos</h3> -->
-
-<!--               <div class="box-tools pull-right"> -->
-<!--                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> -->
-<!--                 </button> -->
-<!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
-<!--               </div> -->
-            </div>
-<!--             /.box-header -->
-            <div class="box-body">
-			
-			<div class="">
-			
-			
-			
-			
+		
 			<div id="produtoscategoria" class="owl-carousel owl-theme">
 			
 			<th:block th:each="categoria: ${categoriaLista}">
@@ -323,11 +299,11 @@
 			
 			</div>
 			
-			</div>
+<!-- 			</div> -->
 <!-- 			</div> -->
 			
-			</div>
-			</div>
+<!-- 			</div> -->
+<!-- 			</div> -->
 			
 			</section>
 			
@@ -340,31 +316,7 @@
 			
 			</div>
             
-            
-<!--             <div th:switch="${mesa.status}" th:remove = "tag"> -->
-            
-            
 
-
-            
-<!--             <div class="clearfix"></div> -->
-            
-                    
-            
-<!--           </div> -->
-   
-   
-   
-   
-   
-   
-   
-   
-<!--         </div> -->
-
-
-    
-<!--         </section> -->
         
         	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
         
@@ -402,7 +354,7 @@
 // 			    nav:true,
 			    responsive:{
 			        0:{
-			          items:1
+			          items:2
 			        },
 			        600:{
 			          items:3
@@ -458,10 +410,10 @@
 // 			    nav:true,
 			    responsive:{
 			        0:{
-			          items:4
+			          items:3
 			        },
 			        600:{
-			          items:7
+			          items:4
 			        },
 			        1000:{
 			          items:10

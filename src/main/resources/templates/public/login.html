@@ -305,9 +305,9 @@ function mostrar() {
 			</header>
 			
 			
-			  <div class="row col-md-8" style="margin-top:5%;margin-left:45%; z-index:1001;">
+			  <div class="row" style="margin-top:5%;margin-left:45%; z-index:1001;">
     
-    <div class="col-md-6"  th:if="${sucesso}">
+    <div class="col-md-6 col-xs-8 col-lg-4"  th:if="${sucesso}">
     
     <div class="alert alert-success alert-dismissible" >
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i></button>
@@ -320,7 +320,7 @@ function mostrar() {
               
               
               
-              <div class="col-md-6"  th:if="${erro}">
+              <div class="col-md-6 col-xs-8 col-lg-4"  th:if="${erro}">
                   <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <i class="fa fa-times" style="color:#fff;"></i></button>
                 <h4><i class="icon fa fa-check"></i> Erro </h4>
@@ -345,7 +345,7 @@ function mostrar() {
         <div id="fotho" class="img-circle"></div>
 
 
-<div  class="col-md-8">
+<div  class="col-lg-5 col-xs-12 col-md-8">
     <form id="loggin" method="post" th:object="${usuario}" th:action="@{/login}" role="form">
       <div class="form-group has-feedback">
         <input type="text" id="email" name="email"  class="form-control" placeholder="Email"/>
@@ -356,7 +356,7 @@ function mostrar() {
         <i class="glyphicon glyphicon-lock form-control-feedback"></i>
       </div>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6 col-lg-4 col-xs-8">
 <!--           <div class="checkbox"> -->
 <!--             <label> -->
 <!--               <input type="checkbox" /> Lembrar Me -->
@@ -372,7 +372,7 @@ function mostrar() {
           
           
         </div>
-        <div class="col-md-12">
+        <div class="col-md-9 col-lg-6 col-xs-6">
          
          
           			<input type="submit" class="btn btn-md btn-success pull-right" value="Entrar"></input>

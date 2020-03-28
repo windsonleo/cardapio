@@ -74,12 +74,12 @@
     
     
     
-     <section id="secind" class=" connectedSortable">
+<!--      <section id="secind" class=" connectedSortable"> -->
     
     
-    <div class="row">
+<!--     <div class="row"> -->
     
-    <div class="col-md-6"  th:if="${sucesso}">
+    <div class="col-lg-4 col-md-6 col-xs-8"  th:if="${sucesso}">
     
     <div class="alert alert-success alert-dismissible" role="alert" >
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i></button>
@@ -92,7 +92,7 @@
               
               
               
-              <div class="col-md-6"  th:if="${erro}">
+              <div class="col-lg-4 col-md-6 col-xs-8"  th:if="${erro}">
                   <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> <i class="fa fa-times" style="color:#fff;"></i></button>
                 <h4><i class="icon fa fa-check"></i> Erro </h4>
@@ -101,12 +101,12 @@
               
               </div>
     
-    <div role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000" class="toast direct-chat-primary direct-chat-msg right col-md-5" data-autohide="true">
-  <div class="direct-chat-info" style="font-size:17px;">
+    <div role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000" class="toast direct-chat-primary direct-chat-msg right col-lg-4 col-md-6 col-xs-8" data-autohide="true">
+  <div class="direct-chat-info" style="">
     <img th:if="${usuarioIndica.foto}" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioIndica.foto})}" class="direct-chat-img img-md" alt="User Image">
 <!--      <div class="direct-chat-info">  -->
     
-    <span class="direct-chat-timestamp"  th:text="|${#dates.format(hoje,'dd/MM/yyyy')}               INDICAÇÃO DE |">Indicação</span>
+    <span class="direct-chat-timestamp"  th:text="${#dates.format(hoje,'dd/MM/yyyy')}">Indicação</span>
     <span class="direct-chat-name pull-right"  th:text="|${usuarioIndica.nome}|">Indicação</span>
     
     
@@ -119,7 +119,7 @@
 
   </div>
   <div class="toast-body direct-chat-text">
-            <img th:if="${produtoIndica.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produtoIndica.foto})}" src="img-circle img-lg" class="img-circle img-lg" alt="User Image" /> 
+            <img th:if="${produtoIndica.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produtoIndica.foto})}" src="img-circle img-lg" class="img-circle img-md" alt="User Image" /> 
  		<img th:unless="${produtoIndica.foto}" th:src="@{/img/produto/vazio.jpg}" class="img-circle img-lg" src="img/produto/vazio.jpg"  alt="User Image" /> 
  			
  			<h4 th:if="${produtoIndica.nome}" class="text-center" th:text="${produtoIndica.nome}" >Nadia Carmichael</h4>
@@ -147,11 +147,11 @@
 </div>
     
     
-    </div>
+<!--     </div> -->
     
      
     
-    </section>
+<!--     </section> -->
     
     
     
@@ -166,72 +166,67 @@
 <!--         <li class="active">Inicio</li> -->
 <!--       </ol> -->
       
-       <section class="col-md-12 connectedSortable">
+<!--        <section class="col-md-12 connectedSortable"> -->
        
-      	 <div class="row justify-content-md-center">
-          <div class="box box-solid">
-            <div class="">
-<!--               <h3 class="box-title">BANNER</h3> -->
-<!--                             <div class="box-tools pull-right"> -->
-<!--                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i> -->
-<!--                 </button> -->
-<!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button> -->
+<!--       	 <div class="row justify-content-md-center"> -->
+<!--           <div class="box box-solid"> -->
+<!--             <div class=""> -->
+
+              
+<!--             </div> -->
+<!--             /.box-header -->
+<!--             <div class="box-body"> -->
+<!--               <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> -->
+<!--                 <ol class="carousel-indicators"> -->
+<!--                   <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li> -->
+<!--                   <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li> -->
+<!--                   <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li> -->
+<!--                 </ol> -->
+<!--                 <div class="carousel-inner"> -->
+<!--                   <div class="item active img-fluid"> -->
+<!--                     <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner1})}" alt="First slide" /> -->
+
+<!--                     <div class="carousel-caption"> -->
+<!--                       Compromisso -->
+<!--                     </div> -->
+<!--                   </div> -->
+<!--                   <div class="item img-fluid"> -->
+<!--                       <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner2})}" alt="Second slide" /> -->
+
+<!--                     <div class="carousel-caption"> -->
+<!--                       Dedicação -->
+<!--                     </div> -->
+<!--                   </div> -->
+<!--                   <div class="item img-fluid"> -->
+<!--                         <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner3})}" alt="Third slide" /> -->
+
+<!--                     <div class="carousel-caption"> -->
+<!--                       Comprometimento -->
+<!--                     </div> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--                 <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"> -->
+<!--                   <span class="fa fa-angle-left"></span> -->
+<!--                 </a> -->
+<!--                 <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"> -->
+<!--                   <span class="fa fa-angle-right"></span> -->
+<!--                 </a> -->
 <!--               </div> -->
               
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-                </ol>
-                <div class="carousel-inner">
-                  <div class="item active img-fluid">
-                    <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner1})}" alt="First slide" />
-
-                    <div class="carousel-caption">
-                      Compromisso
-                    </div>
-                  </div>
-                  <div class="item img-fluid">
-                      <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner2})}" alt="Second slide" />
-
-                    <div class="carousel-caption">
-                      Dedicação
-                    </div>
-                  </div>
-                  <div class="item img-fluid">
-                        <img th:src="@{/img/configuracao/{logoc}(logoc=${configuracaoAtual.banner3})}" alt="Third slide" />
-
-                    <div class="carousel-caption">
-                      Comprometimento
-                    </div>
-                  </div>
-                </div>
-                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                  <span class="fa fa-angle-left"></span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                  <span class="fa fa-angle-right"></span>
-                </a>
-              </div>
-              
             
               
               
-            </div>
+<!--             </div> -->
             
 
 
           
           
-        </div>
+<!--         </div> -->
         
-        </div>
+<!--         </div> -->
         
-        </section>
+<!--         </section> -->
         
 <!--          <div class="col-md-2"> -->
         
@@ -325,11 +320,37 @@
       
     </section>
     
+    
+    <section class="connectedSortable">
+				<div id="banners" class="owl-carousel owl-theme">
+
+					<div th:if="${configuracaoAtual.banner1}">					
+					<img th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.banner1})}"  alt="User Image"  />
+					
+					</div>
+					
+					<div th:if="${configuracaoAtual.banner2}">					
+					<img   th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.banner2})}"  alt="User Image"  />
+					
+					</div>
+					
+					<div th:if="${configuracaoAtual.banner3}">					
+					<img   th:src="@{/img/configuracao/{fotoc}(fotoc=${configuracaoAtual.banner3})}"  alt="User Image"  />
+					
+					</div>
+
+			
+			</div>
+    
+    
+    
+    </section>
+    
         <section th:if="${usuarioIndica}" class="col-md-12 connectedSortable">
     
             <div class="box box-solid">
             <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
-              <i class="fa fa-flag"></i> <h3 class="box-title">PRODUTOS COM DESCONTO</h3>
+              <i class="fa fa-flag"></i> <h5 class="box-title">DESCONTOS</h5>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" ></i>
@@ -1010,7 +1031,7 @@
             <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
                             <i class="fa fa-th"></i>
               
-              <h3 class="box-title">TOP AVALIADOS</h3>
+              <h5 class="box-title">TOP AVALIADOS</h5>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -1020,11 +1041,12 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+		<div class="row">
 		<div class="col-md-6" th:each="produto: ${destaqueprodLista}" >
           <div class="box box-widget widget-user" >
             <div class="widget-user-header bg-aqua-active ui-sortable-handle"   th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard} + '-active ui-sortable-handle' ">
-              <h3 class="widget-user-username text-center" th:text="${produto.nome}">Thanh Nguyen</h3>
-              <h5 class="widget-user-desc text-center" th:text="${produto.descricao}">Founder &amp; CEO</h5>
+              <h5 class="widget-user-username text-center" th:text="${produto.nome}">Thanh Nguyen</h5>
+              <h6 class="widget-user-desc text-center" th:text="${produto.descricao}">Founder &amp; CEO</h6>
             </div>
             <div class="widget-user-image">
               <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}"  alt="User Image" class="img-circle"/>
@@ -1088,6 +1110,7 @@
         </div>
         </div>
         </div>
+        </div>
         
         
         </section>
@@ -1099,7 +1122,7 @@
         
             <div class="box box-solid">
             <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
-              <i class="fa fa-flag"></i> <h3 class="box-title">PROMOÇÕES</h3>
+              <i class="fa fa-flag"></i> <h5 class="box-title">PROMOÇÕES</h5>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" ></i>
@@ -1117,7 +1140,7 @@
                 <div class="ribbon red"  th:class=" 'ribbon '+ ${promocao.corfaixa}"><span th:text="|${promocao.desconto} %|" >Desconto 10%</span></div>
                 
                        <img th:if="${promocao.foto}" th:src="@{/img/promocao/{fotoc}(fotoc=${promocao.foto})}" class="img-circle img-md" alt="User Image" /> 
-                     <h4 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h4>
+                     <h5 class="widget-user-username" th:text="${promocao.nome}" >Nadia Carmichael</h5>
                      
            <span class="pull-left badge bg-blue" th:utext="${#dates.format(promocao.datavalidade,'dd/MM/yyyy')}" ><i class="fa fa-clock"></i>31</span>    
            
@@ -1297,7 +1320,7 @@
        <div class="">
        		<div class="box box-solid">
             <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
-              <i class="fa fa-pie-chart"></i><h3 class="box-title">GRÁFICOS</h3>
+              <i class="fa fa-pie-chart"></i><h5 class="box-title">GRÁFICOS</h5>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -1520,7 +1543,7 @@
             <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
                             <i class="fa fa-th"></i>
               
-              <h3 class="box-title">TOP INDICADOS</h3>
+              <h4 class="box-title">TOP INDICADOS</h4>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" ></i>
@@ -1533,8 +1556,8 @@
 		<div class="col-md-6" th:each="produto: ${indicaprodLista}" >
           <div class="box box-widget widget-user" >
             <div class="widget-user-header bg-aqua-active ui-sortable-handle"   th:class=" 'widget-user-header bg-'+ ${configuracaoAtual.corcard} + '-active ui-sortable-handle' ">
-              <h3 class="widget-user-username text-center" th:text="${produto.nome}">Thanh Nguyen</h3>
-              <h5 class="widget-user-desc text-center" th:text="${produto.descricao}">Founder &amp; CEO</h5>
+              <h5 class="widget-user-username text-center" th:text="${produto.nome}">Thanh Nguyen</h5>
+              <h6 class="widget-user-desc text-center" th:text="${produto.descricao}">Founder &amp; CEO</h6>
             </div>
             <div class="widget-user-image">
               <img th:if="${produto.foto}" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}"  alt="User Image" class="img-circle"/>
@@ -1773,7 +1796,7 @@
                     <div class="input-group">
                       <input type="text" name="message" placeholder="Type Message ..." class="form-control">
                           <span class="input-group-btn">
-                            <button type="button" class="btn btn-warning btn-flat">Send</button>
+                            <button type="button" class="btn btn-warning btn-flat">Enviar</button>
                           </span>
                     </div>
                   </form>
@@ -1816,21 +1839,44 @@
 
 
 </div>
-<!-- </div> -->
 
-<!-- 											<script src="resources/static/js/bootstrap.min.js" -->
-<!-- 			th:src="@{/js/bootstrap.min.js}" th:inline="javascript" ></script> -->
+<script type="text/javascript">
+		
+			$('#banners').owlCarousel({
+// 				items:3,
+				loop:true,
+			    margin:10,
+			    nav:false,
+			    autoplay:true,
+			    responsive:{
+			        0:{
+			          items:1,
+			          nav:false
+			        },
+			        600:{
+			          items:1,
+			          nav:false
+			        },
+			        1000:{
+			          items:1,
+			          nav:false
+			        }
+			    },
+			    
+// 			    URLhashListener:true,
+		        autoplayHoverPause:true,
+// 		        startPosition: 'URLHash',
+		        callbacks: true
+// 		        center:true
+			});
+
+			</script>
+		
 
 	
-								<script src="https://cdn.jsdelivr.net/highlight.js/9.9.0/highlight.min.js"
-			th:src="@{https://cdn.jsdelivr.net/highlight.js/9.9.0/highlight.min.js}" th:inline="javascript" ></script>
-			
-			<script th:inline="javascript">hljs.initHighlightingOnLoad();</script>
-			
-			
-			
+								
 				<script src="resources/static/js/stackedCards.js"
-			th:src="@{/js/stackedCards.js}" th:inline="javascript" ></script>
+			th:src="@{/js/stackedCards.js}" th:inline="javascript"></script>
 			
 								<script src="resources/static/js/stackedCards.min.js"
 			th:src="@{/js/stackedCards.min.js}" th:inline="javascript" ></script>

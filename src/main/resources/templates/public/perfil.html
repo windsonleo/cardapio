@@ -128,8 +128,8 @@
               </div>
           
               <h5 class="widget-user-username" th:text="${produto.nome}" >Nadia Carmichael</h5>
-              <h6 class="widget-user-desc" th:text="${produto.descricao}" >Lead Developer</h6>
-              <ul class="rating">
+              <h6 class="widget-user-desc text-center" th:text="${produto.descricao}" >Lead Developer</h6>
+              <ul class="rating text-center">
               
               									<th:block
 										th:each="i: ${#numbers.sequence(1, 5)}">
@@ -190,7 +190,7 @@
                 
                 <li> <a href="#"> Recomendar <span class="pull-right"> <div class="fb-like" th:attr="data-href='https://sushisenpai.herokuapp.com/produto/perfil?id=' + ${produto.id}" data-width="" data-layout="button_count" data-action="recommend" data-size="small" data-share="false"></div></span></a> </li>
                 
-                <li><a th:href="@{/carrinho/adicionarperfil(id=${produto.id})}" rel="tooltip" title="Add para Carrinho">Adicionar ao Carrinho <span class="pull-right badge bg-green" ><i class="fa fa-cart-plus"></i></span></a></li>
+                <li><a th:href="@{/carrinho/adicionarperfil(id=${produto.id})}" rel="tooltip" title="Add para Carrinho">Add ao Carrinho <span class="pull-right badge bg-green" ><i class="fa fa-cart-plus"></i></span></a></li>
            
            
 <!--                 <li><a th:href="@{/usuario/indica(id=${produto.id})}">Sugerir <span class="pull-right badge bg-orange" ><i class="fa fa-hand-o-right"></i>84</span></a></li> -->
@@ -345,7 +345,7 @@
         
         </div>
         
-         <section class="col-md-8 connectedSortable pull-right">
+         <section class="col-md-8 connectedSortable">
           <div class="">
                   <div class="box box-solid">
             <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
