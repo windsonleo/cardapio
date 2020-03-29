@@ -115,6 +115,10 @@ public class Usuario  extends BaseEntity implements Serializable {
 	    @CollectionTable(name = "mensagem_usuario", joinColumns = @JoinColumn(name = "id"))
 //	    @JsonManagedReference
 	    private List<Mensagem> mensagens;
+	    
+	    
+	    @OneToMany(mappedBy="usuario",fetch=FetchType.EAGER)
+	    private Set<Sorteio> sorteios;
 
     
 //    @JsonIgnore
@@ -191,6 +195,25 @@ public class Usuario  extends BaseEntity implements Serializable {
     	
     	
     	this.getMensagens().remove(index);
+	
+    	
+    }
+    
+    
+  public void addSorteios(Sorteio item){
+    	
+    	
+    	this.getSorteios().add(item);
+    	
+    	
+    	
+    }
+//    
+//    
+    public void removeSorteios(int index){
+    	
+    	
+    	this.getSorteios().remove(index);
 	
     	
     }

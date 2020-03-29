@@ -1,0 +1,461 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+
+	
+
+	
+	</head>
+	
+<!-- 			<link rel="stylesheet" media="screen" -->
+<!-- 	href="resources/static/css/stylemachine.css" -->
+<!-- 	th:href="@{/css/stylemachine.css}" type="text/css" /> -->
+	
+<!-- 		<link rel="stylesheet" media="screen" -->
+<!-- 	href="resources/static/css/jquery.slotmachine.css" -->
+<!-- 	th:href="@{/css/jquery.slotmachine.css}" type="text/css" /> -->
+		
+		<title>Sorteio</title>
+		
+
+  
+		
+		
+			<body  class="theme-red">
+			
+			
+
+			
+						    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Aguarde...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING..." />
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+
+	   			  <nav th:replace="fragmentos/top-nav :: top-nav">
+				
+				</nav>
+				
+<!-- 					<div th:replace="fragmentos/nav :: nav-side"> </div> -->
+
+    <!-- Main content -->
+<!--    <br> </br> -->
+    
+    <section class="contentt">
+    
+            <div class="container-fluid">
+            
+            <div class="block-header">
+                <h2>SORTEIO</h2>
+            </div>
+            
+            <div class="row clearfix">
+            
+            
+                  <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Sorteio
+                                <small>   <a th:href="@{/home}"> <i class="material-icons">home</i></a></small>
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">pdf</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                        
+                         <div class="row clearfix">
+                        
+<!--                          <div class="row clearfix"> -->
+                        <div  class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-light-green">
+                            <h2>
+                                Usuario
+                                <small>  <span class="description-header" th:utext="${usuarioAtt.id}"> </span>- <a href="https://daneden.github.io/animate.css/" target="_blank">daneden.github.io/animate.css</a></small>
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">pdf</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                           
+                           
+            <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header">
+              <h5 class="widget-user-username" th:text="${usuarioAtt.nome}">Nome do Cliente</h5>
+              <h6 class="widget-user-desc" th:text="${usuarioAtt.email}">Tipo &amp; TERAPIA</h6>
+            </div>
+            
+            
+<!--             <div class="widget-user-image" th:if="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/cliente/{fotoc}(fotoc=${filename})}" alt="User Avatar file"/> -->
+<!--             </div> -->
+            
+                        <div class="widget-user-image" th:unless="${usuarioAtt.foto}">
+              <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar file unles" width="150px" height="150px"/>
+            </div>
+            
+            
+            
+                       <div class="widget-user-image" th:if="${usuarioAtt.foto}">
+              <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioAtt.foto})}" alt="User Avatar pac if" width="150px" height="150px"/>
+            </div>
+            
+            
+                     
+            
+            
+            <div class="box-footer">
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="description-block">
+                  
+<!--                <div class="widget-user-header"> -->
+<!--               <h5 id="premionome" class="widget-user-username" th:text="${premio.name}">Nome do Cliente</h5> -->
+<!--               <h6 id="premiodesconto" class="widget-user-desc" th:text="${premio.desconto}">Tipo &amp; TERAPIA</h6> -->
+<!--             </div> -->
+
+                  </div>
+                  
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+<!--                   </div> -->
+<!--                   </div> -->
+                  
+<!--                   </div> -->
+<!--                   </div> -->
+<!--                   </div> -->
+<!--                   </div> -->
+<!--                   </div> -->
+<!--                   </div> -->
+                  
+
+<!--                            <div class="row clearfix"> -->
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-light-green">
+                            <h2>ROLETA</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <form id="wizard_with_validation" th:action="@{/sorteio/validarSorteio}"    method="POST">
+                           
+                                <h3>CODIGO DO SORTEIO</h3>
+                                <fieldset>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="id" required="required" th:value="${sorteio.id}"/>
+                                            <label class="form-label">ID*</label>
+                                        </div>
+                                    </div>
+<!--                                     <div class="form-group form-float"> -->
+<!--                                         <div class="form-line"> -->
+<!--                                             <input type="password" class="form-control" name="password" id="password" required="required" /> -->
+<!--                                             <label class="form-label">Password*</label> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="form-group form-float"> -->
+<!--                                         <div class="form-line"> -->
+<!--                                             <input type="password" class="form-control" name="confirm" required="required" /> -->
+<!--                                             <label class="form-label">Confirm Password*</label> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+                                </fieldset>
+
+                                <h3>CODIGO DO CLIENTE</h3>
+                                <fieldset>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="text" name="cpf" class="form-control" required="required" value="111" />
+                                            <label class="form-label">CPF*</label>
+                                        </div>
+                                    </div>
+<!--                                     <div class="form-group form-float"> -->
+<!--                                         <div class="form-line"> -->
+<!--                                             <input type="text" name="surname" class="form-control" required="required" /> -->
+<!--                                             <label class="form-label">Last Name*</label> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="form-group form-float"> -->
+<!--                                         <div class="form-line"> -->
+<!--                                             <input type="email" name="email" class="form-control" required="required" /> -->
+<!--                                             <label class="form-label">Email*</label> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="form-group form-float"> -->
+<!--                                         <div class="form-line"> -->
+<!--                                             <textarea name="address" cols="30" rows="3" class="form-control no-resize" required="required"></textarea> -->
+<!--                                             <label class="form-label">Address*</label> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="form-group form-float"> -->
+<!--                                         <div class="form-line"> -->
+<!--                                             <input min="18" type="number" name="age" class="form-control" required="required" /> -->
+<!--                                             <label class="form-label">Age*</label> -->
+<!--                                         </div> -->
+<!--                                         <div class="help-info">The warning step will show up if age is less than 18</div> -->
+<!--                                     </div> -->
+                                </fieldset>
+
+<!--                                 <h3>Confirmar</h3> -->
+<!--                                 <fieldset> -->
+<!--                                     <input id="acceptTerms-2" name="acceptTerms" type="checkbox" required="required" /> -->
+<!--                                     <label for="acceptTerms-2">I agree with the Terms and Conditions.</label> -->
+<!--                                 </fieldset> -->
+<!--                                 <button  type="submit"> enviar</button> -->
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+<!--             </div> -->
+                  
+
+<!--                     <div class="row clearfix"> -->
+              <div  class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-light-green">
+                            <h2>
+                                SORTEIO
+                                <small>  <span class="description-header" th:utext="${usuarioAtt.id}"> </span>- <a href="https://daneden.github.io/animate.css/" target="_blank">daneden.github.io/animate.css</a></small>
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">pdf</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                           
+                    <form th:action="@{/sorteio/salvarsorteio}" th:object="${sorteio}" ModelAttribute="sorteio"  enctype="multipart/form-data"  method="post">   
+            <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header">
+<!--               <h5  class="widget-user-username" th:text="${sorteio.id}">Nome do Cliente</h5> -->
+<!--               <h6  class="widget-user-desc" th:text="${sorteio.ativo}">Tipo &amp; TERAPIA</h6> -->
+            </div>
+            
+            
+<!--             <div class="widget-user-image" th:if="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/cliente/{fotoc}(fotoc=${filename})}" alt="User Avatar file"/> -->
+<!--             </div> -->
+            
+<!--                         <div class="widget-user-image" th:unless="${usuarioAtt.foto}"> -->
+<!--               <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar file unles" width="150px" height="150px"/> -->
+<!--             </div> -->
+            
+            
+            
+<!--                        <div class="widget-user-image" th:if="${usuarioAtt.foto}"> -->
+<!--               <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioAtt.foto})}" alt="User Avatar pac if" width="150px" height="150px"/> -->
+<!--             </div> -->
+            
+            
+			<div class="form-groupp label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-lock"></i>
+                  </div>
+			               
+                                  <input id="id" name="id" class="form"  type="text" th:value="${sorteio.id}"/>
+			              </div>
+			              
+			              </div>
+			         		
+	
+
+            
+                   			         <div class="demo-checkbox">
+                   			                        
+			         		
+			         		    <div class="checkbox">
+                                    <label>
+                                  <input id="basic_checkbox_1"  class="checkbox"  type="checkbox" th:checked="${sorteio.ativo}"/>
+                                  Ativo</label>
+                                </div>
+                                
+                                			         		    <div class="checkbox">
+                                    <label>
+                                  <input id="basic_checkbox_2"  class="checkbox"  type="checkbox" th:checked="${sorteio.valido}"/>
+                                  Valido</label>
+                                </div>
+                                
+                                
+                                			         		    <div class="checkbox">
+                                    <label>
+                                  <input id="basic_checkbox_3"  class="checkbox"  type="checkbox" th:checked="${sorteio.resgatado}"/>
+                                  resgatado</label>
+                                </div>
+
+			            </div>
+			            
+			                                        <div class="form-groupp label-floating ">
+<!--                             <div class="control-group"> -->
+<!--                                 <label class="control-label">Data Nascimento</label> -->
+                                                    <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                                    <input autocomplete="off" id="data" class="form-controll pull-right" name="data" type="text" th:field="*{data}"
+                                           placeholder="Data" />
+                                </div>
+                                </div>
+                                
+                                <div class="form-groupp label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-photo"></i>
+                  </div>
+							
+										<input id="cliente" name="cliente" class="form-controll android" type="text"  th:value="${sorteio.cliente}" placeholder="Digite a cliente" />
+							
+			                </div>
+			              </div>
+			              
+			                                              <div class="form-groupp label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-photo"></i>
+                  </div>
+							
+										<input id="premio" name="premio" class="form-controll android" type="text"  th:value="${sorteio.premio}" placeholder="Digite a premio" />
+							
+			                </div>
+			              </div>
+                                
+                                
+            
+            
+            <div class="box-footer">
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="description-block">
+                  
+
+                  
+
+                  </div>
+                  
+                  </div>
+                                                 <button id="salvar" type="button" class="btn bg-purple btn-md" disabled="disabled"  >Salvar
+              <i class="material-icons">email</i>
+             </button>
+                  </div>
+                  </div>
+                  </div>
+                  
+                  </form>  
+                  
+                  
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+
+                </div>
+                </div>
+</div>
+       
+            
+       </div>
+       </div>
+<!--        </div> -->
+<!--        </div> -->
+<!--        </div> -->
+       
+        
+    </section>
+        
+ 
+
+
+	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+	
+
+			
+<!-- 								<script src="resources/static/js/slotmachine.min.js" -->
+<!-- 			th:src="@{/js/slotmachine.min.js}" th:inline="javascript" ></script> -->
+
+	
+	
+
+    
+	    
+	   
+</body>
+		
+			
+</html>
+

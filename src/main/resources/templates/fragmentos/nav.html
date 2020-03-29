@@ -63,7 +63,7 @@
       
       <li class="header">PUBLICO</li>
       
-        <li class="treeview active">
+        <li class="treeview">
           <a th:href="@{/home}">
             			<i class="fa fa-circle-o text-aqua"></i>
  <span>DESTAQUES</span>
@@ -112,6 +112,22 @@
           <a th:href="@{/promocao/ofertas}">
             			<i class="fa fa-circle-o text-navy"></i>
  <span>OFERTAS</span>
+            <span class="pull-right-container">
+<!-- 			<small class="label pull-right bg-green">Pedidos</small> -->
+			
+			</span>
+          </a>
+<!--           <ul class="treeview-menu"> -->
+<!--             <li><a th:href="@{/home}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li> -->
+<!--             <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
+<!--           </ul> -->
+        </li>
+        
+        
+        <li class="treeview">
+          <a th:href="@{/sorteio}">
+            			<i class="fa fa-circle-o text-white"></i>
+ <span>SORTEIOS</span>
             <span class="pull-right-container">
 <!-- 			<small class="label pull-right bg-green">Pedidos</small> -->
 			
@@ -368,6 +384,31 @@
 <!--           </a> -->
 
 <!--         </li> -->
+
+        <li class="treeview">
+          <a th:href="@{/sorteio/movimentacao}">
+            <i class="fa fa-user"></i> <span>SORTEIO</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+              <span class="label label-primary pull-right">4</span>
+              
+            </span>
+          </a>
+
+        </li>
+        
+                <li class="treeview">
+          <a th:href="@{/premio/movimentacao}">
+            <i class="fa fa-user"></i> <span>PREMIO</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+              <span class="label label-primary pull-right" >4</span>
+              
+            </span>
+          </a>
+
+        </li>
+        
         <li class="treeview">
           <a th:href="@{/usuario/movimentacao}">
             <i class="fa fa-user"></i> <span>USUARIO</span>

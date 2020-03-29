@@ -22,6 +22,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -109,6 +110,10 @@ public class Produto extends BaseEntity implements Serializable {
    
     @Enumerated(EnumType.STRING)
     private ModoPreparo modopreparo;
+    
+    
+    @OneToMany(mappedBy = "produto")
+    private List<Premio> premios;
 
 
     public Produto(UUID id, String foto, String nome, String codebar, String descricao,

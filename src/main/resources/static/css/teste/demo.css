@@ -51,7 +51,7 @@ a:hover, a:focus {
 
 /* Header */
 .codrops-header {
-	padding: 3vmax 0 0 3vmax;
+/* 	padding: 3vmax 0 0 3vmax; */
 	position: absolute;
 	width: 100%;
 	z-index: 2000;
@@ -308,16 +308,16 @@ a:hover, a:focus {
 	transform: translate3d(0,0,0);
 }
 
-.pater__title::before {
-	content: 'Sponsored by';
-	position: absolute;
-	bottom: 98%;
-	left: 40%;
-	font-weight: bold;
-	letter-spacing: 2px;
-	font-size: 0.45em;
-	color: #5b130e;
-}
+/* .pater__title::before { */
+/* 	content: 'Sponsored by'; */
+/* 	position: absolute; */
+/* 	bottom: 98%; */
+/* 	left: 40%; */
+/* 	font-weight: bold; */
+/* 	letter-spacing: 2px; */
+/* 	font-size: 0.45em; */
+/* 	color: #5b130e; */
+/* } */
 
 .pater__title,
 .pater__desc {
@@ -339,7 +339,7 @@ a:hover, a:focus {
 }
 
 .pater__title img {
-	width: 90%;
+/* 	width: 90%; */
 }
 
 .pater__desc {
@@ -393,7 +393,7 @@ a:hover, a:focus {
 	}
 	.demo-1 .pater__title img {
 		width: 150px;
-		margin-top: 0.25em;
+/* 		margin-top: 0.25em; */
 	}
 	.demo-1 .pater::before {
 		display: none;

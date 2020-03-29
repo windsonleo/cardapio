@@ -50,6 +50,7 @@ import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.entidade.Promocao;
 import com.tecsoluction.cardapio.entidade.Role;
+import com.tecsoluction.cardapio.entidade.Sorteio;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
@@ -121,6 +122,8 @@ public class HomeController {
 	 
 	 @Autowired
 	 private CarrinhoBean carrinhobean;
+	 
+	 private String fileimg="fly.jpg";
 
 //    @Autowired 
 //    private JavaMailSender mailSender;
@@ -1107,6 +1110,23 @@ private String FormatadorData(Date data){
     	logger.info("Welcome profile ! The client locale is {}.", locale);
 
         ModelAndView home = new ModelAndView("/private/profile");
+
+
+        return home;
+    }
+    
+    
+    @RequestMapping(value = "/sorteio", method = RequestMethod.GET)
+    public ModelAndView Checkoutt(Locale locale, Model model) {
+       
+    	logger.info("Welcome sorteio ! The client locale is {}.", locale);
+
+        ModelAndView home = new ModelAndView("/private/sorteio");
+        
+        
+        home.addObject("fileimg", fileimg);
+        home.addObject("sorteio", new Sorteio());
+
 
 
         return home;
