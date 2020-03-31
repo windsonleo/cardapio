@@ -279,7 +279,8 @@
                     <i class="fa fa-photo"></i>
                   </div>
 							
-										<input id="foto" name="foto" class="form-control android" type="text"  th:value="${filename}" placeholder="Digite a foto" />
+										<input th:if="${premio.foto}" id="foto" name="foto" class="form-control android" type="text"  th:value="${premio.foto}" placeholder="Digite a foto" />
+										<input th:unless="${premio.foto}" id="foto" name="foto" class="form-control android" type="text"  th:value="${filename}" placeholder="Digite a foto" />
 							
 			                </div>
 			              </div>
