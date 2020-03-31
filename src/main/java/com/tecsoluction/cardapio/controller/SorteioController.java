@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.cardapio.entidade.Premio;
 import com.tecsoluction.cardapio.entidade.Produto;
+import com.tecsoluction.cardapio.entidade.Sorteio;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.servico.PremioServicoImpl;
@@ -73,6 +74,9 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 	 private com.tecsoluction.cardapio.entidade.Sorteio sorteio;
 	 
 	 private Premio premio;
+	 
+	 private String fileimg="fly.jpg";
+
 	
 	
 	
@@ -134,6 +138,16 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 
 	        ModelAndView login = new ModelAndView("/private/sorteio/sorteio");
 	        
+	        login.addObject("sorteio", sorteio);
+	        
+	      //  login.addObject("usuario", cliente);
+	        
+	        login.addObject("idticket", sorteio.getId());
+	        	        	        
+	        login.addObject("premios", premios);
+	        
+	        login.addObject("filename", fileimg);
+	        
 //	        login.addObject("usuario", new Usuario());
 
 
@@ -147,7 +161,7 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 	    	logger.info("Welcome Sorteio ar! The client locale is {}.", locale);
 
 
-	        ModelAndView login = new ModelAndView("/private/sorteio/sorteiar");
+	        ModelAndView login = new ModelAndView("/private/sorteio/sorteio");
 	        
 //	        login.addObject("usuario", new Usuario());
 
@@ -193,7 +207,7 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 	    
 	    
 	    @RequestMapping(value = "/validarSorteio", method = RequestMethod.POST)
-	    public ModelAndView validarSorteio(HttpServletRequest request,Locale locale,@ModelAttribute com.tecsoluction.cardapio.entidade.Sorteio model) {
+	    public ModelAndView validarSorteio(HttpServletRequest request,Locale locale,@ModelAttribute com.tecsoluction.cardapio.entidade.Sorteio modell,Model model) {
 	      
 	    	logger.info("Welcome validarSorteio! The client locale is {}.", locale);
 	    	
@@ -203,25 +217,21 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 	    	UUID id = UUID.fromString(request.getParameter("id"));
 	    	
 	    	
-	    	String cpf = request.getParameter("cpf");
+	    	UUID cpf =  UUID.fromString(request.getParameter("usuid"));
 	    	
-	    	com.tecsoluction.cardapio.entidade.Sorteio sorteio = getservice().findOne(id);
+	    	this.sorteio = getservice().findOne(id);
 	    	
 	    	sorteio.setResgatado(true);
+	    	 	
+	    	Usuario cliente = usuarioService.findOne(cpf);
 	    	
+	    	sorteio.setUsuario(cliente);
 	    	
-	    	
-	    	
-//	    	
-//	    	Cliente cliente = clienteservice.findByCpf(cpf);
-	    	
-//	    	sorteio.setCliente(cliente);
-	    	
-//	    	cliente.addSorteios(sorteio);
+	    	cliente.addSorteios(sorteio);
 	    	
 	    	getservice().edit(sorteio);
 	    	
-//	    	clienteservice.edit(cliente);
+	    	usuarioService.edit(cliente);
 	    	
 	    	
 //	    	System.out.println("id sorteio winds:" + id.toString());
@@ -234,15 +244,48 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 
 
 	    	
-	    	ModelAndView login = new ModelAndView("/private/sorteio/sorteiar");
+	    	ModelAndView login = new ModelAndView("/private/sorteio/sorteio");
 	    	
 	    	
 	    	login.addObject("sorteio", sorteio);
 	        
-//	        login.addObject("usuario", new Usuario());
-
+	        login.addObject("usuario", cliente);
+	        
+	        login.addObject("idticket", sorteio.getId());
+	        login.addObject("premios", premios);
+	        
+	        login.addObject("filename", fileimg);
+	        login.addObject("premios", premios);
+	        
+	        
+	        model.addAttribute("filename", fileimg);
+	        model.addAttribute("premios", premios);
+	        model.addAttribute("usuario", cliente);
+	        model.addAttribute("sorteio", sorteio);
+	        model.addAttribute("idticket", sorteio.getId());
 
 	    	return login;
+	    }
+	    
+	    
+	    @RequestMapping(value = "/sortear", method = RequestMethod.GET)
+	    public ModelAndView Checkouttt(Locale locale, Model model) {
+	       
+	    	logger.info("Welcome sorteio ! The client locale is {}.", locale);
+
+	        ModelAndView home = new ModelAndView("/private/sorteio");
+	        
+	        premios = premioservice.findAll();
+	        
+	        String idticket="";
+	       
+	        home.addObject("fileimg", filename);
+	        home.addObject("sorteio", sorteio);
+	        home.addObject("premios", premios);
+	        home.addObject("idticket", idticket);
+
+
+	        return home;
 	    }
 	    
 	    
@@ -258,12 +301,13 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 	    	
 	    	UUID idprem = UUID.fromString(request.getParameter("premio"));
 	    	
+	    	
 	    	Premio premio = premioservice.findOne(idprem);
 	    	
 	    	
 	    	
 	    	
-//	    	String cpf = request.getParameter("cpf");
+	    	UUID cpf = UUID.fromString(request.getParameter("usuario"));
 	    	
 	    	com.tecsoluction.cardapio.entidade.Sorteio sorteio = getservice().findOne(id);
 	    	
@@ -273,9 +317,9 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 	    	
 	    	
 //	    	
-//	    	Cliente cliente = clienteservice.findByCpf(cpf);
+	    	Usuario cliente = usuarioService.findOne(cpf);
 	    	
-//	    	sorteio.setCliente(cliente);
+//	    	sorteio.setUsuario(cliente);
 	    	
 	    	sorteio.setPremio(premio);
 	    	
@@ -283,9 +327,9 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 	    	
 	    	getservice().edit(sorteio);
 	    	
-//	    	premio.getSorteios().add(sorteio);
+	    	premio.getSorteios().add(sorteio);
 //	    	
-//	    	premioservice.edit(premio);
+	    	premioservice.edit(premio);
 	    	
 //	    	clienteservice.edit(cliente);
 	    	
@@ -300,12 +344,18 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 
 
 	    	
-	    	ModelAndView login = new ModelAndView("/private/sorteio/sorteiar");
+	    	ModelAndView login = new ModelAndView("/private/sorteio/sorteio");
 	    	
 	    	
 	    	login.addObject("sorteio", sorteio);
 	        
-//	        login.addObject("usuario", new Usuario());
+	        login.addObject("usuario", cliente);
+	        
+	        login.addObject("idticket", sorteio.getId());
+	        login.addObject("premios", premios);
+	        
+	        login.addObject("filename", fileimg);
+	        login.addObject("premios", premios);
 
 
 	    	return login;

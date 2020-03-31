@@ -47,12 +47,14 @@ import com.tecsoluction.cardapio.CarrinhoBean;
 import com.tecsoluction.cardapio.entidade.Autenticador;
 import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Categoria;
+import com.tecsoluction.cardapio.entidade.Premio;
 import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.entidade.Promocao;
 import com.tecsoluction.cardapio.entidade.Role;
 import com.tecsoluction.cardapio.entidade.Sorteio;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
+import com.tecsoluction.cardapio.servico.PremioServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
 import com.tecsoluction.cardapio.servico.PromocaoServicoImpl;
 import com.tecsoluction.cardapio.servico.RoleServicoImpl;
@@ -69,6 +71,9 @@ public class HomeController {
     
 	@Autowired
 	private  UsuarioServicoImpl usuarioService;
+	
+	@Autowired
+	private  PremioServicoImpl premioService;
 	
 	@Autowired
 	private  CategoriaServicoImpl CategoriaService;
@@ -88,7 +93,9 @@ public class HomeController {
 	@Autowired
 	private RoleServicoImpl RoleService;
 	
-    
+    private List<Premio> premios = new ArrayList<Premio>();
+
+     
     private List<Usuario> usuarios = new ArrayList<Usuario>();
     
     private List<Categoria> categoriasall = new ArrayList<Categoria>();
@@ -1123,10 +1130,14 @@ private String FormatadorData(Date data){
 
         ModelAndView home = new ModelAndView("/private/sorteio");
         
+        premios = premioService.findAll();
         
+        String idticket="";
+       
         home.addObject("fileimg", fileimg);
         home.addObject("sorteio", new Sorteio());
-
+        home.addObject("premios", premios);
+        home.addObject("idticket", idticket);
 
 
         return home;
