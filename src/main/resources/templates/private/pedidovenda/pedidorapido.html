@@ -610,10 +610,10 @@ function finalizaAgora(id) {
 //     $.post("/carrinho/finalizaCarrinho", {id: id , idgarcon : garcon ,idmesa : mesa ,
 //     	idorigem : origempedido}, function(resposta) {
 
-// 		    $.post("/carrinho/finalizaCarrinho", {id: id ,	idorigem : origempedido},
-// 	    		function(resposta) {
-	    $.post("/cardapio/carrinho/finalizaCarrinho", {id: id ,	idorigem : origempedido},
+		    $.post("/carrinho/finalizaCarrinho", {id: id ,	idorigem : origempedido},
 	    		function(resposta) {
+// 	    $.post("/cardapio/carrinho/finalizaCarrinho", {id: id ,	idorigem : origempedido},
+// 	    		function(resposta) {
 
 //        $("#carrinho_"+id).html("Finalizado com Sucesso");
        
@@ -621,9 +621,9 @@ function finalizaAgora(id) {
 //         txt.focus();
 //         var txtt = $("#carrinho_"+id).focus();
 
-//         window.location.replace("http://sushisenpai.herokuapp.com/home?id=" + id);
+        window.location.replace("http://sushisenpai.herokuapp.com/home?id=" + id);
         
-        window.location.replace("http://localhost:8082/cardapio/home?id=" + id);
+//         window.location.replace("http://localhost:8082/cardapio/home?id=" + id);
 
     });
     
