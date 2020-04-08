@@ -219,7 +219,18 @@
                           Samsung 32" 1080p 60Hz LED Smart HDTV.
                         </span>
                         
-                           <span class="label bg-purple" th:text="${item.key.situacao}">$1800</span>
+<!--                            <span class="label bg-purple" th:text="${item.key.situacao}">$1800</span> -->
+
+                    <th:block>
+                           
+                        <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).AGUARDANDO}" class="label bg-purple" th:text="${item.key.situacao}">$1800</span>
+        			
+        			    <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).EM_EXECUCAO}" class="label bg-orange" th:text="${item.key.situacao}">$1800</span>
+        			
+        			 <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).PRONTO}" class="label bg-aqua" th:text="${item.key.situacao}">$1800</span>
+        			 <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).CANCELADO}" class="label bg-red" th:text="${item.key.situacao}">$1800</span>
+        			 <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).ENTREGUE}" class="label bg-green" th:text="${item.key.situacao}">$1800</span>
+        			</th:block>
         			
 <!--                        <div class="btn-group pull-right"> -->
 <!--                        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" > -->
@@ -279,7 +290,18 @@
                           Samsung 32" 1080p 60Hz LED Smart HDTV.
                         </span>
                         
-                           <span class="label bg-purple" th:text="${item.situacao}">$1800</span>
+<!--                            <span class="label bg-purple" th:text="${item.situacao}">$1800</span> -->
+
+                  <th:block>
+                           
+                        <span th:if="${item.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).AGUARDANDO}" class="label bg-purple" th:text="${item.situacao}">$1800</span>
+        			
+        			    <span th:if="${item.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).EM_EXECUCAO}" class="label bg-orange" th:text="${item.situacao}">$1800</span>
+        			
+        			 <span th:if="${item.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).PRONTO}" class="label bg-aqua" th:text="${item.situacao}">$1800</span>
+        			 <span th:if="${item.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).CANCELADO}" class="label bg-red" th:text="${item.situacao}">$1800</span>
+        			 <span th:if="${item.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).ENTREGUE}" class="label bg-green" th:text="${item.situacao}">$1800</span>
+        			</th:block>
         			
 <!--                        <div class="btn-group pull-right"> -->
 <!--                        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" > -->

@@ -231,7 +231,7 @@
 			
 		 
 			 
-				 <form th:action="@{/premio/add}" ModelAttribute="premio" method="POST">
+				 <form th:action="@{/premio/{acao}(acao=${acao})}" ModelAttribute="premio" method="POST">
 
 
 			         <div class="form-group">
@@ -279,7 +279,8 @@
                     <i class="fa fa-photo"></i>
                   </div>
 							
-										<input id="foto" name="foto" class="form-control android" type="text"  th:value="${filename}" placeholder="Digite a foto" />
+										<input th:if="${premio.foto}" id="foto" name="foto" class="form-control android" type="text"  th:value="${premio.foto}" placeholder="Digite a foto" />
+										<input th:unless="${premio.foto}" id="foto" name="foto" class="form-control android" type="text"  th:value="${filename}" placeholder="Digite a foto" />
 							
 			                </div>
 			              </div>
@@ -289,7 +290,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-user-secret"></i>
                   </div>
-				 <select id="produto" name="produto"  class="form-control">
+				 <select id="produto" name="produto"  class="form-control select2">
 				                                  <optgroup label="escolha produtos">
 					           				
 					           					<option th:text="${premio.produto}" th:selected="${premio.produto != null}" class="selected">Usuario Não Tem Nenhuma Regra</option>
@@ -318,7 +319,7 @@
 		
 				 	 
 						
-							<button type="submit" class="btn btn-success">Salvar</button>
+							<button type="submit" class="btn btn-success" th:value="${acao}" th:text="${acao}">Salvar</button>
 							<a href='javascript:history.back(1)' class="btn btn-default">Voltar</a>
 						
 						</form>

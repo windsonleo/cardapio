@@ -108,11 +108,13 @@ public class Produto extends BaseEntity implements Serializable {
     @ManyToMany(mappedBy="indicacoes",fetch=FetchType.EAGER,targetEntity=Usuario.class)
     private Set<Usuario> usuariosIndica= new HashSet<Usuario>();
    
+    
+    @Column(name = "modopreparo", nullable = true)
     @Enumerated(EnumType.STRING)
     private ModoPreparo modopreparo;
     
     
-    @OneToMany(mappedBy = "produto")
+    @OneToMany(mappedBy = "produto",targetEntity=Premio.class)
     private List<Premio> premios;
 
 

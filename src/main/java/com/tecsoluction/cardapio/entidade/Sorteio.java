@@ -44,7 +44,7 @@ public class Sorteio  extends BaseEntity implements Serializable {
 //    @Column(name = "desconto")
 //    private BigDecimal desconto;
     
-    @OneToOne(targetEntity=Premio.class)
+    @OneToOne(targetEntity=Premio.class,orphanRemoval=true)
     private Premio premio;
     
     @Temporal(TemporalType.DATE)

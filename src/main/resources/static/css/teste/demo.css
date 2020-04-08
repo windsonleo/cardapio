@@ -387,12 +387,13 @@ a:hover, a:focus {
 		background: rgba(11, 11, 12, 0.87);
 		-webkit-transform: translateZ(200px);
 		transform: translateZ(200px);
+		height: 6em;
 	}
 	.demo-1 .pater__title::before {
 		left: 0;
 	}
 	.demo-1 .pater__title img {
-		width: 150px;
+		width: 33%;
 /* 		margin-top: 0.25em; */
 	}
 	.demo-1 .pater::before {

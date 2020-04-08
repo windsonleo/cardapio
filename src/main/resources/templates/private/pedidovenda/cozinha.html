@@ -170,13 +170,17 @@
 <!--                 </button> -->
 <!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button> -->
 <!--               </div> -->
+
+                                 <a th:href="@{/pedidovenda/monitorquente}" rel="tooltip" title="Preparo Quente" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
+                  </a>
+                  <a  rel="tooltip" th:href="@{/pedidovenda/monitorfrio}" title="Preparo Frio" class="btn btn-default btn-sm"><i class="fa fa-square text-blue"></i></a>
+                
               
                <div class="box-tools pull-right" data-toggle="tooltip" title="Tipo De Preparo">
+               
+
                 <div class="btn-group" data-toggle="btn-toggle">
-                  <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
-                
+
                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -231,8 +235,17 @@
                           Samsung 32" 1080p 60Hz LED Smart HDTV.
                         </span>
                         
-                           <span class="label bg-purple" th:text="${item.key.situacao}">$1800</span>
+                        
+                    <th:block>
+                           
+                        <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).AGUARDANDO}" class="label bg-purple" th:text="${item.key.situacao}">$1800</span>
         			
+        			    <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).EM_EXECUCAO}" class="label bg-orange" th:text="${item.key.situacao}">$1800</span>
+        			
+        			 <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).PRONTO}" class="label bg-aqua" th:text="${item.key.situacao}">$1800</span>
+        			 <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).CANCELADO}" class="label bg-red" th:text="${item.key.situacao}">$1800</span>
+        			 <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).ENTREGUE}" class="label bg-green" th:text="${item.key.situacao}">$1800</span>
+        			</th:block>
 <!--                        <div class="btn-group pull-right"> -->
 <!--                        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" > -->
 <!--                         <a th:href="@{/pedidovenda/item/mudarpronto(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-aqua btn-flat"><span >PRONTO</span></a> -->

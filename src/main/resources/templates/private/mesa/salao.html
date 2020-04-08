@@ -242,7 +242,7 @@
 <!--             <div th:switch="${mesa.status}" th:remove = "tag"> -->
             
             <th:block>
-               <div th:if="${mesa.status==T(com.tecsoluction.cardapio.util.StatusMesa).ABERTA}" class="widget-user-header bg-green">
+               <div th:if="${mesa.status==T(com.tecsoluction.cardapio.util.StatusMesa).ABERTA}" class="widget-user-header bg-green"> 
                
                              <div class="widget-user-image">
              <img th:src="@{/img/mesa/{fotoc}(fotoc=${mesaimg})}" class="img-circle" alt="User Image" />

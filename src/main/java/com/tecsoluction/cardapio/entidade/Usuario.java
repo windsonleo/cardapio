@@ -117,7 +117,7 @@ public class Usuario  extends BaseEntity implements Serializable {
 	    private List<Mensagem> mensagens;
 	    
 	    
-	    @OneToMany(mappedBy="usuario",fetch=FetchType.EAGER)
+	    @OneToMany(mappedBy="usuario",fetch=FetchType.EAGER,targetEntity=Sorteio.class,orphanRemoval=true)
 	    private Set<Sorteio> sorteios;
 
     

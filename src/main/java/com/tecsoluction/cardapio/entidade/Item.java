@@ -40,7 +40,7 @@ public  class Item implements Serializable, Comparable<Item>{
 	public String toString() {
 		return "Item [id=" + id + ", codigo=" + codigo + ", nome=" + nome + ", descricao=" + descricao
 				+ ", precoUnitario=" + precoUnitario + ", precoCusto=" + precoCusto + ", un_medida=" + un_medida
-				+ ", totalItem=" + totalItem + ", situacao=" + situacao + ", foto=" + foto + ", qtd=" + qtd + "]";
+				+ ", totalItem=" + totalItem + ", situacao=" + situacao + ", foto=" + foto + ", qtd=" + qtd + ", modopreparo=" + modopreparo+ "]";
 	}
 
 

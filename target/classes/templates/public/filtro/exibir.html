@@ -85,7 +85,7 @@
        
        		<div class="box box-solid">
             <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
-              <h3 class="box-title" th:text="| PRODUTOS  ${filtroNome} |">PRODUTOS</h3>
+              <h3 class="box-title" th:text="${filtroNome}">PRODUTOS</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" ></i>
@@ -114,7 +114,7 @@
           
               <h5 class="widget-user-username" th:text="${produto.nome}" >Nadia Carmichael</h5>
               <h6 class="widget-user-desc" th:text="${produto.descricao}" >Lead Developer</h6>
-              <ul class="rating">
+              <ul class="rating text-center">
               
               
               <th:block th:each="i: ${#numbers.sequence(1,5)}">

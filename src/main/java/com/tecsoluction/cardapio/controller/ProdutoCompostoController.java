@@ -61,8 +61,9 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 	
 	private Produto produto;
 
-    private Map<Item, String> items = new HashMap<Item, String>();
-	private ProdutoComposto produtocomposto = null;
+    private Map<Item, String> items; 
+	
+    private ProdutoComposto produtocomposto = new ProdutoComposto();
 
 	private BigDecimal totalitem = new BigDecimal(0.00).setScale(2, RoundingMode.UP);
 	
@@ -133,7 +134,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 
 //		items  = new HashMap<Item, String>();
 		
-		produtocomposto = new ProdutoComposto();
+//		produtocomposto = new ProdutoComposto();
 		
 		if(!produtocomposto.getItens_prodcomp().isEmpty()){
 			
@@ -142,7 +143,7 @@ public class ProdutoCompostoController extends AbstractController<ProdutoCompost
 		} else {
 			
 			
-			
+			items = new HashMap<Item, String>();
 			
 		}
 		

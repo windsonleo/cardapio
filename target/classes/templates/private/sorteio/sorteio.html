@@ -496,7 +496,8 @@ function ValidarSorteio(idticket) {
 //     var origempedido=$("#origempedido option:selected").val();
 
     $.post("/cardapio/sorteio/validarSorteio", {id: id , usuid : usuario}, function(resposta) {
-	
+// 	    $.post("/sorteio/validarSorteio", {id: id , usuid : usuario}, function(resposta) {
+
 // 	    $.post("/cardapio/carrinho/finalizaCarrinho", {id: id , idgarcon : garcon ,idmesa : mesa ,
 //     	idorigem : origempedido}, function(resposta) {
 

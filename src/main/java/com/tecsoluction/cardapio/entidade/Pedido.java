@@ -17,8 +17,11 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.tecsoluction.cardapio.framework.BaseEntity;
 import com.tecsoluction.cardapio.util.StatusPedido;
+import com.tecsoluction.cardapio.util.CustomLocalDateTimeSerializer;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -51,8 +54,11 @@ public abstract class Pedido extends BaseEntity {
     @Column(name = "horapedido",nullable = true)
     @Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern ="HH:mm:ss")
+//    @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="HH:mm:ss a z")
+	protected
   //  @NotNull(message="o hora do pedido não pode ser nulo")
-    protected Date horapedido;
+ Date horapedido;
 
     
     private boolean ispago = false;

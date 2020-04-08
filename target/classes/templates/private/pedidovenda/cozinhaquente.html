@@ -16,9 +16,9 @@
 	
 	
 		
-		<title>Itens Por Status</title>
+		<title>Cozinha</title>
 
-			<body  class="hold-transition skin-red sidebar-mini" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-mini' ">
+			<body  class="hold-transition skin-red sidebar-collapse sidebar-mini" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-collapse sidebar-mini' ">
 			
 <!-- 			<div id="fb-root"> </div> -->
 <!-- <script th:async="async" th:defer="defer"  crossorigin="anonymous" -->
@@ -43,16 +43,16 @@
 					<div th:replace="fragmentos/nav :: nav-side"> </div>
 				
   <div class="content-wrapper">
+<!--         <div class="container"> -->
+  
+  
     <section class="content-header">
-      <h1>
-<!--         Início -->
-        Cozinha <small > Itens Por Status</small>
-      </h1>
+
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"  ></i> Cardapio</a> </li>
         <li> <i class="fa fa-dashboard"  >Cozinha</i></li>
         
-          <li class="active"> Itens Por Status</li>
+          <li class="active"> Itens</li>
       </ol>
     </section>
     
@@ -77,8 +77,7 @@
       
       
       
-       <div class="">
-       
+       <div class="row">
        
        <div class="col-lg-2 col-xs-6">
           <!-- small box -->
@@ -96,7 +95,7 @@
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-2 col-xs-6">
+       <div class="col-lg-2 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -111,7 +110,7 @@
           </div>
         </div>
         
-                <div class="col-lg-2 col-xs-6">
+       <div class="col-lg-2 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-purple">
             <div class="inner">
@@ -126,7 +125,7 @@
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-2 col-xs-6">
+       <div class="col-lg-2 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
@@ -141,7 +140,7 @@
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-2 col-xs-6">
+       <div class="col-lg-2 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
@@ -156,101 +155,41 @@
           </div>
         </div>
         <!-- ./col -->
-      </div>
-       
-       
+       </div>
            
-    <section class="col-md-10 connectedSortable">
+    <section class="col-lg-12 col-xs-12 connectedSortable">
 
-       
-		<div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Itens Por Status</h3>
+    
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+			<div class="box box-primary">
+            <div class="box-header bg-black with-border"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border'">
+                          <h3 class="box-title">Balcão Quente</h3>
+
+<!--               <div class="box-tools pull-right"> -->
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus" style="color:#fff;"></i> -->
+<!--                 </button> -->
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times" style="color:#fff;"></i></button> -->
+<!--               </div> -->
+
+                  <a  th:href="@{/pedidovenda/monitorquente}" rel="tooltip" title="Preparo Quente" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
+                  </a>
+                  <a  rel="tooltip" th:href="@{/pedidovenda/monitorfrio}" title="Preparo Frio" class="btn btn-default btn-sm"><i class="fa fa-square text-blue"></i></a>
+                
+              
+               <div class="box-tools pull-right" data-toggle="tooltip" title="Tipo De Preparo">
+                <div class="btn-group" data-toggle="btn-toggle">
+
+                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                
+                </div>
               </div>
+              
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <ul th:if="${pedidoshoje}" class="products-list product-list-in-box" th:each="pedido : ${pedidoshoje}">
-                
-                 <div class="direct-chat-text">                
-                            <span class="product-title" th:text="|Pedido Id : ${pedido.id}|" >$1800</span>
-                 <p> <span class="product-title text-center" th:text="| Data : ${#dates.format(pedido.data,'dd/MM/yyyy')} |">data</span>
-                 
-                    <span class="product-title" th:text="| Hora : ${#dates.format(pedido.horapedido,'HH:mm:ss:mmm')} |">data</span>
-                 
-                 </p>
-                
-                </div>
-                <li class="item"  th:each="item: ${pedido.items}">
-              
-                  
-                  
-                  <div class="product-img">
-                    <img th:src="@{/img/produto/{fotoc}(fotoc=${item.key.foto})}" alt="Product Image">
-                  </div>
-                  <div class="product-info">
-                  
-                      <div class="btn-group pull-right">
-                       <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" >
-                        <a th:href="@{/pedidovenda/item/mudarpronto(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-aqua btn-flat btn-sm"><span >PRONTO</span></a>
-                        <a th:href="@{/pedidovenda/item/mudarpreparacao(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-yellow btn-flat btn-sm"><span>PREPARAR</span></a>
-                     </div>
-                      <div sec:authorize="hasAnyRole('ROLE_GARCON','ROLE_ADM','ROLE_SUPER')" >
-                       <a th:href="@{/pedidovenda/item/mudarcancelar(id=${item.key.id},idped=${pedido.id})}" class="btn btn-block bg-red btn-flat btn-sm "><span >CANCELAR</span></a>
-                        <a th:href="@{/pedidovenda/item/mudarentregar(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-green btn-flat btn-sm"><span>ENTREGAR</span></a>
-                      </div> 
-                                          
-                      </div> 
-                  
-                    <a href="javascript:void(0)" class="product-title" th:text="${item.key.nome}">Samsung TV
-                      </a>
-
-<!--                        <span class="label bg-purple" th:text="${item.key.situacao}">$1800</span> -->
-                        <span class="product-description" th:text="${item.key.descricao}">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
-                        
-                         <span class="label bg-green" th:text="|QTD: ${item.key.qtd}|">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
-                        
-<!--                            <span class="label bg-purple" th:text="${item.key.situacao}">$1800</span> -->
-
-                    <th:block>
-                           
-                        <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).AGUARDANDO}" class="label bg-purple" th:text="${item.key.situacao}">$1800</span>
-        			
-        			    <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).EM_EXECUCAO}" class="label bg-orange" th:text="${item.key.situacao}">$1800</span>
-        			
-        			 <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).PRONTO}" class="label bg-aqua" th:text="${item.key.situacao}">$1800</span>
-        			 <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).CANCELADO}" class="label bg-red" th:text="${item.key.situacao}">$1800</span>
-        			 <span th:if="${item.key.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).ENTREGUE}" class="label bg-green" th:text="${item.key.situacao}">$1800</span>
-        			</th:block>
-        			
-<!--                        <div class="btn-group pull-right"> -->
-<!--                        <div sec:authorize="hasAnyRole('ROLE_COZINHA','ROLE_ADM','ROLE_SUPER')" > -->
-<!--                         <a th:href="@{/pedidovenda/item/mudarpronto(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-aqua btn-flat"><span >PRONTO</span></a> -->
-<!--                         <a th:href="@{/pedidovenda/item/mudarpreparacao(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-yellow btn-flat"><span>PREPARAR</span></a> -->
-<!--                      </div> -->
-<!--                       <div sec:authorize="hasAnyRole('ROLE_GARCON','ROLE_ADM','ROLE_SUPER')" > -->
-<!--                        <a th:href="@{/pedidovenda/item/mudarcancelar(id=${item.key.id},idped=${pedido.id})}" class="btn btn-block bg-red btn-flat"><span >CANCELAR</span></a> -->
-<!--                         <a th:href="@{/pedidovenda/item/mudarentregar(id=${item.key.id},idped=${pedido.id})}" class="btn  btn-block bg-green btn-flat"><span>ENTREGAR</span></a> -->
-<!--                       </div>  -->
-                                          
-<!--                       </div>  -->
-                      
-                  </div>
-                </li>
-
-              </ul>
-              
-              
-               <ul th:if="${itens}" class="products-list product-list-in-box">
+              <ul th:if="${itens}" class="products-list product-list-in-box">
                 
 
                 <li class="item" th:each="item: ${itens}" >
@@ -291,8 +230,8 @@
                         </span>
                         
 <!--                            <span class="label bg-purple" th:text="${item.situacao}">$1800</span> -->
-
-                  <th:block>
+                           
+                                                 <th:block>
                            
                         <span th:if="${item.situacao==T(com.tecsoluction.cardapio.util.SituacaoItem).AGUARDANDO}" class="label bg-purple" th:text="${item.situacao}">$1800</span>
         			
@@ -321,8 +260,8 @@
               </ul>
               
               
-              
             </div>
+            
             <!-- /.box-body -->
             <div class="box-footer text-center">
               <a href="javascript:void(0)" class="uppercase">Ver Todos os Pedidos</a>
@@ -339,24 +278,28 @@
 
     </section>
     
-             <div class="clearfix"></div>
+    <div class="clearfix"></div>
+    
     
            
   </div>
+      				<div th:replace="fragmentos/footer :: script" style="display: none;"></div>  
+  
 
 <!-- 	<div th:replace="fragmentos/footer :: script" style="display:none;"></div> -->
 	
 	    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
 			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
 			
+			
+			</div>
 	
-		</div>	
+<!-- 		</div>	 -->
 		
 		
 		
-	  
-	<div th:replace="fragmentos/footer :: script" style="display: none;"></div>  
 	    
+	  
 </body>
 			
 			

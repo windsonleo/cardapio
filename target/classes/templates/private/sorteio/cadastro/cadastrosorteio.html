@@ -125,7 +125,7 @@
 				<div class="col-md-7 panel">
 		 
 			 
-				 <form th:action="@{/sorteio/add}" ModelAttribute="sorteio" method="POST">
+				 <form th:action="@{/sorteio/{acao}(acao=${acao})}" ModelAttribute="sorteio" method="POST">
 
 
 			         <div class="form-group">
@@ -160,7 +160,7 @@
                     <i class="fa fa-envelope"></i>
                   </div>
 							
-										<input id="data" name="data" class="form-control android" type="text"  th:value="${sorteio.data}" placeholder="Digite o data" />
+										<input id="data" name="data" class="form-control datepicker" type="text"  th:value="${sorteio.data}" placeholder="Digite o data" />
 							
 			                </div>
 			              </div>
@@ -222,7 +222,7 @@
 		
 				 	 
 						
-							<button type="submit" class="btn btn-success">Salvar</button>
+							<button type="submit" th:value="${acao}" th:text="${acao}" class="btn btn-success">Salvar</button>
 							<a href='javascript:history.back(1)' class="btn btn-default">Voltar</a>
 						
 						</form>

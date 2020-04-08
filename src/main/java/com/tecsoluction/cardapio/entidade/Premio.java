@@ -36,7 +36,7 @@ public class Premio  extends BaseEntity implements Serializable {
 
     private String name;
     
-    @OneToOne(targetEntity=Produto.class)
+    @OneToOne(targetEntity=Produto.class,optional=true)
     private Produto produto;
     
     @Column(name = "desconto")

@@ -33,6 +33,7 @@ import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.framework.AbstractEditor;
 import com.tecsoluction.cardapio.servico.PedidoVendaServicoImpl;
 import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
+import com.tecsoluction.cardapio.util.ModoPreparo;
 import com.tecsoluction.cardapio.util.OrigemPedido;
 import com.tecsoluction.cardapio.util.SituacaoItem;
 
@@ -73,6 +74,12 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
 	 private List<Item> itenspreparacao;
 	 
 	 private List<Item> itensentregue;
+	 
+	 private List<Item> itensquente;
+
+	 
+	 private List<Item> itensfrio;
+
 	 
 	 private List<PedidoVenda> pedidospreparacao;
 	 
@@ -269,6 +276,94 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
         
         exibircat.addObject("carrinho", carrinhobean.getCarrinho());
         exibircat.addObject("pedidoshoje", pedidoshoje);
+
+        return exibircat;
+    }
+    
+    
+    @RequestMapping(value = "/monitorquente", method = RequestMethod.GET)
+    public ModelAndView MonitorCozinhaquente(HttpServletRequest request) {
+
+//        UUID idf = UUID.fromString(request.getParameter("id"));
+
+//        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+        
+        ModelAndView exibircat = new ModelAndView("/private/pedidovenda/cozinhaquente");
+
+        pedidoshoje = getservice().getAllPedidoPorData(new Date());
+        
+        
+        
+      	
+      	OrganizarStatusItem(pedidoshoje);  
+      	
+      	
+        if(carrinho == null){
+        	carrinho = new Carrinho();
+        	UUID uuid = UUID.randomUUID();
+ 			carrinho.setId(uuid);
+ 			 carrinhobean.SetarCarrinhoSessao(carrinho);
+ 		      
+        }else {
+        	
+        	carrinho = carrinhobean.getCarrinho();
+            	
+            	
+            }
+        
+        
+        List<PedidoVenda> pedmonitor= new ArrayList<PedidoVenda>();
+        
+        pedmonitor.addAll(pedidospreparacao);
+        pedmonitor.addAll(pedidosaguardando);
+        
+        
+        exibircat.addObject("carrinho", carrinhobean.getCarrinho());
+        exibircat.addObject("itens", itensquente);
+
+        return exibircat;
+    }
+    
+    
+    @RequestMapping(value = "/monitorfrio", method = RequestMethod.GET)
+    public ModelAndView MonitorCozinhafrio(HttpServletRequest request) {
+
+//        UUID idf = UUID.fromString(request.getParameter("id"));
+
+//        ModelAndView exibircat = new ModelAndView("/private/categoria/exibir");
+        
+        ModelAndView exibircat = new ModelAndView("/private/pedidovenda/cozinhafrio");
+
+        pedidoshoje = getservice().getAllPedidoPorData(new Date());
+        
+        
+        
+      	
+      	OrganizarStatusItem(pedidoshoje);  
+      	
+      	
+        if(carrinho == null){
+        	carrinho = new Carrinho();
+        	UUID uuid = UUID.randomUUID();
+ 			carrinho.setId(uuid);
+ 			 carrinhobean.SetarCarrinhoSessao(carrinho);
+ 		      
+        }else {
+        	
+        	carrinho = carrinhobean.getCarrinho();
+            	
+            	
+            }
+        
+        
+        List<PedidoVenda> pedmonitor= new ArrayList<PedidoVenda>();
+        
+        pedmonitor.addAll(pedidospreparacao);
+        pedmonitor.addAll(pedidosaguardando);
+        
+        
+        exibircat.addObject("carrinho", carrinhobean.getCarrinho());
+        exibircat.addObject("itens", itensfrio);
 
         return exibircat;
     }
@@ -844,6 +939,8 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
     	itensentregue = new ArrayList<Item>();
     	itenspreparacao = new ArrayList<Item>();
     	itensprontos = new ArrayList<Item>();
+    	itensquente = new ArrayList<Item>();
+    	itensfrio = new ArrayList<Item>();
     	
     	pedidosaguardando = new ArrayList<PedidoVenda>();
     	pedidoscancelados = new ArrayList<PedidoVenda>();
@@ -971,6 +1068,18 @@ public class PedidoVendaController extends AbstractController<PedidoVenda> {
     				}
     				
     				
+    				
+    			}
+    			
+    			
+    			if(it.getModopreparo().equals(ModoPreparo.QUENTE)){
+    				
+    				itensquente.add(it);
+    				
+    				
+    			}else if((it.getModopreparo().equals(ModoPreparo.FRIO))){
+    				
+    				itensfrio.add(it);
     				
     			}
     			
