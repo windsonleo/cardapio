@@ -211,6 +211,12 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 	      
 	    	logger.info("Welcome validarSorteio! The client locale is {}.", locale);
 	    	
+	        String sucesso = "Sucesso ao validar Sorteio";
+	        
+	        String erros = "Falha ao validar Sorteio";
+	        
+	    	ModelAndView login = new ModelAndView("/private/sorteio/sorteio");
+
 	    	
 	    	//confirmar id do sorteio (ativo,valido,resgatado nao)
 	    	
@@ -221,17 +227,76 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 	    	
 	    	this.sorteio = getservice().findOne(id);
 	    	
-	    	sorteio.setResgatado(true);
-	    	 	
-	    	Usuario cliente = usuarioService.findOne(cpf);
 	    	
-	    	sorteio.setUsuario(cliente);
+	    	if(sorteio != null){
+	    		
+	    		
+	    		if(sorteio.isResgatado()){
+	    			
+	    			erros = erros + "sorteio já resgatado";
+	    			
+	    	        login.addObject("erros", erros);
+	    	        
+	    	        
+	    	        model.addAttribute("erros", erros);
+	    			
+	    			
+	    			
+	    		}else {
+	    			
+	    			
+	    			sorteio.setResgatado(true);
+		    	 	
+	    	    	Usuario cliente = usuarioService.findOne(cpf);
+	    	    	
+	    	    	sorteio.setUsuario(cliente);
+	    	    	
+	    	    	cliente.addSorteios(sorteio);
+	    	    	
+	    	    	getservice().edit(sorteio);
+	    	    	
+	    	    	usuarioService.edit(cliente);
+	    	    	
+	    	        login.addObject("sucesso", sucesso);
+	    	        
+	    	        
+	    	        model.addAttribute("sucesso", sucesso);
+	    	        
+	    	        login.addObject("usuario", cliente);
+	    	        
+	    	        model.addAttribute("usuario", cliente);
+
+
+	    			
+	    		}
+	    		
+	    		
+	    		
+	    	}else {
+	    		
+	    		
+	    		
+    			erros = erros + "sorteio não Existe";
+    			
+    	        login.addObject("erros", erros);
+    	        
+    	        
+    	        model.addAttribute("erros", erros);
+	    		
+	    		
+	    	}
 	    	
-	    	cliente.addSorteios(sorteio);
+//	    	sorteio.setResgatado(true);
+//	    	 	
+//	    	Usuario cliente = usuarioService.findOne(cpf);
+//	    	
+//	    	sorteio.setUsuario(cliente);
 	    	
-	    	getservice().edit(sorteio);
-	    	
-	    	usuarioService.edit(cliente);
+//	    	cliente.addSorteios(sorteio);
+//	    	
+//	    	getservice().edit(sorteio);
+//	    	
+//	    	usuarioService.edit(cliente);
 	    	
 	    	
 //	    	System.out.println("id sorteio winds:" + id.toString());
@@ -244,12 +309,11 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 
 
 	    	
-	    	ModelAndView login = new ModelAndView("/private/sorteio/sorteio");
 	    	
 	    	
 	    	login.addObject("sorteio", sorteio);
 	        
-	        login.addObject("usuario", cliente);
+//	        login.addObject("usuario", cliente);
 	        
 	        login.addObject("idticket", sorteio.getId());
 	        login.addObject("premios", premios);
@@ -260,7 +324,7 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 	        
 	        model.addAttribute("filename", fileimg);
 	        model.addAttribute("premios", premios);
-	        model.addAttribute("usuario", cliente);
+//	        model.addAttribute("usuario", cliente);
 	        model.addAttribute("sorteio", sorteio);
 	        model.addAttribute("idticket", sorteio.getId());
 
@@ -294,6 +358,8 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 	      
 	    	logger.info("Welcome salvarSorteio! The client locale is {}.", locale);
 	    	
+	        String sucesso = "Sucesso ao Salvar Cupom de Sorteio";
+
 	    	
 	    	//confirmar id do sorteio (ativo,valido,resgatado nao)
 	    	
@@ -348,6 +414,9 @@ public class SorteioController extends AbstractController<com.tecsoluction.carda
 	    	
 	    	
 	    	login.addObject("sorteio", sorteio);
+	    	
+	    	login.addObject("sucesso", sucesso);
+
 	        
 	        login.addObject("usuario", cliente);
 	        
