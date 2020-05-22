@@ -26,7 +26,6 @@ import com.tecsoluction.cardapio.entidade.Garcon;
 import com.tecsoluction.cardapio.entidade.Item;
 import com.tecsoluction.cardapio.entidade.Mesa;
 import com.tecsoluction.cardapio.entidade.PedidoVenda;
-import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.framework.AbstractEditor;
 import com.tecsoluction.cardapio.framework.AbstractEntityService;

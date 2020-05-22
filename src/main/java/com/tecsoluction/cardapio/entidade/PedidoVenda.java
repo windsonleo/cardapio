@@ -27,10 +27,8 @@ import com.tecsoluction.cardapio.util.ItemSerializador;
 import com.tecsoluction.cardapio.util.OrigemPedido;
 import com.tecsoluction.cardapio.util.StatusPedido;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter

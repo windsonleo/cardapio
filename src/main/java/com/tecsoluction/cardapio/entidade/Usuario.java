@@ -24,13 +24,11 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tecsoluction.cardapio.framework.BaseEntity;
 
 import lombok.Getter;
@@ -110,13 +108,13 @@ public class Usuario  extends BaseEntity implements Serializable {
 //	    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
 		 private Set<Atividade> atividades;
 	    
-	    
+	    @JsonIgnore
 	    @ElementCollection(fetch=FetchType.EAGER,targetClass=Mensagem.class)
 	    @CollectionTable(name = "mensagem_usuario", joinColumns = @JoinColumn(name = "id"))
 //	    @JsonManagedReference
 	    private List<Mensagem> mensagens;
 	    
-	    
+	    @JsonIgnore
 	    @OneToMany(mappedBy="usuario",fetch=FetchType.EAGER,targetEntity=Sorteio.class,orphanRemoval=true)
 	    private Set<Sorteio> sorteios;
 

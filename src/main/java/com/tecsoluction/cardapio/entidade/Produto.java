@@ -26,8 +26,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Cascade;
-import org.hibernate.mapping.Value;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.tecsoluction.cardapio.framework.BaseEntity;
@@ -77,6 +77,7 @@ public class Produto extends BaseEntity implements Serializable {
     @Column(name = "preco_venda")
     private BigDecimal precovenda;
     
+    @JsonIgnore
     @ManyToMany(mappedBy = "produtos")
     private Set<Promocao> promocoes = new HashSet<>();
 
@@ -100,11 +101,13 @@ public class Produto extends BaseEntity implements Serializable {
 //    @NotNull(message="o tempopreparo do Produto não pode ser nulo")
     private int tempopreparo = 0;
     
+    @JsonIgnore
     @ElementCollection(fetch=FetchType.EAGER)
     @CollectionTable(name="produto_notas")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Integer> notas = new ArrayList<Integer>();
     
+    @JsonIgnore
     @ManyToMany(mappedBy="indicacoes",fetch=FetchType.EAGER,targetEntity=Usuario.class)
     private Set<Usuario> usuariosIndica= new HashSet<Usuario>();
    
@@ -113,7 +116,7 @@ public class Produto extends BaseEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private ModoPreparo modopreparo;
     
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "produto",targetEntity=Premio.class)
     private List<Premio> premios;
 

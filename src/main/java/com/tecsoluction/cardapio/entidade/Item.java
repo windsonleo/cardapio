@@ -9,15 +9,12 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tecsoluction.cardapio.util.ModoPreparo;
 import com.tecsoluction.cardapio.util.SituacaoItem;
 import com.tecsoluction.cardapio.util.UnidadeMedida;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter

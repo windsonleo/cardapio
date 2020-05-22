@@ -29,7 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.cardapio.CarrinhoBean;
-import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Produto;
 import com.tecsoluction.cardapio.framework.AbstractController;

@@ -92,14 +92,56 @@ public class Categoria extends BaseEntity implements Serializable {
 //    }
 
     
-    public void CalcularMenorMaiorPreco(){
+    public void CalcularMenorMaiorPrecoa(){
     	
     	BigDecimal menorPrecoauxnew = new BigDecimal("0.00").setScale(2, RoundingMode.UP);
     	BigDecimal	maiorPrecoaux = new BigDecimal("0.00").setScale(2, RoundingMode.UP);
     	BigDecimal	Precoaux = new BigDecimal("0.00").setScale(2, RoundingMode.UP);
-
+//
+//    	
+//    	        int num, maior = 0, menor = 100, media = 0, soma = 0;
+//    	        int contMaior = 0, contMenor = 0, i;
+//    	        
+//    	        for(i = 0; i < this.getProdutos().size(); i++){
+//    	            System.out.println("Digite um número entre 0 e 100");
+//    	          
+//    	            Produto prod = this.getProdutos().get(i);
+//    	            Precoaux = prod.getPrecovenda();
+//    	            
+//    	            int num=66 ;
+//    	            
+//    	            // validação
+//    	            if( (Precoaux) || (num > 100) ){
+//    	                i = i - 1;
+//    	            } else{
+//    	                // armazena os nº digitados
+//    	                soma = soma + num;
+//
+//    	                // armazena o maior nº
+//    	                if(num > maior){
+//    	                    maior = num;
+//    	                    contMaior++;
+//    	                }
+//
+//    	                // armazena o menor nº
+//    	                if(num < menor){
+//    	                    menor = num;
+//    	                    contMenor++;
+//    	                }   
+//    	            
+//    	            } // fim validação
+//    	        } // fim for
+//    	        
+//    	        System.out.println("O maior nº digitado foi " + maior);
+//    	        System.out.println("O menor nº digitado foi " + menor);
+//    	        System.out.println("A média foi " + (media = soma / i));
+//    		
+//    		
     	
-    	for(Produto prd : getProdutos()){
+    	
+    	
+    	
+  	for(Produto prd : getProdutos()){
     		
     		
     		Precoaux = prd.getPrecovenda();
@@ -126,8 +168,7 @@ public class Categoria extends BaseEntity implements Serializable {
     	
     	maiorPreco = maiorPrecoaux;
     	menorPreco = menorPrecoauxnew;
-    		
-    		
+    	
     		
     		
     	}

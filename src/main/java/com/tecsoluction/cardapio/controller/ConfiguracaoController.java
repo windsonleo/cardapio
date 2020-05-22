@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tecsoluction.cardapio.CarrinhoBean;
 import com.tecsoluction.cardapio.entidade.Configuracao;
 import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.servico.ConfiguracaoServicoImpl;

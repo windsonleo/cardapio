@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tecsoluction.cardapio.dao.IAtividadeDAO;
-import com.tecsoluction.cardapio.dao.ICategoriaDAO;
 import com.tecsoluction.cardapio.entidade.Atividade;
-import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.framework.AbstractEntityService;
 
 

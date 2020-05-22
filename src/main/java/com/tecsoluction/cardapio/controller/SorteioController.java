@@ -2,7 +2,6 @@ package com.tecsoluction.cardapio.controller;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -21,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.cardapio.entidade.Premio;
 import com.tecsoluction.cardapio.entidade.Produto;
-import com.tecsoluction.cardapio.entidade.Sorteio;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.framework.AbstractController;
 import com.tecsoluction.cardapio.servico.PremioServicoImpl;

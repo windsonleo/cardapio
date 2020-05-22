@@ -6,10 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -23,7 +21,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tecsoluction.cardapio.controller.HomeController;
 import com.tecsoluction.cardapio.entidade.Carrinho;
 import com.tecsoluction.cardapio.entidade.Categoria;
 import com.tecsoluction.cardapio.entidade.Configuracao;
@@ -37,7 +34,6 @@ import com.tecsoluction.cardapio.entidade.Promocao;
 import com.tecsoluction.cardapio.entidade.Restaurante;
 import com.tecsoluction.cardapio.entidade.Usuario;
 import com.tecsoluction.cardapio.exception.CustomGenericException;
-import com.tecsoluction.cardapio.exception.LoggingAccessDeniedHandler;
 import com.tecsoluction.cardapio.servico.CategoriaServicoImpl;
 import com.tecsoluction.cardapio.servico.ConfiguracaoServicoImpl;
 import com.tecsoluction.cardapio.servico.GarconServicoImpl;
@@ -872,7 +868,7 @@ if(configuracaoAtual == null){
 			if((cat.getProdutos().size() > 0) && (!cat.getNome().equals(insumo))){
 				
 				
-				cat.CalcularMenorMaiorPreco();
+				cat.CalcularMenorMaiorPrecoa();
 				validas.add(cat);
 				
 				

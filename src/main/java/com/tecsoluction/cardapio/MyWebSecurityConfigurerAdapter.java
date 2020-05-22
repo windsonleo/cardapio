@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.tecsoluction.cardapio.exception.LoggingAccessDeniedHandler;
 import com.tecsoluction.cardapio.util.CustomLogoutSuccessHandler;
@@ -95,6 +94,9 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/promocao/filtroOfertasHoje").permitAll()
 				.antMatchers("/produto/filtroMaiorAvaliacao").permitAll()
 				
+				.antMatchers("/produto/all").permitAll()
+				.antMatchers("/categoria/all").permitAll()
+				.antMatchers("/categoria/pai").permitAll()
 				.antMatchers("/promocao/perfil**").permitAll()
 				.antMatchers("/usuario/autenticar**").permitAll()
 				.antMatchers("/usuario/lock**").permitAll()
