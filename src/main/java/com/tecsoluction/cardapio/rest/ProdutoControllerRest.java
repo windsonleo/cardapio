@@ -19,7 +19,7 @@ import com.tecsoluction.cardapio.servico.ProdutoServicoImpl;
 @RequestMapping(value = "produto")
 public class ProdutoControllerRest extends AbstractRestController<Produto> {
 
-    private
+    private final
     ProdutoServicoImpl produtoService;
 
     @Autowired
