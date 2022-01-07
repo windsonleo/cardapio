@@ -1,0 +1,472 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  
+<!-- <meta property="og:url"                th:attr="content='https://sleepy-atoll-65818.herokuapp.com/produto/perfil?id=' + ${produto.id}" /> -->
+<!-- <meta property="og:type"               th:attr="content='website'" /> -->
+<!-- <meta property="og:title"               th:attr="content='Sushi-Senpai' + ${produto.nome}" /> -->
+<!-- <meta property="og:description"        th:attr="content='Descrição:'+ ${produto.descricao}" /> -->
+<!-- <meta property="og:image"               th:attr="content='https://sleepy-atoll-65818.herokuapp.com/img/produto/' + ${produto.foto}" /> -->
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+
+	
+	</head>
+	
+	
+		
+		<title>Cardapio</title>
+
+			<body  class="hold-transition skin-red sidebar-collapse sidebar-mini" th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-collapse sidebar-mini' ">
+			
+<!-- 			<div id="fb-root"> </div> -->
+<!-- <script th:async="async" th:defer="defer"  crossorigin="anonymous" -->
+<!--  th:src="@{https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513}" -->
+<!--  src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=1047331868960513"> -->
+ 
+<!--  </script>	 -->
+			
+<!-- 			<div id="fb-root"></div> -->
+<!-- <script async defer crossorigin="anonymous" th:src="@{https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v5.0}"></script> -->
+			
+					
+
+			
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+				
+  <div class="content-wrapper">
+<!--     <section class="content-header"> -->
+
+<!--       <ol class="breadcrumb"> -->
+<!--         <li><a href="#"><i class="fa fa-dashboard"  ></i> Cardapio</a> </li> -->
+<!--         <li> <i class="fa fa-dashboard"  >Ofertas</i></li> -->
+        
+<!--           <li class="active" th:text="${configuracaoAtual.nomeempresa}"> Perfil</li> -->
+<!--       </ol> -->
+<!--     </section> -->
+    
+    
+    
+    <section class="content connectedSortable">
+    
+<!--     <div class="alert alert-info alert-dismissible"> -->
+    
+<!--                           <div class="box-tools pull-right"> -->
+<!--                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times" style="color:#fff;"></i> -->
+<!--                 </button> -->
+<!--               </div> -->
+<!--         <h4>Deseja Avaliar Este Produto ?</h4> -->
+<!--         Clique nesse Link que Levaremos vc a Página -->
+<!--         <a th:href="@{/produto/avaliar(id=${produto.id})}">Página de Avaliação</a> -->
+        
+
+              
+              
+<!--       </div> -->
+
+<!--        <div class="row"> -->
+       
+       
+<!--        <div class="col-lg-2 col-xs-6"> -->
+<!--           small box -->
+<!--           <div class="small-box bg-aqua"> -->
+<!--             <div class="inner"> -->
+            
+<!--               <h3 th:text="${#lists.size(itensprontos)}">150</h3> -->
+
+<!--               <p> Prontos</p> -->
+<!--             </div> -->
+<!--             <div class="icon"> -->
+<!--               <i class="ion ion-bag"></i> -->
+<!--             </div> -->
+<!--             <a th:href="@{/pedidovenda/item/pronto}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         ./col -->
+<!--         <div class="col-lg-2 col-xs-6"> -->
+<!--           small box -->
+<!--           <div class="small-box bg-green"> -->
+<!--             <div class="inner"> -->
+<!--               <h3 th:text="${#lists.size(itensentregue)}">53<sup style="font-size: 20px">%</sup></h3> -->
+
+<!--               <p> Entregue</p> -->
+<!--             </div> -->
+<!--             <div class="icon"> -->
+<!--               <i class="ion ion-bag"></i> -->
+<!--             </div> -->
+<!--             <a th:href="@{/pedidovenda/item/entregue}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a> -->
+<!--           </div> -->
+<!--         </div> -->
+        
+<!--                 <div class="col-lg-2 col-xs-6"> -->
+<!--           small box -->
+<!--           <div class="small-box bg-purple"> -->
+<!--             <div class="inner"> -->
+<!--               <h3 th:text="${#lists.size(itensaguardando)}">44</h3> -->
+
+<!--               <p> Aguardando</p> -->
+<!--             </div> -->
+<!--             <div class="icon"> -->
+<!--               <i class="ion ion-bag"></i> -->
+<!--             </div> -->
+<!--             <a th:href="@{/pedidovenda/item/aguardando}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         ./col -->
+<!--         <div class="col-lg-2 col-xs-6"> -->
+<!--           small box -->
+<!--           <div class="small-box bg-yellow"> -->
+<!--             <div class="inner"> -->
+<!--               <h3 th:text="${#lists.size(itenspreparacao)}">44</h3> -->
+
+<!--               <p> Em Preparacao</p> -->
+<!--             </div> -->
+<!--             <div class="icon"> -->
+<!--               <i class="ion ion-bag"></i> -->
+<!--             </div> -->
+<!--             <a th:href="@{/pedidovenda/item/preparacao}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         ./col -->
+<!--         <div class="col-lg-2 col-xs-6"> -->
+<!--           small box -->
+<!--           <div class="small-box bg-red"> -->
+<!--             <div class="inner"> -->
+<!--               <h3 th:text="${#lists.size(itenscancelados)}">65</h3> -->
+
+<!--               <p> Cancelados</p> -->
+<!--             </div> -->
+<!--             <div class="icon"> -->
+<!--               <i class="ion ion-bag"></i> -->
+<!--             </div> -->
+<!--             <a th:href="@{/pedidovenda/item/cancelado}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         ./col -->
+<!--       </div> -->
+
+           				<div class="col-md-4" th:if="${sucesso}">
+
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<div class="container-fluid">
+							<div class="alert-icon">
+								<i class="material-icons">check</i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true"><i class="material-icons">clear</i></span>
+							</button>
+							<b>Mensagem:</b> <span th:utext="${sucesso}"> </span>
+							
+<!-- 							 <span -->
+<!-- 								class="btn btn-sm btn-warning"><a -->
+<!-- 								th:href="@{/usuario/cadastro}"><i></i>Novo</a></span> <span -->
+<!-- 								class="btn btn-sm btn-warning"><a -->
+<!-- 								th:href="@{/usuario/editar(id=${usuario.id})}"><i></i>Editar</a></span> -->
+
+						</div>
+
+
+					</div>
+
+
+
+				</div>
+
+				<div class="col-md-4" th:if="${erro}">
+
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<div class="container-fluid">
+							<div class="alert-icon">
+								<i class="material-icons">error</i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true"><i class="material-icons">clear</i></span>
+							</button>
+							<b>Mensagem:</b> <span th:utext="${erro}"></span> 
+<!-- 							<span -->
+<!-- 								class="btn btn-sm btn-warning"> -->
+<!-- 								<a -->
+<!-- 								th:href="@{/usuario/cadastro}"><i></i>Novo</a></span> <span -->
+<!-- 								class="btn btn-sm btn-warning"><a -->
+<!-- 								th:href="@{/usuario/editar(id=${usuario.id})}"><i></i>Editar</a></span> -->
+
+						</div>
+
+
+					</div>
+
+
+
+				</div>
+      
+      
+       
+           
+    <section class="col-md-12 connectedSortable">
+       
+       			<div class="box box-primary">
+            <div class="box-header with-border text-center">
+<!--               <h3 class="box-title">Ofertas</h3> -->
+
+<!--               <div class="box-tools pull-right"> -->
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> -->
+<!--                 </button> -->
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+<!--               </div> -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+      
+			
+			<div id="promocoes" class="owl-carousel owl-theme">
+			
+			<div th:each="promo: ${promocaoList}" class="" th:attr="data-hash=${promo.id}">
+
+			<a th:attr="href='#'+ ${promo.id}" >
+			
+			<img th:if="${promo.foto}"  th:src="@{/img/promocao/{fotoc}(fotoc=${promo.foto})}"  alt="User Image"  />
+
+			 <img th:unless="${promo.foto}"  th:src="@{/img/promocao/vazio.jpg}"  alt="User Image" />
+
+			</a>
+			<div class="box-footer text-center">
+			<h5  th:text="${promo.nome}" class="text-center"></h5>
+		<a th:href="@{/promocao/perfil(id=${promo.id})}" class="text-center"> <span class="badge bg-black">Detalhes</span></a>
+			
+			
+			</div>
+			
+			</div>
+			
+			
+			</div>
+			
+		
+			
+			
+			<div id="produtopromocoes" class="owl-carousel owl-theme">
+			
+			<th:block th:each="promo: ${promocaoList}">
+			
+			<div class=""  th:each="produto: ${promo.produtos}" th:attr="data-hash=${promo.id}">
+			
+			<a th:attr="href='#'+ ${promo.id}" class="" >
+			
+			<img th:if="${produto.foto}" class="" th:src="@{/img/produto/{fotoc}(fotoc=${produto.foto})}"  alt="User Image" />
+
+			 <img th:unless="${produto.foto}" class="" th:src="@{/img/produto/vazio.jpg}"  alt="User Image" />
+
+			</a>
+			
+			<div  class="box-footer">
+			<h5  th:text="${produto.nome}"></h5>
+			<span class="" th:text="|R$: ${produto.precovenda}|"></span>
+			
+			    <a th:href="@{/carrinho/adicionaroferta(id=${produto.id})}" rel="tooltip" title="Add para Carrinho" class="" >
+                  
+                  <i class="fa fa-cart-plus"></i> </a>
+                  
+                  		<a th:href="@{/produto/perfil(id=${produto.id})}" class="text-center" > <span class="badge bg-red">Detalhes</span></a>
+                  
+                  
+			</div>
+			
+			</div>
+			
+			</th:block>
+			
+			</div>
+			
+			
+			</div>
+			
+			
+			</div>
+   
+   
+   
+   
+   
+   
+   
+   
+<!--         </div> -->
+        
+<!--         </div> -->
+<!--         </div> -->
+        
+    
+        </section>
+        
+        
+        
+<!--         </div> -->
+       
+       
+                
+
+
+    </section>
+    
+    <div class="clearfix"></div>
+    
+           
+  </div>
+
+	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+	
+	    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
+			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
+			
+	
+		</div>	
+		
+		
+		 <script type="text/javascript">
+ 
+ 
+ $('.alert').alert();
+ 
+ $('.alert').fadeIn('slow', function(){
+     $('.alert').delay(2000).fadeOut(); 
+ 
+//      demo.showNotification('top','center','${erros}');
+//      demo.showNotification('top','center','${mensagem}');
+  
+  });
+ 
+ 
+ 
+ </script>
+		
+		
+		<script type="text/javascript">
+		
+			$('#promocoes').owlCarousel({
+// 				items:3,
+				loop:false,
+			    margin:10,
+// 			    nav:true,
+			    responsive:{
+			        0:{
+			          items:2
+			        },
+			        600:{
+			          items:3
+			        },
+			        1000:{
+			          items:5
+			        }
+			    },
+			    
+			    URLhashListener:true,
+		        autoplayHoverPause:true,
+// 		        startPosition: 'URLHash',
+		        callbacks: true
+// 		        center:true
+			});
+			
+			
+			var owll = $('#promocoes');
+			owll.owlCarousel();
+			// Listen to owl events:
+			owll.on('changed.owl.carousel', function(event) {
+				
+				
+				var element   = event.target;         // DOM element, in this example .owl-carousel
+			    var name      = event.type;           // Name of the event, in this example dragged
+			    var namespace = event.namespace;      // Namespace of the event, in this example owl.carousel
+			    var items     = event.item.count;     // Number of items
+			    var item      = event.item.index;     // Position of the current item
+			    // Provided by the navigation plugin
+			    var pages     = event.page.count;     // Number of pages
+			    var page      = event.page.index;     // Position of the current page
+			    var size      = event.page.size;
+			
+			    
+			    console.log("element:" + element);
+			    
+			    console.log("name:" + name);
+			    
+			    console.log("namespace:" + namespace);
+			    
+			    console.log("item:" + item);
+			
+			    
+			});
+			
+		
+			$('#produtopromocoes').owlCarousel({
+// 				items:6,
+				loop:false,
+			    margin:10,
+// 			    nav:true,
+			    responsive:{
+			        0:{
+			          items:3
+			        },
+			        600:{
+			          items:5
+			        },
+			        1000:{
+			          items:10
+			        }
+			    },
+			    
+			    URLhashListener:true,
+		        autoplayHoverPause:true,
+		        startPosition: 'URLHash',
+		        callbacks: true,
+		        center:true
+			});
+		
+			var owllp = $('#produtopromocoes');
+			owllp.owlCarousel();
+			// Listen to owl events:
+			owllp.on('changed.owl.carousel', function(event) {
+				
+				var element   = event.target;         // DOM element, in this example .owl-carousel
+			    var name      = event.type;           // Name of the event, in this example dragged
+			    var namespace = event.namespace;      // Namespace of the event, in this example owl.carousel
+			    var items     = event.item.count;     // Number of items
+			    var item      = event.item.index;     // Position of the current item
+			    // Provided by the navigation plugin
+			    var pages     = event.page.count;     // Number of pages
+			    var page      = event.page.index;     // Position of the current page
+			    var size      = event.page.size;
+			
+			    
+			    console.log("element:" + element);
+			    
+			    console.log("name:" + name);
+			    
+			    console.log("namespace:" + namespace);
+			    
+			    console.log("item:" + item);
+			    
+			});
+			
+			
+			
+		
+		</script>
+		
+		
+
+<!-- 	<div th:replace="fragmentos/footer :: script" style="display: none;"></div>	     -->
+	    
+</body>
+			
+			
+</html>
+

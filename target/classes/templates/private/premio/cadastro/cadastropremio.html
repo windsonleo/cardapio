@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+	
+	</head>
+		
+		<title>Cadastro Premio</title>
+
+	<body class="hold-transition skin-red sidebar-collapse sidebar-mini"
+	th:class=" 'hold-transition skin-'+ ${configuracaoAtual.cortopo} + ' sidebar-collapse sidebar-mini' ">
+
+
+
+
+
+
+
+
+	<div class="wrapper">
+
+		<nav th:replace="fragmentos/top-nav :: nav"></nav>
+
+		<div th:replace="fragmentos/nav :: nav-side"></div>
+
+
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Premio <small>Cadastro</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Premio</a></li>
+					<li class="active"><a href="#">Cadastro</a></li>
+					<!--         <li class="active">Blank page</li> -->
+				</ol>
+			</section>
+
+
+
+				<!-- 				mensagens do sistema  -->
+
+				<div class="row col-lg-4 col-md-6 col-xs-8" th:if="${sucesso}">
+
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<div class="container-fluid">
+							<div class="alert-icon">
+								<i class="material-icons">check</i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true"><i class="material-icons">clear</i></span>
+							</button>
+							<b>Mensagem:</b> <span th:utext="${sucesso}"> </span> <span
+								class="btn btn-sm btn-warning"><a
+								th:href="@{/premio/cadastro}"><i></i>Novo</a></span> <span
+								class="btn btn-sm btn-warning"><a
+								th:href="@{/premio/editar(id=${premio.id})}"><i></i>Editar</a></span>
+
+						</div>
+
+
+					</div>
+
+
+
+				</div>
+
+				<div class="row col-lg-4 col-md-6 col-xs-8" th:if="${erro}">
+
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<div class="container-fluid">
+							<div class="alert-icon">
+								<i class="material-icons">error</i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true"><i class="material-icons">clear</i></span>
+							</button>
+							<b>Mensagem:</b> <span th:utext="${erro}"></span> <span
+								class="btn btn-sm btn-warning"><a
+								th:href="@{/premio/cadastro}"><i></i>Novo</a></span> <span
+								class="btn btn-sm btn-warning"><a
+								th:href="@{/premio/editar(id=${premio.id})}"><i></i>Editar</a></span>
+
+						</div>
+
+
+					</div>
+
+
+
+				</div>
+
+				<!-- fim das mensagens -->
+
+
+				<!-- inicio do conteudo  -->
+
+		<section class="content connectedSortable">
+            
+        <div class="box box-solid">
+            <div class="box-header bg-black with-border ui-sortable-handle"  th:class=" 'box-header bg-'+ ${configuracaoAtual.cortopo} + ' with-border ui-sortable-handle'">
+                            <i class="fa fa-th"></i>
+              
+              <h5 class="box-title">Sorteio 
+              <a rel="tooltip" title="Adicionar Sorteeio"  th:href="@{/sorteio/GerarMultiplos}"> <i class="fa fa-user-plus"></i></a></h5>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">    
+            
+            <div class="col-md-4 panel">
+            
+            <form th:action="@{/premio/salvarfotopremio}" th:object="${premio}" ModelAttribute="premio"  enctype="multipart/form-data"  method="post">
+        
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-yellow">
+              <h3 class="widget-user-username" th:text="${premio.name}">Nome do Cliente</h3>
+              <h5 class="widget-user-desc" th:text="${premio.desconto}">Tipo &amp; TERAPIA</h5>
+            </div>
+            
+            
+<!--             <div class="widget-user-image" th:if="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/cliente/{fotoc}(fotoc=${filename})}" alt="User Avatar file"/> -->
+<!--             </div> -->
+            
+                        <div class="widget-user-image" th:unless="${premio.foto}">
+              <img class="img-circle" th:src="@{/img/premio/{fotoc}(fotoc=${filename})}" alt="User Avatar file unles"/>
+            </div>
+            
+            
+            
+                       <div class="widget-user-image" th:if="${premio.foto}">
+              <img class="img-circle" th:src="@{/img/premio/{fotoc}(fotoc=${premio.foto})}" alt="User Avatar pac if"/>
+            </div>
+            
+<!--                                    <div class="widget-user-image" th:unless="${cliente.foto}"> -->
+<!--               <img class="img-circle" th:src="@{/img/cliente/avatar2.png}" alt="User Avatar pac unlesss"/> -->
+<!--             </div> -->
+            
+            
+            
+            <div class="box-footer">
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="description-block">
+                    <div class="form-group">
+                  <label for="file">Escolha a Foto</label>
+                  <input type="text" readonly="" class="form-control" th:value="${filename}" th:placeholder="${filename}" />
+                  <input type="file" id="file" multiple="multiple" name="file" />
+
+<!--                   <p class="help-block">Example block-level help text here.</p> -->
+                </div>
+                    <h5 class="description-header" th:unless="${premio.id}">
+                    
+	                    <button class="btn btn-block btn-primary" type="submit">Add foto
+		                    <div class="ripple-container">
+		                    
+		                    </div>
+	                    </button>
+                    
+                    </h5>
+                    
+                                        <h5 class="description-header" th:if="${premio.id}">
+                    
+	                    <button class="btn btn-block btn-primary" type="submit">Add foto
+		                    <div class="ripple-container">
+		                    
+		                    </div>
+	                    </button>
+                    
+                    </h5>
+                    
+                    
+                    
+                    
+                    
+                    <span class="description-text"><i class="fa fa-photo"></i></span>
+                  </div>
+                  
+<!--                                     <div class="description-block"> -->
+
+                                    
+<!--                     <h5 class="description-header" th:if="${cliente.id}"> -->
+<!--                     <a class="btn btn-block btn-primary btn-sm"  th:href="@{/cliente/addendereco(id=${cliente.id})}">Add endereco -->
+<!--                     <div class="ripple-container"></div> -->
+<!--                     </a> -->
+                    
+<!--                     </h5> -->
+                    
+                    
+<!--                     <h5 class="description-header" th:unless="${cliente.id}"><a class="btn btn-block btn-primary disabled" th:href="@{/cliente/addendereco(id=${cliente.id})}">Add endereco -->
+<!--                     <div class="ripple-container"></div> -->
+<!--                     </a> -->
+                    
+<!--                     </h5> -->
+                    
+                    
+<!--                     <span class="description-text"><i class="fa fa-map"></i></span> -->
+<!--                   </div> -->
+                  
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+          
+          </form>
+           </div> 
+
+            
+            
+            
+            
+            			 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			
+		 
+			 
+				 <form th:action="@{/premio/{acao}(acao=${acao})}" ModelAttribute="premio" method="POST">
+
+
+			         <div class="form-group">
+			         		
+			         		    <div class="checkbox">
+                                  
+                                  
+                                  <label>
+                                  <input id="ativo" name="optionsCheckboxes" class="checkbox"  type="checkbox" th:checked="${premio.ativo}"/>
+                                  Ativo</label>
+                                </div>
+			     
+									
+								
+			            </div>
+
+
+			
+<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-envelope"></i>
+                  </div>
+							
+										<input id="desconto" name="desconto" class="form-control android" type="text"  th:value="${premio.desconto}" placeholder="Digite o Desconto" />
+							
+			                </div>
+			              </div>
+			
+<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-lock"></i>
+                  </div>
+			               
+										<input id="name" name="name" class="form-control android" type="text"  th:value="${premio.name}" placeholder="Digite a Premio"/>				
+			              </div>
+			              
+			              </div>
+			
+			
+<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-photo"></i>
+                  </div>
+							
+										<input th:if="${premio.foto}" id="foto" name="foto" class="form-control android" type="text"  th:value="${premio.foto}" placeholder="Digite a foto" />
+										<input th:unless="${premio.foto}" id="foto" name="foto" class="form-control android" type="text"  th:value="${filename}" placeholder="Digite a foto" />
+							
+			                </div>
+			              </div>
+			              
+			              			<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-user-secret"></i>
+                  </div>
+				 <select id="produto" name="produto"  class="form-control select2">
+				                                  <optgroup label="escolha produtos">
+					           				
+					           					<option th:text="${premio.produto}" th:selected="${premio.produto != null}" class="selected">Usuario Não Tem Nenhuma Regra</option>
+					           				
+					           				
+					           			
+					           				<option th:each="produto : ${produtos}" th:value="${produto.id}" >
+					           				
+					           				<span th:text="${produto.nome}" >Nenhuma produto Cadastrada </span>
+					           				
+					           				</option>
+					           				      				
+					           				
+					                </optgroup>
+				                    </select>			
+							
+			                </div>
+			              </div>
+
+			
+			        
+				
+			           
+					 	 
+			                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		
+				 	 
+						
+							<button type="submit" class="btn btn-success" th:value="${acao}" th:text="${acao}">Salvar</button>
+							<a href='javascript:history.back(1)' class="btn btn-default">Voltar</a>
+						
+						</form>
+						
+<!-- 						</div> -->
+                       
+
+
+				
+				
+
+
+			
+			
+			
+			
+			
+			
+	
+			
+			
+			</div>
+			
+			
+</div>
+</div>
+
+
+			
+			</section>
+			
+			
+			</div>
+			
+			
+			<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+			
+			
+			</div>
+			
+					
+	<script type="text/javascript">
+	
+    $(function () {
+   	 
+   	 $(".select2").select2();
+	
+    $('.datepicker').datepicker({
+        autoclose: true,
+        format: 'dd/mm/yyyy',
+	    	language: 'pt-BR'
+      });
+    
+	    $(".timepicker").timepicker({
+	        showInputs: false
+	      });
+	    
+	    
+	    
+	    
+	    $('.alert').alert();
+	     
+	     $('.alert').fadeIn('slow', function(){
+	         $('.alert').delay(2000).fadeOut(); 
+	     
+//	          demo.showNotification('top','center','${erros}');
+//	          demo.showNotification('top','center','${mensagem}');
+	      
+	      });
+   
+    
+    });
+    
+    
+	
+	
+	</script>
+			
+			
+			
+			</body>
+			
+				
+	
+
+</html>
