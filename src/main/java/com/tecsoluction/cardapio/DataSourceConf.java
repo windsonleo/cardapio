@@ -21,6 +21,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class DataSourceConf {
 	
 	
+	/**
+	 * @return
+	 */
 	@Bean
     public DataSource dataSource() {
            
@@ -34,9 +37,9 @@ public class DataSourceConf {
 		//heroku
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://ec2-174-129-209-212.compute-1.amazonaws.com:5432/d8ohkvp5i7jhgt");
-        dataSource.setUsername("qkbqwvgxdgqook");        
-        dataSource.setPassword("619053e4436539119f00f911a8cea51a8d34d7e0f30e7ba661ded0735e2b45f2");
+        dataSource.setUrl("jdbc:postgresql://ec2-35-172-36-137.compute-1.amazonaws.com:5432/da8ifs3uq7sqmt");
+        dataSource.setUsername("dxoflrckminqcl");        
+        dataSource.setPassword("2609fef61fb77136f0e4c12ad71efd4e4395867b6a337dcf97dfb3f9ecda1ef0");
 
     	return dataSource;
     }
